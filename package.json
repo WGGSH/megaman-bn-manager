@@ -8,6 +8,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext .ts,.js,.vue .",
+    "lint-fix": "eslint --fix --ext .ts,.js,.vue .",
     "prepare": "husky install",
     "postinstall": "husky install"
   },
