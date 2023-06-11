@@ -6,11 +6,10 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "postinstall": "husky install",
     "lint": "eslint --ext .ts,.js,.vue .",
     "lint-fix": "eslint --fix --ext .ts,.js,.vue .",
-    "prepare": "husky install",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{vue,js,jsx,ts,tsx}": [
@@ -30,6 +29,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "nuxt": "^3.5.3",
+    "nuxt-3-vuetify": "^1.1.1",
     "prettier": "^2.8.8"
   }
 }

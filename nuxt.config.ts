@@ -13,4 +13,11 @@ export default defineNuxtConfig({
   generate: {
     dir: "docs",
   },
+  modules: ["nuxt-3-vuetify"],
+  vuetify: {
+    scssSettingSrc: "settings.scss",
+    vuetifyOptions: {
+      defaults: {},
+    },
+  },
 });
