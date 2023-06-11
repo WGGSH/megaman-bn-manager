@@ -1,3 +1,3 @@
 <template>
-  <div>header</div>
+  <v-app-bar app> </v-app-bar>
 </template>
