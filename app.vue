@@ -1,5 +1,5 @@
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+  <global-header />
+  <nuxt-page></nuxt-page>
+  <global-footer />
 </template>
