@@ -1,3 +1,3 @@
 <template>
-  <v-footer app> </v-footer>
+  <v-footer color="secondary" app> footer </v-footer>
 </template>

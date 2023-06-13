@@ -1,14 +1,27 @@
 <template>
-  <v-card>
-    <v-navigation-drawer> </v-navigation-drawer>
-  </v-card>
+  <v-navigation-drawer v-model="localDrawer" location="left" temporary>
+  </v-navigation-drawer>
 </template>
 
 <script setup lang="ts">
-defineProps({
-  drawer: {
-    type: Boolean,
-    default: true,
-  },
+import { ref, watch } from "vue";
+
+const localDrawer = ref<Boolean>(false);
+
+const props = defineProps({
+  drawer: Boolean,
 });
+
+const emit = defineEmits(["drawer-update"]);
+
+watch(
+  () => props.drawer,
+  (newVal) => {
+    localDrawer.value = newVal;
+  },
+  () => localDrawer.value,
+  (newVal) => {
+    emit("drawer-update", newVal);
+  }
+);
 </script>
