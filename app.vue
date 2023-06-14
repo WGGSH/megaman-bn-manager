@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <vite-pwa-manifest />
     <global-navigation-drawer :drawer="drawer" @drawer-update="update" />
 
     <global-header />
