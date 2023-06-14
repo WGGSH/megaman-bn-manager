@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch } from 'vue';
 
 const localDrawer = ref<Boolean>(false);
 
@@ -11,7 +11,7 @@ const props = defineProps({
   drawer: Boolean,
 });
 
-const emit = defineEmits(["drawer-update"]);
+const emit = defineEmits(['drawer-update']);
 
 watch(
   () => props.drawer,
@@ -20,7 +20,7 @@ watch(
   },
   () => localDrawer.value,
   (newVal) => {
-    emit("drawer-update", newVal);
-  }
+    emit('drawer-update', newVal);
+  },
 );
 </script>

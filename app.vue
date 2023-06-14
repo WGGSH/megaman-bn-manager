@@ -6,7 +6,9 @@
 
     <v-main>
       <nuxt-page />
-      <v-btn @click="onClick"> test </v-btn>
+      <v-btn @click="onClick">
+        test
+      </v-btn>
     </v-main>
 
     <global-footer />
@@ -14,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const drawer = ref<Boolean>(false);
 
