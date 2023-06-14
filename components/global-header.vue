@@ -1,3 +1,3 @@
 <template>
-  <v-app-bar app> </v-app-bar>
+  <v-app-bar app />
 </template>

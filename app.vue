@@ -6,7 +6,7 @@
 
     <v-main>
       <nuxt-page />
-      <v-btn @click="onClick">test</v-btn>
+      <v-btn @click="onClick"> test </v-btn>
     </v-main>
 
     <global-footer />

@@ -1,6 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="localDrawer" location="left" temporary>
-  </v-navigation-drawer>
+  <v-navigation-drawer v-model="localDrawer" location="left" temporary />
 </template>
 
 <script setup lang="ts">

@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
