@@ -14,13 +14,15 @@ const props = defineProps({
 const emit = defineEmits(['drawer-update']);
 
 watch(
-  () => props.drawer,
-  (newVal) => {
-    localDrawer.value = newVal;
-  },
-  () => localDrawer.value,
-  (newVal) => {
-    emit('drawer-update', newVal);
+  () => ([props.drawer, localDrawer.value]),
+  (newVal, oldVal) => {
+    if (newVal[0] !== oldVal[1]) {
+      [localDrawer.value] = newVal;
+    }
+    if (newVal[1] !== oldVal[1]) {
+      // local
+      emit('drawer-update', newVal[1]);
+    }
   },
 );
 </script>

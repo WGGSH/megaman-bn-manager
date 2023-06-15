@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <vite-pwa-manifest />
-    <global-navigation-drawer :drawer="drawer" @drawer-update="update" />
+    <global-navigation-drawer :drawer="drawer" @drawer-update="updateDrawer" />
 
-    <global-header />
+    <global-header @on-click-nav-icon="updateDrawer" />
 
     <v-main>
       <nuxt-page />
@@ -25,7 +25,7 @@ const onClick = () => {
   drawer.value = !drawer.value;
 };
 
-const update = (newVal) => {
+const updateDrawer = (newVal) => {
   drawer.value = newVal;
 };
 </script>
