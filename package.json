@@ -26,6 +26,7 @@
     "@vite-pwa/nuxt": "^0.1.0",
     "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",
     "@vue/typescript": "^1.7.0",
+    "@vueuse/core": "^10.1.2",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
