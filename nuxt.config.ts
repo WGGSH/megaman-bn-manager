@@ -17,7 +17,11 @@ export default defineNuxtConfig({
   generate: {
     dir: 'docs',
   },
-  modules: ['nuxt-3-vuetify', '@vite-pwa/nuxt'],
+  modules: ['nuxt-3-vuetify', '@vite-pwa/nuxt', '@pinia/nuxt'],
+  alias: {
+    // https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev
+    pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
+  },
   vuetify: {
     scssSettingSrc: 'settings.scss',
     vuetifyOptions: {
