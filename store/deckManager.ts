@@ -7,6 +7,7 @@ export const useDeckManagerStore = defineStore('deck-manager', {
     deckNames: [], // デッキの名前一覧
     deckIds: [], // デッキのID一覧
     decksWithNameAndId: [], // デッキの名前とIDの一覧
+    selectedDeck: null, // 選択されているデッキ
   }),
   actions: {
     // 指定したデッキを選択する
@@ -50,6 +51,17 @@ export const useDeckManagerStore = defineStore('deck-manager', {
       return decks;
     },
 
+    getDeckById(id: number) {
+      return this.getDeckByIndex(this.deckIds.indexOf(id));
+    },
+
+    getDeckByIndex(index: number) {
+      return {
+        name: this.deckNames[index],
+        id: this.deckIds[index],
+      };
+    },
+
     // 初期化処理
     initialize() {
       this.setDeckNums(Number(localStorage.getItem('deck-length') || 0));
@@ -88,6 +100,18 @@ export const useDeckManagerStore = defineStore('deck-manager', {
       this.deckIds.push(this.getMaxDeckId() + 1);
       localStorage.setItem('deck-ids', JSON.stringify(this.deckIds));
       this.setDeckNums(this.deckNames.length);
+      this.update();
+    },
+
+    selectDeckById(id: number) {
+      const index = this.deckIds.indexOf(id);
+      this.selectedDeckIndex = index;
+      this.selectedDeck = this.getDeckByIndex(index);
+    },
+
+    updateDeckNameByIndex(index: number, name: string) {
+      this.deckNames[index] = name;
+      localStorage.setItem('deck-names', JSON.stringify(this.deckNames));
       this.update();
     },
   },

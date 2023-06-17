@@ -1,20 +1,21 @@
 <template>
   <v-app :theme="theme">
     <vite-pwa-manifest />
-    <global-navigation-drawer
+    <layout-global-navigation-drawer
       :drawer="drawer"
       :decks="decks"
-      @drawer-update="updateDrawer"
-      @add-deck="addDeck"
+      @drawer-update="onUpdateDrawer"
+      @add-deck="onAddDeck"
+      @select-deck="onSeleckDeck"
     />
 
-    <global-header @on-click-nav-icon="updateDrawer" />
+    <layout-global-header @on-click-nav-icon="onUpdateDrawer" />
 
     <v-main>
       <nuxt-page />
     </v-main>
 
-    <global-footer />
+    <layout-global-footer />
   </v-app>
 </template>
 
@@ -32,7 +33,9 @@ const deckManagerStore = useDeckManagerStore();
 
 const decks = computed(() => deckManagerStore.decksWithNameAndId);
 
-const updateDrawer = (newVal) => {
+const router = useRouter();
+
+const onUpdateDrawer = (newVal) => {
   drawer.value = newVal;
 };
 
@@ -42,7 +45,12 @@ onMounted(() => {
   deckManagerStore.initialize();
 });
 
-const addDeck = () => {
+const onAddDeck = () => {
   deckManagerStore.addDeck();
+};
+
+const onSeleckDeck = (id) => {
+  deckManagerStore.selectDeckById(id);
+  router.push({ path: '/deck/abstract' });
 };
 </script>

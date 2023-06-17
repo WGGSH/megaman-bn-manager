@@ -18,10 +18,9 @@
       v-for="deck in decks"
       :key="deck.id"
       link
+      @click="onClickDeck(deck)"
     >
-      <NuxtLink to="/deck/abstract" class="link" @click="onClickDeck">
-        {{ deck.name }}
-      </NuxtLink>
+      {{ deck.name }}
     </v-list-item>
 
     <v-divider />
@@ -52,7 +51,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['drawer-update', 'add-deck']);
+const emit = defineEmits(['drawer-update', 'add-deck', 'select-deck']);
 
 watch(
   () => ([props.drawer, localDrawer.value]),
@@ -72,8 +71,9 @@ const newDeck = () => {
   emit('add-deck');
 };
 
-const onClickDeck = () => {
+const onClickDeck = (deck) => {
   localDrawer.value = false;
+  emit('select-deck', deck.id);
 };
 </script>
 
