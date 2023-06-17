@@ -17,16 +17,16 @@ export default defineNuxtConfig({
   generate: {
     dir: 'docs',
   },
-  modules: ['nuxt-3-vuetify', '@vite-pwa/nuxt', '@pinia/nuxt'],
+  modules: ['@invictus.codes/nuxt-vuetify', '@vite-pwa/nuxt', '@pinia/nuxt'],
+  plugins: [
+    '@/plugins/vuetify',
+  ],
   alias: {
     // https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev
     pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
   },
-  vuetify: {
-    scssSettingSrc: 'settings.scss',
-    vuetifyOptions: {
-      defaults: {},
-    },
+  vuetify: { // https://www.npmjs.com/package/@invictus.codes/nuxt-vuetify
+    vuetifyOptions: {},
   },
   css: [
     'vuetify/lib/styles/main.sass',
