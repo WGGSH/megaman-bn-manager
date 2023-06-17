@@ -85,8 +85,6 @@ export const useDeckManagerStore = defineStore('deck-manager', {
       this.deckNames.push(name);
       localStorage.setItem('deck-names', JSON.stringify(this.deckNames));
 
-      // const id = this.getMaxDeckId() + 1;
-      // this.deckIds.push(id);
       this.deckIds.push(this.getMaxDeckId() + 1);
       localStorage.setItem('deck-ids', JSON.stringify(this.deckIds));
       this.setDeckNums(this.deckNames.length);

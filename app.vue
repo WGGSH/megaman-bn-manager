@@ -12,9 +12,6 @@
 
     <v-main>
       <nuxt-page />
-      <v-btn @click="onClick">
-        test
-      </v-btn>
     </v-main>
 
     <global-footer />
@@ -34,10 +31,6 @@ const theme = computed(() => themeStore.value);
 const deckManagerStore = useDeckManagerStore();
 
 const decks = computed(() => deckManagerStore.decksWithNameAndId);
-
-const onClick = () => {
-  drawer.value = !drawer.value;
-};
 
 const updateDrawer = (newVal) => {
   drawer.value = newVal;

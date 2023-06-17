@@ -13,6 +13,7 @@
           :key="menu.icon"
           class="mx-auto"
           variant="plain"
+          :to="menu.link"
         >
           <v-icon size="36px">
             {{ menu.icon }}
@@ -29,18 +30,23 @@ import { ref } from 'vue';
 const footerMenus = ref([
   {
     icon: 'mdi-home',
+    link: '/deck/abstract',
   },
   {
     icon: 'mdi-face-man',
+    link: '/deck/navi',
   },
   {
     icon: 'mdi-chip',
+    link: '/deck/folder',
   },
   {
     icon: 'mdi-credit-card-multiple',
+    link: '/deck/card',
   },
   {
     icon: 'mdi-cog',
+    link: '/setting',
   },
 ]);
 </script>

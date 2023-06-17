@@ -19,7 +19,9 @@
       :key="deck.id"
       link
     >
-      {{ deck.name }}
+      <NuxtLink to="/deck/abstract" class="link" @click="onClickDeck">
+        {{ deck.name }}
+      </NuxtLink>
     </v-list-item>
 
     <v-divider />
@@ -69,4 +71,15 @@ const newDeck = () => {
   localDrawer.value = false;
   emit('add-deck');
 };
+
+const onClickDeck = () => {
+  localDrawer.value = false;
+};
 </script>
+
+<style scoped lang="scss">
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+</style>

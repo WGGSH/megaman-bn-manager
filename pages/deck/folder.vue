@@ -1,3 +1,3 @@
 <template>
-  <h1>index</h1>
+  <h1>folder</h1>
 </template>
