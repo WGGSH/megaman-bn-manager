@@ -51,6 +51,6 @@ const onAddDeck = () => {
 
 const onSeleckDeck = (id) => {
   deckManagerStore.selectDeckById(id);
-  router.push({ path: '/deck/abstract' });
+  router.push({ path: `/deck/${id}/abstract` });
 };
 </script>
