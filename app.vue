@@ -3,10 +3,10 @@
     <vite-pwa-manifest />
     <layout-global-navigation-drawer
       :drawer="drawer"
-      :decks="decks"
+      :decks="decksWithNameAndId"
       @drawer-update="onUpdateDrawer"
       @add-deck="onAddDeck"
-      @select-deck="onSeleckDeck"
+      @select-deck="onSelectDeck"
     />
 
     <layout-global-header @on-click-nav-icon="onUpdateDrawer" />
@@ -30,8 +30,7 @@ const themeStore = useThemeStore();
 const theme = computed(() => themeStore.value);
 
 const deckManagerStore = useDeckManagerStore();
-
-const decks = computed(() => deckManagerStore.decksWithNameAndId);
+const decksWithNameAndId = computed(() => deckManagerStore.decksWithNameAndId);
 
 const router = useRouter();
 
@@ -42,15 +41,15 @@ const onUpdateDrawer = (newVal) => {
 onMounted(() => {
   const localTheme = localStorage.getItem('theme') || 'light';
   themeStore.setTheme(localTheme);
-  deckManagerStore.initialize();
+  deckManagerStore.fetch();
 });
 
 const onAddDeck = () => {
-  deckManagerStore.addDeck();
+  const deck = deckManagerStore.addDeck();
+  router.push({ path: `/deck/${deck.id}/abstract` });
 };
 
-const onSeleckDeck = (id) => {
-  deckManagerStore.selectDeckById(id);
+const onSelectDeck = (id) => {
   router.push({ path: `/deck/${id}/abstract` });
 };
 </script>

@@ -35,6 +35,7 @@ import { useDeckManagerStore } from '@/store/deckManager';
 const deckManagerStore = useDeckManagerStore();
 
 const router = useRouter();
+const route = useRoute();
 const selectedDeck = computed(() => deckManagerStore.selectedDeck);
 
 const name = ref();
@@ -49,14 +50,16 @@ watch(
 );
 
 onMounted(() => {
-  if (!deckManagerStore.selectedDeck) {
+  deckManagerStore.setSelectedDeckById(route.params.id);
+  if (!selectedDeck) {
     router.push({ path: '/' });
-    return;
   }
-  name.value = selectedDeck.value.name;
 });
 
 const onClickSave = () => {
-  deckManagerStore.updateDeckNameByIndex(deckManagerStore.selectedDeckIndex, name.value);
+  deckManagerStore.updateDeckNameById({
+    id: selectedDeck.value.id,
+    name: name.value,
+  });
 };
 </script>
