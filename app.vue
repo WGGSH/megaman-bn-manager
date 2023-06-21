@@ -24,7 +24,7 @@ import { ref, computed } from 'vue';
 import { useThemeStore } from '@/store/theme';
 import { useBuildManagerStore } from '@/store/buildManager';
 
-const drawer = ref<Boolean>(false);
+const drawer = ref<boolean>(false);
 
 const themeStore = useThemeStore();
 const theme = computed(() => themeStore.value);
@@ -36,7 +36,7 @@ const buildsWithNameAndId = computed(
 
 const router = useRouter();
 
-const onUpdateDrawer = (newVal: Boolean) => {
+const onUpdateDrawer = (newVal: boolean) => {
   drawer.value = newVal;
 };
 

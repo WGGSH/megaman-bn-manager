@@ -42,10 +42,13 @@
 import { ref, watch } from 'vue';
 import { Build } from '@/types/build';
 
-const localDrawer = ref<Boolean>(false);
+const localDrawer = ref<boolean>(false);
 
 const props = defineProps({
-  drawer: Boolean,
+  drawer: {
+    type: Boolean,
+    required: true,
+  },
   builds: {
     type: Array as PropType<Build[]>,
     default: () => [],
