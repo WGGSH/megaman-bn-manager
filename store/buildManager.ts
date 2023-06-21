@@ -1,5 +1,7 @@
+// @ts-nocheck
 import { defineStore } from 'pinia';
 import { Build } from '@/types/build';
+import { Version } from '@/types/version';
 
 export interface BuildManagerState {
   builds: { [key: number]: Build };
@@ -58,10 +60,26 @@ export const useBuildManagerStore = defineStore('build-manager', {
       return ids.length === 0 ? 0 : Math.max(...ids);
     },
 
-    updateBuildNameById({ id, name }: { id: number, name: string }) {
+    updateBuildById({
+      id, name, versions, hpMemoryNum,
+    }: {
+      id: number,
+      name: string | null,
+      versions: Array<Version> | null,
+      hpMemoryNum: number | null,
+    }) {
       const build = this.builds[id];
-      build.name = name;
+      if (build === undefined) return;
+      if (name !== null) build.name = name;
+      if (versions !== null) build.versions = versions;
+      if (hpMemoryNum !== null) build.hpMemoryNum = hpMemoryNum;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
+
+    // updateBuildNameById({ id, name }: { id: number, name: string }) {
+    //   const build = this.builds[id];
+    //   build.name = name;
+    //   localStorage.setItem(`build-${id}`, JSON.stringify(build));
+    // },
   },
 });

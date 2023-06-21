@@ -71,6 +71,8 @@ watch(
   (newVal) => {
     if (newVal) {
       name.value = selectedBuild.value.name;
+      versions.value = selectedBuild.value.versions;
+      hpMemoryNum.value = selectedBuild.value.hpMemoryNum;
     }
   },
 );
@@ -83,9 +85,11 @@ onMounted(() => {
 });
 
 const onClickSave = () => {
-  buildManagerStore.updateBuildNameById({
+  buildManagerStore.updateBuildById({
     id: selectedBuild.value.id,
     name: name.value,
+    versions: versions.value,
+    hpMemoryNum: hpMemoryNum.value,
   });
 };
 </script>
