@@ -8,25 +8,25 @@
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="text-h6">
-          デッキ一覧
+          ビルド一覧
         </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
     <v-divider />
     <v-list-item
-      v-for="deck in decks"
-      :key="deck.id"
+      v-for="build in builds"
+      :key="build.id"
       link
-      @click="onClickDeck(deck)"
+      @click="onClickBuild(build)"
     >
-      {{ deck.name }}
+      {{ build.name }}
     </v-list-item>
 
     <v-divider />
 
     <v-list dense nav>
-      <v-list-item link @click="newDeck">
+      <v-list-item link @click="newBuild">
         <v-list-item-content>
           <v-list-item-title>
             <v-icon>mdi-plus</v-icon>
@@ -45,13 +45,13 @@ const localDrawer = ref<Boolean>(false);
 
 const props = defineProps({
   drawer: Boolean,
-  decks: {
+  builds: {
     type: Array as PropType<Object>,
     default: () => [],
   },
 });
 
-const emit = defineEmits(['drawer-update', 'add-deck', 'select-deck']);
+const emit = defineEmits(['drawer-update', 'add-build', 'select-build']);
 
 watch(
   () => ([props.drawer, localDrawer.value]),
@@ -66,14 +66,14 @@ watch(
   },
 );
 
-const newDeck = () => {
+const newBuild = () => {
   localDrawer.value = false;
-  emit('add-deck');
+  emit('add-build');
 };
 
-const onClickDeck = (deck) => {
+const onClickBuild = (build) => {
   localDrawer.value = false;
-  emit('select-deck', deck.id);
+  emit('select-build', build.id);
 };
 </script>
 

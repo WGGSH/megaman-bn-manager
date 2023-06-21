@@ -43,13 +43,13 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { useDeckManagerStore } from '@/store/deckManager';
+import { useBuildManagerStore } from '@/store/buildManager';
 
-const deckManagerStore = useDeckManagerStore();
+const buildManagerStore = useBuildManagerStore();
 
 const router = useRouter();
 const route = useRoute();
-const selectedDeck = computed(() => deckManagerStore.selectedDeck);
+const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
 const name = ref();
 const versions = ref([]);
@@ -67,24 +67,24 @@ const versionList = [
 ];
 
 watch(
-  () => selectedDeck.value,
+  () => selectedBuild.value,
   (newVal) => {
     if (newVal) {
-      name.value = selectedDeck.value.name;
+      name.value = selectedBuild.value.name;
     }
   },
 );
 
 onMounted(() => {
-  deckManagerStore.setSelectedDeckById(route.params.id);
-  if (!selectedDeck) {
+  buildManagerStore.setSelectedBuildById(route.params.id);
+  if (!selectedBuild) {
     router.push({ path: '/' });
   }
 });
 
 const onClickSave = () => {
-  deckManagerStore.updateDeckNameById({
-    id: selectedDeck.value.id,
+  buildManagerStore.updateBuildNameById({
+    id: selectedBuild.value.id,
     name: name.value,
   });
 };

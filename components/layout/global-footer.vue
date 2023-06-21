@@ -30,19 +30,19 @@ import { ref } from 'vue';
 const footerMenus = ref([
   {
     icon: 'mdi-home',
-    link: '/deck/abstract',
+    link: '/build/abstract',
   },
   {
     icon: 'mdi-face-man',
-    link: '/deck/navi',
+    link: '/build/navi',
   },
   {
     icon: 'mdi-chip',
-    link: '/deck/folder',
+    link: '/build/folder',
   },
   {
     icon: 'mdi-credit-card-multiple',
-    link: '/deck/card',
+    link: '/build/card',
   },
   {
     icon: 'mdi-cog',
