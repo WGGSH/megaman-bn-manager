@@ -66,13 +66,20 @@ const versionList = [
   },
 ];
 
+const setValues = () => {
+  if (!selectedBuild.value || !selectedBuild.value.id) {
+    return;
+  }
+  name.value = selectedBuild.value.name;
+  versions.value = selectedBuild.value.versions;
+  hpMemoryNum.value = selectedBuild.value.hpMemoryNum;
+};
+
 watch(
   () => selectedBuild.value,
   (newVal) => {
     if (newVal) {
-      name.value = selectedBuild.value.name;
-      versions.value = selectedBuild.value.versions;
-      hpMemoryNum.value = selectedBuild.value.hpMemoryNum;
+      setValues();
     }
   },
 );
@@ -81,6 +88,8 @@ onMounted(() => {
   buildManagerStore.setSelectedBuildById(route.params.id);
   if (!selectedBuild) {
     router.push({ path: '/' });
+  } else {
+    setValues();
   }
 });
 

@@ -13,7 +13,7 @@
           :key="menu.icon"
           class="mx-auto"
           variant="plain"
-          :to="menu.link"
+          @click="changeRoute(menu.path)"
         >
           <v-icon size="36px">
             {{ menu.icon }}
@@ -27,26 +27,38 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+import { useBuildManagerStore } from '@/store/buildManager';
+
+const router = useRouter();
+
+const buildManagerStore = useBuildManagerStore();
+
+const selectedBuildId = computed(() => buildManagerStore.selectedBuildId);
+
 const footerMenus = ref([
   {
     icon: 'mdi-home',
-    link: '/build/abstract',
+    path: 'abstract',
   },
   {
     icon: 'mdi-face-man',
-    link: '/build/navi',
+    path: 'navi',
   },
   {
     icon: 'mdi-chip',
-    link: '/build/folder',
+    path: 'folder',
   },
   {
     icon: 'mdi-credit-card-multiple',
-    link: '/build/card',
+    path: 'card',
   },
   {
     icon: 'mdi-cog',
-    link: '/setting',
+    path: '/setting',
   },
 ]);
+
+const changeRoute = (path: string) => {
+  router.push(`/build/${selectedBuildId.value}/${path}`);
+};
 </script>
