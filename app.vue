@@ -30,11 +30,13 @@ const themeStore = useThemeStore();
 const theme = computed(() => themeStore.value);
 
 const buildManagerStore = useBuildManagerStore();
-const buildsWithNameAndId = computed(() => buildManagerStore.buildsWithNameAndId);
+const buildsWithNameAndId = computed(
+  () => buildManagerStore.buildsWithNameAndId,
+);
 
 const router = useRouter();
 
-const onUpdateDrawer = (newVal) => {
+const onUpdateDrawer = (newVal: Boolean) => {
   drawer.value = newVal;
 };
 
@@ -49,7 +51,7 @@ const onAddBuild = () => {
   router.push({ path: `/build/${build.id}/abstract` });
 };
 
-const onSelectBuild = (id) => {
+const onSelectBuild = (id: Number) => {
   router.push({ path: `/build/${id}/abstract` });
 };
 </script>

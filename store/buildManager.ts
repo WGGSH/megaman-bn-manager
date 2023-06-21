@@ -1,17 +1,33 @@
 import { defineStore } from 'pinia';
+import { Build } from '@/types/build';
+
+export interface BuildManagerState {
+  builds: { [key: number]: Build };
+  selectedBuildId: number | null;
+}
 
 export const useBuildManagerStore = defineStore('build-manager', {
   state: () => ({
-    builds: [],
+    builds: {},
     selectedBuildId: null,
   }),
   getters: {
-    buildNums: (state) => Object.keys(state.builds).length,
-    buildNames: (state) => Object.values(state.builds).map((build) => build.name),
-    buildIds: (state) => Object.values(state.builds).map((build) => build.id),
-    buildsWithNameAndId: (state) => Object.values(state.builds)
+    buildNums: (state: BuildManagerState) => Object.keys(state.builds).length,
+
+    buildIds: (state: BuildManagerState) => Object.values(state.builds)
+      .map((build) => build.id),
+
+    buildNames: (state: BuildManagerState) => Object.values(state.builds)
+      .map((build) => build.name),
+
+    buildsWithNameAndId: (state: BuildManagerState) => Object.values(state.builds)
       .map((build) => ({ name: build.name, id: build.id })),
-    selectedBuild: (state) => state.builds[state.selectedBuildId],
+
+    selectedBuild: (state: BuildManagerState) => (
+      state.selectedBuildId === null
+        ? null
+        : state.builds[state.selectedBuildId]
+    ),
   },
   actions: {
     fetch() {
@@ -26,7 +42,7 @@ export const useBuildManagerStore = defineStore('build-manager', {
       this.selectedBuildId = id;
     },
 
-    addBuild(name: string = '新しいビルド') {
+    addBuild(name: string = '新しいビルド'): Build {
       const id = this.getMaxBuildId() + 1;
       const build = {
         name,
@@ -37,7 +53,7 @@ export const useBuildManagerStore = defineStore('build-manager', {
       return build;
     },
 
-    getMaxBuildId() {
+    getMaxBuildId(): number {
       const ids = Object.values(this.builds).map((build) => build.id);
       return ids.length === 0 ? 0 : Math.max(...ids);
     },

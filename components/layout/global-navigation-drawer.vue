@@ -40,13 +40,14 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { Build } from '@/types/build';
 
 const localDrawer = ref<Boolean>(false);
 
 const props = defineProps({
   drawer: Boolean,
   builds: {
-    type: Array as PropType<Object>,
+    type: Array as PropType<Build[]>,
     default: () => [],
   },
 });
@@ -71,7 +72,7 @@ const newBuild = () => {
   emit('add-build');
 };
 
-const onClickBuild = (build) => {
+const onClickBuild = (build: Build) => {
   localDrawer.value = false;
   emit('select-build', build.id);
 };
