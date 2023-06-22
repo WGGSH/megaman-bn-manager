@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   components: [
     '~/components',
   ],
-  modules: ['@invictus.codes/nuxt-vuetify', '@vite-pwa/nuxt', '@pinia/nuxt'],
+  modules: ['@invictus.codes/nuxt-vuetify', '@vite-pwa/nuxt', '@pinia/nuxt', '@uniq'],
   alias: {
     // https://stackoverflow.com/questions/74003458/cannot-find-module-pinia-dist-pinia-mjs-when-using-run-dev
     pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',

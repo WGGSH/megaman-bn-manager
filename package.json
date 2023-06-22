@@ -36,7 +36,9 @@
     "lint-staged": "^13.2.2",
     "nuxt": "^3.5.3",
     "prettier": "^2.8.8",
-    "vue-router": "^4.2.2"
+    "uniq": "^1.0.1",
+    "vue-router": "^4.2.2",
+    "vuedraggable": "^4.1.0"
   },
   "dependencies": {
     "vue": "^3.3.4"
