@@ -44,6 +44,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useBuildManagerStore } from '@/store/buildManager';
+import { Version } from '@/types/version';
 
 const buildManagerStore = useBuildManagerStore();
 
@@ -51,9 +52,9 @@ const router = useRouter();
 const route = useRoute();
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
-const name = ref();
-const versions = ref([]);
-const hpMemoryNum = ref(45);
+const name = ref<string>();
+const versions = ref<Array<Version>>([]);
+const hpMemoryNum = ref<number>();
 
 const versionList = [
   {

@@ -46,12 +46,23 @@ export const useBuildManagerStore = defineStore('build-manager', {
 
     addBuild(name: string = '新しいビルド'): Build {
       const id = this.getMaxBuildId() + 1;
-      const build = {
-        name,
-        id,
-      };
+
+      const build = this.generateDefaultBuild();
+      build.name = name;
+      build.id = id;
+
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
       this.builds[id] = build;
+      return build;
+    },
+
+    generateDefaultBuild(): Build {
+      const build: Build = {
+        name: '新しいビルド',
+        versions: [],
+        hpMemoryNum: 45,
+      };
+
       return build;
     },
 
