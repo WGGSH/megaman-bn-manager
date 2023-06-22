@@ -8,7 +8,34 @@ export interface BuildManagerState {
   selectedBuildId: number | null;
 }
 
-export const useBuildManagerStore = defineStore('build-manager', {
+interface BuildManagerGetters {
+  buildNums: number;
+  buildIds: Array<number>;
+  buildNames: Array<string>;
+  buildsWithNameAndId: Array<{ name: string, id: number }>;
+  selectedBuild: Build | null;
+}
+
+interface BuildManagerActions {
+  fetch: () => void;
+  setSelectedBuildById: (id: number) => void;
+  addBuild: (name?: string) => Build;
+  generateDefaultBuild: () => Build;
+  getMaxBuildId: () => number;
+  updateBuildById: (
+    {
+      id, name, versions, hpMemoryNum,
+    }: {
+      id: number,
+      name: string | null,
+      versions: Array<Version> | null,
+      hpMemoryNum: number | null,
+    },
+  ) => void;
+}
+
+export const useBuildManagerStore = defineStore<string, BuildManagerState, BuildManagerGetters, BuildManagerActions>('build-manager', {
+// export const useBuildManagerStore = defineStore('build-manager', {
   state: () => ({
     builds: {},
     selectedBuildId: null,
@@ -46,12 +73,23 @@ export const useBuildManagerStore = defineStore('build-manager', {
 
     addBuild(name: string = '新しいビルド'): Build {
       const id = this.getMaxBuildId() + 1;
-      const build = {
-        name,
-        id,
-      };
+
+      const build = this.generateDefaultBuild();
+      build.name = name;
+      build.id = id;
+
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
       this.builds[id] = build;
+      return build;
+    },
+
+    generateDefaultBuild(): Build {
+      const build: Build = {
+        name: '新しいビルド',
+        versions: [],
+        hpMemoryNum: 45,
+      };
+
       return build;
     },
 
@@ -62,11 +100,6 @@ export const useBuildManagerStore = defineStore('build-manager', {
 
     updateBuildById({
       id, name, versions, hpMemoryNum,
-    }: {
-      id: number,
-      name: string | null,
-      versions: Array<Version> | null,
-      hpMemoryNum: number | null,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
@@ -75,11 +108,5 @@ export const useBuildManagerStore = defineStore('build-manager', {
       if (hpMemoryNum !== null) build.hpMemoryNum = hpMemoryNum;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
-
-    // updateBuildNameById({ id, name }: { id: number, name: string }) {
-    //   const build = this.builds[id];
-    //   build.name = name;
-    //   localStorage.setItem(`build-${id}`, JSON.stringify(build));
-    // },
   },
 });
