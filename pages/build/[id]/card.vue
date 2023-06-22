@@ -23,16 +23,12 @@
 
   <v-container>
     <draggable
-      :list="items2"
+      v-model="masterPatchCards"
       :group="{ name: 'card', pull: 'clone', put: false }"
       @change="log"
     >
       <template #item="{ element }">
-        <v-card class="ma-4">
-          <v-card-text>
-            {{ element }}
-          </v-card-text>
-        </v-card>
+        <ui-card-patch-card :patch-card="element" class="ma-4" />
       </template>
     </draggable>
   </v-container>
@@ -43,14 +39,21 @@ import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import uniq from 'uniq';
 
-const items = ref([
-]);
+import { useMasterPatchCardStore } from '@/store/masterPatchCard';
 
-const items2 = ref([
-  'd', 'e', 'f',
+const masterPatchCardStore = useMasterPatchCardStore();
+
+const masterPatchCards = computed(() => masterPatchCardStore.cards);
+
+const items = ref([
 ]);
 
 const log = () => {
   items.value = uniq(items.value);
 };
+
+onMounted(() => {
+  masterPatchCardStore.fetchCards();
+});
+
 </script>
