@@ -24,11 +24,31 @@ export class Ability {
       case 'rapid-plus':
       case 'charge-plus':
       case 'hp-plus':
+      case 'hp-magnify':
       case 'mega-plus':
+      case 'giga-plus':
+      case 'custom-plus':
         if (typeof this._value === 'number') {
           return this._value > 0;
         }
         return defaultValue;
+
+      case 'super-armor':
+      case 'float-shoes':
+      case 'air-shoes':
+        if (typeof this._value === 'boolean') {
+          return this._value;
+        }
+        return defaultValue;
+
+      case 'first-barrier':
+        return this._value !== null;
+
+      case 'body-change':
+        return true;
+
+      case 'move-change':
+        return false;
 
       default:
         return defaultValue;

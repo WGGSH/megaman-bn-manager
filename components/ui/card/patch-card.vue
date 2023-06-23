@@ -25,7 +25,7 @@
           xl="2"
           xxl="2"
         >
-          <v-card color="blue">
+          <v-card :color="abilityColor(ability)">
             {{ ability.toString() }}
           </v-card>
         </v-col>
@@ -44,4 +44,10 @@ defineProps({
   },
 });
 
+const abilityColor = (ability) => {
+  if (ability.isPositive) {
+    return 'blue';
+  }
+  return 'red';
+};
 </script>
