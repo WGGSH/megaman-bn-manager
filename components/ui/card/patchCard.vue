@@ -25,7 +25,9 @@
           xl="2"
           xxl="2"
         >
-          {{ ability.toString() }}
+          <v-card color="blue">
+            {{ ability.toString() }}
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
