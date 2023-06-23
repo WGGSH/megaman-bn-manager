@@ -25,7 +25,7 @@
           xl="2"
           xxl="2"
         >
-          {{ ability.key }}: {{ ability.value }}
+          {{ ability.toString() }}
         </v-col>
       </v-row>
     </v-container>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { PatchCard } from '@/types/patchCard';
+import { PatchCard } from '@/classes/patchCard';
 
 defineProps({
   patchCard: {

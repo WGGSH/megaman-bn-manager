@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { defineStore, type _GettersTree } from 'pinia';
-import { PatchCard } from '@/types/patchCard';
+import { PatchCard } from '@/classes/patchCard';
+import { Ability } from '@/classes/ability';
 
 import cardData from '@/assets/masterData/card.json';
 
@@ -10,7 +11,6 @@ interface MasterPatchCardState {
 
 interface MasterPatchCardGetters extends _GettersTree<MasterPatchCardState> {
   isFetched: boolean;
-  // cards: Array<PatchCard>;
 }
 
 interface MasterPatchCardActions {
@@ -25,11 +25,13 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
   }),
   getters: {
     isFetched: (state: MasterPatchCardState) => state.cards.length > 0,
-    // cards: (state: MasterPatchCardState) => state.cards,
   },
   actions: {
     fetchCards() {
-      this.cards = cardData.cards;
+      this.cards = cardData.cards.map((card) => {
+        const abilities = card.abilities.map((ability) => new Ability(ability.key, ability.value));
+        return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
+      });
     },
   },
 });

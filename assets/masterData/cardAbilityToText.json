@@ -1,0 +1,72 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "number": "136-A001",
+      "name": "キャノーダム",
+      "capacity": 10,
+      "abilities": [
+        {
+          "key": "attack-plus",
+          "value": 1
+        },
+        {
+          "key": "cs-change",
+          "value": 1
+        },
+        {
+          "key": "hp-plus",
+          "value": -40
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "number": "136-A002",
+      "name": "アモナキュール",
+      "capacity": 16,
+      "abilities": [
+        {
+          "key": "hp-plus",
+          "value": 80
+        },
+        {
+          "key": "body-change",
+          "value": "aqua"
+        },
+        {
+          "key": "first-barrier",
+          "value": "bubble-wrap"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "number": "137-D001-G",
+      "name": "フォルテクロスロックマン",
+      "capacity": 70,
+      "abilities": [
+        {
+          "key": "hp-plus",
+          "value": 200
+        },
+        {
+          "key": "super-armor",
+          "value": true
+        },
+        {
+          "key": "buster-change",
+          "value": "triple"
+        },
+        {
+          "key": "cs-change",
+          "value": "shooting"
+        },
+        {
+          "key": "mega-plus",
+          "value": -2
+        }
+      ]
+    }
+  ]
+}
