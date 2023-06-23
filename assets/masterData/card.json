@@ -41,6 +41,134 @@
       ]
     },
     {
+      "id": 3,
+      "number": "136-A003",
+      "name": "コルドベア",
+      "capacity": 18,
+      "abilities": [
+        {
+          "key": "hp-plus",
+          "value": 140
+        },
+        {
+          "key": "body-change",
+          "value": "aqua"
+        },
+        {
+          "key": "cs-change",
+          "value": "ice-cube"
+        },
+        {
+          "key": "move-change",
+          "value": "ice"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "number": "136-A004",
+      "name": "ジーラ",
+      "capacity": 12,
+      "abilities": [
+        {
+          "key": "attack-plus",
+          "value": 3
+        },
+        {
+          "key": "float-shoes",
+          "value": false
+        },
+        {
+          "key": "air-shoes",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "number": "136-A005",
+      "name": "メガリア",
+      "capacity": 20,
+      "abilities": [
+        {
+          "key": "charge-plus",
+          "value": 100
+        },
+        {
+          "key": "first-barrier",
+          "value": "barrier-100"
+        },
+        {
+          "key": "air-shoes",
+          "value": true
+        },
+        {
+          "key": "hp-plus",
+          "value": -80
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "number": "136-A006",
+      "name": "メテファイア",
+      "capacity": 20,
+      "abilities": [
+        {
+          "key": "body-change",
+          "value": "fire"
+        },
+        {
+          "key": "buster-change",
+          "value": "meteor-1"
+        },
+        {
+          "key": "move-change",
+          "value": "skip"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "number": "136-A007",
+      "name": "キルプラント",
+      "capacity": 19,
+      "abilities": [
+        {
+          "key": "body-change",
+          "value": "wood"
+        },
+        {
+          "key": "cs-change",
+          "value": "grass-seed"
+        },
+        {
+          "key": "air-shoes",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "number": "136-A008",
+      "name": "ダークシャドー",
+      "capacity": 6,
+      "abilities": [
+        {
+          "key": "buster-change",
+          "value": "sword"
+        },
+        {
+          "key": "cs-change",
+          "value": "invisible"
+        },
+        {
+          "key": "status-guard",
+          "value": false
+        }
+      ]
+    },
+    {
       "id": 99,
       "number": "137-D001-G",
       "name": "フォルテクロスロックマン",

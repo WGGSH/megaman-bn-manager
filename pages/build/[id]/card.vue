@@ -11,9 +11,7 @@
     >
       <template #item="{ element }">
         <v-card class="ma-4">
-          <v-card-text>
-            {{ element }}
-          </v-card-text>
+          <ui-card-patch-card :patch-card="element" />
         </v-card>
       </template>
     </draggable>
