@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useThemeStore } from '@/store/theme';
-import { useBuildManagerStore } from '@/store/buildManager';
+import { useBuildManagerStore } from '@/store/build-manager';
 
 const drawer = ref<boolean>(false);
 

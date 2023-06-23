@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { PatchCard } from '@/classes/patchCard';
+import { PatchCard } from '@/classes/patch-card';
 
 defineProps({
   patchCard: {

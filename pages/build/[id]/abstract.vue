@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { useBuildManagerStore } from '@/store/buildManager';
+import { useBuildManagerStore } from '@/store/build-manager';
 import { Version } from '@/types/version';
 
 const buildManagerStore = useBuildManagerStore();

@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { useBuildManagerStore } from '@/store/buildManager';
+import { useBuildManagerStore } from '@/store/build-manager';
 
 const router = useRouter();
 
@@ -50,7 +50,7 @@ const footerMenus = ref([
   },
   {
     icon: 'mdi-credit-card-multiple',
-    path: 'card',
+    path: 'patch-card',
   },
   {
     icon: 'mdi-cog',

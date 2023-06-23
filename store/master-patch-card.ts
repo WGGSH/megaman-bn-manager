@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { defineStore, type _GettersTree } from 'pinia';
-import { PatchCard } from '@/classes/patchCard';
+import { PatchCard } from '@/classes/patch-card';
 import { Ability } from '@/classes/ability';
 
-import cardData from '@/assets/masterData/card.json';
+import cardData from '@/assets/master-data/patch-card.json';
 
 interface MasterPatchCardState {
   cards: Array<PatchCard>;

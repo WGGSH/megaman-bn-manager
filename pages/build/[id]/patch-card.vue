@@ -37,7 +37,7 @@ import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import uniq from 'uniq';
 
-import { useMasterPatchCardStore } from '@/store/masterPatchCard';
+import { useMasterPatchCardStore } from '@/store/master-patch-card';
 
 const masterPatchCardStore = useMasterPatchCardStore();
 
