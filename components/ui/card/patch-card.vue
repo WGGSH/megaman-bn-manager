@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card :color="patchCard.isActive ? 'green' : 'grey'" @click="onClick">
     <v-container fluid>
       <v-row>
         <v-card-title>
@@ -37,17 +37,27 @@
 <script setup lang="ts">
 import { PatchCard } from '@/classes/patch-card';
 
-defineProps({
+const props = defineProps({
   patchCard: {
     type: Object as PropType<PatchCard>,
     required: true,
   },
 });
 
+const emit = defineEmits(['click']);
+
 const abilityColor = (ability) => {
+  if (!props.patchCard.isActive) {
+    return 'grey';
+  }
+
   if (ability.isPositive) {
     return 'blue';
   }
   return 'red';
+};
+
+const onClick = () => {
+  emit('click');
 };
 </script>

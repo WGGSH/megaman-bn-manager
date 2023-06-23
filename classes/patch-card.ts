@@ -11,6 +11,8 @@ export class PatchCard {
 
   private _abilities: Array<Ability>;
 
+  private _isActive: boolean;
+
   constructor(
     id: number,
     number: string,
@@ -23,6 +25,7 @@ export class PatchCard {
     this._name = name;
     this._capacity = capacity;
     this._abilities = abilities;
+    this._isActive = true;
   }
 
   get id(): number {
@@ -43,6 +46,28 @@ export class PatchCard {
 
   get abilities(): Array<Ability> {
     return this._abilities;
+  }
+
+  get isActive(): boolean {
+    return this._isActive;
+  }
+
+  public toggleActive(): void {
+    this._isActive = !this._isActive;
+  }
+
+  public setActive(isActive: boolean): void {
+    this._isActive = isActive;
+  }
+
+  public clone(): PatchCard {
+    return new PatchCard(
+      this.id,
+      this.number,
+      this.name,
+      this.capacity,
+      this.abilities,
+    );
   }
 
   func() {
