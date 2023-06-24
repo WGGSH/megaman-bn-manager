@@ -23,4 +23,8 @@ export class StatusRapid extends StatusBase {
   public toString(): string {
     return `ラピッド: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value > 0;
+  }
 }

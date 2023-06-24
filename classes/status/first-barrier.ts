@@ -23,4 +23,8 @@ export class StatusFirstBarrier extends StatusBase {
   public toString(): string {
     return `ファーストバリア: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return !!this._value;
+  }
 }

@@ -23,4 +23,8 @@ export class StatusFloatShoes extends StatusBase {
   public toString(): string {
     return `フロートシューズ: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value;
+  }
 }

@@ -23,4 +23,8 @@ export class StatusBody extends StatusBase {
   public toString(): string {
     return `${this._value}ボディ`;
   }
+
+  public isPositive(): boolean {
+    return !!this._value;
+  }
 }

@@ -23,4 +23,8 @@ export class StatusLeftBChange extends StatusBase {
   public toString(): string {
     return `B+左: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return !!this._value;
+  }
 }

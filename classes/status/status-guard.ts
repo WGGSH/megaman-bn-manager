@@ -23,4 +23,8 @@ export class StatusStatusGuard extends StatusBase {
   public toString(): string {
     return `ステータスガード: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value;
+  }
 }

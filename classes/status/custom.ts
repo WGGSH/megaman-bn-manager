@@ -23,4 +23,8 @@ export class StatusCustom extends StatusBase {
   public toString(): string {
     return `カスタム: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value >= 5;
+  }
 }

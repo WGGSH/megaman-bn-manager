@@ -23,4 +23,8 @@ export class StatusSuperArmor extends StatusBase {
   public toString(): string {
     return `スーパーアーマー: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value;
+  }
 }

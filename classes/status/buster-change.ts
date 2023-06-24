@@ -23,4 +23,8 @@ export class StatusBusterChange extends StatusBase {
   public toString(): string {
     return `バスター変更: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return !!this._value;
+  }
 }

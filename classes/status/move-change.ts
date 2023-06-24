@@ -23,4 +23,8 @@ export class StatusMoveChange extends StatusBase {
   public toString(): string {
     return `移動: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return !!this._value;
+  }
 }

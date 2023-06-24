@@ -23,4 +23,6 @@ export abstract class StatusBase {
   abstract apply(value: number | string | boolean | null): void;
 
   abstract toString(): string;
+
+  abstract isPositive(): boolean;
 }

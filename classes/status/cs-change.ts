@@ -23,4 +23,8 @@ export class StatusCsChange extends StatusBase {
   public toString(): string {
     return `CS変更: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return !!this._value;
+  }
 }

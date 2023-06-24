@@ -23,4 +23,8 @@ export class StatusCharge extends StatusBase {
   public toString(): string {
     return `チャージ: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value > 0;
+  }
 }

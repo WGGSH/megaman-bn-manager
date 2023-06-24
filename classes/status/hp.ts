@@ -31,4 +31,8 @@ export class StatusHp extends StatusBase {
   public toString(): string {
     return `HP: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value >= 1000;
+  }
 }

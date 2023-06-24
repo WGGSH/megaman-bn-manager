@@ -23,4 +23,8 @@ export class StatusMega extends StatusBase {
   public toString(): string {
     return `メガフォルダ: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value >= 5;
+  }
 }

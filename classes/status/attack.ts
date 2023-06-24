@@ -31,4 +31,8 @@ export class StatusAttack extends StatusBase {
   public toString(): string {
     return `アタック: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value > 0;
+  }
 }

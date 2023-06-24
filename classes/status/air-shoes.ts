@@ -23,4 +23,8 @@ export class StatusAirShoes extends StatusBase {
   public toString(): string {
     return `エアシューズ: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value;
+  }
 }

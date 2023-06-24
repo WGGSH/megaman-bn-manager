@@ -23,4 +23,8 @@ export class StatusGiga extends StatusBase {
   public toString(): string {
     return `ギガフォルダ: ${this._value}`;
   }
+
+  public isPositive(): boolean {
+    return this._value > 0;
+  }
 }
