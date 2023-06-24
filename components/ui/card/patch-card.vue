@@ -1,19 +1,19 @@
 <template>
-  <v-card :color="patchCard.isActive ? 'green' : 'grey'" @click="onClick">
+  <v-card
+    :color="patchCard.isActive ? 'green' : 'grey'"
+    @click="onClick"
+  >
     <v-container fluid>
-      <v-row>
+      <v-row class="ma-n6">
         <v-card-title>
           {{ patchCard.name }}
         </v-card-title>
-      </v-row>
-
-      <v-row class="mt-0">
-        <v-card-text>
+        <v-card-title class="ml-auto">
           {{ patchCard.capacity }} MB
-        </v-card-text>
+        </v-card-title>
       </v-row>
 
-      <v-row class="mt-0">
+      <v-row>
         <v-col
           v-for="ability in patchCard.abilities"
           :key="ability.key"
@@ -24,6 +24,7 @@
           lg="3"
           xl="2"
           xxl="2"
+          class="mb-n2"
         >
           <v-card :color="abilityColor(ability)">
             {{ ability.toString() }}
