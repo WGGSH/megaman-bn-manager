@@ -20,5 +20,7 @@ export abstract class StatusBase {
     this._value = value;
   }
 
+  abstract apply(value: number | string | boolean | null): void;
+
   abstract toString(): string;
 }

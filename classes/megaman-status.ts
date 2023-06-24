@@ -16,22 +16,62 @@ import { StatusBusterChange } from '@/classes/status/buster-change';
 import { StatusCsChange } from '@/classes/status/cs-change';
 import { StatusLeftBChange } from '@/classes/status/left-b-change';
 import { StatusMoveChange } from '@/classes/status/move-change';
+import { Statuses } from '@/types/statuses';
 
 export class MegamanStatus {
   private _hpMemoryNum: number;
 
-  private statuses: Object;
+  private statuses: Statuses;
 
   private _abilities: Array<Ability>;
 
+  static abilityKeyToStatusKey = {
+    'attack-plus': 'attack',
+    'rapid-plus': 'rapid',
+    'charge-plus': 'charge',
+    'custom-plus': 'custom',
+    'mega-plus': 'mega',
+    'giga-plus': 'giga',
+    'body-change': 'body',
+    'air-shoes': 'airShoes',
+    'float-shoes': 'floatShoes',
+    'super-armor': 'superArmor',
+    'status-guard': 'statusGuard',
+    'first-barrier': 'firstBarrier',
+    'buster-change': 'busterChange',
+    'cs-change': 'csChange',
+    'left-b-change': 'leftBChange',
+    'move-change': 'moveChange',
+  };
+
   constructor() {
+    this._hpMemoryNum = 0;
+    this.statuses = {
+      hp: new StatusHp(100),
+      attack: new StatusAttack(1),
+      rapid: new StatusRapid(1),
+      charge: new StatusCharge(1),
+      custom: new StatusCustom(5),
+      mega: new StatusMega(5),
+      giga: new StatusGiga(1),
+      body: new StatusBody('normal'),
+      airShoes: new StatusAirShoes(false),
+      floatShoes: new StatusFloatShoes(false),
+      superArmor: new StatusSuperArmor(false),
+      statusGuard: new StatusStatusGuard(false),
+      firstBarrier: new StatusFirstBarrier('normal'),
+      busterChange: new StatusBusterChange('normal'),
+      csChange: new StatusCsChange('normal'),
+      leftBChange: new StatusLeftBChange('normal'),
+      moveChange: new StatusMoveChange('normal'),
+    };
+    this._abilities = [];
     this.initialize();
     this.resetAbilities();
   }
 
   private applyHpMemory() {
-    console.log(this._hpMemoryNum);
-    this.statuses.hp.value += this._hpMemoryNum * 20;
+    this.statuses.hp.applyPlus(this._hpMemoryNum * 20);
   }
 
   public get abilities() {
@@ -46,17 +86,20 @@ export class MegamanStatus {
     switch (ability.key) {
       case 'hp-plus':
         this.statuses.hp.applyPlus(ability.value as number);
-        // this.applyHpPlus(ability.value as number);
+        break;
+
+      case 'hp-magnify':
+        this.statuses.hp.applyMagnify(ability.value as number);
         break;
 
         // case 'hp-magnify':
         //   this.applyhpmagnify(ability.value as number);
         //   break;
         //
-        // case 'attack-plus':
-        //   this.applyattackplus(ability.value as number);
-        //   break;
-        //
+      case 'attack-plus':
+        this.statuses.attack.applyPlus(ability.value as number);
+        break;
+
         // case 'rapid-plus':
         //   this.applyrapidplus(ability.value as number);
         //   break;
@@ -118,6 +161,9 @@ export class MegamanStatus {
         //   break;
 
       default:
+        console.log(ability.key);
+        console.log(MegamanStatus.abilityKeyToStatusKey[ability.key]);
+        this.statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].apply(ability.value);
         break;
     }
   }
@@ -140,10 +186,10 @@ export class MegamanStatus {
       statusGuard: new StatusStatusGuard(false),
 
       firstBarrier: new StatusFirstBarrier(null),
-      buster: new StatusBusterChange(null),
-      cs: new StatusCsChange(null),
-      leftB: new StatusLeftBChange(null),
-      move: new StatusMoveChange(null),
+      busterChange: new StatusBusterChange(null),
+      csChange: new StatusCsChange(null),
+      leftBChange: new StatusLeftBChange(null),
+      moveChange: new StatusMoveChange(null),
     };
 
     // this.statuses = [

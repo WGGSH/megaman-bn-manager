@@ -16,6 +16,10 @@ export class StatusFirstBarrier extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: string | null): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `ファーストバリア: ${this._value}`;
   }

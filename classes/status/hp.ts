@@ -16,6 +16,18 @@ export class StatusHp extends StatusBase {
     this._value = value;
   }
 
+  public applyPlus(value: number): void {
+    this._value += value;
+  }
+
+  public applyMagnify(value: number): void {
+    this._value *= 1 + value / 100;
+  }
+
+  public apply(value: number): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `HP: ${this._value}`;
   }

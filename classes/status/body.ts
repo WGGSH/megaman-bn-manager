@@ -16,6 +16,10 @@ export class StatusBody extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: string): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `${this._value}ボディ`;
   }

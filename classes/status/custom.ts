@@ -16,6 +16,10 @@ export class StatusCustom extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: number): void {
+    this._value += value;
+  }
+
   public toString(): string {
     return `カスタム: ${this._value}`;
   }

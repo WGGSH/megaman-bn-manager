@@ -16,6 +16,10 @@ export class StatusStatusGuard extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: boolean): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `ステータスガード: ${this._value}`;
   }

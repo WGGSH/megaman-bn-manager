@@ -16,6 +16,10 @@ export class StatusLeftBChange extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: string | null): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `B+左: ${this._value}`;
   }

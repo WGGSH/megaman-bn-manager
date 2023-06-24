@@ -16,6 +16,10 @@ export class StatusBusterChange extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: string | null): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `バスター変更: ${this._value}`;
   }

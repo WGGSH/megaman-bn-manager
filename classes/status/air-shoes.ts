@@ -16,6 +16,10 @@ export class StatusAirShoes extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: boolean): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `エアシューズ: ${this._value}`;
   }

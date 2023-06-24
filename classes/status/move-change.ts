@@ -16,6 +16,10 @@ export class StatusMoveChange extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: string | null): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `移動: ${this._value}`;
   }

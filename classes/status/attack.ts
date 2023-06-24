@@ -16,6 +16,18 @@ export class StatusAttack extends StatusBase {
     this._value = value;
   }
 
+  public applyPlus(value: number): void {
+    this._value += value;
+  }
+
+  public applyMagnify(value: number): void {
+    this._value *= value;
+  }
+
+  public apply(value: number): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `アタック: ${this._value}`;
   }

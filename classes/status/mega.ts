@@ -16,6 +16,10 @@ export class StatusMega extends StatusBase {
     this._value = value;
   }
 
+  public apply(value: number): void {
+    this._value += value;
+  }
+
   public toString(): string {
     return `メガフォルダ: ${this._value}`;
   }
