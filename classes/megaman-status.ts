@@ -10,6 +10,7 @@ import { StatusBody } from '@/classes/status/body';
 import { StatusAirShoes } from '@/classes/status/air-shoes';
 import { StatusFloatShoes } from '@/classes/status/float-shoes';
 import { StatusSuperArmor } from '@/classes/status/super-armor';
+import { StatusUnderShirt } from '@/classes/status/under-shirt';
 import { StatusStatusGuard } from '@/classes/status/status-guard';
 import { StatusFirstBarrier } from '@/classes/status/first-barrier';
 import { StatusBusterChange } from '@/classes/status/buster-change';
@@ -36,6 +37,7 @@ export class MegamanStatus {
     'air-shoes': 'airShoes',
     'float-shoes': 'floatShoes',
     'super-armor': 'superArmor',
+    'under-shirt': 'underShirt',
     'status-guard': 'statusGuard',
     'first-barrier': 'firstBarrier',
     'buster-change': 'busterChange',
@@ -58,6 +60,7 @@ export class MegamanStatus {
       airShoes: new StatusAirShoes(false),
       floatShoes: new StatusFloatShoes(false),
       superArmor: new StatusSuperArmor(false),
+      underShirt: new StatusUnderShirt(false),
       statusGuard: new StatusStatusGuard(false),
       firstBarrier: new StatusFirstBarrier('normal'),
       busterChange: new StatusBusterChange('normal'),
@@ -104,6 +107,10 @@ export class MegamanStatus {
         this._statuses.attack.applyPlus(ability.value as number);
         break;
 
+      case 'attack-magnify':
+        this._statuses.attack.applyMagnify(ability.value as number);
+        break;
+
       default:
         this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].apply(ability.value);
         break;
@@ -125,6 +132,7 @@ export class MegamanStatus {
       airShoes: new StatusAirShoes(false),
       floatShoes: new StatusFloatShoes(false),
       superArmor: new StatusSuperArmor(false),
+      underShirt: new StatusUnderShirt(false),
       statusGuard: new StatusStatusGuard(false),
 
       firstBarrier: new StatusFirstBarrier(null),

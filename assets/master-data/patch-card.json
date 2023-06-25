@@ -169,6 +169,34 @@
       ]
     },
     {
+      "id": 36,
+      "number": "136-A036",
+      "name": "ナイトマン",
+      "capacity": 45,
+      "abilities": [
+        {
+          "key": "hp-magnify",
+          "value": 20
+        },
+        {
+          "key": "attack-magnify",
+          "value": 2
+        },
+        {
+          "key": "super-armor",
+          "value": true
+        },
+        {
+          "key": "under-shirt",
+          "value": true
+        },
+        {
+          "key": "buster-bug",
+          "value": 1
+        }
+      ]
+    },
+    {
       "id": 99,
       "number": "137-D001-G",
       "name": "フォルテクロスロックマン",

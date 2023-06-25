@@ -9,6 +9,7 @@ import { StatusBody } from '@/classes/status/body';
 import { StatusAirShoes } from '@/classes/status/air-shoes';
 import { StatusFloatShoes } from '@/classes/status/float-shoes';
 import { StatusSuperArmor } from '@/classes/status/super-armor';
+import { StatusUnderShirt } from '@/classes/status/under-shirt';
 import { StatusStatusGuard } from '@/classes/status/status-guard';
 import { StatusFirstBarrier } from '@/classes/status/first-barrier';
 import { StatusBusterChange } from '@/classes/status/buster-change';
@@ -28,6 +29,7 @@ export type Statuses = {
   airShoes: StatusAirShoes;
   floatShoes: StatusFloatShoes;
   superArmor: StatusSuperArmor;
+  underShirt: StatusUnderShirt;
   statusGuard: StatusStatusGuard;
   firstBarrier: StatusFirstBarrier;
   busterChange: StatusBusterChange;

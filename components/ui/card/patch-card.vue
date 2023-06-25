@@ -26,7 +26,7 @@
           xxl="2"
           class="mb-n2"
         >
-          <v-card :color="abilityColor(ability)">
+          <v-card :color="abilityColor(ability)" class="pa-1">
             {{ ability.toString() }}
           </v-card>
         </v-col>

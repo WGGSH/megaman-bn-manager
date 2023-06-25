@@ -1,4 +1,4 @@
-import { Ability } from '@types/ability';
+import { AbilityBase } from '@/classes/ability/base';
 
 export class PatchCard {
   private _id: number;
@@ -9,7 +9,7 @@ export class PatchCard {
 
   private _capacity: number;
 
-  private _abilities: Array<Ability>;
+  private _abilities: Array<AbilityBase>;
 
   private _isActive: boolean;
 
@@ -18,7 +18,7 @@ export class PatchCard {
     number: string,
     name: string,
     capacity: number,
-    abilities: Array<Ability>,
+    abilities: Array<AbilityBase>,
   ) {
     this._id = id;
     this._number = number;
@@ -44,7 +44,7 @@ export class PatchCard {
     return this._capacity;
   }
 
-  get abilities(): Array<Ability> {
+  get abilities(): Array<AbilityBase> {
     return this._abilities;
   }
 

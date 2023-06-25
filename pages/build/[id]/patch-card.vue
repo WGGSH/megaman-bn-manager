@@ -4,7 +4,7 @@
   <h3>装備済み</h3>
 
   <v-container>
-    <v-card class="mb-4">
+    <v-card class="mb-4 pa-4" color="primary">
       <ui-card-status-card :megaman-status="megamanStatus" />
     </v-card>
     <v-card class="pa-2">
@@ -25,16 +25,18 @@
   <h3>一覧</h3>
 
   <v-container>
-    <draggable
-      v-model="masterPatchCards"
-      :group="{ name: 'card', pull: 'clone', put: false }"
-      :clone="clonePatchCard"
-      @change="log"
-    >
-      <template #item="{ element }">
-        <ui-card-patch-card :patch-card="element" class="ma-4" />
-      </template>
-    </draggable>
+    <v-col class="pa-0">
+      <draggable
+        v-model="masterPatchCards"
+        :group="{ name: 'card', pull: 'clone', put: false }"
+        :clone="clonePatchCard"
+        @change="log"
+      >
+        <template #item="{ element }">
+          <ui-card-patch-card :patch-card="element" class="ma-4" />
+        </template>
+      </draggable>
+    </v-col>
   </v-container>
 </template>
 

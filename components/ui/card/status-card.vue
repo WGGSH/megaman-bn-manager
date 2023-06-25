@@ -1,5 +1,5 @@
 <template>
-  <v-card color="primary">
+  <v-card color="">
     <v-container fluid>
       <v-row class="ma-n6">
         <v-card-title>
