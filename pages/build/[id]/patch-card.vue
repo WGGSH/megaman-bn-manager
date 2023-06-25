@@ -46,8 +46,12 @@ import draggable from 'vuedraggable';
 import lodash from 'lodash';
 import { PatchCard } from '@/classes/patch-card';
 import { MegamanStatus } from '@/classes/megaman-status';
+import { useBuildManagerStore } from '@/store/build-manager';
 
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
+
+const router = useRouter();
+const route = useRoute();
 
 const masterPatchCardStore = useMasterPatchCardStore();
 
@@ -55,11 +59,20 @@ const masterPatchCards = computed(() => masterPatchCardStore.cards);
 
 const megamanStatus = ref(new MegamanStatus());
 
+const buildManagerStore = useBuildManagerStore();
+
+const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+
 const items = ref([
 ]);
 
 watch(items, (value) => {
   megamanStatus.value = new MegamanStatus();
+  if (!selectedBuild.value) {
+    return;
+  }
+  megamanStatus.value.hpMemoryNum = selectedBuild.value.hpMemoryNum;
+
   value.forEach((patchCard: PatchCard) => {
     if (!patchCard.isActive) {
       return;
@@ -77,6 +90,12 @@ const log = () => {
 
 onMounted(() => {
   masterPatchCardStore.fetchCards();
+  buildManagerStore.setSelectedBuildById(route.params.id);
+  if (!selectedBuild) {
+    router.push({ path: '/' });
+  }
+
+  items.value = [];
 });
 
 const clonePatchCard = (patchCard: PatchCard) => patchCard.clone();

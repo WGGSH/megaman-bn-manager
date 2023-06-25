@@ -81,6 +81,10 @@ export class MegamanStatus {
     return this._hpMemoryNum;
   }
 
+  public set hpMemoryNum(hpMemoryNum: number) {
+    this._hpMemoryNum = hpMemoryNum;
+  }
+
   public get statuses() {
     return this._statuses;
   }
@@ -118,7 +122,6 @@ export class MegamanStatus {
   }
 
   private initialize() {
-    this._hpMemoryNum = 45;
     this._statuses = {
       hp: new StatusHp(100),
       attack: new StatusAttack(1),
