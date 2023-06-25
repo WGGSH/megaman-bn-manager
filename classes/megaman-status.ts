@@ -1,4 +1,4 @@
-import { Ability } from '@/classes/ability';
+import { AbilityBase } from '@/classes/ability/base';
 import { StatusHp } from '@/classes/status/hp';
 import { StatusAttack } from '@/classes/status/attack';
 import { StatusRapid } from '@/classes/status/rapid';
@@ -24,7 +24,7 @@ export class MegamanStatus {
 
   private _statuses: Statuses;
 
-  private _abilities: Array<Ability>;
+  private _abilities: Array<AbilityBase>;
 
   static abilityKeyToStatusKey = {
     'attack-plus': 'attack',
@@ -93,11 +93,11 @@ export class MegamanStatus {
     return this._abilities;
   }
 
-  public set abilities(abilities: Array<Ability>) {
+  public set abilities(abilities: Array<AbilityBase>) {
     this._abilities = abilities;
   }
 
-  private applyAbility(ability: Ability) {
+  private applyAbility(ability: AbilityBase) {
     switch (ability.key) {
       case 'hp-plus':
         this._statuses.hp.applyPlus(ability.value as number);
@@ -160,7 +160,7 @@ export class MegamanStatus {
     this._abilities = [];
   }
 
-  public pushAbility(ability: Ability) {
+  public pushAbility(ability: AbilityBase) {
     this._abilities.push(ability);
   }
 

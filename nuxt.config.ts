@@ -26,7 +26,37 @@ export default defineNuxtConfig({
     pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
   },
   vuetify: { // https://www.npmjs.com/package/@invictus.codes/nuxt-vuetify
-    vuetifyOptions: {},
+    vuetifyOptions: {
+      theme: {
+        defaultTheme: 'light-gregar',
+        themes: {
+          'light-gregar': {
+            dark: false,
+            colors: {
+              secondary: '#ffeb3b',
+            },
+          },
+          'dark-gregar': {
+            dark: true,
+            colors: {
+              secondary: '#ffeb3b',
+            },
+          },
+          'light-falzar': {
+            dark: false,
+            colors: {
+              secondary: '#a5d6a7',
+            },
+          },
+          'dark-falzar': {
+            dark: true,
+            colors: {
+              secondary: '#a5d6a7',
+            },
+          },
+        },
+      },
+    },
   },
   css: [
     'vuetify/lib/styles/main.sass',

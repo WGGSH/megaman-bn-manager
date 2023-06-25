@@ -1,5 +1,5 @@
 <template>
-  <v-app :theme="theme">
+  <v-app :theme="theme.theme">
     <vite-pwa-manifest />
     <layout-global-navigation-drawer
       :drawer="drawer"
@@ -27,7 +27,7 @@ import { useBuildManagerStore } from '@/store/build-manager';
 const drawer = ref<boolean>(false);
 
 const themeStore = useThemeStore();
-const theme = computed(() => themeStore.value);
+const theme = computed(() => themeStore.theme);
 
 const buildManagerStore = useBuildManagerStore();
 const buildsWithNameAndId = computed(
@@ -41,8 +41,7 @@ const onUpdateDrawer = (newVal: boolean) => {
 };
 
 onMounted(() => {
-  const localTheme = localStorage.getItem('theme') || 'light';
-  themeStore.setTheme(localTheme);
+  themeStore.initialize();
   buildManagerStore.fetch();
 });
 

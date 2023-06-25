@@ -36,7 +36,7 @@ import { MegamanStatus } from '@/classes/megaman-status';
 
 defineProps({
   megamanStatus: {
-    type: MegamanStatus,
+    type: Object as PropType<MegamanStatus>,
     required: true,
   },
 });

@@ -59,6 +59,10 @@ const footerMenus = ref([
 ]);
 
 const changeRoute = (path: string) => {
+  if (path === '/setting') {
+    router.push(path);
+    return;
+  }
   router.push(`/build/${selectedBuildId.value}/${path}`);
 };
 </script>
