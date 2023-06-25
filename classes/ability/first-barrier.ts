@@ -1,6 +1,6 @@
-import { StatusBaseString } from '@/classes/status/base/string';
+import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class StatusFirstBarrier extends StatusBaseString {
+export class AbilityFirstBarrier extends AbilityBaseString {
   constructor(value: string) {
     super('first-barrier', value);
   }
@@ -18,7 +18,7 @@ export class StatusFirstBarrier extends StatusBaseString {
     }
   }
 
-  public toString(): string {
+  toString(): string {
     return `ファースト${this.valueToString()}`;
   }
 }

@@ -1,14 +1,14 @@
-import { StatusBaseString } from '@/classes/status/base/string';
+import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class StatusCsChange extends StatusBaseString {
+export class AbilityCsChange extends AbilityBaseString {
   constructor(value: string) {
     super('cs-change', value);
   }
 
   public valueToString(): string {
-    switch (this._value) {
+    switch (this.value) {
       case 'none':
-        return 'なし';
+        return '通常';
 
       case 'mega-cannon':
         return 'メガキャノン';
@@ -18,7 +18,7 @@ export class StatusCsChange extends StatusBaseString {
     }
   }
 
-  public toString(): string {
+  toString(): string {
     return `CS変更: ${this.valueToString()}`;
   }
 }

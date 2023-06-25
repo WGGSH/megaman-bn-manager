@@ -56,17 +56,17 @@ export class MegamanStatus {
       custom: new StatusCustom(5),
       mega: new StatusMega(5),
       giga: new StatusGiga(1),
-      body: new StatusBody('normal'),
+      body: new StatusBody('none'),
       airShoes: new StatusAirShoes(false),
       floatShoes: new StatusFloatShoes(false),
       superArmor: new StatusSuperArmor(false),
       underShirt: new StatusUnderShirt(false),
       statusGuard: new StatusStatusGuard(false),
-      firstBarrier: new StatusFirstBarrier('normal'),
-      busterChange: new StatusBusterChange('normal'),
-      csChange: new StatusCsChange('normal'),
-      leftBChange: new StatusLeftBChange('normal'),
-      moveChange: new StatusMoveChange('normal'),
+      firstBarrier: new StatusFirstBarrier('none'),
+      busterChange: new StatusBusterChange('none'),
+      csChange: new StatusCsChange('none'),
+      leftBChange: new StatusLeftBChange('none'),
+      moveChange: new StatusMoveChange('none'),
     };
     this._abilities = [];
     this.initialize();
@@ -127,19 +127,17 @@ export class MegamanStatus {
       custom: new StatusCustom(5),
       mega: new StatusMega(5),
       giga: new StatusGiga(1),
-
-      body: new StatusBody('normal'),
+      body: new StatusBody('none'),
       airShoes: new StatusAirShoes(false),
       floatShoes: new StatusFloatShoes(false),
       superArmor: new StatusSuperArmor(false),
       underShirt: new StatusUnderShirt(false),
       statusGuard: new StatusStatusGuard(false),
-
-      firstBarrier: new StatusFirstBarrier(null),
-      busterChange: new StatusBusterChange(null),
-      csChange: new StatusCsChange(null),
-      leftBChange: new StatusLeftBChange(null),
-      moveChange: new StatusMoveChange(null),
+      firstBarrier: new StatusFirstBarrier('none'),
+      busterChange: new StatusBusterChange('none'),
+      csChange: new StatusCsChange('none'),
+      leftBChange: new StatusLeftBChange('none'),
+      moveChange: new StatusMoveChange('none'),
     };
   }
 

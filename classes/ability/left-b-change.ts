@@ -1,12 +1,12 @@
-import { StatusBaseString } from '@/classes/status/base/string';
+import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class StatusLeftBChange extends StatusBaseString {
+export class AbilityLeftBChange extends AbilityBaseString {
   constructor(value: string) {
     super('left-b-change', value);
   }
 
   public valueToString(): string {
-    switch (this._value) {
+    switch (this.value) {
       case 'none':
         return 'なし';
 
@@ -18,7 +18,7 @@ export class StatusLeftBChange extends StatusBaseString {
     }
   }
 
-  public toString(): string {
+  toString(): string {
     return `B+左: ${this.valueToString()}`;
   }
 }

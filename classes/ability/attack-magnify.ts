@@ -6,6 +6,6 @@ export class AbilityAttackMagnify extends AbilityBaseNumber {
   }
 
   toString(): string {
-    return `アタック×${this.valueWithSign()}`;
+    return `アタック×${this._value}`;
   }
 }

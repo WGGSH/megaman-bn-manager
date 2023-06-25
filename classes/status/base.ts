@@ -1,24 +1,15 @@
 export abstract class StatusBase {
-  protected _key: string;
+  protected abstract _key: string;
 
-  protected _value: number | string | boolean | null;
-
-  constructor(key: string, value: number | string | boolean | null) {
-    this._key = key;
-    this._value = value;
-  }
+  protected abstract _value: number | string | boolean | null;
 
   get key(): string {
     return this._key;
   }
 
-  get value(): number | string | boolean | null {
-    return this._value;
-  }
+  abstract get value(): number | string | boolean | null;
 
-  set value(value: number | string | boolean | null) {
-    this._value = value;
-  }
+  abstract set value(value: number | string | boolean | null);
 
   abstract apply(value: number | string | boolean | null): void;
 

@@ -1,30 +1,24 @@
-import { StatusBase } from '@/classes/status/base';
+import { StatusBaseString } from '@/classes/status/base/string';
 
-export class StatusMoveChange extends StatusBase {
-  protected _value: string | null;
-
-  constructor(value: string | null) {
+export class StatusMoveChange extends StatusBaseString {
+  constructor(value: string) {
     super('move-change', value);
-    this._value = value;
   }
 
-  get value(): string | null {
-    return this._value;
-  }
+  public valueToString(): string {
+    switch (this._value) {
+      case 'none':
+        return '通常';
 
-  set value(value: string | null) {
-    this._value = value;
-  }
+      case 'ice':
+        return '氷パネル';
 
-  public apply(value: string | null): void {
-    this._value = value;
+      default:
+        return '不明';
+    }
   }
 
   public toString(): string {
-    return `移動: ${this._value}`;
-  }
-
-  public isPositive(): boolean {
-    return !!this._value;
+    return `移動: ${this.valueToString()}`;
   }
 }

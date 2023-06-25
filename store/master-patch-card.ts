@@ -10,6 +10,16 @@ import { AbilityChargePlus } from '@/classes/ability/charge-plus';
 import { AbilityCustomPlus } from '@/classes/ability/custom-plus';
 import { AbilityMegaPlus } from '@/classes/ability/mega-plus';
 import { AbilityGigaPlus } from '@/classes/ability/giga-plus';
+import { AbilityAirShoes } from '@/classes/ability/air-shoes';
+import { AbilityFloatShoes } from '@/classes/ability/float-shoes';
+import { AbilitySuperArmor } from '@/classes/ability/super-armor';
+import { AbilityUnderShirt } from '@/classes/ability/under-shirt';
+import { AbilityStatusGuard } from '@/classes/ability/status-guard';
+import { AbilityFirstBarrier } from '@/classes/ability/first-barrier';
+import { AbilityBusterChange } from '@/classes/ability/buster-change';
+import { AbilityCsChange } from '@/classes/ability/cs-change';
+import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
+import { AbilityMoveChange } from '@/classes/ability/move-change';
 
 import cardData from '@/assets/master-data/patch-card.json';
 
@@ -54,6 +64,36 @@ AbilityBase | null => {
 
     case 'giga-plus':
       return new AbilityGigaPlus(value as number);
+
+    case 'air-shoes':
+      return new AbilityAirShoes(value as boolean);
+
+    case 'float-shoes':
+      return new AbilityFloatShoes(value as boolean);
+
+    case 'super-armor':
+      return new AbilitySuperArmor(value as boolean);
+
+    case 'under-shirt':
+      return new AbilityUnderShirt(value as boolean);
+
+    case 'status-guard':
+      return new AbilityStatusGuard(value as boolean);
+
+    case 'first-barrier':
+      return new AbilityFirstBarrier(value as boolean);
+
+    case 'buster-change':
+      return new AbilityBusterChange(value as string);
+
+    case 'cs-change':
+      return new AbilityCsChange(value as string);
+
+    case 'left-b-change':
+      return new AbilityLeftBChange(value as string);
+
+    case 'move-change':
+      return new AbilityMoveChange(value as string);
 
     default:
       return null;

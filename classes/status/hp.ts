@@ -1,19 +1,8 @@
-import { StatusBase } from '@/classes/status/base';
+import { StatusBaseNumber } from '@/classes/status/base/number';
 
-export class StatusHp extends StatusBase {
-  protected _value: number;
-
+export class StatusHp extends StatusBaseNumber {
   constructor(value: number) {
     super('hp', value);
-    this._value = value;
-  }
-
-  get value(): number {
-    return this._value;
-  }
-
-  set value(value: number) {
-    this._value = value;
   }
 
   public applyPlus(value: number): void {

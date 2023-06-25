@@ -1,30 +1,11 @@
-import { StatusBase } from '@/classes/status/base';
+import { StatusBaseBoolean } from '@/classes/status/base/boolean';
 
-export class StatusStatusGuard extends StatusBase {
-  protected _value: boolean;
-
+export class StatusStatusGuard extends StatusBaseBoolean {
   constructor(value: boolean) {
     super('status-guard', value);
-    this._value = value;
-  }
-
-  get value(): boolean {
-    return this._value;
-  }
-
-  set value(value: boolean) {
-    this._value = value;
-  }
-
-  public apply(value: boolean): void {
-    this._value = value;
   }
 
   public toString(): string {
-    return `ステータスガード: ${this._value}`;
-  }
-
-  public isPositive(): boolean {
-    return this._value;
+    return `ステータスガード: ${this.valueToString()}`;
   }
 }

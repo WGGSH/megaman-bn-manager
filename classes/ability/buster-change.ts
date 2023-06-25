@@ -1,16 +1,16 @@
-import { StatusBaseString } from '@/classes/status/base/string';
+import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class StatusBusterChange extends StatusBaseString {
+export class AbilityBusterChange extends AbilityBaseString {
   constructor(value: string) {
     super('buster-change', value);
   }
 
   public valueToString(): string {
-    switch (this._value) {
+    switch (this.value) {
       case 'none':
-        return 'なし';
+        return '通常';
 
-      case 'meteor-1':
+      case 'metor-1':
         return 'メテオx1';
 
       default:
@@ -18,7 +18,7 @@ export class StatusBusterChange extends StatusBaseString {
     }
   }
 
-  public toString(): string {
+  toString(): string {
     return `バスター変更: ${this.valueToString()}`;
   }
 }

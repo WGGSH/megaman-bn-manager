@@ -1,19 +1,8 @@
-import { StatusBase } from '@/classes/status/base';
+import { StatusBaseNumber } from '@/classes/status/base/number';
 
-export class StatusAttack extends StatusBase {
-  protected _value: number;
-
+export class StatusAttack extends StatusBaseNumber {
   constructor(value: number) {
     super('attack', value);
-    this._value = value;
-  }
-
-  get value(): number {
-    return this._value;
-  }
-
-  set value(value: number) {
-    this._value = value;
   }
 
   public applyPlus(value: number): void {
@@ -30,9 +19,5 @@ export class StatusAttack extends StatusBase {
 
   public toString(): string {
     return `アタック: ${this._value}`;
-  }
-
-  public isPositive(): boolean {
-    return this._value > 0;
   }
 }
