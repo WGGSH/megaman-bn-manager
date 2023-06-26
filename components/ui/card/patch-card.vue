@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :color="patchCard.isActive ? 'green' : 'grey'"
+    :color="patchCard.isActive ? 'secondary' : 'disabled'"
     @click="onClick"
   >
     <v-container fluid>
@@ -19,7 +19,7 @@
           :key="ability.key"
           cols="6"
           xs="6"
-          sm="6"
+          sm="4"
           md="4"
           lg="3"
           xl="2"
@@ -49,13 +49,13 @@ const emit = defineEmits(['click']);
 
 const abilityColor = (ability) => {
   if (!props.patchCard.isActive) {
-    return 'grey';
+    return 'disabled';
   }
 
   if (ability.isPositive) {
-    return 'blue';
+    return 'positive';
   }
-  return 'red';
+  return 'negative';
 };
 
 const onClick = () => {

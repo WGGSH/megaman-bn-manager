@@ -1,11 +1,11 @@
 <template>
-  <v-footer color="secondary" app border class="pa-0 pb-4">
+  <v-footer color="primary" app border class="pa-0 pb-4">
     <v-card
       elevation="0"
       tile
       width="100%"
       class="text-center"
-      color="secondary"
+      color="primary"
     >
       <v-card-text class="pa-2">
         <v-btn

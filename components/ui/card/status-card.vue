@@ -1,34 +1,33 @@
 <template>
-  <v-card color="">
-    <v-container fluid>
-      <v-row class="ma-n6">
-        <v-card-title>
-          ステータス
-        </v-card-title>
-      </v-row>
+  <v-container fluid>
+    <v-row class="ma-n6">
+      <v-card-title>
+        ステータス
+      </v-card-title>
+    </v-row>
 
-      <v-row>
-        <v-col
-          v-for="status in megamanStatus.statuses"
-          :key="status.key"
-          cols="6"
-          xs="6"
-          sm="6"
-          md="4"
-          lg="3"
-          xl="2"
-          xxl="2"
-          class="mb-n2"
+    <v-row>
+      <v-col
+        v-for="status in megamanStatus.statuses"
+        :key="status.key"
+        cols="6"
+        xs="6"
+        sm="4"
+        md="4"
+        lg="3"
+        xl="2"
+        xxl="2"
+        class="mb-n5"
+      >
+        <v-card
+          class="pa-1"
+          :color="status.isPositive() ? 'positive' : 'negative'"
         >
-          <v-card
-            :color="status.isPositive() ? 'blue' : 'red'"
-          >
-            {{ status.toString() }}
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+          {{ status.toString() }}
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">

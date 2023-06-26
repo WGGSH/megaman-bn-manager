@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { defineNuxtConfig } from 'nuxt/config';
+import { ThemeDefinition } from './src/theme-definition';
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -28,33 +29,9 @@ export default defineNuxtConfig({
   vuetify: { // https://www.npmjs.com/package/@invictus.codes/nuxt-vuetify
     vuetifyOptions: {
       theme: {
-        defaultTheme: 'light-gregar',
-        themes: {
-          'light-gregar': {
-            dark: false,
-            colors: {
-              secondary: '#ffeb3b',
-            },
-          },
-          'dark-gregar': {
-            dark: true,
-            colors: {
-              secondary: '#ffeb3b',
-            },
-          },
-          'light-falzar': {
-            dark: false,
-            colors: {
-              secondary: '#a5d6a7',
-            },
-          },
-          'dark-falzar': {
-            dark: true,
-            colors: {
-              secondary: '#a5d6a7',
-            },
-          },
-        },
+        defaultTheme: ThemeDefinition.defaultTheme,
+        // variations: ThemeDefinition.variations,
+        themes: ThemeDefinition.themes,
       },
     },
   },
