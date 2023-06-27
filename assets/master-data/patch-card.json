@@ -92,7 +92,7 @@
       "abilities": [
         {
           "key": "charge-plus",
-          "value": 100
+          "value": 1
         },
         {
           "key": "first-barrier",
@@ -165,6 +165,214 @@
         {
           "key": "status-guard",
           "value": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "number": "136-A009",
+      "name": "ボンビートル",
+      "capacity": 11,
+      "abilities": [
+        {
+          "key": "hp-plus",
+          "value": 100
+        },
+        {
+          "key": "buster-change",
+          "value": "mini-bomb"
+        },
+        {
+          "key": "cs-change",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "number": "136-A010",
+      "name": "ヘビーアレイ",
+      "capacity": 15,
+      "abilities": [
+        {
+          "key": "attack-plus",
+          "value": 1
+        },
+        {
+          "key": "super-armor",
+          "value": true
+        },
+        {
+          "key": "buster-addition",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "number": "136-A011",
+      "name": "アゾマータ",
+      "capacity": 24,
+      "abilities": [
+        {
+          "key": "body-change",
+          "value": "wood"
+        },
+        {
+          "key": "status-guard",
+          "value": true
+        },
+        {
+          "key": "hp-magnify",
+          "value": -20
+        },
+        {
+          "key": "left-b-change",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "number": "136-A012",
+      "name": "ジェライム",
+      "capacity": 12,
+      "abilities": [
+        {
+          "key": "hp-plus",
+          "value": 30
+        },
+        {
+          "key": "body-change",
+          "value": "aqua"
+        },
+        {
+          "key": "cs-change",
+          "value": "panel-steal"
+        },
+        {
+          "key": "gauge-change",
+          "value": "none"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "number": "136-A013",
+      "name": "ボルカノ",
+      "capacity": 10,
+      "abilities": [
+        {
+          "key": "body-change",
+          "value": "fire"
+        },
+        {
+          "key": "charge-plus",
+          "value": 4
+        },
+        {
+          "key": "cs-change",
+          "value": "black-bomb"
+        },
+        {
+          "key": "heart-bug",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "number": "136-A014",
+      "name": "ナンバーズ",
+      "capacity": 17,
+      "abilities": [
+        {
+          "key": "custom-plus",
+          "value": 1
+        },
+        {
+          "key": "mega-plus",
+          "value": 1
+        },
+        {
+          "key": "giga-plus",
+          "value": 1
+        },
+        {
+          "key": "cs-change",
+          "value": "none"
+        },
+        {
+          "key": "custom-hp-bug-plus",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "number": "136-A015",
+      "name": "マグテクト",
+      "capacity": 15,
+      "abilities": [
+        {
+          "key": "body-change",
+          "value": "elec"
+        },
+        {
+          "key": "float-shoes",
+          "value": true
+        },
+        {
+          "key": "cs-add",
+          "value": "attract"
+        },
+        {
+          "key": "hp-magnify",
+          "value": -5
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "number": "136-A016",
+      "name": "クーモス",
+      "capacity": 8,
+      "abilities": [
+        {
+          "key": "hp-plus",
+          "value": 60
+        },
+        {
+          "key": "body-change",
+          "value": "wood"
+        },
+        {
+          "key": "move-change",
+          "value": "grass"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "number": "136-A017",
+      "name": "ボムボーイ",
+      "capacity": 14,
+      "abilities": [
+        {
+          "key": "buster-add",
+          "value": "push"
+        },
+        {
+          "key": "move-change",
+          "value": "none"
+        },
+        {
+          "key": "move-bug",
+          "value": 0
+        },
+        {
+          "key": "cs-add",
+          "value": "none"
         }
       ]
     },
