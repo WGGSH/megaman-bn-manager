@@ -2,16 +2,18 @@
   <h1>navi</h1>
 
   <v-container>
-    <!-- class="grid" -->
     <draggable
       v-model="items"
       :options="{ group: 'items' }"
       :group="{ name: 'items', pull: false, put: true }"
+      class="grid"
       @change="handleChange"
     >
       <template #item="{ element }">
         <v-card
-          class="ma-8 pa-2"
+          class="pa-2"
+          width="100%"
+          height="100"
         >
           {{ element }}
         </v-card>
@@ -26,10 +28,15 @@
       v-model="items2"
       :options="{ group: 'items' }"
       :group="{ name: 'items', pull: 'clone', put: true }"
+      class="grid"
       @change="handleChange"
     >
       <template #item="{ element }">
-        <v-card class="ma-4 pa-2">
+        <v-card
+          class="pa-2"
+          width="100%"
+          height="50"
+        >
           {{ element }}
         </v-card>
       </template>
@@ -40,8 +47,8 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable';
 
-const rows = 2;
-const cols = 2;
+const rows = 7;
+const cols = 7;
 
 const items = ref(Array.from({ length: rows * cols }, (_, i) => i));
 
@@ -63,7 +70,7 @@ const handleChange = (evt) => {
 <style scoped lang="scss">
 .grid {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .sortable-chosen {
