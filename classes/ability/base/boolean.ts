@@ -11,7 +11,7 @@ export abstract class AbilityBaseBoolean extends AbilityBase {
     this._value = value;
   }
 
-  get value(): boolean {
+  public get value(): boolean {
     return this._value;
   }
 

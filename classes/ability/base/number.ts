@@ -11,7 +11,7 @@ export abstract class AbilityBaseNumber extends AbilityBase {
     this._value = value;
   }
 
-  get value(): number {
+  public get value(): number {
     return this._value;
   }
 

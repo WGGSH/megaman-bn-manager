@@ -7,9 +7,9 @@ export abstract class AbilityBase {
     return this._key;
   }
 
-  abstract get value(): number | string | boolean | null;
+  public abstract get value(): number | string | boolean | null;
 
-  abstract get isPositive(): boolean;
+  protected abstract get isPositive(): boolean;
 
-  abstract toString(): string;
+  protected abstract toString(): string;
 }

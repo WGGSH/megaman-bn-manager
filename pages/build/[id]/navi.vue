@@ -3,9 +3,9 @@
 
   <v-container>
     <draggable
-      v-model="items"
+      v-model="items2"
       :options="{ group: 'items' }"
-      :group="{ name: 'items', pull: false, put: true }"
+      :group="{ name: 'items', pull: 'clone', put: true }"
       class="grid"
       @change="handleChange"
     >
@@ -13,7 +13,7 @@
         <v-card
           class="pa-2"
           width="100%"
-          height="100"
+          height="50"
         >
           {{ element }}
         </v-card>
@@ -25,9 +25,9 @@
 
   <v-container>
     <draggable
-      v-model="items2"
+      v-model="cells"
       :options="{ group: 'items' }"
-      :group="{ name: 'items', pull: 'clone', put: true }"
+      :group="{ name: 'items', pull: false, put: true }"
       class="grid"
       @change="handleChange"
     >
@@ -46,24 +46,27 @@
 
 <script setup lang="ts">
 import draggable from 'vuedraggable';
+import { NaviCustomizer } from '~/classes/navi-customizer';
 
 const rows = 7;
 const cols = 7;
 
-const items = ref(Array.from({ length: rows * cols }, (_, i) => i));
-
 const items2 = ref(Array.from({ length: rows * cols }, (_, i) => i));
+
+const navi = ref(new NaviCustomizer());
+const cells = computed(() => navi.value.cells);
 
 const handleChange = (evt) => {
   if (evt.added) {
-    if (evt.added.newIndex !== items.value.length - 1) {
-      items.value.splice(evt.added.newIndex + 1, 1);
-    } else {
-      items.value.splice(evt.added.newIndex, 1);
-    }
+    navi.value.add(evt.added.newIndex);
   }
-  // console.log(evt);
 };
+
+watch(cells, (newCells) => {
+  console.log('-----');
+  console.log(newCells);
+  console.log('-----');
+});
 
 </script>
 
