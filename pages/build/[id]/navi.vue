@@ -44,6 +44,17 @@
       </template>
     </draggable>
   </v-container>
+
+  <v-divider />
+
+  <v-container class="justify-center d-flex">
+    <ui-card-navi-customizer-program
+      v-for="program in masterNaviCustomizerPrograms"
+      :key="program.id"
+      :navi-customizer-program="program"
+      class="ma-8"
+    />
+  </v-container>
 </template>
 
 <script setup lang="ts">
@@ -63,6 +74,8 @@ const items2 = ref(Array.from({ length: rows * cols }, (_, i) => i));
 
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
+
+// const programs = computed(() => masterNaviCustomizerProgramStore.programs);
 
 const handleChange = (evt) => {
   if (evt.added) {

@@ -1,5 +1,6 @@
 import { defineStore, type _GettersTree } from 'pinia';
 import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
+import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
 import { AbilityBase } from '@/classes/ability/base';
 import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
 import { AbilityAttackMagnify } from '@/classes/ability/attack-magnify';
@@ -116,12 +117,26 @@ MasterNaviCustomizerProgramActions>({
     fetchPrograms() {
       console.log(programData);
       this.programs = programData.programs.map((program) => {
-        const abilities = program['add-abilities'].map(
+        const addAbilities = program['add-abilities'].map(
           (ability) => createAbilityInstance(ability.key, ability.value),
         ).filter(
           (ability) => ability !== null,
         );
-        return new NaviCustomizerProgram(program.id, program.name, program.capacity, abilities);
+        const bugAbilities = program['bug-abilities'].map(
+          (ability) => createAbilityInstance(ability.key, ability.value),
+        ).filter(
+          (ability) => ability !== null,
+        );
+        return new NaviCustomizerProgram(
+          program.id,
+          program.name,
+          program.color as NaviCustomizerProgramColor,
+          0,
+          0,
+          addAbilities as Array<AbilityBase>,
+          bugAbilities as Array<AbilityBase>,
+          program.compressed_cells,
+        );
       });
     },
   },

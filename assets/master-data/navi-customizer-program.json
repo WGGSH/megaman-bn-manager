@@ -23,9 +23,69 @@
         [true, true, true]
       ],
       "compressed_cells": [
-        [false, false, false],
+        [false, true, false],
         [true, true, true],
         [false, false, false]
+      ]
+    },
+    {
+      "id": 2,
+      "name": "カスタム1",
+      "color": "blue",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "custom-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [false, true, false],
+        [true, true, true],
+        [false, true, true]
+      ],
+      "compressed_cells": [
+        [false, true, false],
+        [false, true, false],
+        [false, true, true]
+      ]
+    },
+    {
+      "id": 3,
+      "name": "カスタム2",
+      "color": "white",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "custom-plus",
+          "value": 2
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [true, true],
+        [true, true],
+        [true, true],
+        [true, true],
+        [true, true]
+      ],
+      "compressed_cells": [
+        [false, false],
+        [true, true],
+        [true, true],
+        [true, true],
+        [true, false]
       ]
     }
   ]
