@@ -7,6 +7,7 @@
       :options="{ group: 'items' }"
       :group="{ name: 'items', pull: 'clone', put: true }"
       class="grid"
+      item-key="id"
       @change="handleChange"
     >
       <template #item="{ element }">
@@ -29,6 +30,7 @@
       :options="{ group: 'items' }"
       :group="{ name: 'items', pull: false, put: true }"
       class="grid"
+      item-key="id"
       @change="handleChange"
     >
       <template #item="{ element }">

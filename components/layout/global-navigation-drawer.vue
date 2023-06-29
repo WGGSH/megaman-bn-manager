@@ -6,11 +6,9 @@
     temporary
   >
     <v-list-item>
-      <v-list-item-content>
-        <v-list-item-title class="text-h6">
-          ビルド一覧
-        </v-list-item-title>
-      </v-list-item-content>
+      <v-list-item-title class="text-h6">
+        ビルド一覧
+      </v-list-item-title>
     </v-list-item>
 
     <v-divider />
@@ -27,12 +25,10 @@
 
     <v-list dense nav>
       <v-list-item link @click="newBuild">
-        <v-list-item-content>
-          <v-list-item-title>
-            <v-icon>mdi-plus</v-icon>
-            新規作成
-          </v-list-item-title>
-        </v-list-item-content>
+        <v-list-item-title>
+          <v-icon>mdi-plus</v-icon>
+          新規作成
+        </v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>

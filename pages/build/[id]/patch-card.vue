@@ -11,6 +11,7 @@
       <draggable
         :list="items"
         :group="{ name: 'card' }"
+        item-key="id"
         @change="log"
       >
         <template #item="{ element }">
@@ -30,6 +31,7 @@
         v-model="masterPatchCards"
         :group="{ name: 'card', pull: 'clone', put: false }"
         :clone="clonePatchCard"
+        item-key="id"
         @change="log"
       >
         <template #item="{ element }">
