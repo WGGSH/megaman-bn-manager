@@ -50,6 +50,12 @@
 import draggable from 'vuedraggable';
 import { NaviCustomizer } from '~/classes/navi-customizer';
 
+import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
+
+const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
+
+const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramStore.programs);
+
 const rows = 7;
 const cols = 7;
 
@@ -68,6 +74,13 @@ watch(cells, (newCells) => {
   console.log('-----');
   console.log(newCells);
   console.log('-----');
+});
+
+onMounted(() => {
+  if (!masterNaviCustomizerProgramStore.isFetched) {
+    masterNaviCustomizerProgramStore.fetchPrograms();
+  }
+  console.log(masterNaviCustomizerPrograms.value);
 });
 
 </script>
