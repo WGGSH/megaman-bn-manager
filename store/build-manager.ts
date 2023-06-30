@@ -24,12 +24,13 @@ interface BuildManagerActions {
   getMaxBuildId: () => number;
   updateBuildById: (
     {
-      id, name, versions, hpMemoryNum,
+      id, name, versions, hpMemoryNum, patchCards,
     }: {
       id: number,
-      name: string | null,
-      versions: Array<Version> | null,
-      hpMemoryNum: number | null,
+      name?: string
+      versions?: Array<Version>
+      hpMemoryNum?: number
+      patchCardIds?: Array<number>
     },
   ) => void;
 }
@@ -77,6 +78,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       const build = this.generateDefaultBuild();
       build.name = name;
       build.id = id;
+      build.patchCardIds = [];
 
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
       this.builds[id] = build;
@@ -99,13 +101,14 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
     },
 
     updateBuildById({
-      id, name, versions, hpMemoryNum,
+      id, name, versions, hpMemoryNum, patchCardIds,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
-      if (name !== null) build.name = name;
-      if (versions !== null) build.versions = versions;
-      if (hpMemoryNum !== null) build.hpMemoryNum = hpMemoryNum;
+      if (name !== undefined) build.name = name;
+      if (versions !== undefined) build.versions = versions;
+      if (hpMemoryNum !== undefined) build.hpMemoryNum = hpMemoryNum;
+      if (patchCardIds !== undefined) build.patchCardIds = patchCardIds;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
   },

@@ -1,7 +1,10 @@
 <template>
-  <h2>改造カード</h2>
-
-  <h3>装備済み</h3>
+  <v-container>
+    <h2>改造カード</h2>
+    <ui-button-accept @click="onClickSave">
+      保存する
+    </ui-button-accept>
+  </v-container>
 
   <v-container>
     <v-card class="mb-4 pa-4" color="primary">
@@ -23,9 +26,8 @@
     </v-card>
   </v-container>
 
-  <h3>一覧</h3>
-
   <v-container>
+    <h3>一覧</h3>
     <v-col class="pa-0">
       <draggable
         v-model="masterPatchCards"
@@ -86,6 +88,19 @@ watch(items, (value) => {
   megamanStatus.value.apply();
 }, { deep: true });
 
+watch(selectedBuild, (value) => {
+  if (!value) {
+    return;
+  }
+  items.value = value.patchCardIds.map((patchCardId) => {
+    const patchCard = masterPatchCardStore.getCardById(patchCardId);
+    if (!patchCard) {
+      return null;
+    }
+    return patchCard.clone();
+  }).filter((patchCard) => patchCard !== null);
+}, { deep: true });
+
 const log = () => {
   items.value = lodash.uniqBy(items.value, (value: PatchCard) => value.id);
 };
@@ -101,5 +116,15 @@ onMounted(() => {
 });
 
 const clonePatchCard = (patchCard: PatchCard) => patchCard.clone();
+
+const onClickSave = () => {
+  if (!selectedBuild.value) {
+    return;
+  }
+  buildManagerStore.updateBuildById({
+    id: selectedBuild.value.id,
+    patchCardIds: items.value.map((patchCard: PatchCard) => patchCard.id),
+  });
+};
 
 </script>

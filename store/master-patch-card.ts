@@ -33,6 +33,7 @@ interface MasterPatchCardGetters extends _GettersTree<MasterPatchCardState> {
 
 interface MasterPatchCardActions {
   fetchCards(): void;
+  getCardById(id: number): PatchCard | null;
 }
 
 const createAbilityInstance = (key: string, value: number | string | boolean | null):
@@ -119,6 +120,9 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
         );
         return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
       });
+    },
+    getCardById(id: number) {
+      return this.cards.find((card) => card.id === id) ?? null;
     },
   },
 });

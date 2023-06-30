@@ -5,4 +5,5 @@ export interface Build {
   name: string;
   versions: Array<Version>;
   hpMemoryNum: number;
+  patchCardIds: Array<number>;
 }
