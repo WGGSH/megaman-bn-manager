@@ -48,12 +48,37 @@
   <v-divider />
 
   <v-container class="justify-center d-flex">
-    <ui-card-navi-customizer-program
-      v-for="program in masterNaviCustomizerPrograms"
-      :key="program.id"
-      :navi-customizer-program="program"
-      class="ma-8"
-    />
+    <v-row>
+      <draggable
+        v-model="masterNaviCustomizerPrograms"
+        :options="{ group: 'items' }"
+        :group="{ name: 'items', pull: 'clone', put: true }"
+        item-key="id"
+        @change="handleChange"
+      >
+        <template #item="{ element }">
+          <v-col cols="4">
+            <ui-card-navi-customizer-program
+              :navi-customizer-program="element"
+              class="ma-0"
+            />
+          </v-col>
+        </template>
+      </draggable>
+    </v-row>
+
+    <v-row>
+      <v-col
+        v-for="program in masterNaviCustomizerPrograms"
+        :key="program.id"
+        cols="4"
+      >
+        <ui-card-navi-customizer-program
+          :navi-customizer-program="program"
+          class="ma-0"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

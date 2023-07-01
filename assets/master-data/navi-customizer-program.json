@@ -87,6 +87,62 @@
         [true, true],
         [true, false]
       ]
+    },
+    {
+      "id": 4,
+      "name": "メガフォルダ1",
+      "color": "green",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "mega-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [false, false, true],
+        [true, true, true],
+        [false, false, true]
+      ],
+      "compressed_cells": [
+        [false, false, false],
+        [true, true, true],
+        [false, false, false]
+      ]
+    },
+    {
+      "id": 5,
+      "name": "メガフォルダ2",
+      "color": "white",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "mega-plus",
+          "value": 2
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [false, true, true, false],
+        [true, true, true, true],
+        [false, true, true, false]
+      ],
+      "compressed_cells": [
+        [false, false, true, false],
+        [true, true, true, true],
+        [false, true, false, false]
+      ]
     }
   ]
 }
