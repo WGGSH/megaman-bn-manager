@@ -13,6 +13,7 @@ interface MasterBattleChipGetters extends _GettersTree<MasterBattleChipState> {
 
 interface MasterBattleChipActions {
   fetchBattleChips(): void;
+  findBattleChipById(id: number): BattleChip | undefined;
 }
 
 export const useMasterBattleChipStore = defineStore<
@@ -29,6 +30,7 @@ MasterBattleChipActions>({
   },
   actions: {
     fetchBattleChips() {
+      if (this.isFetched) return;
       this.battleChips = battleChipData['battle-chips'].map((battleChip) => new BattleChip(
         battleChip.id,
         battleChip.number,
@@ -40,6 +42,9 @@ MasterBattleChipActions>({
         battleChip.rare,
         battleChip.codes,
       ));
+    },
+    findBattleChipById(id: number) {
+      return this.battleChips.find((battleChip) => battleChip.id === id);
     },
   },
 });

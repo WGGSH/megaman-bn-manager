@@ -5,7 +5,19 @@
     :items="battleChips"
     item-value="name"
     class="elevation-1"
-  />
+  >
+    <template #[`item.codes`]="template">
+      <v-btn
+        v-for="(code, index) in template.item.selectable.codes"
+        :key="code"
+        text
+        small
+        @click="addBattleChip(template.item.selectable, index)"
+      >
+        {{ code }}
+      </v-btn>
+    </template>
+  </v-data-table>
 </template>
 
 <script setup lang="ts">
@@ -22,10 +34,10 @@ const props = defineProps({
 const itemsPerPage = ref(10);
 
 const headers = [
-  {
-    title: 'ID',
-    key: 'id',
-  },
+  // {
+  //   title: 'ID',
+  //   key: 'id',
+  // },
   {
     title: 'number',
     key: 'number',
@@ -56,6 +68,8 @@ const headers = [
   },
 ];
 
+const emit = defineEmits(['add-battle-chip']);
+
 watch(() => props.battleChips, () => {
   console.log(props.battleChips);
 });
@@ -63,4 +77,8 @@ watch(() => props.battleChips, () => {
 onMounted(() => {
   console.log(props.battleChips);
 });
+
+const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
+  emit('add-battle-chip', battleChip, codeIndex);
+};
 </script>
