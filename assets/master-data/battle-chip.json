@@ -1,0 +1,37 @@
+{
+  "battle-chips": [
+    {
+      "id": 1,
+      "number": 1,
+      "class": "standard",
+      "name": "キャノン",
+      "type": "none",
+      "damage": 40,
+      "capacity": 6,
+      "rare": 1,
+      "codes": ["A","B","C","*"]
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "class": "standard",
+      "name": "ハイキャノン",
+      "type": "none",
+      "damage": 100,
+      "capacity": 24,
+      "rare": 2,
+      "codes": ["L","M","N","*"]
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "class": "standard",
+      "name": "メガキャノン",
+      "type": "none",
+      "damage": 180,
+      "capacity": 38,
+      "rare": 3,
+      "codes": ["R","S","T","*"]
+    }
+  ]
+}
