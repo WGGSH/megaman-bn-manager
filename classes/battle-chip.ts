@@ -9,7 +9,7 @@ export class BattleChip {
 
   private _type: string;
 
-  private _damage: number;
+  private _damage: number | '-' | '???';
 
   private _capacity: number;
 
@@ -37,7 +37,7 @@ export class BattleChip {
     return this._type;
   }
 
-  public get damage(): number {
+  public get damage(): number | '-' | '???' {
     return this._damage;
   }
 
@@ -59,7 +59,7 @@ export class BattleChip {
     name: string,
     classType: string,
     type: string,
-    damage: number,
+    damage: number | '-' | '???',
     capacity: number,
     rare: number,
     codes: Array<string>,

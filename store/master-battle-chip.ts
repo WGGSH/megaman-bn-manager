@@ -33,14 +33,15 @@ MasterBattleChipActions>({
       if (this.isFetched) return;
       this.battleChips = battleChipData['battle-chips'].map((battleChip) => new BattleChip(
         battleChip.id,
-        battleChip.number,
+        battleChip['chip-number'],
         battleChip.name,
         battleChip.class,
         battleChip.type,
         battleChip.damage,
         battleChip.capacity,
         battleChip.rare,
-        battleChip.codes,
+        [battleChip.code1, battleChip.code2, battleChip.code3, battleChip.code4],
+        // battleChip.codes,
       ));
     },
     findBattleChipById(id: number) {
