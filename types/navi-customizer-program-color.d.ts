@@ -1,4 +1,5 @@
 export type NaviCustomizerProgramColor =
+  'none' |
   'red' |
   'blue' |
   'green' |

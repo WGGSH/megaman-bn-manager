@@ -1,29 +1,37 @@
-import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
+import { Program } from '@/types/program';
+import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
+import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 export class NaviCustomizer {
   public static readonly rows = 7;
 
   public static readonly cols = 7;
 
-  private _naviCustomizerPrograms: NaviCustomizerProgram[];
+  private _naviCustomizerPrograms: Program[];
 
-  public get cells(): number[] {
-    const result: number[][] = [];
+  public get cells(): NaviCustomizerProgramColor[] {
+    const result: NaviCustomizerProgramColor[][] = [];
     for (let i = 0; i < NaviCustomizer.rows; i += 1) {
       result[i] = [];
       for (let j = 0; j < NaviCustomizer.cols; j += 1) {
-        result[i][j] = 0;
+        result[i][j] = 'none';
       }
     }
 
+    const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
+    const masterNaviCustomizerPrograms = masterNaviCustomizerProgramStore.programs;
+
     this._naviCustomizerPrograms.forEach((program) => {
-      program.cells.forEach((row, i) => {
+      const masterNaviCustomizerProgram = masterNaviCustomizerPrograms.find(
+        (masterProgram) => masterProgram.id === program.programId,
+      );
+      masterNaviCustomizerProgram.cells.forEach((row, i) => {
         row.forEach((cell, j) => {
           if (cell) {
             if (i + program.y < 0 || i + program.y >= NaviCustomizer.rows) {
               return;
             }
-            result[i + program.y][j + program.x] = 1;
+            result[i + program.y][j + program.x] = masterNaviCustomizerProgram.color;
           }
         });
       });
@@ -43,8 +51,8 @@ export class NaviCustomizer {
     };
   }
 
-  public add(index: number): void {
+  public add(programId: number, index: number): void {
     const { x, y } = NaviCustomizer.indexToXY(index);
-    this._naviCustomizerPrograms.push(new NaviCustomizerProgram(x, y));
+    this._naviCustomizerPrograms.push({ programId, x, y });
   }
 }

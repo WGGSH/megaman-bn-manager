@@ -3,29 +3,6 @@
 
   <v-container>
     <draggable
-      v-model="items2"
-      :options="{ group: 'items' }"
-      :group="{ name: 'items', pull: 'clone', put: true }"
-      class="grid"
-      item-key="id"
-      @change="handleChange"
-    >
-      <template #item="{ element }">
-        <v-card
-          class="pa-2"
-          width="100%"
-          height="50"
-        >
-          {{ element }}
-        </v-card>
-      </template>
-    </draggable>
-  </v-container>
-
-  <v-divider />
-
-  <v-container>
-    <draggable
       v-model="cells"
       :options="{ group: 'items' }"
       :group="{ name: 'items', pull: false, put: true }"
@@ -36,18 +13,17 @@
       <template #item="{ element }">
         <v-card
           class="pa-2"
-          width="100%"
-          height="50"
-        >
-          {{ element }}
-        </v-card>
+          width="50px"
+          height="50px"
+          :color="element"
+        />
       </template>
     </draggable>
   </v-container>
 
   <v-divider />
 
-  <v-container class="justify-center d-flex">
+  <v-container>
     <v-row>
       <draggable
         v-model="masterNaviCustomizerPrograms"
@@ -92,11 +68,6 @@ const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
 
 const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramStore.programs);
 
-const rows = 7;
-const cols = 7;
-
-const items2 = ref(Array.from({ length: rows * cols }, (_, i) => i));
-
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 
@@ -104,7 +75,7 @@ const cells = computed(() => navi.value.cells);
 
 const handleChange = (evt) => {
   if (evt.added) {
-    navi.value.add(evt.added.newIndex);
+    navi.value.add(evt.added.element.id, evt.added.newIndex);
   }
 };
 
@@ -126,6 +97,9 @@ onMounted(() => {
 <style scoped lang="scss">
 .grid {
   display: grid;
+  width: 350px;
+  margin: auto;
+  text-align: center;
   grid-template-columns: repeat(7, 1fr);
 }
 
