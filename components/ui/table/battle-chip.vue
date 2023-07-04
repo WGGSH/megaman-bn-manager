@@ -6,6 +6,12 @@
     item-value="name"
     class="elevation-1"
   >
+    <template #[`item.class`]="template">
+      {{ ChipText.chipClassToTextMap[template.item.selectable.class] }}
+    </template>
+    <template #[`item.type`]="template">
+      {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
+    </template>
     <template #[`item.codes`]="template">
       <v-btn
         v-for="(code, index) in template.item.selectable.codes"
@@ -23,6 +29,7 @@
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { BattleChip } from '@/classes/battle-chip';
+import { ChipText } from '@/value/chip-text';
 
 const props = defineProps({
   battleChips: {

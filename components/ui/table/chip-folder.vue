@@ -7,6 +7,12 @@
     height="500px"
     class="elevation-1"
   >
+    <template #[`item.class`]="template">
+      {{ ChipText.chipClassToTextMap[template.item.selectable.class] }}
+    </template>
+    <template #[`item.type`]="template">
+      {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
+    </template>
     <template #[`item.code`]="{ item }">
       {{ item.selectable.codes[item.selectable.codeIndex] }}
     </template>
@@ -25,6 +31,7 @@
 import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 import { VDataTableVirtual } from 'vuetify/labs/VDataTable';
 import { ChipFolder } from '@/classes/chip-folder';
+import { ChipText } from '@/value/chip-text';
 
 const masterBattleChipStore = useMasterBattleChipStore();
 
