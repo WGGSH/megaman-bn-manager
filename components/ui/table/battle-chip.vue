@@ -13,15 +13,19 @@
       {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
     </template>
     <template #[`item.codes`]="template">
-      <v-btn
+      <span
         v-for="(code, index) in template.item.selectable.codes"
-        :key="code"
-        text
-        small
-        @click="addBattleChip(template.item.selectable, index)"
+        :key="index"
       >
-        {{ code }}
-      </v-btn>
+        <v-btn
+          text
+          small
+          :disabled="code === ''"
+          @click="addBattleChip(template.item.selectable, index)"
+        >
+          {{ code }}
+        </v-btn>
+      </span>
     </template>
   </v-data-table>
 </template>
