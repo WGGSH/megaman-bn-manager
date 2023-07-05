@@ -1,7 +1,7 @@
 import { defineStore, type _GettersTree } from 'pinia';
 import { BattleChip } from '@/classes/battle-chip';
 
-import battleChipData from '@/assets/master-data/battle-chip.json';
+import masterBattleChips from '@/assets/master-data/battle-chip.json';
 
 interface MasterBattleChipState {
   battleChips: Array<BattleChip>;
@@ -31,7 +31,7 @@ MasterBattleChipActions>({
   actions: {
     fetchBattleChips() {
       if (this.isFetched) return;
-      this.battleChips = battleChipData['battle-chips'].map((battleChip) => new BattleChip(
+      this.battleChips = masterBattleChips.map((battleChip) => new BattleChip(
         battleChip.id,
         battleChip['chip-number'],
         battleChip.name,

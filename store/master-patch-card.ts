@@ -21,7 +21,7 @@ import { AbilityCsChange } from '@/classes/ability/cs-change';
 import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
 import { AbilityMoveChange } from '@/classes/ability/move-change';
 
-import cardData from '@/assets/master-data/patch-card.json';
+import masterPatchCards from '@/assets/master-data/patch-card.json';
 
 interface MasterPatchCardState {
   cards: Array<PatchCard>;
@@ -40,49 +40,49 @@ const createAbilityInstance = (key: string, value: number | string | boolean | n
 AbilityBase | null => {
   switch (key) {
     case 'attack-plus':
-      return new AbilityAttackPlus(value as number);
+      return new AbilityAttackPlus(Number(value));
 
     case 'attack-magnify':
-      return new AbilityAttackMagnify(value as number);
+      return new AbilityAttackMagnify(Number(value));
 
     case 'hp-plus':
-      return new AbilityHpPlus(value as number);
+      return new AbilityHpPlus(Number(value));
 
     case 'hp-magnify':
-      return new AbilityHpMagnify(value as number);
+      return new AbilityHpMagnify(Number(value));
 
     case 'rapid-plus':
-      return new AbilityRapidPlus(value as number);
+      return new AbilityRapidPlus(Number(value));
 
     case 'charge-plus':
-      return new AbilityChargePlus(value as number);
+      return new AbilityChargePlus(Number(value));
 
     case 'custom-plus':
-      return new AbilityCustomPlus(value as number);
+      return new AbilityCustomPlus(Number(value));
 
     case 'mega-plus':
-      return new AbilityMegaPlus(value as number);
+      return new AbilityMegaPlus(Number(value));
 
     case 'giga-plus':
-      return new AbilityGigaPlus(value as number);
+      return new AbilityGigaPlus(Number(value));
 
     case 'air-shoes':
-      return new AbilityAirShoes(value as boolean);
+      return new AbilityAirShoes(Boolean(value));
 
     case 'float-shoes':
-      return new AbilityFloatShoes(value as boolean);
+      return new AbilityFloatShoes(Boolean(value));
 
     case 'super-armor':
-      return new AbilitySuperArmor(value as boolean);
+      return new AbilitySuperArmor(Boolean(value));
 
     case 'under-shirt':
-      return new AbilityUnderShirt(value as boolean);
+      return new AbilityUnderShirt(Boolean(value));
 
     case 'status-guard':
-      return new AbilityStatusGuard(value as boolean);
+      return new AbilityStatusGuard(Boolean(value));
 
     case 'first-barrier':
-      return new AbilityFirstBarrier(value as boolean);
+      return new AbilityFirstBarrier(Boolean(value));
 
     case 'buster-change':
       return new AbilityBusterChange(value as string);
@@ -112,12 +112,17 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
   },
   actions: {
     fetchCards() {
-      this.cards = cardData.cards.map((card) => {
-        const abilities = card.abilities.map(
-          (ability) => createAbilityInstance(ability.key, ability.value),
-        ).filter(
-          (ability) => ability !== null,
-        );
+      this.cards = masterPatchCards.map((card) => {
+        const abilities: Array<AbilityBase> = [];
+        for (let i = 0; i < 6; i += 1) {
+          const { key, value } = card[`ability-${i + 1}`];
+          if (key !== null && value !== null) {
+            const ability = createAbilityInstance(key, value);
+            if (ability !== null) {
+              abilities.push(ability);
+            }
+          }
+        }
         return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
       });
     },

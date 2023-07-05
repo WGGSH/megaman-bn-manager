@@ -1,436 +1,1262 @@
-{
-  "cards": [
-    {
-      "id": 1,
-      "number": "136-A001",
-      "name": "キャノーダム",
-      "capacity": 10,
-      "abilities": [
-        {
-          "key": "attack-plus",
-          "value": 1
-        },
-        {
-          "key": "cs-change",
-          "value": "mega-cannon"
-        },
-        {
-          "key": "hp-plus",
-          "value": -40
-        }
-      ]
+[
+  {
+    "id": "1",
+    "number": "137-A001",
+    "name": "キャノーダム",
+    "capacity": "10",
+    "ability-1": {
+      "key": "attack-plus",
+      "value": "1"
     },
-    {
-      "id": 2,
-      "number": "136-A002",
-      "name": "アモナキュール",
-      "capacity": 16,
-      "abilities": [
-        {
-          "key": "hp-plus",
-          "value": 80
-        },
-        {
-          "key": "body-change",
-          "value": "aqua"
-        },
-        {
-          "key": "first-barrier",
-          "value": "bubble-wrap"
-        }
-      ]
+    "ability-2": {
+      "key": "cs-change",
+      "value": "mega-cannon"
     },
-    {
-      "id": 3,
-      "number": "136-A003",
-      "name": "コルドベア",
-      "capacity": 18,
-      "abilities": [
-        {
-          "key": "hp-plus",
-          "value": 140
-        },
-        {
-          "key": "body-change",
-          "value": "aqua"
-        },
-        {
-          "key": "cs-change",
-          "value": "ice-cube"
-        },
-        {
-          "key": "move-change",
-          "value": "ice"
-        }
-      ]
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "-40"
     },
-    {
-      "id": 4,
-      "number": "136-A004",
-      "name": "ジーラ",
-      "capacity": 12,
-      "abilities": [
-        {
-          "key": "attack-plus",
-          "value": 3
-        },
-        {
-          "key": "float-shoes",
-          "value": false
-        },
-        {
-          "key": "air-shoes",
-          "value": false
-        }
-      ]
+    "ability-4": {
+      "key": "",
+      "value": ""
     },
-    {
-      "id": 5,
-      "number": "136-A005",
-      "name": "メガリア",
-      "capacity": 20,
-      "abilities": [
-        {
-          "key": "charge-plus",
-          "value": 1
-        },
-        {
-          "key": "first-barrier",
-          "value": "barrier-100"
-        },
-        {
-          "key": "air-shoes",
-          "value": true
-        },
-        {
-          "key": "hp-plus",
-          "value": -80
-        }
-      ]
+    "ability-5": {
+      "key": "",
+      "value": ""
     },
-    {
-      "id": 6,
-      "number": "136-A006",
-      "name": "メテファイア",
-      "capacity": 20,
-      "abilities": [
-        {
-          "key": "body-change",
-          "value": "fire"
-        },
-        {
-          "key": "buster-change",
-          "value": "meteor-1"
-        },
-        {
-          "key": "move-change",
-          "value": "skip"
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "number": "136-A007",
-      "name": "キルプラント",
-      "capacity": 19,
-      "abilities": [
-        {
-          "key": "body-change",
-          "value": "wood"
-        },
-        {
-          "key": "cs-change",
-          "value": "grass-seed"
-        },
-        {
-          "key": "air-shoes",
-          "value": false
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "number": "136-A008",
-      "name": "ダークシャドー",
-      "capacity": 6,
-      "abilities": [
-        {
-          "key": "buster-change",
-          "value": "sword"
-        },
-        {
-          "key": "cs-change",
-          "value": "invisible"
-        },
-        {
-          "key": "status-guard",
-          "value": false
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "number": "136-A009",
-      "name": "ボンビートル",
-      "capacity": 11,
-      "abilities": [
-        {
-          "key": "hp-plus",
-          "value": 100
-        },
-        {
-          "key": "buster-change",
-          "value": "mini-bomb"
-        },
-        {
-          "key": "cs-change",
-          "value": "none"
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "number": "136-A010",
-      "name": "ヘビーアレイ",
-      "capacity": 15,
-      "abilities": [
-        {
-          "key": "attack-plus",
-          "value": 1
-        },
-        {
-          "key": "super-armor",
-          "value": true
-        },
-        {
-          "key": "buster-addition",
-          "value": "none"
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "number": "136-A011",
-      "name": "アゾマータ",
-      "capacity": 24,
-      "abilities": [
-        {
-          "key": "body-change",
-          "value": "wood"
-        },
-        {
-          "key": "status-guard",
-          "value": true
-        },
-        {
-          "key": "hp-magnify",
-          "value": -20
-        },
-        {
-          "key": "left-b-change",
-          "value": "none"
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "number": "136-A012",
-      "name": "ジェライム",
-      "capacity": 12,
-      "abilities": [
-        {
-          "key": "hp-plus",
-          "value": 30
-        },
-        {
-          "key": "body-change",
-          "value": "aqua"
-        },
-        {
-          "key": "cs-change",
-          "value": "panel-steal"
-        },
-        {
-          "key": "gauge-change",
-          "value": "none"
-        }
-      ]
-    },
-    {
-      "id": 13,
-      "number": "136-A013",
-      "name": "ボルカノ",
-      "capacity": 10,
-      "abilities": [
-        {
-          "key": "body-change",
-          "value": "fire"
-        },
-        {
-          "key": "charge-plus",
-          "value": 4
-        },
-        {
-          "key": "cs-change",
-          "value": "black-bomb"
-        },
-        {
-          "key": "heart-bug",
-          "value": true
-        }
-      ]
-    },
-    {
-      "id": 14,
-      "number": "136-A014",
-      "name": "ナンバーズ",
-      "capacity": 17,
-      "abilities": [
-        {
-          "key": "custom-plus",
-          "value": 1
-        },
-        {
-          "key": "mega-plus",
-          "value": 1
-        },
-        {
-          "key": "giga-plus",
-          "value": 1
-        },
-        {
-          "key": "cs-change",
-          "value": "none"
-        },
-        {
-          "key": "custom-hp-bug-plus",
-          "value": 1
-        }
-      ]
-    },
-    {
-      "id": 15,
-      "number": "136-A015",
-      "name": "マグテクト",
-      "capacity": 15,
-      "abilities": [
-        {
-          "key": "body-change",
-          "value": "elec"
-        },
-        {
-          "key": "float-shoes",
-          "value": true
-        },
-        {
-          "key": "cs-add",
-          "value": "attract"
-        },
-        {
-          "key": "hp-magnify",
-          "value": -5
-        }
-      ]
-    },
-    {
-      "id": 16,
-      "number": "136-A016",
-      "name": "クーモス",
-      "capacity": 8,
-      "abilities": [
-        {
-          "key": "hp-plus",
-          "value": 60
-        },
-        {
-          "key": "body-change",
-          "value": "wood"
-        },
-        {
-          "key": "move-change",
-          "value": "grass"
-        }
-      ]
-    },
-    {
-      "id": 17,
-      "number": "136-A017",
-      "name": "ボムボーイ",
-      "capacity": 14,
-      "abilities": [
-        {
-          "key": "buster-add",
-          "value": "push"
-        },
-        {
-          "key": "move-change",
-          "value": "none"
-        },
-        {
-          "key": "move-bug",
-          "value": 0
-        },
-        {
-          "key": "cs-add",
-          "value": "none"
-        }
-      ]
-    },
-    {
-      "id": 36,
-      "number": "136-A036",
-      "name": "ナイトマン",
-      "capacity": 45,
-      "abilities": [
-        {
-          "key": "hp-magnify",
-          "value": 20
-        },
-        {
-          "key": "attack-magnify",
-          "value": 2
-        },
-        {
-          "key": "super-armor",
-          "value": true
-        },
-        {
-          "key": "under-shirt",
-          "value": true
-        },
-        {
-          "key": "buster-bug",
-          "value": 1
-        }
-      ]
-    },
-    {
-      "id": 99,
-      "number": "137-D001-G",
-      "name": "フォルテクロスロックマン",
-      "capacity": 70,
-      "abilities": [
-        {
-          "key": "hp-plus",
-          "value": 200
-        },
-        {
-          "key": "super-armor",
-          "value": true
-        },
-        {
-          "key": "buster-change",
-          "value": "triple"
-        },
-        {
-          "key": "cs-change",
-          "value": "shooting"
-        },
-        {
-          "key": "mega-plus",
-          "value": -2
-        }
-      ]
+    "ability-6": {
+      "key": "",
+      "value": ""
     }
-  ]
-}
+  },
+  {
+    "id": "2",
+    "number": "137-A002",
+    "name": "アモナキュール",
+    "capacity": "16",
+    "ability-1": {
+      "key": "hp-plus",
+      "value": "80"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "first-barrier",
+      "value": "bubble-wrap"
+    },
+    "ability-4": {
+      "key": "attack-plus",
+      "value": "-1"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "3",
+    "number": "137-A003",
+    "name": "コルドベア",
+    "capacity": "18",
+    "ability-1": {
+      "key": "hp-plus",
+      "value": "140"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "cs-change",
+      "value": "ice-cube"
+    },
+    "ability-4": {
+      "key": "move-change",
+      "value": "ice"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "4",
+    "number": "137-A004",
+    "name": "ジーラ",
+    "capacity": "12",
+    "ability-1": {
+      "key": "attack-plus",
+      "value": "3"
+    },
+    "ability-2": {
+      "key": "float-shoes",
+      "value": false
+    },
+    "ability-3": {
+      "key": "air-shoes",
+      "value": false
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "5",
+    "number": "137-A005",
+    "name": "メガリア",
+    "capacity": "20",
+    "ability-1": {
+      "key": "first-barrier",
+      "value": "barrier-100"
+    },
+    "ability-2": {
+      "key": "air-shoes",
+      "value": true
+    },
+    "ability-3": {
+      "key": "charge-plus",
+      "value": "4"
+    },
+    "ability-4": {
+      "key": "hp-plus",
+      "value": "-80"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "6",
+    "number": "137-A006",
+    "name": "メテファイア",
+    "capacity": "20",
+    "ability-1": {
+      "key": "buster-change",
+      "value": "meteor-1"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "fire"
+    },
+    "ability-3": {
+      "key": "move-bug",
+      "value": true
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "7",
+    "number": "137-A007",
+    "name": "キルプラント",
+    "capacity": "19",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "grass-seed"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "wood"
+    },
+    "ability-3": {
+      "key": "air-shoes",
+      "value": false
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "8",
+    "number": "137-A008",
+    "name": "ダークシャドー",
+    "capacity": "6",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "invisible"
+    },
+    "ability-2": {
+      "key": "buster-change",
+      "value": "sword"
+    },
+    "ability-3": {
+      "key": "status-guard",
+      "value": false
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "9",
+    "number": "137-A009",
+    "name": "ボンビートル",
+    "capacity": "11",
+    "ability-1": {
+      "key": "buster-change",
+      "value": "minibomb"
+    },
+    "ability-2": {
+      "key": "hp-plus",
+      "value": "100"
+    },
+    "ability-3": {
+      "key": "cs-change",
+      "value": "none"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "10",
+    "number": "137-A010",
+    "name": "ヘビーアレイ",
+    "capacity": "15",
+    "ability-1": {
+      "key": "super-armor",
+      "value": true
+    },
+    "ability-2": {
+      "key": "attack-plus",
+      "value": "1"
+    },
+    "ability-3": {
+      "key": "buster-addition",
+      "value": "none"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "11",
+    "number": "137-A011",
+    "name": "アゾマータ",
+    "capacity": "24",
+    "ability-1": {
+      "key": "status-guard",
+      "value": true
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "wood"
+    },
+    "ability-3": {
+      "key": "hp-magnify",
+      "value": "-20"
+    },
+    "ability-4": {
+      "key": "left-b-change",
+      "value": "none"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "12",
+    "number": "137-A012",
+    "name": "ジェライム",
+    "capacity": "12",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "panel-steal"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "30"
+    },
+    "ability-4": {
+      "key": "gauge-change",
+      "value": "none"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "13",
+    "number": "137-A013",
+    "name": "ボルカノ",
+    "capacity": "10",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "black-bomb"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "fire"
+    },
+    "ability-3": {
+      "key": "charge-plus",
+      "value": "4"
+    },
+    "ability-4": {
+      "key": "emotion-window-bug",
+      "value": true
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "14",
+    "number": "137-A014",
+    "name": "ナンバーズ",
+    "capacity": "17",
+    "ability-1": {
+      "key": "custom-plus",
+      "value": "1"
+    },
+    "ability-2": {
+      "key": "mega-plus",
+      "value": "1"
+    },
+    "ability-3": {
+      "key": "giga-plus",
+      "value": "1"
+    },
+    "ability-4": {
+      "key": "cs-change",
+      "value": "none"
+    },
+    "ability-5": {
+      "key": "custom-hp-bug",
+      "value": true
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "15",
+    "number": "137-A015",
+    "name": "マグテクト",
+    "capacity": "15",
+    "ability-1": {
+      "key": "cs-plus",
+      "value": "pull"
+    },
+    "ability-2": {
+      "key": "float-shoes",
+      "value": true
+    },
+    "ability-3": {
+      "key": "body-change",
+      "value": "elec"
+    },
+    "ability-4": {
+      "key": "hp-magnify",
+      "value": "-5"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "16",
+    "number": "137-A016",
+    "name": "クーモス",
+    "capacity": "8",
+    "ability-1": {
+      "key": "body-change",
+      "value": "wood"
+    },
+    "ability-2": {
+      "key": "hp-plus",
+      "value": "60"
+    },
+    "ability-3": {
+      "key": "move-change",
+      "value": "grass"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "17",
+    "number": "137-A017",
+    "name": "ボムボーイ",
+    "capacity": "8",
+    "ability-1": {
+      "key": "move-change",
+      "value": "none"
+    },
+    "ability-2": {
+      "key": "buster-addition",
+      "value": "push"
+    },
+    "ability-3": {
+      "key": "move-bug",
+      "value": false
+    },
+    "ability-4": {
+      "key": "cs-addition",
+      "value": "none"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "18",
+    "number": "137-A018",
+    "name": "ウドノート",
+    "capacity": "13",
+    "ability-1": {
+      "key": "damage-hp-bug",
+      "value": false
+    },
+    "ability-2": {
+      "key": "damage-panic-bug",
+      "value": false
+    },
+    "ability-3": {
+      "key": "buster-addition",
+      "value": "grass"
+    },
+    "ability-4": {
+      "key": "body-change",
+      "value": "wood"
+    },
+    "ability-5": {
+      "key": "hp-plus",
+      "value": "90"
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "19",
+    "number": "137-A019",
+    "name": "ピカラー",
+    "capacity": "11",
+    "ability-1": {
+      "key": "custom-damage-bug",
+      "value": false
+    },
+    "ability-2": {
+      "key": "hp-magnify",
+      "value": "5"
+    },
+    "ability-3": {
+      "key": "body-change",
+      "value": "elec"
+    },
+    "ability-4": {
+      "key": "attack-plus",
+      "value": "-1"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "20",
+    "number": "137-A020",
+    "name": "エレオーガ",
+    "capacity": "16",
+    "ability-1": {
+      "key": "hp-plus",
+      "value": "50"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "elec"
+    },
+    "ability-3": {
+      "key": "emotion-window-bug",
+      "value": false
+    },
+    "ability-4": {
+      "key": "status-bug-add",
+      "value": "-2"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "21",
+    "number": "137-A021",
+    "name": "ダルスト",
+    "capacity": "12",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "fire-burner"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "fire"
+    },
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "130"
+    },
+    "ability-4": {
+      "key": "battle-hp-bug",
+      "value": true
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "22",
+    "number": "137-A022",
+    "name": "センボン",
+    "capacity": "11",
+    "ability-1": {
+      "key": "buster-bug-add",
+      "value": "-3"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "rapid-plus",
+      "value": "4"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "23",
+    "number": "137-A023",
+    "name": "ヒトデスタ",
+    "capacity": "15",
+    "ability-1": {
+      "key": "cs-addition",
+      "value": "bubble"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "",
+      "value": ""
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "24",
+    "number": "137-A024",
+    "name": "グラサン",
+    "capacity": "8",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "flash-bomb"
+    },
+    "ability-2": {
+      "key": "super-armor",
+      "value": false
+    },
+    "ability-3": {
+      "key": "",
+      "value": ""
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "25",
+    "number": "137-A025",
+    "name": "カカジー",
+    "capacity": "14",
+    "ability-1": {
+      "key": "chip-recovery",
+      "value": "30"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "elec"
+    },
+    "ability-3": {
+      "key": "cs-change",
+      "value": "doll-thunder"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "26",
+    "number": "137-A026",
+    "name": "ゼロプレーン",
+    "capacity": "20",
+    "ability-1": {
+      "key": "float-shoes",
+      "value": true
+    },
+    "ability-2": {
+      "key": "air-shoes",
+      "value": true
+    },
+    "ability-3": {
+      "key": "hp-magnify",
+      "value": "-10"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "27",
+    "number": "137-A027",
+    "name": "レムゴン",
+    "capacity": "19",
+    "ability-1": {
+      "key": "under-shirt",
+      "value": true
+    },
+    "ability-2": {
+      "key": "hp-plus",
+      "value": "200"
+    },
+    "ability-3": {
+      "key": "damage-hp-bug",
+      "value": true
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "28",
+    "number": "137-A028",
+    "name": "アルマン",
+    "capacity": "12",
+    "ability-1": {
+      "key": "ch-addition",
+      "value": "break"
+    },
+    "ability-2": {
+      "key": "hp-magnify",
+      "value": "5"
+    },
+    "ability-3": {
+      "key": "charge-plus",
+      "value": "-3"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "29",
+    "number": "137-A029",
+    "name": "ヤカーン",
+    "capacity": "15",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "spread-gun"
+    },
+    "ability-2": {
+      "key": "battle-hp-bug",
+      "value": false
+    },
+    "ability-3": {
+      "key": "chip-recovery",
+      "value": "20"
+    },
+    "ability-4": {
+      "key": "left-b-change",
+      "value": "shield"
+    },
+    "ability-5": {
+      "key": "custom-damage-bug",
+      "value": true
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "30",
+    "number": "137-A030",
+    "name": "ツボリュウ",
+    "capacity": "20",
+    "ability-1": {
+      "key": "mega-plus",
+      "value": "1"
+    },
+    "ability-2": {
+      "key": "hp-plus",
+      "value": "180"
+    },
+    "ability-3": {
+      "key": "cs-change",
+      "value": "none"
+    },
+    "ability-4": {
+      "key": "status-bug-plus",
+      "value": "1"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "31",
+    "number": "137-A031",
+    "name": "ナンバーマン",
+    "capacity": "35",
+    "ability-1": {
+      "key": "custom-plus",
+      "value": "3"
+    },
+    "ability-2": {
+      "key": "mega-plus",
+      "value": "1"
+    },
+    "ability-3": {
+      "key": "giga-plus",
+      "value": "1"
+    },
+    "ability-4": {
+      "key": "hp-magnify",
+      "value": "-20"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "32",
+    "number": "137-A032",
+    "name": "アイスマン",
+    "capacity": "25",
+    "ability-1": {
+      "key": "cs-change",
+      "value": "ice-seed"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "80"
+    },
+    "ability-4": {
+      "key": "custom-hp-bug",
+      "value": false
+    },
+    "ability-5": {
+      "key": "super-armor",
+      "value": false
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "33",
+    "number": "137-A033",
+    "name": "スカルマン",
+    "capacity": "30",
+    "ability-1": {
+      "key": "hp-plus",
+      "value": "100"
+    },
+    "ability-2": {
+      "key": "cs-change",
+      "value": "hp-bug"
+    },
+    "ability-3": {
+      "key": "battle-hp-bug",
+      "value": true
+    },
+    "ability-4": {
+      "key": "status-bug-plus",
+      "value": "1"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "34",
+    "number": "137-A034",
+    "name": "シャドーマン",
+    "capacity": "38",
+    "ability-1": {
+      "key": "float-shoes",
+      "value": true
+    },
+    "ability-2": {
+      "key": "cs-change",
+      "value": "long-sword"
+    },
+    "ability-3": {
+      "key": "left-b-change",
+      "value": "anti-damage"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "35",
+    "number": "137-A035",
+    "name": "カットマン",
+    "capacity": "32",
+    "ability-1": {
+      "key": "attack-plus",
+      "value": "4"
+    },
+    "ability-2": {
+      "key": "cs-change",
+      "value": "yo-yo"
+    },
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "-100"
+    },
+    "ability-4": {
+      "key": "",
+      "value": ""
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "36",
+    "number": "137-A036",
+    "name": "ナイトマン",
+    "capacity": "45",
+    "ability-1": {
+      "key": "super-armor",
+      "value": true
+    },
+    "ability-2": {
+      "key": "under-shirt",
+      "value": true
+    },
+    "ability-3": {
+      "key": "hp-magnify",
+      "value": "20"
+    },
+    "ability-4": {
+      "key": "attack-magnify",
+      "value": "2"
+    },
+    "ability-5": {
+      "key": "buster-bug-plus",
+      "value": "1"
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "37",
+    "number": "137-A037",
+    "name": "トードマン",
+    "capacity": "34",
+    "ability-1": {
+      "key": "buster-bug-plus",
+      "value": "-3"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "aqua"
+    },
+    "ability-3": {
+      "key": "cs-addition",
+      "value": "elec"
+    },
+    "ability-4": {
+      "key": "charge-plus",
+      "value": "-3"
+    },
+    "ability-5": {
+      "key": "attack-plus",
+      "value": "-1"
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "38",
+    "number": "137-A038",
+    "name": "マグネットマン",
+    "capacity": "37",
+    "ability-1": {
+      "key": "body-change",
+      "value": "elec"
+    },
+    "ability-2": {
+      "key": "left-b-change",
+      "value": "stop"
+    },
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "240"
+    },
+    "ability-4": {
+      "key": "cs-addition",
+      "value": "none"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "39",
+    "number": "137-A039",
+    "name": "プラネットマン",
+    "capacity": "40",
+    "ability-1": {
+      "key": "buster-change",
+      "value": "crack-shoot"
+    },
+    "ability-2": {
+      "key": "body-change",
+      "value": "wood"
+    },
+    "ability-3": {
+      "key": "hp-plus",
+      "value": "300"
+    },
+    "ability-4": {
+      "key": "status-guard",
+      "value": true
+    },
+    "ability-5": {
+      "key": "air-shoes",
+      "value": false
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "40",
+    "number": "137-A040",
+    "name": "ビーストマン",
+    "capacity": "33",
+    "ability-1": {
+      "key": "under-shirt",
+      "value": true
+    },
+    "ability-2": {
+      "key": "rapid-plus",
+      "value": "4"
+    },
+    "ability-3": {
+      "key": "cs-change",
+      "value": "step-sword"
+    },
+    "ability-4": {
+      "key": "rush-support",
+      "value": true
+    },
+    "ability-5": {
+      "key": "move-bug",
+      "value": true
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "41",
+    "number": "137-A041",
+    "name": "デザートマン",
+    "capacity": "36",
+    "ability-1": {
+      "key": "charge-plus",
+      "value": "4"
+    },
+    "ability-2": {
+      "key": "hp-plus",
+      "value": "160"
+    },
+    "ability-3": {
+      "key": "damage-hp-bug",
+      "value": false
+    },
+    "ability-4": {
+      "key": "damage-panic-bug",
+      "value": false
+    },
+    "ability-5": {
+      "key": "air-shoes",
+      "value": false
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  },
+  {
+    "id": "42",
+    "number": "137-A042",
+    "name": "ヤマトマン",
+    "capacity": "35",
+    "ability-1": {
+      "key": "left-b-change",
+      "value": "reflect"
+    },
+    "ability-2": {
+      "key": "hp-magnify",
+      "value": "10"
+    },
+    "ability-3": {
+      "key": "attack-plus",
+      "value": "1"
+    },
+    "ability-4": {
+      "key": "custom-hp-bug",
+      "value": true
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
+    },
+    "ability-6": {
+      "key": "",
+      "value": ""
+    }
+  }
+]

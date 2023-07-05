@@ -1,5 +1,19 @@
 [
   {
+    "id": "id",
+    "chip-number": "chip-number",
+    "name": "Name",
+    "class": "class",
+    "type": "type",
+    "damage": "damage",
+    "capacity": "capacity",
+    "rare": "rare",
+    "code1": "code1",
+    "code2": "code2",
+    "code3": "code3",
+    "code4": "code4"
+  },
+  {
     "id": "1",
     "chip-number": "1",
     "name": "キャノン",
