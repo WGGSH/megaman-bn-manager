@@ -8,7 +8,7 @@ export class AbilityCsChange extends AbilityBaseString {
   public valueToString(): string {
     switch (this.value) {
       case 'none':
-        return '通常';
+        return 'OFF';
 
       case 'mega-cannon':
         return 'メガキャノン';

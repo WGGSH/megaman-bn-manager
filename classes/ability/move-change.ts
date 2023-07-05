@@ -18,7 +18,11 @@ export class AbilityMoveChange extends AbilityBaseString {
     }
   }
 
+  protected get isPositive(): boolean {
+    return this._value === 'none';
+  }
+
   toString(): string {
-    return `移動時: ${this.valueToString()}`;
+    return `移動時のパネル変化: ${this.valueToString()}`;
   }
 }

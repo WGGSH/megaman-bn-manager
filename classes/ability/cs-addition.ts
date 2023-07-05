@@ -1,8 +1,8 @@
 import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class AbilityLeftBChange extends AbilityBaseString {
+export class AbilityCsAddition extends AbilityBaseString {
   constructor(value: string) {
-    super('left-b-change', value);
+    super('cs-addition', value);
   }
 
   public valueToString(): string {
@@ -10,8 +10,8 @@ export class AbilityLeftBChange extends AbilityBaseString {
       case 'none':
         return 'OFF';
 
-      case 'shield':
-        return 'シールド';
+      case 'pull':
+        return '左すいよせ';
 
       default:
         return '不明';
@@ -19,6 +19,6 @@ export class AbilityLeftBChange extends AbilityBaseString {
   }
 
   toString(): string {
-    return `B+左: ${this.valueToString()}`;
+    return `CS追加効果: ${this.valueToString()}`;
   }
 }

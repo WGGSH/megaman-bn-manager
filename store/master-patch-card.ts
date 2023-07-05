@@ -17,9 +17,12 @@ import { AbilityUnderShirt } from '@/classes/ability/under-shirt';
 import { AbilityStatusGuard } from '@/classes/ability/status-guard';
 import { AbilityFirstBarrier } from '@/classes/ability/first-barrier';
 import { AbilityBusterChange } from '@/classes/ability/buster-change';
+import { AbilityBusterAddition } from '@/classes/ability/buster-addition';
 import { AbilityCsChange } from '@/classes/ability/cs-change';
+import { AbilityCsAddition } from '@/classes/ability/cs-addition';
 import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
 import { AbilityMoveChange } from '@/classes/ability/move-change';
+import { AbilityEmotionWindowBug } from '@/classes/ability/emotion-window-bug';
 
 import masterPatchCards from '@/assets/master-data/patch-card.json';
 
@@ -87,14 +90,23 @@ AbilityBase | null => {
     case 'buster-change':
       return new AbilityBusterChange(value as string);
 
+    case 'buster-addition':
+      return new AbilityBusterAddition(value as string);
+
     case 'cs-change':
       return new AbilityCsChange(value as string);
+
+    case 'cs-addition':
+      return new AbilityCsAddition(value as string);
 
     case 'left-b-change':
       return new AbilityLeftBChange(value as string);
 
     case 'move-change':
       return new AbilityMoveChange(value as string);
+
+    case 'emotion-window-bug':
+      return new AbilityEmotionWindowBug(Boolean(value));
 
     default:
       return null;
