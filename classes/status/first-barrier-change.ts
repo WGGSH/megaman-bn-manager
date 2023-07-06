@@ -1,14 +1,14 @@
 import { StatusBaseString } from '@/classes/status/base/string';
 
-export class StatusFirstBarrier extends StatusBaseString {
+export class StatusFirstBarrierChange extends StatusBaseString {
   constructor(value: string) {
-    super('first-barrier', value);
+    super('first-barrier-change', value);
   }
 
   public valueToString(): string {
     switch (this.value) {
       case 'none':
-        return 'バリア: なし';
+        return 'バリア: OFF';
 
       case 'bubble-wrap':
         return 'バブルラップ';

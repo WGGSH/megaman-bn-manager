@@ -18,6 +18,10 @@ export class StatusCsChange extends StatusBaseString {
     }
   }
 
+  public apply(value: string): void {
+    this._value = value;
+  }
+
   public toString(): string {
     return `CS変更: ${this.valueToString()}`;
   }
