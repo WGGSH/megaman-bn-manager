@@ -1,8 +1,8 @@
 import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class AbilityFirstBarrier extends AbilityBaseString {
+export class AbilityFirstBarrierChange extends AbilityBaseString {
   constructor(value: string) {
-    super('first-barrier', value);
+    super('first-barrier-change', value);
   }
 
   public valueToString(): string {

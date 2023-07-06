@@ -17,16 +17,16 @@
       "value": "-40"
     },
     "ability-4": {
-      "key": "",
-      "value": ""
+      "key": "tango-support",
+      "value": true
     },
     "ability-5": {
-      "key": "",
-      "value": ""
+      "key": "chip-recovery-change",
+      "value": "80"
     },
     "ability-6": {
-      "key": "",
-      "value": ""
+      "key": "body-change",
+      "value": "none"
     }
   },
   {

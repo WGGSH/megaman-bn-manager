@@ -1,8 +1,8 @@
 import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class AbilityCsAddition extends AbilityBaseString {
+export class AbilityCsAdditionChange extends AbilityBaseString {
   constructor(value: string) {
-    super('cs-addition', value);
+    super('cs-addition-change', value);
   }
 
   public valueToString(): string {

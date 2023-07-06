@@ -1,8 +1,8 @@
 import { AbilityBaseString } from '@/classes/ability/base/string';
 
-export class AbilityBusterAddition extends AbilityBaseString {
+export class AbilityBusterAdditionChange extends AbilityBaseString {
   constructor(value: string) {
-    super('buster-addition', value);
+    super('buster-addition-change', value);
   }
 
   public valueToString(): string {
