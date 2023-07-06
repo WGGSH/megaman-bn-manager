@@ -2,19 +2,12 @@ import { StatusBaseNumber } from '@/classes/status/base/number';
 
 export class StatusHp extends StatusBaseNumber {
   constructor(value: number) {
-    super('hp', value);
-  }
-
-  public applyPlus(value: number): void {
-    this._value += value;
+    super('hp', value, 100000, 1);
   }
 
   public applyMagnify(value: number): void {
     this._value *= 1 + value / 100;
-  }
-
-  public apply(value: number): void {
-    this._value = value;
+    this.fixValue();
   }
 
   public toString(): string {

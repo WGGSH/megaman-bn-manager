@@ -2,11 +2,7 @@ import { StatusBaseNumber } from '@/classes/status/base/number';
 
 export class StatusMega extends StatusBaseNumber {
   constructor(value: number) {
-    super('mega', value);
-  }
-
-  public apply(value: number): void {
-    this._value += value;
+    super('mega', value, 10, 1);
   }
 
   public toString(): string {

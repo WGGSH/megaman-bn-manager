@@ -40,6 +40,7 @@ import { StatusGaugeChange } from '@/classes/status/gauge-change';
 import { StatusMoveChange } from '@/classes/status/move-change';
 import { StatusBodyChange } from '@/classes/status/body-change';
 
+import { StatusBaseNumber } from '@/classes/status/base/number';
 import { Statuses } from '@/types/statuses';
 
 export class MegamanStatus {
@@ -50,6 +51,8 @@ export class MegamanStatus {
   private _abilities: Array<AbilityBase>;
 
   static abilityKeyToStatusKey = {
+    'hp-plus': 'hp',
+    'attack-plus': 'attack',
     'rapid-plus': 'rapid',
     'charge-plus': 'charge',
     'custom-plus': 'custom',
@@ -166,16 +169,8 @@ export class MegamanStatus {
 
   private applyAbility(ability: AbilityBase) {
     switch (ability.key) {
-      case 'hp-plus':
-        this._statuses.hp.applyPlus(ability.value as number);
-        break;
-
       case 'hp-magnify':
         this._statuses.hp.applyMagnify(ability.value as number);
-        break;
-
-      case 'attack-plus':
-        this._statuses.attack.applyPlus(ability.value as number);
         break;
 
       case 'attack-magnify':
@@ -183,6 +178,10 @@ export class MegamanStatus {
         break;
 
       default:
+        if (this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]] instanceof StatusBaseNumber) {
+          this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].applyPlus(ability.value);
+          break;
+        }
         this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].apply(ability.value);
         break;
     }

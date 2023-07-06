@@ -3,17 +3,17 @@ export abstract class StatusBase {
 
   protected abstract _value: number | string | boolean | null;
 
-  get key(): string {
+  public get key(): string {
     return this._key;
   }
 
-  abstract get value(): number | string | boolean | null;
+  public abstract get value(): number | string | boolean | null;
 
-  abstract set value(value: number | string | boolean | null);
+  public abstract set value(value: number | string | boolean | null);
 
-  abstract apply(value: number | string | boolean | null): void;
+  public abstract apply(value: number | string | boolean | null): void;
 
-  abstract toString(): string;
+  public abstract toString(): string;
 
-  abstract isPositive(): boolean;
+  public abstract isPositive(): boolean;
 }
