@@ -1,13 +1,17 @@
 import { BattleChip } from '@/classes/battle-chip';
-import { Chip } from '@/types/chip';
+import { FolderChip } from '@/types/folder-chip';
 
 export class ChipFolder {
-  private _chips: Array<Chip>;
+  private _chips: Array<FolderChip>;
 
   public static chipCapacity = 30;
 
-  public get chips(): Array<Chip> {
+  public get chips(): Array<FolderChip> {
     return this._chips;
+  }
+
+  public set chips(chips: Array<FolderChip>) {
+    this._chips = chips;
   }
 
   constructor() {

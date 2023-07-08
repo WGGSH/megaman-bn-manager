@@ -44,6 +44,7 @@ const props = defineProps({
 
 const chipFolderWithBattleChipData = computed(() => props.chipFolder.chips.map((folderChip) => {
   const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
+  console.log(folderChip);
   return {
     id: folderChip.id,
     number: battleChip.number,

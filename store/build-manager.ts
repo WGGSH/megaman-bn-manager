@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia';
 import { Build } from '@/types/build';
 import { Version } from '@/types/version';
+import { FolderChip } from '@/types/folder-chip';
 
 export interface BuildManagerState {
   builds: { [key: number]: Build };
@@ -24,13 +25,14 @@ interface BuildManagerActions {
   getMaxBuildId: () => number;
   updateBuildById: (
     {
-      id, name, versions, hpMemoryNum, patchCards,
+      id, name, versions, hpMemoryNum, patchCards, folderChips,
     }: {
       id: number,
       name?: string
       versions?: Array<Version>
       hpMemoryNum?: number
       patchCardIds?: Array<number>
+      folderChips?: Array<FolderChip>
     },
   ) => void;
 }
@@ -79,6 +81,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       build.name = name;
       build.id = id;
       build.patchCardIds = [];
+      build.folderChips = [];
 
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
       this.builds[id] = build;
@@ -101,7 +104,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
     },
 
     updateBuildById({
-      id, name, versions, hpMemoryNum, patchCardIds,
+      id, name, versions, hpMemoryNum, patchCardIds, folderChips,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
@@ -109,6 +112,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       if (versions !== undefined) build.versions = versions;
       if (hpMemoryNum !== undefined) build.hpMemoryNum = hpMemoryNum;
       if (patchCardIds !== undefined) build.patchCardIds = patchCardIds;
+      if (folderChips !== undefined) build.folderChips = folderChips;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
   },

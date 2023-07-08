@@ -82,7 +82,6 @@ const headers = [
 const emit = defineEmits(['add-battle-chip']);
 
 watch(() => props.battleChips, () => {
-  console.log(props.battleChips);
 });
 
 onMounted(() => {

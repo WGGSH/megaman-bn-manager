@@ -1,4 +1,4 @@
-export type Chip = {
+export type FolderChip = {
   id: number;
   chipId: number;
   codeIndex: number;
