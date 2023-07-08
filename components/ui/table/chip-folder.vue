@@ -5,24 +5,60 @@
     :items="chipFolderWithBattleChipData"
     item-value="name"
     height="500px"
-    class="elevation-1"
+    class="elevation-1 table"
+    multi-sort
+    density="compact"
   >
+    <template #[`item.id`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.id }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.number`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.number }}
+      </ui-card-table-data>
+    </template>
     <template #[`item.class`]="template">
-      {{ ChipText.chipClassToTextMap[template.item.selectable.class] }}
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ ChipText.chipClassToTextMap[template.item.selectable.class] }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.name`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.name }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.damage`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.damage }}
+      </ui-card-table-data>
     </template>
     <template #[`item.type`]="template">
-      {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
+      </ui-card-table-data>
     </template>
-    <template #[`item.code`]="{ item }">
-      {{ item.selectable.codes[item.selectable.codeIndex] }}
+    <template #[`item.capacity`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.capacity }}
+      </ui-card-table-data>
     </template>
-    <template #[`item.delete`]="{ item }">
-      <v-btn
-        color="error"
-        @click="chipFolder.removeById(item.selectable.id)"
-      >
-        削除
-      </v-btn>
+    <template #[`item.code`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.codes[template.item.selectable.codeIndex] }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.delete`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        <v-btn
+          color="error"
+          height="100%"
+          @click="chipFolder.removeById(template.item.selectable.id)"
+        >
+          削除
+        </v-btn>
+      </ui-card-table-data>
     </template>
   </v-data-table-virtual>
 </template>
@@ -32,6 +68,7 @@ import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 import { VDataTableVirtual } from 'vuetify/labs/VDataTable';
 import { ChipFolder } from '@/classes/chip-folder';
 import { ChipText } from '@/value/chip-text';
+import { ChipColor } from '@/value/chip-color';
 
 const masterBattleChipStore = useMasterBattleChipStore();
 
@@ -103,6 +140,8 @@ onMounted(() => {
   masterBattleChipStore.fetchBattleChips();
 });
 
+const getChipColor = (battleChip: BattleChip) => ChipColor.chipClassToTextMap[battleChip.class];
+
 // const findBattleChipById = (id: number) => masterBattleChipStore.findBattleChipById(id);
 
 // const emit = defineEmits(['add-battle-chip']);
@@ -119,3 +158,11 @@ onMounted(() => {
 //   emit('add-battle-chip', battleChip, codeIndex);
 // };
 </script>
+
+<style scoped lang="scss">
+.table {
+   ::v-deep td {
+    padding: 0 !important;
+  }
+}
+</style>

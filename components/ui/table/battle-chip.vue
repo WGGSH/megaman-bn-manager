@@ -1,31 +1,70 @@
 <template>
+  <v-text-field
+    v-model="search"
+    append-icon="mdi-magnify"
+    label="検索"
+    single-line
+    hide-details
+  />
   <v-data-table
     v-model:items-per-page="itemsPerPage"
     :headers="headers"
     :items="battleChips"
-    item-value="name"
-    class="elevation-1"
+    :search="search"
+    class="elevation-1 table"
+    multi-sort
+    show-current-page
+    items-per-page-text="表示件数"
+    density="compact"
   >
+    <template #[`item.number`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.number }}
+      </ui-card-table-data>
+    </template>
     <template #[`item.class`]="template">
-      {{ ChipText.chipClassToTextMap[template.item.selectable.class] }}
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ ChipText.chipClassToTextMap[template.item.selectable.class] }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.name`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.name }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.damage`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.damage }}
+      </ui-card-table-data>
     </template>
     <template #[`item.type`]="template">
-      {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ ChipText.chipTypeToTextMap[template.item.selectable.type] }}
+      </ui-card-table-data>
+    </template>
+    <template #[`item.capacity`]="template">
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        {{ template.item.selectable.capacity }}
+      </ui-card-table-data>
     </template>
     <template #[`item.codes`]="template">
-      <span
-        v-for="(code, index) in template.item.selectable.codes"
-        :key="index"
-      >
-        <v-btn
-          text
-          small
-          :disabled="code === ''"
-          @click="addBattleChip(template.item.selectable, index)"
+      <ui-card-table-data :color="getChipColor(template.item.selectable)">
+        <span
+          v-for="(code, index) in template.item.selectable.codes"
+          :key="index"
         >
-          {{ code }}
-        </v-btn>
-      </span>
+          <v-btn
+            text
+            small
+            height="100%"
+            :disabled="code === ''"
+            @click="addBattleChip(template.item.selectable, index)"
+          >
+            <span v-if="code === ''">-</span>
+            <span v-else>{{ code }}</span>
+          </v-btn>
+        </span>
+      </ui-card-table-data>
     </template>
   </v-data-table>
 </template>
@@ -34,6 +73,9 @@
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { BattleChip } from '@/classes/battle-chip';
 import { ChipText } from '@/value/chip-text';
+import { ChipColor } from '@/value/chip-color';
+
+const search = ref('');
 
 const props = defineProps({
   battleChips: {
@@ -42,7 +84,7 @@ const props = defineProps({
   },
 });
 
-const itemsPerPage = ref(10);
+const itemsPerPage = ref(30);
 
 const headers = [
   // {
@@ -58,7 +100,7 @@ const headers = [
     key: 'class',
   },
   {
-    title: 'name',
+    title: 'チップ名',
     key: 'name',
   },
   {
@@ -82,13 +124,23 @@ const headers = [
 const emit = defineEmits(['add-battle-chip']);
 
 watch(() => props.battleChips, () => {
+  console.log(props.battleChips);
 });
 
 onMounted(() => {
-  console.log(props.battleChips);
 });
+
+const getChipColor = (battleChip: BattleChip) => ChipColor.chipClassToTextMap[battleChip.class];
 
 const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
   emit('add-battle-chip', battleChip, codeIndex);
 };
 </script>
+
+<style scoped lang="scss">
+.table {
+   ::v-deep td {
+    padding: 0 !important;
+  }
+}
+</style>
