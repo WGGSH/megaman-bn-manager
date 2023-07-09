@@ -1,13 +1,21 @@
 <template>
   <v-container>
-    <h1>setting</h1>
+    <ui-text-title>
+      設定
+    </ui-text-title>
 
+    <ui-text-subtitle>
+      テーマ
+    </ui-text-subtitle>
     <v-switch
       v-model="isDark"
       label="ダークモード"
       @change="onChangeTheme"
     />
 
+    <ui-text-subtitle>
+      テーマバージョン
+    </ui-text-subtitle>
     <v-radio-group
       v-model="localVersion"
     >
@@ -18,9 +26,6 @@
         :value="targetVersion.value"
       />
     </v-radio-group>
-
-    {{ bright }}
-    {{ version }}
   </v-container>
 </template>
 

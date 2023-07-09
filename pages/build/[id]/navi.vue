@@ -1,6 +1,13 @@
 <template>
   <v-container>
-    <h1>ナビカスタマイザー</h1>
+    <ui-text-title>
+      ナビカスタマイザー
+    </ui-text-title>
+    <ui-button-accept
+      @click="onClickSave"
+    >
+      保存する
+    </ui-button-accept>
   </v-container>
 
   <v-container>
@@ -26,6 +33,9 @@
   <v-divider />
 
   <v-container>
+    <ui-text-subtitle>
+      プログラム一覧
+    </ui-text-subtitle>
     <v-row>
       <draggable
         v-model="masterNaviCustomizerPrograms"
@@ -94,6 +104,10 @@ onMounted(() => {
   }
   console.log(masterNaviCustomizerPrograms.value);
 });
+
+const onClickSave = () => {
+  // navi.value.save();
+};
 
 </script>
 

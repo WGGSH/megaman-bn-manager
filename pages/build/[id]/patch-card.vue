@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <h2>改造カード</h2>
+    <ui-text-title>
+      改造カード
+    </ui-text-title>
     <ui-button-accept @click="onClickSave">
       保存する
     </ui-button-accept>
@@ -12,6 +14,9 @@
       :max-capacity="maxCapacity"
       :current-capacity="currentCapacity"
     />
+    <ui-text-subtitle>
+      装備中のカード
+    </ui-text-subtitle>
     <v-card class="pa-2">
       <draggable
         :list="items"

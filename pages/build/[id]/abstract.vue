@@ -1,8 +1,20 @@
 <template>
-  <h2>デッキ概要</h2>
+  <v-container>
+    <ui-text-title>
+      ビルド概要
+    </ui-text-title>
+    <ui-button-accept
+      @click="onClickSave"
+    >
+      保存する
+    </ui-button-accept>
+  </v-container>
+
   <v-container class="pa-8">
     <v-row>
-      <h3>Title</h3>
+      <ui-text-subtitle>
+        ビルド名
+      </ui-text-subtitle>
     </v-row>
 
     <v-row>
@@ -10,7 +22,9 @@
     </v-row>
 
     <v-row class="mt-8">
-      <h3>対応バージョン</h3>
+      <ui-text-subtitle>
+        対応バージョン
+      </ui-text-subtitle>
     </v-row>
 
     <v-row>
@@ -20,7 +34,9 @@
     </v-row>
 
     <v-row>
-      <h3>HPメモリ</h3>
+      <ui-text-subtitle>
+        HPメモリ
+      </ui-text-subtitle>
     </v-row>
 
     <v-row>
@@ -29,14 +45,6 @@
 
     <v-row class="mt-8">
       <v-divider />
-    </v-row>
-
-    <v-row class="mt-8">
-      <ui-button-accept
-        @click="onClickSave"
-      >
-        保存する
-      </ui-button-accept>
     </v-row>
   </v-container>
 </template>

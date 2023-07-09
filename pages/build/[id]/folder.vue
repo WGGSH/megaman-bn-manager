@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <h1>フォルダ</h1>
+    <ui-text-title>
+      フォルダ
+    </ui-text-title>
     <ui-button-accept @click="onClickSave">
       保存する
     </ui-button-accept>
@@ -13,6 +15,9 @@
   </v-container>
 
   <v-container>
+    <ui-text-subtitle>
+      バトルチップ一覧
+    </ui-text-subtitle>
     <ui-table-battle-chip
       :battle-chips="masterBattleChips"
       @add-battle-chip="addBattleChip"
