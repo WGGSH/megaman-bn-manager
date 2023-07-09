@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :color="patchCard.isActive ? 'grey-lighten-3' : 'disabled'"
+    :color="patchCard.isActive ? '' : 'disabled'"
     @click="onClick"
   >
     <v-container fluid>

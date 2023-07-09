@@ -8,7 +8,7 @@ export class ThemeDefinition {
   // };
 
   public static readonly commonColors = {
-    secondary: '#424242',
+    // secondary: '#424242',
     accent: '#82B1FF',
     error: '#FF5252',
     info: '#2196F3',
@@ -22,9 +22,11 @@ export class ThemeDefinition {
   public static readonly versionColors = {
     gregar: {
       primary: '#28d4a9',
+      secondary: '#e0ab2d',
     },
     falzar: {
       primary: '#e0ab2d',
+      secondary: '#28d4a9',
     },
   };
 

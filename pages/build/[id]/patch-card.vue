@@ -17,7 +17,7 @@
     <ui-text-subtitle>
       装備中のカード
     </ui-text-subtitle>
-    <v-card class="pa-2">
+    <v-card class="px-0" color="primary" :class="{ 'py-8': items.length === 0 }">
       <draggable
         :list="items"
         :group="{ name: 'card' }"
