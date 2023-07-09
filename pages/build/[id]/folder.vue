@@ -18,7 +18,7 @@
     <ui-text-subtitle>
       バトルチップ一覧
     </ui-text-subtitle>
-    <ui-table-battle-chip
+    <ui-table-battle-chip-master
       :battle-chips="masterBattleChips"
       @add-battle-chip="addBattleChip"
     />

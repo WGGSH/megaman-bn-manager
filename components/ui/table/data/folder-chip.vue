@@ -1,0 +1,30 @@
+<template>
+  <td>
+    <v-card
+      height="100%"
+      width="100%"
+      class="elevation-1"
+      rounded="0"
+      :color="color"
+    >
+      <v-card-text class="text-left ma-n2" :class="align" height="100%">
+        <div class="flex justify-center align-center">
+          <slot />
+        </div>
+      </v-card-text>
+    </v-card>
+  </td>
+</template>
+
+<script setup lang="ts">
+defineProps({
+  color: {
+    type: String,
+    required: true,
+  },
+  align: {
+    type: String,
+    default: 'text-left',
+  },
+});
+</script>
