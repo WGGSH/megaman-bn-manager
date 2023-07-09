@@ -81,7 +81,6 @@ const props = defineProps({
 
 const chipFolderWithBattleChipData = computed(() => props.chipFolder.chips.map((folderChip) => {
   const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
-  console.log(folderChip);
   return {
     id: folderChip.id,
     number: battleChip.number,
@@ -141,22 +140,6 @@ onMounted(() => {
 });
 
 const getChipColor = (battleChip: BattleChip) => ChipColor.chipClassToTextMap[battleChip.class];
-
-// const findBattleChipById = (id: number) => masterBattleChipStore.findBattleChipById(id);
-
-// const emit = defineEmits(['add-battle-chip']);
-
-// watch(() => props.battleChips, () => {
-//   console.log(props.battleChips);
-// });
-
-// onMounted(() => {
-//   console.log(props.battleChips);
-// });
-
-// const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
-//   emit('add-battle-chip', battleChip, codeIndex);
-// };
 </script>
 
 <style scoped lang="scss">

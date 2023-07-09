@@ -63,14 +63,13 @@ const masterPatchCardStore = useMasterPatchCardStore();
 
 const masterPatchCards = computed(() => masterPatchCardStore.cards);
 
-const megamanStatus = ref(new MegamanStatus());
+const megamanStatus = ref<MegamanStatus>(new MegamanStatus());
 
 const buildManagerStore = useBuildManagerStore();
 
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
-const items = ref([
-]);
+const items = ref([]);
 
 const maxCapacity = 80;
 const currentCapacity = computed(() => {
@@ -83,6 +82,19 @@ const currentCapacity = computed(() => {
   });
   return capacity;
 });
+
+const loadStatus = () => {
+  if (!selectedBuild.value) {
+    return;
+  }
+  items.value = selectedBuild.value.patchCardIds.map((patchCardId) => {
+    const patchCard = masterPatchCardStore.getCardById(patchCardId);
+    if (!patchCard) {
+      return null;
+    }
+    return patchCard.clone();
+  }).filter((patchCard) => patchCard !== null);
+};
 
 watch(items, (value) => {
   megamanStatus.value = new MegamanStatus();
@@ -106,13 +118,7 @@ watch(selectedBuild, (value) => {
   if (!value) {
     return;
   }
-  items.value = value.patchCardIds.map((patchCardId) => {
-    const patchCard = masterPatchCardStore.getCardById(patchCardId);
-    if (!patchCard) {
-      return null;
-    }
-    return patchCard.clone();
-  }).filter((patchCard) => patchCard !== null);
+  loadStatus();
 }, { deep: true });
 
 const log = () => {
@@ -125,8 +131,7 @@ onMounted(() => {
   if (!selectedBuild) {
     router.push({ path: '/' });
   }
-
-  items.value = [];
+  loadStatus();
 });
 
 const clonePatchCard = (patchCard: PatchCard) => patchCard.clone();

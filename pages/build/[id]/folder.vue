@@ -44,18 +44,25 @@ const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
   chipFolder.value.addBattleChip(battleChip, codeIndex);
 };
 
-watch(selectedBuild, (value) => {
-  if (!value) {
+const loadFolder = () => {
+  if (!selectedBuild.value) {
     return;
   }
 
-  chipFolder.value.chips = value.folderChips.map((chip, index) => (
+  chipFolder.value.chips = selectedBuild.value.folderChips.map((chip, index) => (
     {
       id: index + 1,
       chipId: chip.chipId,
       codeIndex: chip.codeIndex,
     }
   )).filter((folderChip) => folderChip !== null);
+};
+
+watch(selectedBuild, (value) => {
+  if (!value) {
+    return;
+  }
+  loadFolder();
 }, { deep: true });
 
 watch(chipFolder.value, () => {
@@ -68,6 +75,8 @@ onMounted(() => {
   if (!selectedBuild) {
     router.push({ path: '/' });
   }
+
+  loadFolder();
 });
 
 const onClickSave = () => {

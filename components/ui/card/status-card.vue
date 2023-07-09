@@ -53,7 +53,7 @@ import { MegamanStatus } from '@/classes/megaman-status';
 
 const props = defineProps({
   megamanStatus: {
-    type: Object as PropType<MegamanStatus>,
+    type: MegamanStatus,
     required: true,
   },
   maxCapacity: {
