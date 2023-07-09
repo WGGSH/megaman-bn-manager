@@ -87,12 +87,16 @@ const loadStatus = () => {
   if (!selectedBuild.value) {
     return;
   }
-  items.value = selectedBuild.value.patchCardIds.map((patchCardId) => {
-    const patchCard = masterPatchCardStore.getCardById(patchCardId);
-    if (!patchCard) {
+  items.value = selectedBuild.value.patchCards.map((patchCard) => {
+    const masterPatchCard = masterPatchCardStore.getCardById(patchCard.id);
+    if (!masterPatchCard) {
       return null;
     }
-    return patchCard.clone();
+    const clone = masterPatchCard.clone();
+    if (patchCard.isActive) {
+      clone.toggleActive();
+    }
+    return clone;
   }).filter((patchCard) => patchCard !== null);
 };
 
@@ -142,7 +146,12 @@ const onClickSave = () => {
   }
   buildManagerStore.updateBuildById({
     id: selectedBuild.value.id,
-    patchCardIds: items.value.map((patchCard: PatchCard) => patchCard.id),
+    patchCards: items.value.map((patchCard: PatchCard) => (
+      {
+        id: patchCard.id,
+        isActive: patchCard.isActive,
+      }
+    )),
   });
 };
 

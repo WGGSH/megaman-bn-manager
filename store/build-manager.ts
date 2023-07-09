@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 import { Build } from '@/types/build';
 import { Version } from '@/types/version';
 import { FolderChip } from '@/types/folder-chip';
+import { StoragePatchCard } from '@/types/storage-patch-card';
 
 export interface BuildManagerState {
   builds: { [key: number]: Build };
@@ -31,14 +32,13 @@ interface BuildManagerActions {
       name?: string
       versions?: Array<Version>
       hpMemoryNum?: number
-      patchCardIds?: Array<number>
+      patchCards?: Array<StoragePatchCard>
       folderChips?: Array<FolderChip>
     },
   ) => void;
 }
 
 export const useBuildManagerStore = defineStore<string, BuildManagerState, BuildManagerGetters, BuildManagerActions>('build-manager', {
-// export const useBuildManagerStore = defineStore('build-manager', {
   state: () => ({
     builds: {},
     selectedBuildId: null,
@@ -80,7 +80,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       const build = this.generateDefaultBuild();
       build.name = name;
       build.id = id;
-      build.patchCardIds = [];
+      build.patchCards = [];
       build.folderChips = [];
 
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
@@ -104,14 +104,14 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
     },
 
     updateBuildById({
-      id, name, versions, hpMemoryNum, patchCardIds, folderChips,
+      id, name, versions, hpMemoryNum, patchCards, folderChips,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
       if (name !== undefined) build.name = name;
       if (versions !== undefined) build.versions = versions;
       if (hpMemoryNum !== undefined) build.hpMemoryNum = hpMemoryNum;
-      if (patchCardIds !== undefined) build.patchCardIds = patchCardIds;
+      if (patchCards !== undefined) build.patchCards = patchCards;
       if (folderChips !== undefined) build.folderChips = folderChips;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
