@@ -7,9 +7,11 @@
   </v-container>
 
   <v-container>
-    <v-card class="mb-4 pa-4" color="primary">
-      <ui-card-status-card :megaman-status="megamanStatus" />
-    </v-card>
+    <ui-card-status-card
+      :megaman-status="megamanStatus"
+      :max-capacity="maxCapacity"
+      :current-capacity="currentCapacity"
+    />
     <v-card class="pa-2">
       <draggable
         :list="items"
@@ -69,6 +71,18 @@ const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
 const items = ref([
 ]);
+
+const maxCapacity = 80;
+const currentCapacity = computed(() => {
+  let capacity = 0;
+  items.value.forEach((patchCard: PatchCard) => {
+    if (!patchCard.isActive) {
+      return;
+    }
+    capacity += Number(patchCard.capacity);
+  });
+  return capacity;
+});
 
 watch(items, (value) => {
   megamanStatus.value = new MegamanStatus();

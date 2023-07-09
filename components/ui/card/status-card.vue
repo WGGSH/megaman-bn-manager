@@ -1,12 +1,30 @@
 <template>
-  <v-container fluid>
+  <v-card color="primary" class="pa-4">
     <v-row class="ma-n6">
-      <v-card-title>
-        ステータス
-      </v-card-title>
+      <v-col cols="3">
+        <v-card-title>
+          ステータス
+        </v-card-title>
+      </v-col>
+
+      <v-col cols="9">
+        <v-card-text>
+          <v-progress-linear
+            :model-value="currentCapacity"
+            :max="maxCapacity"
+            :color="progressColor"
+            height="20px"
+            width="100%"
+          >
+            <v-card-text align="center" color="blue">
+              {{ currentCapacity }} / {{ maxCapacity }}
+            </v-card-text>
+          </v-progress-linear>
+        </v-card-text>
+      </v-col>
     </v-row>
 
-    <v-row>
+    <v-row class="mb-6">
       <v-col
         v-for="status in megamanStatus.statuses"
         :key="status.key"
@@ -27,16 +45,31 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script setup lang="ts">
 import { MegamanStatus } from '@/classes/megaman-status';
 
-defineProps({
+const props = defineProps({
   megamanStatus: {
     type: Object as PropType<MegamanStatus>,
     required: true,
   },
+  maxCapacity: {
+    type: Number,
+    required: true,
+  },
+  currentCapacity: {
+    type: Number,
+    required: true,
+  },
+});
+
+const progressColor = computed(() => {
+  if (props.currentCapacity > props.maxCapacity) {
+    return 'error';
+  }
+  return 'secondary';
 });
 </script>
