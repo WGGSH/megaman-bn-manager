@@ -103,7 +103,7 @@ const headers = [
     key: 'id',
   },
   {
-    title: 'number',
+    title: 'ナンバー',
     key: 'number',
   },
   {
@@ -111,7 +111,7 @@ const headers = [
     key: 'class',
   },
   {
-    title: 'name',
+    title: 'チップ名',
     key: 'name',
   },
   {

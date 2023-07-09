@@ -1,5 +1,7 @@
 <template>
-  <h1>navi</h1>
+  <v-container>
+    <h1>ナビカスタマイザー</h1>
+  </v-container>
 
   <v-container>
     <draggable
@@ -12,7 +14,7 @@
     >
       <template #item="{ element }">
         <v-card
-          class="pa-2"
+          class="pa-2 cell"
           width="50px"
           height="50px"
           :color="element"
@@ -30,10 +32,11 @@
         :options="{ group: 'items' }"
         :group="{ name: 'items', pull: 'clone', put: true }"
         item-key="id"
+        class="programs"
         @change="handleChange"
       >
         <template #item="{ element }">
-          <v-col cols="4">
+          <v-col cols="3">
             <ui-card-navi-customizer-program
               :navi-customizer-program="element"
               class="ma-0"
@@ -43,18 +46,18 @@
       </draggable>
     </v-row>
 
-    <v-row>
-      <v-col
-        v-for="program in masterNaviCustomizerPrograms"
-        :key="program.id"
-        cols="4"
-      >
-        <ui-card-navi-customizer-program
-          :navi-customizer-program="program"
-          class="ma-0"
-        />
-      </v-col>
-    </v-row>
+    <!-- <v-row> -->
+    <!--   <v-col -->
+    <!--     v-for="program in masterNaviCustomizerPrograms" -->
+    <!--     :key="program.id" -->
+    <!--     cols="4" -->
+    <!--   > -->
+    <!--     <ui-card-navi-customizer-program -->
+    <!--       :navi-customizer-program="program" -->
+    <!--       class="ma-0" -->
+    <!--     /> -->
+    <!--   </v-col> -->
+    <!-- </v-row> -->
   </v-container>
 </template>
 
@@ -110,5 +113,26 @@ onMounted(() => {
 .sortable-ghost {
   display: none;
   background-color: blue;
+}
+
+.programs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+  // width: 60%;
+  // height: 350px;
+  margin: auto;
+}
+
+.cell {
+  width: 100%;
+  padding-top: 100%;
+  // width: 100px;
+  // height: 100px;
+  border: 1px solid #000;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 }
 </style>

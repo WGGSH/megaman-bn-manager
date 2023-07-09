@@ -13,6 +13,9 @@ export class StatusCsChange extends StatusBaseString {
       case 'mega-cannon':
         return 'メガキャノン';
 
+      case 'ice-cube':
+        return 'アイスキューブ';
+
       default:
         return '不明';
     }

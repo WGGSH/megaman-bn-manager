@@ -1,7 +1,7 @@
 <template>
   <v-app-bar dense elevation="1">
     <v-app-bar-nav-icon @click="onClickNavIcon" />
-    <v-toolbar-title>My App</v-toolbar-title>
+    <v-toolbar-title>エグゼ6管理ツール</v-toolbar-title>
   </v-app-bar>
 </template>
 

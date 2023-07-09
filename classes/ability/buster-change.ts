@@ -10,8 +10,11 @@ export class AbilityBusterChange extends AbilityBaseString {
       case 'none':
         return 'OFF';
 
-      case 'metor-1':
+      case 'meteor-1':
         return 'メテオx1';
+
+      case 'mini-bomb':
+        return 'ミニボム';
 
       default:
         return '不明';

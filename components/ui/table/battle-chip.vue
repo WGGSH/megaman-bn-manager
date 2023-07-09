@@ -92,7 +92,7 @@ const headers = [
   //   key: 'id',
   // },
   {
-    title: 'number',
+    title: 'ナンバー',
     key: 'number',
   },
   {

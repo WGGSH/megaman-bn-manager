@@ -14,7 +14,15 @@ export class NaviCustomizer {
     for (let i = 0; i < NaviCustomizer.rows; i += 1) {
       result[i] = [];
       for (let j = 0; j < NaviCustomizer.cols; j += 1) {
-        result[i][j] = 'none';
+        if ([i, j].every((v) => v === 0 || v === NaviCustomizer.rows - 1)) {
+          result[i][j] = 'grey-darken-4';
+        } else if (i === 3) {
+          result[i][j] = 'grey-lighten-1';
+        } else if (i === 0 || i === NaviCustomizer.rows - 1 || j === 0 || j === NaviCustomizer.cols - 1) {
+          result[i][j] = 'grey-darken-1';
+        } else {
+          result[i][j] = 'grey';
+        }
       }
     }
 

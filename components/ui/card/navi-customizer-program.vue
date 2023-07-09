@@ -1,8 +1,5 @@
 <template>
   <v-card class="container">
-    <v-card-text class="mb-4">
-      {{ naviCustomizerProgram.name }}
-    </v-card-text>
     <v-container>
       <v-row
         v-for="(row, indexRow) in naviCustomizerProgram.cells"
@@ -21,6 +18,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-card-text class="mb-4">
+      {{ naviCustomizerProgram.name }}
+    </v-card-text>
   </v-card>
 </template>
 

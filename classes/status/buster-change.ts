@@ -13,6 +13,9 @@ export class StatusBusterChange extends StatusBaseString {
       case 'meteor-1':
         return 'メテオx1';
 
+      case 'mini-bomb':
+        return 'ミニボム';
+
       default:
         return '不明';
     }

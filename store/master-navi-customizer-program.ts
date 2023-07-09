@@ -16,7 +16,7 @@ import { AbilityFloatShoes } from '@/classes/ability/float-shoes';
 import { AbilitySuperArmor } from '@/classes/ability/super-armor';
 import { AbilityUnderShirt } from '@/classes/ability/under-shirt';
 import { AbilityStatusGuard } from '@/classes/ability/status-guard';
-import { AbilityFirstBarrier } from '@/classes/ability/first-barrier';
+import { AbilityFirstBarrierChange } from '@/classes/ability/first-barrier-change';
 import { AbilityBusterChange } from '@/classes/ability/buster-change';
 import { AbilityCsChange } from '@/classes/ability/cs-change';
 import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
@@ -82,8 +82,8 @@ AbilityBase | null => {
     case 'status-guard':
       return new AbilityStatusGuard(value as boolean);
 
-    case 'first-barrier':
-      return new AbilityFirstBarrier(value as boolean);
+    case 'first-barrier-change':
+      return new AbilityFirstBarrierChange(value as string);
 
     case 'buster-change':
       return new AbilityBusterChange(value as string);

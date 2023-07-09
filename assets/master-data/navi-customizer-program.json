@@ -74,18 +74,18 @@
         }
       ],
       "cells": [
-        [true, true],
-        [true, true],
-        [true, true],
-        [true, true],
-        [true, true]
+        [false, true, true],
+        [false, true, true],
+        [false, true, true],
+        [false, true, true],
+        [false, true, true]
       ],
       "compressed_cells": [
-        [false, false],
-        [true, true],
-        [true, true],
-        [true, true],
-        [true, false]
+        [false, false, false],
+        [false, true, true],
+        [false, true, true],
+        [false, true, true],
+        [false, true, false]
       ]
     },
     {
@@ -142,6 +142,78 @@
         [false, false, true, false],
         [true, true, true, true],
         [false, true, false, false]
+      ]
+    },
+    {
+      "id": 6,
+      "name": "ギガフォルダ1",
+      "color": "red",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "giga-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [false, false, true, false, false],
+        [false, true, true, true, false],
+        [true, true, true, true, true]
+      ],
+      "compressed_cells": [
+        [false, false, true, false, false],
+        [false, true, true, true, false],
+        [false, true, true, true, false]
+      ]
+    },
+    {
+      "id": 7,
+      "name": "ファーストバリア",
+      "color": "blue",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "first-barrier-change",
+          "value": "barrier-10"
+        }
+      ],
+      "bug-abilities": [],
+      "cells": [
+        [true, true, true],
+        [true, true, true]
+      ],
+      "compressed_cells": [
+        [false, true, false],
+        [false, true, true]
+      ]
+    },
+    {
+      "id": 8,
+      "name": "シールド",
+      "color": "blue",
+      "is-program": true,
+      "add-abilities": [
+        {
+          "key": "left-b-change",
+          "value": "shield"
+        }
+      ],
+      "bug-abilities": [],
+      "cells": [
+        [true, true, true],
+        [true, false, false],
+        [true, false, false]
+      ],
+      "compressed_cells": [
+        [true, true, false],
+        [true, false, false],
+        [false, false, false]
       ]
     }
   ]
