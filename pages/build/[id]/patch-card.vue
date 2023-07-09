@@ -22,11 +22,20 @@
         :list="items"
         :group="{ name: 'card' }"
         item-key="id"
-        @change="log"
+        @change="uniqItems"
       >
         <template #item="{ element }">
           <v-card class="ma-4">
-            <ui-card-patch-card :patch-card="element" @click="element.toggleActive()" />
+            <ui-card-patch-card
+              :patch-card="element"
+              @click="element.toggleActive()"
+            >
+              <template #action-area>
+                <ui-button-patch-card-action-area @click="onClickRemove(element)">
+                  <v-icon>mdi-minus-thick</v-icon>
+                </ui-button-patch-card-action-area>
+              </template>
+            </ui-card-patch-card>
           </v-card>
         </template>
       </draggable>
@@ -41,10 +50,22 @@
         :group="{ name: 'card', pull: 'clone', put: false }"
         :clone="clonePatchCard"
         item-key="id"
-        @change="log"
+        @change="uniqItems"
       >
         <template #item="{ element }">
-          <ui-card-patch-card :patch-card="element" class="ma-4" />
+          <ui-card-patch-card
+            :patch-card="element"
+            class="ma-4"
+          >
+            <template #action-area>
+              <ui-button-patch-card-action-area
+                :disabled="isAlreadyAdded(element)"
+                @click="onClickAdd(element)"
+              >
+                <v-icon>mdi-plus-thick</v-icon>
+              </ui-button-patch-card-action-area>
+            </template>
+          </ui-card-patch-card>
         </template>
       </draggable>
     </v-col>
@@ -98,7 +119,7 @@ const loadStatus = () => {
       return null;
     }
     const clone = masterPatchCard.clone();
-    if (patchCard.isActive) {
+    if (!patchCard.isActive) {
       clone.toggleActive();
     }
     return clone;
@@ -130,7 +151,7 @@ watch(selectedBuild, (value) => {
   loadStatus();
 }, { deep: true });
 
-const log = () => {
+const uniqItems = () => {
   items.value = lodash.uniqBy(items.value, (value: PatchCard) => value.id);
 };
 
@@ -158,6 +179,22 @@ const onClickSave = () => {
       }
     )),
   });
+};
+
+const onClickRemove = (patchCard: PatchCard) => {
+  items.value = items.value.filter((item: PatchCard) => item.id !== patchCard.id);
+  uniqItems();
+};
+
+const onClickAdd = (patchCard: PatchCard) => {
+  const clone = patchCard.clone();
+  items.value.push(clone);
+  uniqItems();
+};
+
+const isAlreadyAdded = (patchCard: PatchCard) => {
+  const found = items.value.find((item: PatchCard) => item.id === patchCard.id);
+  return !!found;
 };
 
 </script>
