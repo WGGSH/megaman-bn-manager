@@ -20,6 +20,7 @@
     </ui-text-subtitle>
     <ui-table-battle-chip-master
       :battle-chips="masterBattleChips"
+      :chip-folder="chipFolder"
       @add-battle-chip="addBattleChip"
     />
   </v-container>

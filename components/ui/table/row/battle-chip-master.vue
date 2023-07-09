@@ -27,7 +27,7 @@
           text
           small
           height="100%"
-          :disabled="code === ''"
+          :disabled="disabledAdd || code === ''"
           @click="onClickChipCode(folderChip, index)"
         >
           <span v-if="code === ''">-</span>
@@ -47,6 +47,10 @@ const props = defineProps({
   folderChip: {
     type: Object,
     required: true,
+  },
+  disabledAdd: {
+    type: Boolean,
+    default: false,
   },
 });
 

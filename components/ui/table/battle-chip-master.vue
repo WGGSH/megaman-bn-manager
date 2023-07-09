@@ -20,6 +20,7 @@
     <template #[`item`]="template">
       <ui-table-row-battle-chip-master
         :folder-chip="template.item.selectable"
+        :disabled-add="getDisabledAddByChip(template.item.selectable)"
         @on-click-chip-code="onClickChipCode"
       />
     </template>
@@ -29,10 +30,15 @@
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { BattleChip } from '@/classes/battle-chip';
+import { ChipFolder } from '@/classes/chip-folder';
 
 const search = ref('');
 
 const props = defineProps({
+  chipFolder: {
+    type: Object as PropType<ChipFolder>,
+    required: true,
+  },
   battleChips: {
     type: Array<BattleChip>,
     required: true,
@@ -90,6 +96,18 @@ const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
 
 const onClickChipCode = (battleChip: BattleChip, codeIndex: number) => {
   addBattleChip(battleChip, codeIndex);
+};
+
+const getDisabledAddByChip = (battleChip: BattleChip) => {
+  if (props.chipFolder.chips.length === 30) return true;
+
+  const targetChipCount = props.chipFolder.chips.filter((chip) => chip.chipId === battleChip.number).length;
+  const { capacity } = battleChip;
+  if (capacity <= 20) return targetChipCount >= 5;
+  if (capacity <= 30) return targetChipCount >= 4;
+  if (capacity <= 40) return targetChipCount >= 3;
+  if (capacity <= 50) return targetChipCount >= 2;
+  return targetChipCount >= 1;
 };
 </script>
 
