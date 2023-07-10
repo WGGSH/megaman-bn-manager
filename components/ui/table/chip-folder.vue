@@ -12,7 +12,11 @@
     <template #item="template">
       <ui-table-row-folder-chip
         :folder-chip="template.item.selectable"
-        @on-click-remove="chipFolder.removeById(template.item.selectable.id)"
+        :regular-chip-id="regularChipId"
+        :tag-chips-with-battle-chip-data="tagChipsWithBattleChipData"
+        @click-remove="chipFolder.removeById(template.item.selectable.id)"
+        @click-register-regular="onClickRegisterRegular(template.item.selectable.id)"
+        @click-register-tag="onClickRegisterTag(template.item.selectable.id)"
       />
     </template>
   </v-data-table-virtual>
@@ -30,9 +34,32 @@ const props = defineProps({
     type: ChipFolder,
     required: true,
   },
+  regularChipId: {
+    type: Number,
+    required: true,
+  },
+  tagChips: {
+    type: Array<Object>,
+    required: true,
+  },
 });
 
 const chipFolderWithBattleChipData = computed(() => props.chipFolder.chips.map((folderChip) => {
+  const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
+  return {
+    id: folderChip.id,
+    number: battleChip.number,
+    name: battleChip.name,
+    class: battleChip.class,
+    damage: battleChip.damage,
+    type: battleChip.type,
+    capacity: battleChip.capacity,
+    codes: battleChip.codes,
+    codeIndex: folderChip.codeIndex,
+  };
+}));
+
+const tagChipsWithBattleChipData = computed(() => props.tagChips.map((folderChip) => {
   const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
   return {
     id: folderChip.id,
@@ -83,6 +110,10 @@ const headers = [
     key: 'code',
   },
   {
+    title: 'REG/TAG',
+    key: 'reg-tag',
+  },
+  {
     title: '削除',
     key: 'delete',
   },
@@ -91,6 +122,16 @@ const headers = [
 onMounted(() => {
   masterBattleChipStore.fetchBattleChips();
 });
+
+const emit = defineEmits(['click-register-regular', 'click-register-tag']);
+
+const onClickRegisterRegular = (folderChipId: number) => {
+  emit('click-register-regular', folderChipId);
+};
+
+const onClickRegisterTag = (folderChipId: number) => {
+  emit('click-register-tag', folderChipId);
+};
 
 </script>
 

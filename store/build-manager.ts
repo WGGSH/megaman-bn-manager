@@ -26,7 +26,7 @@ interface BuildManagerActions {
   getMaxBuildId: () => number;
   updateBuildById: (
     {
-      id, name, versions, hpMemoryNum, patchCards, folderChips,
+      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds,
     }: {
       id: number,
       name?: string
@@ -34,6 +34,8 @@ interface BuildManagerActions {
       hpMemoryNum?: number
       patchCards?: Array<StoragePatchCard>
       folderChips?: Array<FolderChip>
+      regularChipId?: number
+      tagChipIds?: Array<number>
     },
   ) => void;
 }
@@ -104,7 +106,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
     },
 
     updateBuildById({
-      id, name, versions, hpMemoryNum, patchCards, folderChips,
+      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
@@ -113,6 +115,8 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       if (hpMemoryNum !== undefined) build.hpMemoryNum = hpMemoryNum;
       if (patchCards !== undefined) build.patchCards = patchCards;
       if (folderChips !== undefined) build.folderChips = folderChips;
+      if (regularChipId !== undefined) build.regularChipId = regularChipId;
+      if (tagChipIds !== undefined) build.tagChipIds = tagChipIds;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
   },

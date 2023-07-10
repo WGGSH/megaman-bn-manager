@@ -11,6 +11,10 @@
   <v-container>
     <ui-table-chip-folder
       :chip-folder="chipFolder"
+      :regular-chip-id="regularChipId"
+      :tag-chips="tagChips"
+      @click-register-regular="onClickRegisterRegular"
+      @click-register-tag="onClickRegisterTag"
     />
   </v-container>
 
@@ -43,6 +47,13 @@ const masterBattleChipStore = useMasterBattleChipStore();
 const masterBattleChips = computed(() => masterBattleChipStore.battleChips);
 
 const chipFolder = ref(new ChipFolder());
+const regularChipId = ref(0);
+const tagChipIds = ref([]);
+
+const tagChips = computed(() => tagChipIds.value.map((tagChipId) => {
+  const folderChip = chipFolder.value.chips.find((chip) => chip.id === tagChipId);
+  return folderChip;
+}));
 
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
@@ -62,6 +73,13 @@ const loadFolder = () => {
       codeIndex: chip.codeIndex,
     }
   )).filter((folderChip) => folderChip !== null);
+
+  if (selectedBuild.value.regularChipId) {
+    regularChipId.value = selectedBuild.value.regularChipId;
+  }
+  if (selectedBuild.value.tagChipIds) {
+    tagChipIds.value = selectedBuild.value.tagChipIds;
+  }
 };
 
 watch(selectedBuild, (value) => {
@@ -92,6 +110,24 @@ const onClickSave = () => {
   buildManagerStore.updateBuildById({
     id: selectedBuild.value.id,
     folderChips: chipFolder.value.chips,
+    regularChipId: regularChipId.value,
+    tagChipIds: tagChipIds.value,
   });
+};
+
+const onClickRegisterRegular = (id: number) => {
+  if (regularChipId.value === id) {
+    regularChipId.value = 0;
+    return;
+  }
+  regularChipId.value = id;
+};
+
+const onClickRegisterTag = (id: number) => {
+  if (tagChipIds.value.includes(id)) {
+    tagChipIds.value = tagChipIds.value.filter((tagChipId) => tagChipId !== id);
+    return;
+  }
+  tagChipIds.value.push(id);
 };
 </script>

@@ -8,4 +8,6 @@ export interface Build {
   hpMemoryNum: number;
   patchCardIds: Array<number>;
   folderChips: Array<FolderChip>;
+  regularChipId: number;
+  tagChipIds: Array<number>;
 }
