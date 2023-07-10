@@ -1,10 +1,9 @@
 <template>
-  <v-data-table-virtual
+  <v-data-table
     v-model:items-per-page="itemsPerPage"
     :headers="headers"
     :items="chipFolderWithBattleChipData"
     item-value="name"
-    height="500px"
     class="elevation-1 table"
     multi-sort
     density="compact"
@@ -19,12 +18,12 @@
         @click-register-tag="onClickRegisterTag(template.item.selectable.id)"
       />
     </template>
-  </v-data-table-virtual>
+  </v-data-table>
 </template>
 
 <script setup lang="ts">
 import { useMasterBattleChipStore } from '@/store/master-battle-chip';
-import { VDataTableVirtual } from 'vuetify/labs/VDataTable';
+import { VDataTable } from 'vuetify/labs/VDataTable';
 import { ChipFolder } from '@/classes/chip-folder';
 
 const masterBattleChipStore = useMasterBattleChipStore();

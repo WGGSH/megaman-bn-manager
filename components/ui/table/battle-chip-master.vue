@@ -101,7 +101,7 @@ const onClickChipCode = (battleChip: BattleChip, codeIndex: number) => {
 const getDisabledAddByChip = (battleChip: BattleChip) => {
   if (props.chipFolder.chips.length === 30) return true;
 
-  const targetChipCount = props.chipFolder.chips.filter((chip) => chip.chipId === battleChip.number).length;
+  const targetChipCount = props.chipFolder.chips.filter((chip) => chip.chipId === battleChip.id).length;
   const { capacity } = battleChip;
   if (capacity <= 20) return targetChipCount >= 5;
   if (capacity <= 30) return targetChipCount >= 4;
