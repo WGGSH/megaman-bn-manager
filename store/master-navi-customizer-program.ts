@@ -135,6 +135,7 @@ MasterNaviCustomizerProgramActions>({
           0,
           addAbilities as Array<AbilityBase>,
           bugAbilities as Array<AbilityBase>,
+          program.cells,
           program.compressed_cells,
         );
       });

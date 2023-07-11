@@ -9,7 +9,7 @@ export class NaviCustomizer {
 
   private _naviCustomizerPrograms: Program[];
 
-  public get cells(): NaviCustomizerProgramColor[] {
+  public get cells(): NaviCustomizerProgramColor[][] {
     const result: NaviCustomizerProgramColor[][] = [];
     for (let i = 0; i < NaviCustomizer.rows; i += 1) {
       result[i] = [];
@@ -45,7 +45,8 @@ export class NaviCustomizer {
       });
     });
 
-    return result.reduce((acc, val) => acc.concat(val), []);
+    return result;
+    // return result.reduce((acc, val) => acc.concat(val), []);
   }
 
   constructor() {

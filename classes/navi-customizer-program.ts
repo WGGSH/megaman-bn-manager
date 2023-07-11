@@ -5,6 +5,8 @@ import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-colo
 export class NaviCustomizerProgram {
   private _cells: boolean[][];
 
+  private _compressedCells: boolean[][];
+
   private _id: number;
 
   private _name: string;
@@ -21,6 +23,10 @@ export class NaviCustomizerProgram {
 
   public get cells(): boolean[][] {
     return this._cells;
+  }
+
+  public get compressedCells(): boolean[][] {
+    return this._compressedCells;
   }
 
   public get id(): number {
@@ -52,8 +58,10 @@ export class NaviCustomizerProgram {
     addAbilities: AbilityBase[],
     bugAbilities: AbilityBase[],
     cells: boolean[][],
+    compressedCells: boolean[][],
   ) {
     this._cells = cells;
+    this._compressedCells = compressedCells;
 
     this._id = id;
     this._name = name;
