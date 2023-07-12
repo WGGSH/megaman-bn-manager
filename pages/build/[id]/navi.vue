@@ -51,7 +51,6 @@
       </v-col>
       <v-col cols="12" sm="6">
         <ui-card-navi-customizer-program
-          v-if="selectedProgram"
           :navi-customizer-program="selectedProgram"
         />
       </v-col>

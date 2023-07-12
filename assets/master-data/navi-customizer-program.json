@@ -223,6 +223,33 @@
         [true, false, false],
         [false, false, false]
       ]
+    },
+    {
+      "id": 99,
+      "name": "アタックMAX",
+      "color": "red",
+      "is-program": false,
+      "add-abilities": [
+        {
+          "key": "attack-plus",
+          "value": 4
+        }
+      ],
+      "bug-abilities": [],
+      "cells": [
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,0,1,0,0],
+        [0,0,0,0,0]
+      ]
     }
   ]
 }
