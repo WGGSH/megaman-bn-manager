@@ -74,18 +74,18 @@
         }
       ],
       "cells": [
-        [false, true, true],
-        [false, true, true],
-        [false, true, true],
-        [false, true, true],
-        [false, true, true]
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0]
       ],
       "compressed_cells": [
-        [false, false, false],
-        [false, true, true],
-        [false, true, true],
-        [false, true, true],
-        [false, true, false]
+        [0,0,0,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,1,1,0,0],
+        [0,0,1,0,0]
       ]
     },
     {
@@ -134,14 +134,16 @@
         }
       ],
       "cells": [
-        [false, true, true, false],
-        [true, true, true, true],
-        [false, true, true, false]
+        [0,0,0,0],
+        [0,1,1,0],
+        [1,1,1,1],
+        [0,1,1,0]
       ],
       "compressed_cells": [
-        [false, false, true, false],
-        [true, true, true, true],
-        [false, true, false, false]
+        [0,0,1,0],
+        [1,1,1,1],
+        [0,1,0,0],
+        [0,0,0,0]
       ]
     },
     {
@@ -162,14 +164,18 @@
         }
       ],
       "cells": [
-        [false, false, true, false, false],
-        [false, true, true, true, false],
-        [true, true, true, true, true]
+        [0,0,0,0,0],
+        [0,0,1,0,0],
+        [0,1,1,1,0],
+        [1,1,1,1,1],
+        [0,0,0,0,0]
       ],
       "compressed_cells": [
-        [false, false, true, false, false],
-        [false, true, true, true, false],
-        [false, true, true, true, false]
+        [0,0,0,0,0],
+        [0,0,1,0,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0],
+        [0,0,0,0,0]
       ]
     },
     {
@@ -185,12 +191,14 @@
       ],
       "bug-abilities": [],
       "cells": [
-        [true, true, true],
-        [true, true, true]
+        [0,0,0],
+        [1,1,1],
+        [1,1,1]
       ],
       "compressed_cells": [
-        [false, true, false],
-        [false, true, true]
+        [0,0,0],
+        [0,1,0],
+        [0,1,1]
       ]
     },
     {

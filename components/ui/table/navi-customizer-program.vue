@@ -1,15 +1,16 @@
 <template>
-  <!-- {{ programs[0].name }} -->
   <v-data-table
-    v-model:items-per-page="itemsPerPage"
+    v-model="selectedPrograms"
+    :items-per-page="itemsPerPage"
     :headers="headers"
     :items="programs"
     item-value="name"
-    class="elevation-1 table"
+    class="elevation-1"
     multi-sort
     density="compact"
     show-select
-    select-style="outlined"
+    return-object
+    select-strategy="single"
   >
     <template #[`item.isProgram`]="template">
       <v-icon v-if="template.item.selectable.isProgram">
@@ -33,7 +34,8 @@ defineProps({
   },
 });
 
-const itemsPerPage = ref(20);
+const itemsPerPage = ref(10);
+const selectedPrograms = ref([]);
 
 const headers = [
   {
@@ -55,4 +57,14 @@ const headers = [
     sortable: true,
   },
 ];
+
+const emit = defineEmits(['update-selected-program']);
+
+watch(selectedPrograms, (newValue) => {
+  if (newValue.length === 0) {
+    emit('update-selected-program', null);
+  } else {
+    emit('update-selected-program', newValue[0]);
+  }
+});
 </script>

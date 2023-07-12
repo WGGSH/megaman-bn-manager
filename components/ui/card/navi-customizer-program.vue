@@ -1,50 +1,52 @@
 <template>
-  <v-card class="container">
+  <v-card class="container pa-2" width="100%" height="100%">
+    <v-card-title>
+      {{ naviCustomizerProgram.name }}
+    </v-card-title>
     <v-container>
-      <v-row class="buttons">
+      <v-row>
         <v-switch
           v-model="isCompressed"
           label="圧縮"
         />
       </v-row>
-      <v-row>
-        <v-btn>
-          <v-icon>
-            mdi-rotate-left-variant
-          </v-icon>
-        </v-btn>
-        <v-btn>
-          <v-icon>
-            mdi-rotate-right-variant
-          </v-icon>
-        </v-btn>
-      </v-row>
-      <v-row
-        v-for="(row, indexRow) in displayCells"
-        :key="indexRow"
-        class="grid"
-      >
-        <v-col
-          v-for="(cell, indexCell) in row"
-          :key="indexCell"
-          class="pa-0 cell"
-        >
-          <v-card
-            v-if="cell"
-            :color="naviCustomizerProgram.color"
-            class="pa-4 fill rounded-4"
-            border
-          />
-          <v-card
-            v-else
-            class="pa-0 ma-4 empty elevation-0 rounded-0"
-          />
+      <v-row class="mb-4">
+        <v-col>
+          <v-btn @click="onClickRotateRight">
+            <v-icon>
+              mdi-rotate-left
+            </v-icon>
+          </v-btn>
+        </v-col>
+        <v-col align="right">
+          <v-btn @click="onClickRotateLeft">
+            <v-icon>
+              mdi-rotate-right
+            </v-icon>
+          </v-btn>
         </v-col>
       </v-row>
+
+      <div
+        v-for="(row, rowIndex) in displayCells"
+        :key="rowIndex"
+        class="row"
+      >
+        <div
+          v-for="(cell, cellIndex) in row"
+          :key="cellIndex"
+          class="col"
+        >
+          <v-card
+            class="pa-5 elevation-0 rounded-0 cell"
+            :class="{ filled: cell }"
+            width="100%"
+            height="100%"
+            :color="cell ? naviCustomizerProgram.color : 'transparent'"
+          />
+        </div>
+      </div>
     </v-container>
-    <v-card-text class="mb-4">
-      {{ naviCustomizerProgram.name }}
-    </v-card-text>
   </v-card>
 </template>
 
@@ -58,49 +60,112 @@ const props = defineProps({
   },
 });
 
-// const rotate = ref(0);
+const rotate = ref(0);
 
 onMounted(() => {
-  console.log(props.naviCustomizerProgram);
 });
+
+const displayCellsWidth = ref(5);
 
 const isCompressed = ref(true);
-const widthCell = computed(() => props.naviCustomizerProgram.cells[0].length);
+const cellWidth = computed(() => Math.max(props.naviCustomizerProgram.cells.length, props.naviCustomizerProgram.cells[0].length));
 
 const displayCells = computed(() => {
-  if (isCompressed.value) {
-    return props.naviCustomizerProgram.compressedCells;
+  let offset = 0;
+  switch (cellWidth.value) {
+    case 1:
+    case 2:
+      offset = 2;
+      break;
+    case 3:
+    case 4:
+      offset = 1;
+      break;
+    case 5:
+      offset = 0;
+      break;
+    default:
+      offset = 0;
+      break;
   }
-  return props.naviCustomizerProgram.cells;
+
+  const cells: Array<Array<Boolean>> = [];
+  for (let i = 0; i < displayCellsWidth.value; i++) {
+    const row: Array<Boolean> = [];
+    for (let j = 0; j < displayCellsWidth.value; j++) {
+      row.push(false);
+    }
+    cells.push(row);
+  }
+
+  for (let i = 0; i < props.naviCustomizerProgram.cells.length; i++) {
+    for (let j = 0; j < props.naviCustomizerProgram.cells[i].length; j++) {
+      let y:number;
+      let x: number;
+
+      switch (rotate.value) {
+        case 0:
+          y = i;
+          x = j;
+          break;
+        case 1:
+          y = j;
+          x = props.naviCustomizerProgram.cells[i].length - i - 1;
+          break;
+        case 2:
+          y = props.naviCustomizerProgram.cells[i].length - i - 1;
+          x = props.naviCustomizerProgram.cells[i].length - j - 1;
+          break;
+        case 3:
+          y = props.naviCustomizerProgram.cells[i].length - j - 1;
+          x = i;
+          break;
+        default:
+          y = i;
+          x = j;
+          break;
+      }
+
+      cells[i + offset][j + offset] = isCompressed.value
+        ? props.naviCustomizerProgram.compressedCells[y][x]
+        : props.naviCustomizerProgram.cells[y][x];
+    }
+  }
+  return cells;
 });
+
+const onClickRotateRight = () => {
+  rotate.value = (rotate.value + 1) % 4;
+};
+
+const onClickRotateLeft = () => {
+  rotate.value = (rotate.value + 3) % 4;
+};
 
 </script>
 
 <style scoped lang="scss">
 
-.container {
-  width: 100%;
-  // width: calc(40px * v-bind(widthCell));
-  // max-width: 200px;
-  // height: 100%;
-}
-
-.grid {
-  // width: 100%;
-  width: calc(40px * v-bind(widthCell));
-  margin: 0 auto;
+.row {
   display: flex;
-  text-align: center;
-  align-items: center;
   justify-content: center;
-}
+  align-items: center;
 
-.buttons {
-  display: flex;
-}
+  .col {
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
 
-.cell {
-  .fill {
+    .cell {
+      border: 1px solid rgba(0,0,0,0.05);
+
+      &.filled {
+        border: 1px solid black;
+      }
+    }
   }
 }
 </style>

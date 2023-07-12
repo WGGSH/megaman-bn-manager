@@ -14,5 +14,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
     'vue/max-len': 'off',
+    'no-plusplus': 'off',
   },
 };

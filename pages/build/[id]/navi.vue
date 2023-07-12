@@ -11,24 +11,6 @@
   </v-container>
 
   <v-container>
-    <!-- <draggable -->
-    <!--   v-model="cells" -->
-    <!--   :options="{ group: 'items' }" -->
-    <!--   :group="{ name: 'items', pull: false, put: true }" -->
-    <!--   class="grid" -->
-    <!--   item-key="id" -->
-    <!--   @change="handleChange" -->
-    <!-- > -->
-    <!--   <template #item="{ element }"> -->
-    <!--     <v-card -->
-    <!--       class="pa-2 cell" -->
-    <!--       width="50px" -->
-    <!--       height="50px" -->
-    <!--       :color="element" -->
-    <!--     /> -->
-    <!--   </template> -->
-    <!-- </draggable> -->
-
     <div
       v-for="(row, rowIndex) in cells"
       :key="rowIndex"
@@ -52,27 +34,6 @@
         </v-hover>
       </div>
     </div>
-
-    <!-- <v-row -->
-    <!--   v-for="(row, rowIndex) in cells" -->
-    <!--   :key="rowIndex" -->
-    <!--   justify="center" -->
-    <!-- > -->
-    <!--   <v-col -->
-    <!--     v-for="(cell, cellIndex) in row" -->
-    <!--     :key="cellIndex" -->
-    <!--     cols="1" -->
-    <!--   > -->
-    <!--     <v-card -->
-    <!--       class="pa-2" -->
-    <!--       width="100%" -->
-    <!--       height="100%" -->
-    <!--       :color="cell" -->
-    <!--     > -->
-    <!--       a -->
-    <!--     </v-card> -->
-    <!--   </v-col> -->
-    <!-- </v-row> -->
   </v-container>
 
   <v-divider />
@@ -81,48 +42,24 @@
     <ui-text-subtitle>
       プログラム一覧
     </ui-text-subtitle>
-    <!-- <v-row> -->
-    <!--   <draggable -->
-    <!--     v-model="masterNaviCustomizerPrograms" -->
-    <!--     :options="{ group: 'items' }" -->
-    <!--     :group="{ name: 'items', pull: 'clone', put: true }" -->
-    <!--     item-key="id" -->
-    <!--     class="programs" -->
-    <!--     @change="handleChange" -->
-    <!--   > -->
-    <!--     <template #item="{ element }"> -->
-    <!--       <v-col cols="3"> -->
-    <!--         <ui-card-navi-customizer-program -->
-    <!--           :navi-customizer-program="element" -->
-    <!--           class="ma-0" -->
-    <!--         /> -->
-    <!--       </v-col> -->
-    <!--     </template> -->
-    <!--   </draggable> -->
-    <!-- </v-row> -->
-
-    <ui-table-navi-customizer-program
-      :programs="masterNaviCustomizerPrograms"
-    />
-
-    <!-- <v-row> -->
-    <!--   <v-col -->
-    <!--     v-for="program in masterNaviCustomizerPrograms" -->
-    <!--     :key="program.id" -->
-    <!--     cols="3" -->
-    <!--     xs="6" -->
-    <!--   > -->
-    <!--     <ui-card-navi-customizer-program -->
-    <!--       :navi-customizer-program="program" -->
-    <!--       class="ma-0" -->
-    <!--     /> -->
-    <!--   </v-col> -->
-    <!-- </v-row> -->
+    <v-row>
+      <v-col cols="12" sm="6">
+        <ui-table-navi-customizer-program
+          :programs="masterNaviCustomizerPrograms"
+          @update-selected-program="updateSelectedProgram"
+        />
+      </v-col>
+      <v-col cols="12" sm="6">
+        <ui-card-navi-customizer-program
+          v-if="selectedProgram"
+          :navi-customizer-program="selectedProgram"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-// import draggable from 'vuedraggable';
 import { NaviCustomizer } from '~/classes/navi-customizer';
 
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -134,31 +71,24 @@ const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramS
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 
-// const programs = computed(() => masterNaviCustomizerProgramStore.programs);
-
-// const handleChange = (evt) => {
-//   if (evt.added) {
-//     navi.value.add(evt.added.element.id, evt.added.newIndex);
-//   }
-// };
+const selectedProgram = ref<object | null>(null);
 
 watch(cells, (newCells) => {
-  console.log('-----');
   console.log(newCells);
-  console.log('-----');
 });
 
 onMounted(() => {
   if (!masterNaviCustomizerProgramStore.isFetched) {
     masterNaviCustomizerProgramStore.fetchPrograms();
   }
-  console.log(masterNaviCustomizerPrograms.value);
-  console.log('-----');
-  console.log(cells);
 });
 
 const onClickSave = () => {
   // navi.value.save();
+};
+
+const updateSelectedProgram = (program: object | null) => {
+  selectedProgram.value = program;
 };
 
 </script>
@@ -169,11 +99,6 @@ const onClickSave = () => {
   text-align: center;
   align-items: center;
   justify-content: center;
-  // display: grid;
-  // width: 350px;
-  // margin: auto;
-  // text-align: center;
-  // grid-template-columns: repeat(7, 1fr);
 }
 
 .sortable-chosen {
