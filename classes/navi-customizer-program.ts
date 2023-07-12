@@ -17,6 +17,8 @@ export class NaviCustomizerProgram {
 
   private _y: number;
 
+  private _isProgram: boolean;
+
   private _addAbilities: AbilityBase[];
 
   private _bugAbilities: AbilityBase[];
@@ -49,12 +51,17 @@ export class NaviCustomizerProgram {
     return this._y;
   }
 
+  public get isProgram(): boolean {
+    return this._isProgram;
+  }
+
   constructor(
     id: number,
     name: string,
     color: NaviCustomizerProgramColor,
     x: number,
     y: number,
+    isProgram: boolean,
     addAbilities: AbilityBase[],
     bugAbilities: AbilityBase[],
     cells: boolean[][],
@@ -69,6 +76,8 @@ export class NaviCustomizerProgram {
 
     this._x = x;
     this._y = y;
+
+    this._isProgram = isProgram;
 
     this._addAbilities = addAbilities;
     this._bugAbilities = bugAbilities;

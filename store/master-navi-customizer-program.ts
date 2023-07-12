@@ -133,6 +133,7 @@ MasterNaviCustomizerProgramActions>({
           program.color as NaviCustomizerProgramColor,
           0,
           0,
+          program['is-program'],
           addAbilities as Array<AbilityBase>,
           bugAbilities as Array<AbilityBase>,
           program.cells,

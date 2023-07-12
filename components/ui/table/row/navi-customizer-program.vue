@@ -5,7 +5,6 @@
     </ui-table-data-navi-customizer-program>
     <ui-table-data-navi-customizer-program>
       {{ ColorText.colorToTextMap[naviCustomizerProgram.color] }}
-      <!-- {{ naviCustomizerProgram.color}} -->
     </ui-table-data-navi-customizer-program>
   </tr>
 </template>
