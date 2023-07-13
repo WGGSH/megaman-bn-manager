@@ -1,5 +1,5 @@
-import { Program } from '@/types/program';
 import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
+import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 export class NaviCustomizer {
@@ -7,7 +7,7 @@ export class NaviCustomizer {
 
   public static readonly cols = 7;
 
-  private _naviCustomizerPrograms: Program[];
+  private _naviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
 
   public get cells(): NaviCustomizerProgramColor[][] {
     const result: NaviCustomizerProgramColor[][] = [];
@@ -46,7 +46,6 @@ export class NaviCustomizer {
     });
 
     return result;
-    // return result.reduce((acc, val) => acc.concat(val), []);
   }
 
   constructor() {
@@ -60,8 +59,7 @@ export class NaviCustomizer {
     };
   }
 
-  public add(programId: number, index: number): void {
-    const { x, y } = NaviCustomizer.indexToXY(index);
-    this._naviCustomizerPrograms.push({ programId, x, y });
+  public add(program: RegisteredNaviCustomizerProgram): void {
+    this._naviCustomizerPrograms.push(program);
   }
 }

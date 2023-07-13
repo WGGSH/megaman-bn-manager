@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 import { Build } from '@/types/build';
 import { Version } from '@/types/version';
 import { FolderChip } from '@/types/folder-chip';
+import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { StoragePatchCard } from '@/types/storage-patch-card';
 
 export interface BuildManagerState {
@@ -26,7 +27,7 @@ interface BuildManagerActions {
   getMaxBuildId: () => number;
   updateBuildById: (
     {
-      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds,
+      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds, naviCustomizerPrograms,
     }: {
       id: number,
       name?: string
@@ -36,6 +37,7 @@ interface BuildManagerActions {
       folderChips?: Array<FolderChip>
       regularChipId?: number
       tagChipIds?: Array<number>
+      naviCustomizerPrograms?: Array<RegisteredNaviCustomizerProgram>
     },
   ) => void;
 }
@@ -84,6 +86,17 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       build.id = id;
       build.patchCards = [];
       build.folderChips = [];
+      build.regularChipId = null;
+      build.tagChipIds = [];
+      build.registeredNaviCustomizerPrograms = [
+        {
+          programId: 1,
+          isCompressed: false,
+          rotate: 0,
+          y: 3,
+          x: 3,
+        },
+      ];
 
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
       this.builds[id] = build;
@@ -106,7 +119,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
     },
 
     updateBuildById({
-      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds,
+      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds, naviCustomizerPrograms,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
@@ -117,6 +130,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       if (folderChips !== undefined) build.folderChips = folderChips;
       if (regularChipId !== undefined) build.regularChipId = regularChipId;
       if (tagChipIds !== undefined) build.tagChipIds = tagChipIds;
+      if (naviCustomizerPrograms !== undefined) build.naviCustomizerPrograms = naviCustomizerPrograms;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
   },
