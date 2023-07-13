@@ -9,6 +9,7 @@
           <v-switch
             v-model="isCompressed"
             label="圧縮"
+            @change="onChangeIsCompressed"
           />
         </v-row>
         <v-row class="mb-4">
@@ -71,6 +72,7 @@
 
 <script setup lang="ts">
 import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
+import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 
 const props = defineProps({
   naviCustomizerProgram: {
@@ -80,6 +82,10 @@ const props = defineProps({
 });
 
 const rotate = ref(0);
+const programState = ref<NaviCustomizerProgramState>({
+  isCompressed: true,
+  rotate: 0,
+});
 
 onMounted(() => {
 });
@@ -153,12 +159,27 @@ const displayCells = computed(() => {
   return cells;
 });
 
+const emit = defineEmits(['update-program-state']);
+
+const emitUpdateProgramState = () => {
+  emit('update-program-state', programState.value);
+};
+
 const onClickRotateRight = () => {
   rotate.value = (rotate.value + 1) % 4;
+  programState.value.rotate = rotate.value;
+  emitUpdateProgramState();
 };
 
 const onClickRotateLeft = () => {
   rotate.value = (rotate.value + 3) % 4;
+  programState.value.rotate = rotate.value;
+  emitUpdateProgramState();
+};
+
+const onChangeIsCompressed = () => {
+  programState.value.isCompressed = isCompressed.value;
+  emitUpdateProgramState();
 };
 
 </script>

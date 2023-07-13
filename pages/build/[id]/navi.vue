@@ -11,29 +11,12 @@
   </v-container>
 
   <v-container>
-    <div
-      v-for="(row, rowIndex) in cells"
-      :key="rowIndex"
-      class="grid"
-    >
-      <div
-        v-for="(cell, cellIndex) in row"
-        :key="cellIndex"
-        class="cell"
-      >
-        <v-hover>
-          <template #default="{ isHovering, props }">
-            <v-card
-              v-bind="props"
-              class="pa-5 elevation-1 rounded-0"
-              width="100%"
-              height="100%"
-              :color="isHovering ? 'white' : cell"
-            />
-          </template>
-        </v-hover>
-      </div>
-    </div>
+    <ui-card-navi-customizer
+      :cells="cells"
+      :selected-program="selectedProgram"
+      :program-state="programState"
+      @add-program="addProgram"
+    />
   </v-container>
 
   <v-divider />
@@ -52,6 +35,7 @@
       <v-col cols="12" sm="6">
         <ui-card-navi-customizer-program
           :navi-customizer-program="selectedProgram"
+          @update-program-state="updateProgramState"
         />
       </v-col>
     </v-row>
@@ -60,6 +44,7 @@
 
 <script setup lang="ts">
 import { NaviCustomizer } from '~/classes/navi-customizer';
+import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
@@ -71,6 +56,10 @@ const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 
 const selectedProgram = ref<object | null>(null);
+const programState = ref({
+  isCompressed: true,
+  rotate: 0,
+});
 
 watch(cells, (newCells) => {
   console.log(newCells);
@@ -90,43 +79,17 @@ const updateSelectedProgram = (program: object | null) => {
   selectedProgram.value = program;
 };
 
+const updateProgramState = (state: NaviCustomizerProgramState) => {
+  programState.value = state;
+};
+
+const addProgram = (position) => {
+  console.log(position);
+  // navi.value.addProgram(selectedProgram.value);
+};
+
 </script>
 
 <style scoped lang="scss">
-.grid {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
 
-.sortable-chosen {
-  background-color: red;
-}
-
-.sortable-ghost {
-  display: none;
-  background-color: blue;
-}
-
-.programs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: end;
-  // width: 60%;
-  // height: 350px;
-  margin: auto;
-}
-
-.cell {
-  // width: 100%;
-  // padding-top: 100%;
-  // width: 100px;
-  // height: 100px;
-  border: 1px solid #000;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-}
 </style>
