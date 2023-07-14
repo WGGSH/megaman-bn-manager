@@ -7,7 +7,7 @@ export class NaviCustomizer {
 
   public static readonly cols = 7;
 
-  private _naviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
+  private _registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
 
   public get cells(): NaviCustomizerProgramColor[][] {
     const result: NaviCustomizerProgramColor[][] = [];
@@ -29,11 +29,12 @@ export class NaviCustomizer {
     const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
     const masterNaviCustomizerPrograms = masterNaviCustomizerProgramStore.programs;
 
-    this._naviCustomizerPrograms.forEach((program) => {
+    this._registeredNaviCustomizerPrograms.forEach((program) => {
       const masterNaviCustomizerProgram = masterNaviCustomizerPrograms.find(
         (masterProgram) => masterProgram.id === program.programId,
       );
-      masterNaviCustomizerProgram.cells.forEach((row, i) => {
+      const programCells = program.isCompressed ? masterNaviCustomizerProgram.compressedCells : masterNaviCustomizerProgram.cells;
+      programCells.forEach((row, i) => {
         row.forEach((cell, j) => {
           if (cell) {
             if (i + program.y < 0 || i + program.y >= NaviCustomizer.rows) {
@@ -48,8 +49,12 @@ export class NaviCustomizer {
     return result;
   }
 
+  public get registeredNaviCustomizerPrograms(): RegisteredNaviCustomizerProgram[] {
+    return this._registeredNaviCustomizerPrograms;
+  }
+
   constructor() {
-    this._naviCustomizerPrograms = [];
+    this._registeredNaviCustomizerPrograms = [];
   }
 
   public static indexToXY(index: number): { x: number, y: number } {
@@ -59,7 +64,7 @@ export class NaviCustomizer {
     };
   }
 
-  public add(program: RegisteredNaviCustomizerProgram): void {
-    this._naviCustomizerPrograms.push(program);
+  public addProgram(program: RegisteredNaviCustomizerProgram): void {
+    this._registeredNaviCustomizerPrograms.push(program);
   }
 }

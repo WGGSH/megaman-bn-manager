@@ -27,7 +27,7 @@ interface BuildManagerActions {
   getMaxBuildId: () => number;
   updateBuildById: (
     {
-      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds, naviCustomizerPrograms,
+      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds, registeredNaviCustomizerPrograms,
     }: {
       id: number,
       name?: string
@@ -37,7 +37,7 @@ interface BuildManagerActions {
       folderChips?: Array<FolderChip>
       regularChipId?: number
       tagChipIds?: Array<number>
-      naviCustomizerPrograms?: Array<RegisteredNaviCustomizerProgram>
+      registeredNaviCustomizerPrograms?: Array<RegisteredNaviCustomizerProgram>
     },
   ) => void;
 }
@@ -119,7 +119,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
     },
 
     updateBuildById({
-      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds, naviCustomizerPrograms,
+      id, name, versions, hpMemoryNum, patchCards, folderChips, regularChipId, tagChipIds, registeredNaviCustomizerPrograms,
     }) {
       const build = this.builds[id];
       if (build === undefined) return;
@@ -130,7 +130,9 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       if (folderChips !== undefined) build.folderChips = folderChips;
       if (regularChipId !== undefined) build.regularChipId = regularChipId;
       if (tagChipIds !== undefined) build.tagChipIds = tagChipIds;
-      if (naviCustomizerPrograms !== undefined) build.naviCustomizerPrograms = naviCustomizerPrograms;
+      if (registeredNaviCustomizerPrograms !== undefined) build.registeredNaviCustomizerPrograms = registeredNaviCustomizerPrograms;
+      console.log('build');
+      console.log(build);
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
   },

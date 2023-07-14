@@ -75,24 +75,8 @@ const loadNaviCustomizerPrograms = () => {
 
   navi.value = new NaviCustomizer();
   selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program) => {
-    navi.value.add(program);
-    // navi.value.addChip(folderChip.chipId, folderChip.codeIndex);
+    navi.value.addProgram(program);
   });
-
-  // chipFolder.value.chips = selectedBuild.value.folderChips.map((chip, index) => (
-  //   {
-  //     id: index + 1,
-  //     chipId: chip.chipId,
-  //     codeIndex: chip.codeIndex,
-  //   }
-  // )).filter((folderChip) => folderChip !== null);
-  //
-  // if (selectedBuild.value.regularChipId) {
-  //   regularChipId.value = selectedBuild.value.regularChipId;
-  // }
-  // if (selectedBuild.value.tagChipIds) {
-  //   tagChipIds.value = selectedBuild.value.tagChipIds;
-  // }
 };
 
 watch(cells, (newCells) => {
@@ -119,7 +103,13 @@ onMounted(() => {
 });
 
 const onClickSave = () => {
-  // navi.value.save();
+  if (!selectedBuild.value) {
+    return;
+  }
+  buildManagerStore.updateBuildById({
+    id: selectedBuild.value.id,
+    registeredNaviCustomizerPrograms: navi.value.registeredNaviCustomizerPrograms,
+  });
 };
 
 const updateSelectedProgram = (program: object | null) => {
@@ -131,8 +121,12 @@ const updateProgramState = (state: NaviCustomizerProgramState) => {
 };
 
 const addProgram = (position) => {
-  console.log(position);
-  // navi.value.addProgram(selectedProgram.value);
+  navi.value.addProgram({
+    ...programState.value,
+    programId: selectedProgram.value.id,
+    y: position.y,
+    x: position.x,
+  });
 };
 
 </script>
