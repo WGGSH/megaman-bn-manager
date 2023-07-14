@@ -40,7 +40,33 @@ export class NaviCustomizer {
             if (i + program.y < 0 || i + program.y >= NaviCustomizer.rows) {
               return;
             }
-            result[i + program.y][j + program.x] = masterNaviCustomizerProgram.color;
+            // 回転を考慮する
+            let targetY: number;
+            let targetX: number;
+
+            switch (program.rotate) {
+              case 0:
+                targetY = i;
+                targetX = j;
+                break;
+              case 1:
+                targetY = programCells.length - j - 1;
+                targetX = i;
+                break;
+              case 2:
+                targetY = programCells.length - i - 1;
+                targetX = programCells[i].length - j - 1;
+                break;
+              case 3:
+                targetY = j;
+                targetX = programCells[i].length - i - 1;
+                break;
+              default:
+                targetY = i;
+                targetX = j;
+                break;
+            }
+            result[targetY + program.y][targetX + program.x] = masterNaviCustomizerProgram.color;
           }
         });
       });

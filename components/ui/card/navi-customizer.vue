@@ -23,13 +23,12 @@
         />
       </div>
     </div>
-    {{ selectedProgram }}
-    {{ programState }}
   </v-card>
 </template>
 
 <script setup lang="ts">
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
+import { ProgramColors } from '@/value/program-colors';
 
 const props = defineProps({
   cells: {
@@ -103,6 +102,9 @@ const overlayCells = computed(() => {
                 break;
             }
 
+            if (mousePosition.value.y + targetY < 0 || mousePosition.value.y + targetY >= overWidth) return;
+            if (mousePosition.value.x + targetX < 0 || mousePosition.value.x + targetX >= overWidth) return;
+
             if (cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX]) {
               cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX] = props.selectedProgram.color;
             }
@@ -125,13 +127,67 @@ const onMouseLeave = () => {
 const emit = defineEmits(['add-program']);
 
 const onClick = (y, x) => {
+  // 他のプログラムと重なっているかチェック
+  // 枠からはみ出ているかもチェック
+  const programCells = props.programState.isCompressed ? props.selectedProgram?.compressedCells : props.selectedProgram?.cells;
+  if (programCells) {
+    for (let i = 0; i < programCells.length; i += 1) {
+      for (let j = 0; j < programCells[i].length; j += 1) {
+        if (programCells[i][j]) {
+          // 回転を考慮する
+          let targetY: number;
+          let targetX: number;
+
+          switch (props.programState.rotate) {
+            case 0:
+              targetY = i;
+              targetX = j;
+              break;
+            case 1:
+              targetY = programCells.length - j - 1;
+              targetX = i;
+              break;
+            case 2:
+              targetY = programCells.length - i - 1;
+              targetX = programCells[i].length - j - 1;
+              break;
+            case 3:
+              targetY = j;
+              targetX = programCells[i].length - i - 1;
+              break;
+            default:
+              targetY = i;
+              targetX = j;
+              break;
+          }
+          // 画面外は禁止
+          if (y + targetY < 2 || y + targetY >= overWidth - 2) {
+            return;
+          }
+          if (x + targetX < 2 || x + targetX >= overWidth - 2) {
+            return;
+          }
+          // 四隅も禁止
+          if (
+            (y + targetY === 2 && x + targetX === 2)
+              || (y + targetY === 2 && x + targetX === overWidth - 3)
+              || (y + targetY === overWidth - 3 && x + targetX === 2)
+              || (y + targetY === overWidth - 3 && x + targetX === overWidth - 3)
+          ) {
+            return;
+          }
+          if (ProgramColors.includes(props.cells[y + targetY - 2][x + targetX - 2])) {
+            console.log('重なってる');
+            return;
+          }
+        }
+      }
+    }
+  }
   emit('add-program', {
     x: x - 2,
     y: y - 2,
   }, props.programState.value);
-  // if (props.selectedProgram) {
-  //   props.programState.setProgramPosition({ x, y });
-  // }
 };
 </script>
 
