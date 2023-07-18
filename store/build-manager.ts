@@ -88,15 +88,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       build.folderChips = [];
       build.regularChipId = null;
       build.tagChipIds = [];
-      build.registeredNaviCustomizerPrograms = [
-        {
-          programId: 1,
-          isCompressed: false,
-          rotate: 0,
-          y: 3,
-          x: 3,
-        },
-      ];
+      build.registeredNaviCustomizerPrograms = [];
 
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
       this.builds[id] = build;
@@ -131,8 +123,6 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       if (regularChipId !== undefined) build.regularChipId = regularChipId;
       if (tagChipIds !== undefined) build.tagChipIds = tagChipIds;
       if (registeredNaviCustomizerPrograms !== undefined) build.registeredNaviCustomizerPrograms = registeredNaviCustomizerPrograms;
-      console.log('build');
-      console.log(build);
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
   },

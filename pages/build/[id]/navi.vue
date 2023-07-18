@@ -11,12 +11,19 @@
   </v-container>
 
   <v-container>
-    <ui-card-navi-customizer
-      :cells="cells"
-      :selected-program="selectedProgram"
-      :program-state="programState"
-      @add-program="addProgram"
-    />
+    <v-row>
+      <v-col cols="12" sm="6">
+        <ui-card-navi-customizer-status />
+      </v-col>
+      <v-col cols="12" sm="6">
+        <ui-card-navi-customizer
+          :cells="cells"
+          :selected-program="selectedProgram"
+          :program-state="programState"
+          @add-program="addProgram"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 
   <v-divider />
@@ -123,6 +130,7 @@ const updateProgramState = (state: NaviCustomizerProgramState) => {
 const addProgram = (position) => {
   navi.value.addProgram({
     ...programState.value,
+    id: navi.value.registeredNaviCustomizerPrograms.length + 1,
     programId: selectedProgram.value.id,
     y: position.y,
     x: position.x,

@@ -1,5 +1,5 @@
-import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
 import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
+import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 export class NaviCustomizer {
@@ -9,19 +9,35 @@ export class NaviCustomizer {
 
   private _registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
 
-  public get cells(): NaviCustomizerProgramColor[][] {
-    const result: NaviCustomizerProgramColor[][] = [];
+  public get cells(): NaviCustomizerCellData[][] {
+    const result: NaviCustomizerCellData[][] = [];
     for (let i = 0; i < NaviCustomizer.rows; i += 1) {
       result[i] = [];
       for (let j = 0; j < NaviCustomizer.cols; j += 1) {
         if ([i, j].every((v) => v === 0 || v === NaviCustomizer.rows - 1)) {
-          result[i][j] = 'grey-darken-4';
+          result[i][j] = {
+            programId: null,
+            registeredProgramId: null,
+            color: 'grey-darken-4',
+          };
         } else if (i === 3) {
-          result[i][j] = 'grey-lighten-1';
+          result[i][j] = {
+            programId: null,
+            registeredProgramId: null,
+            color: 'grey-lighten-1',
+          };
         } else if (i === 0 || i === NaviCustomizer.rows - 1 || j === 0 || j === NaviCustomizer.cols - 1) {
-          result[i][j] = 'grey-darken-1';
+          result[i][j] = {
+            programId: null,
+            registeredProgramId: null,
+            color: 'grey-darken-1',
+          };
         } else {
-          result[i][j] = 'grey';
+          result[i][j] = {
+            programId: null,
+            registeredProgramId: null,
+            color: 'grey',
+          };
         }
       }
     }
@@ -66,7 +82,11 @@ export class NaviCustomizer {
                 targetX = j;
                 break;
             }
-            result[targetY + program.y][targetX + program.x] = masterNaviCustomizerProgram.color;
+            result[targetY + program.y][targetX + program.x] = {
+              programId: program.programId,
+              registeredProgramId: program.id,
+              color: masterNaviCustomizerProgram.color,
+            };
           }
         });
       });

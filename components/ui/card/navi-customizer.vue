@@ -13,10 +13,10 @@
       >
         <v-card
           class="pa-5 elevation-1 rounded-0 cell"
-          :class="{ transparent: cell === 'transparent', 'elevation-0': cell === 'transparent' }"
+          :class="{ transparent: cell.color === 'transparent', 'elevation-0': cell.color === 'transparent' }"
           width="100%"
           height="100%"
-          :color="cell"
+          :color="cell.color"
           @mouseenter="onMouseEnter(rowIndex, cellIndex)"
           @mouseleave="onMouseLeave()"
           @click="onClick(rowIndex, cellIndex)"
@@ -29,10 +29,11 @@
 <script setup lang="ts">
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 import { ProgramColors } from '@/value/program-colors';
+import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 
 const props = defineProps({
   cells: {
-    type: Array as PropType<string[][]>,
+    type: Array<Array<NaviCustomizerCellData>>,
     required: true,
   },
   selectedProgram: {
@@ -51,11 +52,15 @@ const overWidth = 11;
 const overlayCells = computed(() => {
   // cells をコピーする
   // 11x11 の配列の真ん中 7x7 にプログラムを重ねる
-  const cells = [];
+  const cells: Array<Array<NaviCustomizerCellData>> = [];
   for (let y = 0; y < overWidth; y += 1) {
     cells.push([]);
     for (let x = 0; x < overWidth; x += 1) {
-      cells[y].push('transparent');
+      cells[y].push({
+        programId: null,
+        registeredProgramId: null,
+        color: 'transparent',
+      });
     }
   }
 
@@ -106,7 +111,10 @@ const overlayCells = computed(() => {
             if (mousePosition.value.x + targetX < 0 || mousePosition.value.x + targetX >= overWidth) return;
 
             if (cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX]) {
-              cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX] = props.selectedProgram.color;
+              cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX] = {
+                programId: props.selectedProgram.id,
+                color: props.selectedProgram.color,
+              };
             }
           }
         });
@@ -176,8 +184,7 @@ const onClick = (y, x) => {
           ) {
             return;
           }
-          if (ProgramColors.includes(props.cells[y + targetY - 2][x + targetX - 2])) {
-            console.log('重なってる');
+          if (ProgramColors.includes(props.cells[y + targetY - 2][x + targetX - 2].color)) {
             return;
           }
         }
