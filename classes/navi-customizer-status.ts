@@ -55,6 +55,16 @@ export class NaviCustomizerStatus {
       const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === commandLineProgram.programId);
       resultAbilities = resultAbilities.concat(masterProgram.addAbilities);
     });
+
+    // プラスパーツではないすべてのプログラムのアビリティを追加する
+    this._registeredNaviCustomizerPrograms.forEach((registeredProgram: RegisteredNaviCustomizerProgram) => {
+      const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === registeredProgram.programId);
+      if (masterProgram.isProgram) {
+        return;
+      }
+      resultAbilities = resultAbilities.concat(masterProgram.addAbilities);
+    });
+
     return resultAbilities;
   }
 
