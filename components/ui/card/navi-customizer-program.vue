@@ -77,7 +77,8 @@ import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-stat
 const props = defineProps({
   naviCustomizerProgram: {
     type: Object as PropType<NaviCustomizerProgram>,
-    required: true,
+    required: false,
+    default: null,
   },
 });
 

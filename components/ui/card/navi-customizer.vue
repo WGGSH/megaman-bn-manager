@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
+// import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 import { ProgramColors } from '@/value/program-colors';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 
@@ -37,12 +37,14 @@ const props = defineProps({
     required: true,
   },
   selectedProgram: {
-    type: Object as PropType<object | null>,
-    required: true,
+    type: Object,
+    required: false,
+    default: null,
   },
   programState: {
-    type: Object as PropType<NaviCustomizerProgramState>,
-    required: true,
+    type: Object,
+    required: false,
+    default: null,
   },
 });
 

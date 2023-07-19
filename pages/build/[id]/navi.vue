@@ -13,7 +13,9 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="6">
-        <ui-card-navi-customizer-status />
+        <ui-card-navi-customizer-status
+          :navi-customizer-status="naviCustomizerStatus"
+        />
       </v-col>
       <v-col cols="12" sm="6">
         <ui-card-navi-customizer
@@ -50,8 +52,9 @@
 </template>
 
 <script setup lang="ts">
-import { NaviCustomizer } from '~/classes/navi-customizer';
+import { NaviCustomizer } from '@/classes/navi-customizer';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
+import { NaviCustomizerStatus } from '@/classes/navi-customizer-status';
 import { useBuildManagerStore } from '@/store/build-manager';
 
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -65,6 +68,8 @@ const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramS
 
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
+
+const naviCustomizerStatus = ref(new NaviCustomizerStatus());
 
 const selectedProgram = ref<object | null>(null);
 const programState = ref({
@@ -95,6 +100,14 @@ watch(selectedBuild, (value) => {
     return;
   }
   loadNaviCustomizerPrograms();
+}, { deep: true });
+
+watch(navi, (value) => {
+  if (!value) {
+    return;
+  }
+  console.log(value.cells);
+  naviCustomizerStatus.value.updateStatus(value.cells, selectedBuild.value.hpMemoryNum);
 }, { deep: true });
 
 onMounted(() => {
