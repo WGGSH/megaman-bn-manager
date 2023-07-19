@@ -107,7 +107,7 @@ watch(navi, (value) => {
     return;
   }
   console.log(value.cells);
-  naviCustomizerStatus.value.updateStatus(value.cells, selectedBuild.value.hpMemoryNum);
+  naviCustomizerStatus.value.updateStatus(value.registeredNaviCustomizerPrograms, value.cells, selectedBuild.value.hpMemoryNum);
 }, { deep: true });
 
 onMounted(() => {

@@ -55,6 +55,14 @@ export class NaviCustomizerProgram {
     return this._isProgram;
   }
 
+  public get addAbilities(): AbilityBase[] {
+    return this._addAbilities;
+  }
+
+  public get bugAbilities(): AbilityBase[] {
+    return this._bugAbilities;
+  }
+
   constructor(
     id: number,
     name: string,
