@@ -2,7 +2,7 @@ import { StatusBaseNumber } from '@/classes/status/base/number';
 
 export class StatusStatusBug extends StatusBaseNumber {
   constructor(value: number) {
-    super('chip-recovery', value);
+    super('chip-recovery', value, 2, 0);
   }
 
   public apply(value: number): void {

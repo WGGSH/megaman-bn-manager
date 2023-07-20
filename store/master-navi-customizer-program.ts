@@ -11,6 +11,9 @@ import { AbilityChargePlus } from '@/classes/ability/charge-plus';
 import { AbilityCustomPlus } from '@/classes/ability/custom-plus';
 import { AbilityMegaPlus } from '@/classes/ability/mega-plus';
 import { AbilityGigaPlus } from '@/classes/ability/giga-plus';
+import { AbilityMoveBug } from '@/classes/ability/move-bug';
+import { AbilityCustomOpenBugPlus } from '@/classes/ability/custom-open-bug-plus';
+
 import { AbilityAirShoes } from '@/classes/ability/air-shoes';
 import { AbilityFloatShoes } from '@/classes/ability/float-shoes';
 import { AbilitySuperArmor } from '@/classes/ability/super-armor';
@@ -67,6 +70,9 @@ AbilityBase | null => {
     case 'giga-plus':
       return new AbilityGigaPlus(value as number);
 
+    case 'custom-open-bug-plus':
+      return new AbilityCustomOpenBugPlus(value as number);
+
     case 'air-shoes':
       return new AbilityAirShoes(value as boolean);
 
@@ -81,6 +87,9 @@ AbilityBase | null => {
 
     case 'status-guard':
       return new AbilityStatusGuard(value as boolean);
+
+    case 'move-bug':
+      return new AbilityMoveBug(value as boolean);
 
     case 'first-barrier-change':
       return new AbilityFirstBarrierChange(value as string);
@@ -117,6 +126,7 @@ MasterNaviCustomizerProgramActions>({
     fetchPrograms() {
       console.log(programData);
       this.programs = programData.programs.map((program) => {
+        console.log(program);
         const addAbilities = program['add-abilities'].map(
           (ability) => createAbilityInstance(ability.key, ability.value),
         ).filter(

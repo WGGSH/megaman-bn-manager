@@ -62,8 +62,10 @@ export class MegamanStatus {
     'custom-damage-bug': 'customDamageBug',
     'panel-bug': 'panelBug',
     'custom-open-bug': 'customOpenBug',
+    'custom-open-bug-plus': 'customOpenBug',
     'battle-hp-bug': 'battleHpBug',
     'status-bug': 'statusBug',
+    'status-bug-plus': 'statusBug',
     'buster-bug': 'busterBug',
     'encount-bug': 'encountBug',
 
@@ -182,6 +184,7 @@ export class MegamanStatus {
           this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].applyPlus(ability.value);
           break;
         }
+        console.log(ability);
         this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].apply(ability.value);
         break;
     }

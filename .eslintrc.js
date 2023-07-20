@@ -16,5 +16,6 @@ module.exports = {
     'vue/max-len': 'off',
     'no-plusplus': 'off',
     'vuejs-accessibility/mouse-events-have-key-events': 'off',
+    'no-continue': 'off',
   },
 };

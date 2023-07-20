@@ -2,7 +2,7 @@ import { StatusBaseNumber } from '@/classes/status/base/number';
 
 export class StatusPanelBug extends StatusBaseNumber {
   constructor(value: number) {
-    super('panel-bug', value);
+    super('panel-bug', value, 3, 1);
   }
 
   public applyPlus(value: number): void {

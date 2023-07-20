@@ -41,7 +41,7 @@
       ],
       "bug-abilities": [
         {
-          "key": "custom-bug-plus",
+          "key": "custom-open-bug-plus",
           "value": 1
         }
       ],
