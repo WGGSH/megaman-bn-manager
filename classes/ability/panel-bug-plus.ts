@@ -10,6 +10,6 @@ export class AbilityPanelBugPlus extends AbilityBaseNumber {
   }
 
   toString(): string {
-    return `パネルバグ${this.valueWithSign()}`;
+    return `移動時にパネルヒビ ${this.valueWithSign()}`;
   }
 }

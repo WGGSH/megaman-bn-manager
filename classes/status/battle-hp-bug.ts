@@ -2,7 +2,7 @@ import { StatusBaseNumber } from '@/classes/status/base/number';
 
 export class StatusBattleHpBug extends StatusBaseNumber {
   constructor(value: number) {
-    super('battle-hp-bug', value, 7, 0);
+    super('battle-hp-bug', value, 3, 0);
   }
 
   public toString(): string {

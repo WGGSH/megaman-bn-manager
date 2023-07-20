@@ -6,7 +6,7 @@ export class AbilityMoveBug extends AbilityBaseBoolean {
   }
 
   toString(): string {
-    return `移動バグ: ${this.valueToString()}`;
+    return `端まで移動バグ: ${this.valueToString()}`;
   }
 
   protected get isPositive(): boolean {

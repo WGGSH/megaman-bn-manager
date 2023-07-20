@@ -14,7 +14,7 @@ export class StatusPanelBug extends StatusBaseNumber {
   }
 
   public toString(): string {
-    return `移動バグ Lv:${this._value}`;
+    return `移動時にパネルヒビ Lv:${this._value}`;
   }
 
   public isPositive(): boolean {

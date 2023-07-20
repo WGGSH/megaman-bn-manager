@@ -2,28 +2,34 @@ import { defineStore, type _GettersTree } from 'pinia';
 import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
 import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
 import { AbilityBase } from '@/classes/ability/base';
-import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
-import { AbilityAttackMagnify } from '@/classes/ability/attack-magnify';
+
 import { AbilityHpPlus } from '@/classes/ability/hp-plus';
 import { AbilityHpMagnify } from '@/classes/ability/hp-magnify';
+import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
+import { AbilityAttackMagnify } from '@/classes/ability/attack-magnify';
 import { AbilityRapidPlus } from '@/classes/ability/rapid-plus';
 import { AbilityChargePlus } from '@/classes/ability/charge-plus';
 import { AbilityCustomPlus } from '@/classes/ability/custom-plus';
 import { AbilityMegaPlus } from '@/classes/ability/mega-plus';
 import { AbilityGigaPlus } from '@/classes/ability/giga-plus';
-import { AbilityMoveBug } from '@/classes/ability/move-bug';
+import { AbilityBusterBugPlus } from '@/classes/ability/buster-bug-plus';
 import { AbilityCustomOpenBugPlus } from '@/classes/ability/custom-open-bug-plus';
+import { AbilityEncountBugPlus } from '@/classes/ability/encount-bug-plus';
+import { AbilityPanelBugPlus } from '@/classes/ability/panel-bug-plus';
 
 import { AbilityAirShoes } from '@/classes/ability/air-shoes';
 import { AbilityFloatShoes } from '@/classes/ability/float-shoes';
 import { AbilitySuperArmor } from '@/classes/ability/super-armor';
 import { AbilityUnderShirt } from '@/classes/ability/under-shirt';
-import { AbilityStatusGuard } from '@/classes/ability/status-guard';
+import { AbilityRushSupport } from '@/classes/ability/rush-support';
+import { AbilityBeatSupport } from '@/classes/ability/beat-support';
+import { AbilityTangoSupport } from '@/classes/ability/tango-support';
+import { AbilityMoveBug } from '@/classes/ability/move-bug';
+import { AbilityEmotionWindowBug } from '@/classes/ability/emotion-window-bug';
+import { AbilityResultBug } from '@/classes/ability/result-bug';
+
 import { AbilityFirstBarrierChange } from '@/classes/ability/first-barrier-change';
-import { AbilityBusterChange } from '@/classes/ability/buster-change';
-import { AbilityCsChange } from '@/classes/ability/cs-change';
 import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
-import { AbilityMoveChange } from '@/classes/ability/move-change';
 
 import programData from '@/assets/master-data/navi-customizer-program.json';
 
@@ -70,8 +76,17 @@ AbilityBase | null => {
     case 'giga-plus':
       return new AbilityGigaPlus(value as number);
 
+    case 'buster-bug-plus':
+      return new AbilityBusterBugPlus(value as number);
+
     case 'custom-open-bug-plus':
       return new AbilityCustomOpenBugPlus(value as number);
+
+    case 'encount-bug-plus':
+      return new AbilityEncountBugPlus(value as number);
+
+    case 'panel-bug-plus':
+      return new AbilityPanelBugPlus(value as number);
 
     case 'air-shoes':
       return new AbilityAirShoes(value as boolean);
@@ -85,8 +100,20 @@ AbilityBase | null => {
     case 'under-shirt':
       return new AbilityUnderShirt(value as boolean);
 
-    case 'status-guard':
-      return new AbilityStatusGuard(value as boolean);
+    case 'rush-support':
+      return new AbilityRushSupport(value as boolean);
+
+    case 'beat-support':
+      return new AbilityBeatSupport(value as boolean);
+
+    case 'tango-support':
+      return new AbilityTangoSupport(value as boolean);
+
+    case 'emotion-window-bug':
+      return new AbilityEmotionWindowBug(value as boolean);
+
+    case 'result-bug':
+      return new AbilityResultBug(value as boolean);
 
     case 'move-bug':
       return new AbilityMoveBug(value as boolean);
@@ -94,17 +121,8 @@ AbilityBase | null => {
     case 'first-barrier-change':
       return new AbilityFirstBarrierChange(value as string);
 
-    case 'buster-change':
-      return new AbilityBusterChange(value as string);
-
-    case 'cs-change':
-      return new AbilityCsChange(value as string);
-
     case 'left-b-change':
       return new AbilityLeftBChange(value as string);
-
-    case 'move-change':
-      return new AbilityMoveChange(value as string);
 
     default:
       return null;
@@ -124,9 +142,7 @@ MasterNaviCustomizerProgramActions>({
   },
   actions: {
     fetchPrograms() {
-      console.log(programData);
       this.programs = programData.programs.map((program) => {
-        console.log(program);
         const addAbilities = program['add-abilities'].map(
           (ability) => createAbilityInstance(ability.key, ability.value),
         ).filter(
