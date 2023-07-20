@@ -4,11 +4,11 @@
       "id": 1,
       "name": "スーパーアーマー",
       "color": "red",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "super-armor",
-          "value": true
+          "value": 1
         }
       ],
       "bug-abilities": [
@@ -18,21 +18,21 @@
         }
       ],
       "cells": [
-        [false, true, false],
-        [true, true, true],
-        [true, true, true]
+        [0,1,0],
+        [1,1,1],
+        [1,1,1]
       ],
       "compressed_cells": [
-        [false, true, false],
-        [true, true, true],
-        [false, false, false]
+        [0,1,0],
+        [1,1,1],
+        [0,0,0]
       ]
     },
     {
       "id": 2,
       "name": "カスタム1",
       "color": "blue",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "custom-plus",
@@ -46,21 +46,21 @@
         }
       ],
       "cells": [
-        [false, true, false],
-        [true, true, true],
-        [false, true, true]
+        [0,1,0],
+        [1,1,1],
+        [0,1,1]
       ],
       "compressed_cells": [
-        [false, true, false],
-        [false, true, false],
-        [false, true, true]
+        [0,1,0],
+        [0,1,0],
+        [0,1,1]
       ]
     },
     {
       "id": 3,
       "name": "カスタム2",
       "color": "white",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "custom-plus",
@@ -69,7 +69,7 @@
       ],
       "bug-abilities": [
         {
-          "key": "custom-bug-plus",
+          "key": "custom-open-bug-plus",
           "value": 1
         }
       ],
@@ -92,7 +92,7 @@
       "id": 4,
       "name": "メガフォルダ1",
       "color": "green",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "mega-plus",
@@ -101,26 +101,26 @@
       ],
       "bug-abilities": [
         {
-          "key": "custom-bug-plus",
+          "key": "custom-open-bug-plus",
           "value": 1
         }
       ],
       "cells": [
-        [false, false, true],
-        [true, true, true],
-        [false, false, true]
+        [0,0,1],
+        [1,1,1],
+        [0,0,1]
       ],
       "compressed_cells": [
-        [false, false, false],
-        [true, true, true],
-        [false, false, false]
+        [0,0,0],
+        [1,1,1],
+        [0,0,0]
       ]
     },
     {
       "id": 5,
       "name": "メガフォルダ2",
       "color": "white",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "mega-plus",
@@ -129,7 +129,7 @@
       ],
       "bug-abilities": [
         {
-          "key": "custom-bug-plus",
+          "key": "custom-open-bug-plus",
           "value": 1
         }
       ],
@@ -150,7 +150,7 @@
       "id": 6,
       "name": "ギガフォルダ1",
       "color": "red",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "giga-plus",
@@ -159,7 +159,7 @@
       ],
       "bug-abilities": [
         {
-          "key": "custom-bug-plus",
+          "key": "custom-open-bug-plus",
           "value": 1
         }
       ],
@@ -182,14 +182,19 @@
       "id": 7,
       "name": "ファーストバリア",
       "color": "blue",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "first-barrier-change",
           "value": "barrier-10"
         }
       ],
-      "bug-abilities": [],
+      "bug-abilities": [
+        {
+          "key": "move-bug",
+          "value": 1
+        }
+      ],
       "cells": [
         [0,0,0],
         [1,1,1],
@@ -205,37 +210,727 @@
       "id": 8,
       "name": "シールド",
       "color": "blue",
-      "is-program": true,
+      "is-program": 1,
       "add-abilities": [
         {
           "key": "left-b-change",
           "value": "shield"
         }
       ],
-      "bug-abilities": [],
+      "bug-abilities": [
+        {
+          "key": "move-bug",
+          "value": 1
+        }
+      ],
       "cells": [
-        [true, true, true],
-        [true, false, false],
-        [true, false, false]
+        [1,1,1],
+        [1,0,0],
+        [1,0,0]
       ],
       "compressed_cells": [
-        [true, true, false],
-        [true, false, false],
-        [false, false, false]
+        [1,1,0],
+        [1,0,0],
+        [0,0,0]
       ]
     },
     {
-      "id": 99,
+      "id": 9,
+      "name": "リフレクト",
+      "color": "green",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "left-b-change",
+          "value": "reflect"
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "move-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,0,1,0,0],
+        [1,1,1,1,1],
+        [0,0,1,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id": 10,
+      "name": "カワリミマジック",
+      "color": "green",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "left-b-change",
+          "value": "anti-damage"
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "move-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,1,1],
+        [0,0,0,1,1],
+        [0,0,1,1,0],
+        [0,0,1,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,1],
+        [0,0,0,1,1],
+        [0,0,1,1,0],
+        [0,0,1,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id": 11,
+      "name": "フロートシューズ",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "float-shoes",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "panel-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,1],
+        [1,1,1],
+        [0,1,1]
+      ],
+      "compressed_cells": [
+        [0,0,1],
+        [0,1,1],
+        [0,1,0]
+      ]
+    },
+    {
+      "id": 12,
+      "name": "エアシューズ",
+      "color": "white",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "air-shoes",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "panel-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1],
+        [1,1,1],
+        [1,0,1]
+      ],
+      "compressed_cells": [
+        [1,1,1],
+        [1,0,1],
+        [1,0,1]
+      ]
+    },
+    {
+      "id": 13,
+      "name": "アンダーシャツ",
+      "color": "white",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "under-shirt",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "move-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 14,
+      "name": "サーチシャッフル",
+      "color": "green",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "search-shuffle",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-open-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,1,1],
+        [1,1,0,1,1],
+        [1,1,1,1,1],
+        [1,1,0,1,1],
+        [1,1,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,1,0],
+        [1,1,0,1,1],
+        [1,1,1,1,1],
+        [1,1,0,1,0],
+        [0,1,0,0,0]
+      ]
+    },
+    {
+      "id": 15,
+      "name": "ナンバーオープン",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "number-open",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-open-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [1,1,1,1,1]
+      ],
+      "compressed_cells": [
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [1,1,0,1,1]
+      ]
+    },
+    {
+      "id": 27,
+      "name": "バスターパック",
+      "color": "red",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "attack-plus",
+          "value": 3
+        },
+        {
+          "key": "rapid-plus",
+          "value": 3
+        },
+        {
+          "key": "charge-plus",
+          "value": 3
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1],
+        [1,1,1],
+        [1,1,1]
+      ],
+      "compressed_cells": [
+        [1,1,0],
+        [1,1,1],
+        [1,1,1]
+      ]
+    },
+    {
+      "id": 28,
+      "name": "ボディパック",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "super-armor",
+          "value": 1
+        },
+        {
+          "key": "under-shirt",
+          "value": 1
+        },
+        {
+          "key": "air-shoes",
+          "value": 1
+        },
+        {
+          "key": "float-shoes",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "move-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,1,0,0],
+        [1,1,1,1,1],
+        [0,1,1,1,0],
+        [0,1,1,1,0],
+        [1,1,1,1,1]
+      ],
+      "compressed_cells": [
+        [0,0,1,0,0],
+        [1,1,1,1,1],
+        [0,1,1,1,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0]
+      ]
+    },
+    {
+      "id": 29,
+      "name": "フォルダパック1",
+      "color": "yellow",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "custom-plus",
+          "value": 1
+        },
+        {
+          "key": "mega-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-open-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,1],
+        [1,1,1],
+        [1,1,0]
+      ],
+      "compressed_cells": [
+        [0,1,1],
+        [1,1,1],
+        [1,1,0]
+      ]
+    },
+    {
+      "id": 30,
+      "name": "フォルダパック2",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "custom-plus",
+          "value": 2
+        },
+        {
+          "key": "mega-plus",
+          "value": 2
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "custom-open-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,1,0,0],
+        [0,1,1,1,0],
+        [0,1,1,1,1],
+        [1,1,1,1,0],
+        [0,0,0,1,0]
+      ],
+      "compressed_cells": [
+        [0,0,1,0,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0],
+        [1,1,1,1,0],
+        [0,0,0,1,0]
+      ]
+    },
+    {
+      "id": 32,
+      "name": "ラッシュサポート",
+      "color": "yellow",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "rush-support",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "support-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 33,
+      "name": "ビートサポート",
+      "color": "blue",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "beat-support",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "support-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,0,0,1,0],
+        [0,0,1,1,0],
+        [0,0,1,0,0],
+        [0,0,1,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,0,0,1,0],
+        [0,0,1,1,0],
+        [0,0,1,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id": 34,
+      "name": "タンゴサポート",
+      "color": "green",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "tango-support",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "support-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,0],
+        [0,0,1,0,0],
+        [0,0,1,0,0],
+        [0,1,1,1,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,0],
+        [0,0,1,0,0],
+        [0,0,1,0,0],
+        [0,1,1,0,0]
+      ]
+    },
+    {
+      "id": 35,
+      "name": "アタック+1",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "attack-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 36,
+      "name": "アタック+1",
+      "color": "red",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "attack-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 37,
+      "name": "アタック+1",
+      "color": "blue",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "attack-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 38,
+      "name": "ラピッド+1",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "rapid-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1]
+      ],
+      "compressed_cells": [
+        [1]
+      ]
+    },
+    {
+      "id": 39,
+      "name": "ラピッド+1",
+      "color": "green",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "rapid-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1]
+      ],
+      "compressed_cells": [
+        [1]
+      ]
+    },
+    {
+      "id": 40,
+      "name": "ラピッド+1",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "rapid-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1]
+      ],
+      "compressed_cells": [
+        [1]
+      ]
+    },
+    {
+      "id": 41,
+      "name": "チャージ+1",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "charge-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1]
+      ],
+      "compressed_cells": [
+        [1]
+      ]
+    },
+    {
+      "id": 42,
+      "name": "チャージ+1",
+      "color": "blue",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "charge-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1]
+      ],
+      "compressed_cells": [
+        [1]
+      ]
+    },
+    {
+      "id": 43,
+      "name": "チャージ+1",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "charge-plus",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1]
+      ],
+      "compressed_cells": [
+        [1]
+      ]
+    },
+    {
+      "id": 44,
       "name": "アタックMAX",
       "color": "red",
-      "is-program": false,
+      "is-program": 0,
       "add-abilities": [
         {
           "key": "attack-plus",
           "value": 4
         }
       ],
-      "bug-abilities": [],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 4
+        }
+      ],
       "cells": [
         [0,1,1,0,0],
         [0,1,1,0,0],
@@ -252,28 +947,597 @@
       ]
     },
     {
-      "id:": 100,
-      "name": "HP+500",
+      "id": 45,
+      "name": "ラピッドMAX",
       "color": "green",
-      "is-program": false,
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "rapid-plus",
+          "value": 4
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0],
+        [1,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0],
+        [0,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 46,
+      "name": "チャージMAX",
+      "color": "blue",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "charge-plus",
+          "value": 4
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "buster-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [1,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 47,
+      "name": "HP+50",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 50
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 48,
+      "name": "HP+50",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 50
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 49,
+      "name": "HP+50",
+      "color": "blue",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 50
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 50,
+      "name": "HP+100",
+      "color": "blue",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 100
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,1],
+        [0,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,1],
+        [0,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 51,
+      "name": "HP+100",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 100
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,1],
+        [0,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,1],
+        [0,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 52,
+      "name": "HP+100",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 100
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,1],
+        [0,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [0,1,1],
+        [0,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 53,
+      "name": "HP+200",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 200
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1],
+        [1,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [1,1,1],
+        [1,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 54,
+      "name": "HP+200",
+      "color": "yellow",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 200
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1],
+        [1,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [1,1,1],
+        [1,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 55,
+      "name": "HP+200",
+      "color": "blue",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 200
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1],
+        [1,1,1],
+        [0,0,0]
+      ],
+      "compressed_cells": [
+        [1,1,1],
+        [1,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id:": 56,
+      "name": "HP+300",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 300
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 57,
+      "name": "HP+300",
+      "color": "green",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 300
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 58,
+      "name": "HP+300",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 300
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 59,
+      "name": "HP+400",
+      "color": "yellow",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 400
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 60,
+      "name": "HP+400",
+      "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 400
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 61,
+      "name": "HP+400",
+      "color": "green",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 400
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,1,1,1,1],
+        [0,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 62,
+      "name": "HP+500",
+      "color": "pink",
+      "is-program": 0,
       "add-abilities": [
         {
           "key": "hp-plus",
           "value": 500
         }
       ],
-      "bug-abilities": [],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
       "cells": [
-        [1,1,1,1,1],
-        [1,1,1,1,1],
         [0,0,0,0,0],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
         [0,0,0,0,0],
         [0,0,0,0,0]
       ],
       "compressed_cells": [
-        [1,1,1,1,1],
-        [1,1,1,1,1],
         [0,0,0,0,0],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
         [0,0,0,0,0],
         [0,0,0,0,0]
       ]

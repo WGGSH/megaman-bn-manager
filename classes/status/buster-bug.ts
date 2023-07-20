@@ -7,10 +7,12 @@ export class StatusBusterBug extends StatusBaseNumber {
 
   public applyPlus(value: number): void {
     this._value += value;
+    this.fixValue();
   }
 
   public apply(value: number): void {
     this._value = value;
+    this.fixValue();
   }
 
   public toString(): string {

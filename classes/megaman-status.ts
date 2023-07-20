@@ -67,6 +67,7 @@ export class MegamanStatus {
     'status-bug': 'statusBug',
     'status-bug-plus': 'statusBug',
     'buster-bug': 'busterBug',
+    'buster-bug-plus': 'busterBug',
     'encount-bug': 'encountBug',
 
     'air-shoes': 'airShoes',
