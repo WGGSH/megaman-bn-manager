@@ -447,6 +447,318 @@
       ]
     },
     {
+      "id": 16,
+      "name": "シノビダッシュ",
+      "color": "white",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "sneak-run",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "encount-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [1,1,1],
+        [0,1,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [1,1,1],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 17,
+      "name": "オイルボディ",
+      "color": "red",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "enemy-element-search",
+          "value": "fire"
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "encount-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,1]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,0]
+      ]
+    },
+    {
+      "id": 18,
+      "name": "アイムフィッシュ",
+      "color": "blue",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "enemy-element-search",
+          "value": "aqua"
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "encount-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,1]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,0]
+      ]
+    },
+    {
+      "id": 19,
+      "name": "バッテリーモード",
+      "color": "yellow",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "enemy-element-search",
+          "value": "elec"
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "encount-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,1]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,0]
+      ]
+    },
+    {
+      "id": 20,
+      "name": "ジャングルランド",
+      "color": "green",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "enemy-element-search",
+          "value": "wood"
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "encount-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,1]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [1,1,0]
+      ]
+    },
+    {
+      "id": 21,
+      "name": "コレクターズアイ",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "collectors-eye",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "collector-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,1],
+        [1,1,0],
+        [1,1,0]
+      ],
+      "compressed_cells": [
+        [1,1,1],
+        [1,1,0],
+        [1,0,0]
+      ]
+    },
+    {
+      "id": 22,
+      "name": "ミリオネア",
+      "color": "red",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "millionaire",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "collector-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,1,0],
+        [0,1,0],
+        [1,1,0]
+      ],
+      "compressed_cells": [
+        [1,1,0],
+        [0,1,0],
+        [0,0,0]
+      ]
+    },
+    {
+      "id": 23,
+      "name": "ユーモアセンス",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "humor-sense",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "emotion-window-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [1,0,0],
+        [1,1,0],
+        [1,1,0]
+      ],
+      "compressed_cells": [
+        [1,0,0],
+        [1,1,0],
+        [0,1,0]
+      ]
+    },
+    {
+      "id": 24,
+      "name": "リズミカルポエム",
+      "color": "yellow",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "rhythmical-poem",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "emotion-window-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [1,1,0],
+        [1,1,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [1,1,0],
+        [1,0,0]
+      ]
+    },
+    {
+      "id": 25,
+      "name": "スリップランナー",
+      "color": "yellow",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "slip-runner",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "panel-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
+      ],
+      "compressed_cells": [
+        [0,1,0],
+        [0,1,0],
+        [0,1,0]
+      ]
+    },
+    {
+      "id": 26,
+      "name": "セルフリカバリー",
+      "color": "pink",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "self-recovery",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "panel-bug-plus",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,1,0],
+        [0,0,0,1,0],
+        [0,0,0,1,0],
+        [0,1,1,1,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [0,0,0,1,0],
+        [0,0,0,1,0],
+        [0,1,1,1,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
       "id": 27,
       "name": "バスターパック",
       "color": "red",
@@ -592,6 +904,33 @@
         [0,1,1,1,0],
         [1,1,1,1,0],
         [0,0,0,1,0]
+      ]
+    },
+    {
+      "id": 31,
+      "name": "バグストッパー",
+      "color": "yellow",
+      "is-program": 1,
+      "add-abilities": [
+        {
+          "key": "bug-stopper",
+          "value": 1
+        }
+      ],
+      "bug-abilities": [],
+      "cells": [
+        [0,0,1,1,0],
+        [0,1,1,0,0],
+        [0,0,1,1,0],
+        [0,1,1,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,1,0,0],
+        [0,1,1,0,0],
+        [0,0,1,1,0],
+        [0,0,1,0,0],
+        [0,0,0,0,0]
       ]
     },
     {
@@ -1510,6 +1849,78 @@
       "id:": 62,
       "name": "HP+500",
       "color": "pink",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 500
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 63,
+      "name": "HP+500",
+      "color": "white",
+      "is-program": 0,
+      "add-abilities": [
+        {
+          "key": "hp-plus",
+          "value": 500
+        }
+      ],
+      "bug-abilities": [
+        {
+          "key": "battle-hp-bug-plus",
+          "value": 1
+        },
+        {
+          "key": "damage-hp-bug",
+          "value": 1
+        }
+      ],
+      "cells": [
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ],
+      "compressed_cells": [
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [1,1,1,1,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+      ]
+    },
+    {
+      "id:": 64,
+      "name": "HP+500",
+      "color": "green",
       "is-program": 0,
       "add-abilities": [
         {
