@@ -16,6 +16,7 @@ import { AbilityBusterBugPlus } from '@/classes/ability/buster-bug-plus';
 import { AbilityCustomOpenBugPlus } from '@/classes/ability/custom-open-bug-plus';
 import { AbilityEncountBugPlus } from '@/classes/ability/encount-bug-plus';
 import { AbilityPanelBugPlus } from '@/classes/ability/panel-bug-plus';
+import { AbilityBattleHpBugPlus } from '@/classes/ability/battle-hp-bug-plus';
 
 import { AbilityAirShoes } from '@/classes/ability/air-shoes';
 import { AbilityFloatShoes } from '@/classes/ability/float-shoes';
@@ -27,6 +28,8 @@ import { AbilityTangoSupport } from '@/classes/ability/tango-support';
 import { AbilityMoveBug } from '@/classes/ability/move-bug';
 import { AbilityEmotionWindowBug } from '@/classes/ability/emotion-window-bug';
 import { AbilityResultBug } from '@/classes/ability/result-bug';
+import { AbilityDamageHpBug } from '@/classes/ability/damage-hp-bug';
+import { AbilityBugStopper } from '@/classes/ability/bug-stopper';
 
 import { AbilityFirstBarrierChange } from '@/classes/ability/first-barrier-change';
 import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
@@ -88,6 +91,9 @@ AbilityBase | null => {
     case 'panel-bug-plus':
       return new AbilityPanelBugPlus(value as number);
 
+    case 'battle-hp-bug-plus':
+      return new AbilityBattleHpBugPlus(value as number);
+
     case 'air-shoes':
       return new AbilityAirShoes(value as boolean);
 
@@ -118,11 +124,17 @@ AbilityBase | null => {
     case 'move-bug':
       return new AbilityMoveBug(value as boolean);
 
+    case 'damage-hp-bug':
+      return new AbilityDamageHpBug(value as boolean);
+
     case 'first-barrier-change':
       return new AbilityFirstBarrierChange(value as string);
 
     case 'left-b-change':
       return new AbilityLeftBChange(value as string);
+
+    case 'bug-stopper':
+      return new AbilityBugStopper(value as boolean);
 
     default:
       return null;

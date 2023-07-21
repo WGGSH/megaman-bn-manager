@@ -4,6 +4,7 @@ import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
 import { AbilityBase } from '@/classes/ability/base';
 import { AbilityStatusBugPlus } from '@/classes/ability/status-bug-plus';
+import { AbilityBugStopper } from '@/classes/ability/bug-stopper';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 export class NaviCustomizerStatus {
@@ -50,28 +51,43 @@ export class NaviCustomizerStatus {
     let addAbilities: AbilityBase[] = [];
     let bugAbilities: AbilityBase[] = [];
 
-    // コマンドライン上のプログラムパーツを取得
+    // コマンドライン上を調べる
+    // プログラムパーツは addAbilityを
+    // プラスパーツは bugAbilityを付与する
     const commandLinePrograms: RegisteredNaviCustomizerProgram[] = [];
+    const commandLineBugPrograms: RegisteredNaviCustomizerProgram[] = [];
     cells[3].forEach((cell: NaviCustomizerCellData) => {
       if (cell.programId === null || cell.registeredProgramId === null) {
         return;
       }
       const masterProgram: NaviCustomizerProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === cell.programId);
       // プログラムパーツではない場合は登録しない
-      if (masterProgram === undefined || !masterProgram.isProgram) {
+      if (masterProgram === undefined) {
         return;
       }
       // 既に同一のプログラムが登録されている場合は、登録しない
-      if (commandLinePrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
-        return;
+      if (masterProgram.isProgram) {
+        if (commandLinePrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
+          return;
+        }
+        commandLinePrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId));
+      } else {
+        if (commandLineBugPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
+          return;
+        }
+        commandLineBugPrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId));
       }
-      commandLinePrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId));
     });
 
     // 登録されたプログラムのアビリティを追加する
     commandLinePrograms.forEach((commandLineProgram: RegisteredNaviCustomizerProgram) => {
       const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === commandLineProgram.programId);
       addAbilities = addAbilities.concat(masterProgram.addAbilities);
+    });
+
+    commandLineBugPrograms.forEach((commandLineBugProgram: RegisteredNaviCustomizerProgram) => {
+      const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === commandLineBugProgram.programId);
+      bugAbilities = bugAbilities.concat(masterProgram.bugAbilities);
     });
 
     // プラスパーツすべてのプログラムのアビリティを追加する
@@ -128,7 +144,6 @@ export class NaviCustomizerStatus {
 
     outOfFramePrograms.forEach((registeredProgram: RegisteredNaviCustomizerProgram) => {
       const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === registeredProgram.programId);
-      console.log(masterProgram);
       bugAbilities = bugAbilities.concat(masterProgram.bugAbilities);
     });
 
@@ -143,7 +158,6 @@ export class NaviCustomizerStatus {
         // 上下左右を見る
         // 上
         if (y > 0 && cells[y - 1][x].programId !== null && cells[y - 1][x].registeredProgramId !== null && cells[y - 1][x].color === cell.color && cells[y - 1][x].registeredProgramId !== cell.registeredProgramId) {
-          // console.log('上');
           registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, cell.registeredProgramId, cells[y - 1][x].registeredProgramId);
         }
         // 下
@@ -168,6 +182,12 @@ export class NaviCustomizerStatus {
         bugAbilities = bugAbilities.concat(masterProgram.bugAbilities);
       });
     });
+
+    // バグストッパーがあればバグをすべて消す
+    const hasBugStopper = addAbilities.find((ability: AbilityBase) => ability instanceof AbilityBugStopper);
+    if (hasBugStopper) {
+      bugAbilities = [];
+    }
 
     resultAbilities = resultAbilities.concat(addAbilities);
     resultAbilities = resultAbilities.concat(bugAbilities);

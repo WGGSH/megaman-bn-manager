@@ -64,6 +64,7 @@ export class MegamanStatus {
     'custom-open-bug': 'customOpenBug',
     'custom-open-bug-plus': 'customOpenBug',
     'battle-hp-bug': 'battleHpBug',
+    'battle-hp-bug-plus': 'battleHpBug',
     'status-bug': 'statusBug',
     'status-bug-plus': 'statusBug',
     'buster-bug': 'busterBug',
@@ -84,6 +85,7 @@ export class MegamanStatus {
     'damage-hp-bug': 'damageHpBug',
     'damage-panic-bug': 'damagePanicBug',
     'result-bug': 'resultBug',
+    'bug-stopper': 'bugStopper',
 
     'first-barrier': 'firstBarrierChange',
     'first-barrier-change': 'firstBarrierChange',
@@ -180,12 +182,14 @@ export class MegamanStatus {
         this._statuses.attack.applyMagnify(ability.value as number);
         break;
 
+      case 'bug-stopper':
+        break;
+
       default:
         if (this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]] instanceof StatusBaseNumber) {
           this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].applyPlus(ability.value);
           break;
         }
-        console.log(ability);
         this._statuses[MegamanStatus.abilityKeyToStatusKey[ability.key]].apply(ability.value);
         break;
     }
