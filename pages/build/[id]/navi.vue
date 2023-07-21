@@ -91,10 +91,6 @@ const loadNaviCustomizerPrograms = () => {
   });
 };
 
-watch(cells, (newCells) => {
-  console.log(newCells);
-});
-
 watch(selectedBuild, (value) => {
   if (!value) {
     return;
@@ -106,7 +102,6 @@ watch(navi, (value) => {
   if (!value) {
     return;
   }
-  console.log(value.cells);
   naviCustomizerStatus.value.updateStatus(value.registeredNaviCustomizerPrograms, value.cells, selectedBuild.value.hpMemoryNum);
 }, { deep: true });
 
