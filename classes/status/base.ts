@@ -16,4 +16,6 @@ export abstract class StatusBase {
   public abstract toString(): string;
 
   public abstract isPositive(): boolean;
+
+  public abstract isVisible(): boolean;
 }

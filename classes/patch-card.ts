@@ -69,8 +69,4 @@ export class PatchCard {
       this.abilities,
     );
   }
-
-  func() {
-    console.log(this.id, this.number, this.name, this.capacity, this.abilities);
-  }
 }

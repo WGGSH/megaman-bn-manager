@@ -47,4 +47,8 @@ export abstract class StatusBaseNumber extends StatusBase {
   public isPositive(): boolean {
     return this._value > 0;
   }
+
+  public isVisible(): boolean {
+    return this._value > 0;
+  }
 }

@@ -28,4 +28,8 @@ export abstract class StatusBaseString extends StatusBase {
   public isPositive(): boolean {
     return this._value !== 'none';
   }
+
+  public isVisible(): boolean {
+    return this._value !== 'none';
+  }
 }

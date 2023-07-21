@@ -489,7 +489,7 @@
       "value": "none"
     },
     "ability-2": {
-      "key": "buster-addition",
+      "key": "buster-addition-change",
       "value": "push"
     },
     "ability-3": {
@@ -497,7 +497,7 @@
       "value": false
     },
     "ability-4": {
-      "key": "cs-addition",
+      "key": "cs-addition-change",
       "value": "none"
     },
     "ability-5": {
@@ -665,7 +665,7 @@
     "name": "ヒトデスタ",
     "capacity": "15",
     "ability-1": {
-      "key": "cs-addition",
+      "key": "cs-addition-change",
       "value": "bubble"
     },
     "ability-2": {

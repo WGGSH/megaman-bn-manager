@@ -30,4 +30,8 @@ export abstract class StatusBaseBoolean extends StatusBase {
   public isPositive(): boolean {
     return this._value;
   }
+
+  public isVisible(): boolean {
+    return this._value;
+  }
 }

@@ -26,7 +26,7 @@
 
     <v-row class="mb-6">
       <v-col
-        v-for="status in megamanStatus.statuses"
+        v-for="status in visibleStatuses"
         :key="status.key"
         cols="6"
         xs="6"
@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import { MegamanStatus } from '@/classes/megaman-status';
+import { StatusBase } from '@/classes/status/base';
 
 const props = defineProps({
   megamanStatus: {
@@ -64,6 +65,17 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+});
+
+const visibleStatuses = computed(() => {
+  const results: StatusBase[] = [];
+  Object.keys(props.megamanStatus.statuses).forEach((key) => {
+    const status = props.megamanStatus.statuses[key];
+    if (status.isVisible()) {
+      results.push(status);
+    }
+  });
+  return results;
 });
 
 const progressColor = computed(() => {
