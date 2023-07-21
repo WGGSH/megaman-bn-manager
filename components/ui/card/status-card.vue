@@ -1,13 +1,13 @@
 <template>
   <v-card color="primary" class="pa-4">
     <v-row class="ma-n6">
-      <v-col cols="3">
+      <v-col cols="3" sm="6">
         <v-card-title>
           ステータス
         </v-card-title>
       </v-col>
 
-      <v-col cols="9">
+      <v-col v-if="maxCapacity !== 0" cols="9">
         <v-card-text>
           <v-progress-linear
             :model-value="currentCapacity"

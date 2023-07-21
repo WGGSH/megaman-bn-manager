@@ -1,9 +1,17 @@
 <template>
+  <v-text-field
+    v-model="search"
+    append-icon="mdi-magnify"
+    label="検索"
+    single-line
+    hide-details
+  />
   <v-data-table
     v-model="selectedPrograms"
     :items-per-page="itemsPerPage"
     :headers="headers"
     :items="programs"
+    :search="search"
     item-value="name"
     class="elevation-1"
     multi-sort
@@ -33,6 +41,8 @@ defineProps({
     required: true,
   },
 });
+
+const search = ref('');
 
 const itemsPerPage = ref(10);
 const selectedPrograms = ref([]);
