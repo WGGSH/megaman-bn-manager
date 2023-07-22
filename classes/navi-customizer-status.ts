@@ -3,6 +3,7 @@ import { MegamanStatus } from '@/classes/megaman-status';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
 import { AbilityBase } from '@/classes/ability/base';
+import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
 import { AbilityStatusBugPlus } from '@/classes/ability/status-bug-plus';
 import { AbilityBugStopper } from '@/classes/ability/bug-stopper';
 import { AbilitySupportBug } from '@/classes/ability/support-bug';
@@ -198,6 +199,15 @@ export class NaviCustomizerStatus {
     if (hasSupportBug) {
       const targetAbilities: Array<AbilityBase> = [AbilityRushSupport, AbilityBeatSupport, AbilityTangoSupport];
       addAbilities = addAbilities.filter((ability: AbilityBase) => !targetAbilities.find((targetAbility: AbilityBase) => ability instanceof targetAbility));
+    }
+
+    // アタックの特殊処理
+    // ナビカスと改造カードで上限値が異なるため，ナビカスの上限を超えていれば上限値に合わせる
+    const attackPluses = addAbilities.filter((ability: AbilityBase) => ability instanceof AbilityAttackPlus);
+    const totalAttackPlus: number = attackPluses.reduce((total: number, attackPlus: AbilityAttackPlus) => total + attackPlus.value, 0);
+    if (totalAttackPlus > 4) {
+      addAbilities = addAbilities.filter((ability: AbilityBase) => !(ability instanceof AbilityAttackPlus));
+      addAbilities.push(new AbilityAttackPlus(4));
     }
 
     resultAbilities = resultAbilities.concat(addAbilities);
