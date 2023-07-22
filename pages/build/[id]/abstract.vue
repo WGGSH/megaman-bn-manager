@@ -1,13 +1,46 @@
 <template>
   <v-container>
+    <v-dialog
+      v-model="dialog"
+    >
+      <v-card>
+        <v-card-title>
+          本当に削除しますか？
+        </v-card-title>
+
+        <v-card-actions>
+          <ui-button-accept
+            @click="dialog = false"
+          >
+            キャンセル
+          </ui-button-accept>
+
+          <ui-button-danger
+            color="red"
+            @click="deleteBuild"
+          >
+            削除する
+          </ui-button-danger>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <ui-text-title>
       ビルド概要
     </ui-text-title>
-    <ui-button-accept
-      @click="onClickSave"
-    >
-      保存する
-    </ui-button-accept>
+    <v-row class="ma-0">
+      <ui-button-accept
+        class="mr-auto"
+        @click="onClickSave"
+      >
+        保存する
+      </ui-button-accept>
+
+      <ui-button-danger
+        @click="onClickDelete"
+      >
+        削除する
+      </ui-button-danger>
+    </v-row>
   </v-container>
 
   <v-container class="pa-8">
@@ -64,6 +97,8 @@ const name = ref<string>();
 const versions = ref<Array<Version>>([]);
 const hpMemoryNum = ref<number>();
 
+const dialog = ref<boolean>(false);
+
 const versionList = [
   {
     key: 'G',
@@ -109,5 +144,14 @@ const onClickSave = () => {
     versions: versions.value,
     hpMemoryNum: hpMemoryNum.value,
   });
+};
+
+const onClickDelete = () => {
+  dialog.value = true;
+};
+
+const deleteBuild = () => {
+  buildManagerStore.deleteBuildById(selectedBuild.value.id);
+  router.push({ path: '/' });
 };
 </script>

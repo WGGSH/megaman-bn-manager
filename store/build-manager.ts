@@ -125,5 +125,10 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       if (registeredNaviCustomizerPrograms !== undefined) build.registeredNaviCustomizerPrograms = registeredNaviCustomizerPrograms;
       localStorage.setItem(`build-${id}`, JSON.stringify(build));
     },
+
+    deleteBuildById(id: number) {
+      localStorage.removeItem(`build-${id}`);
+      delete this.builds[id];
+    },
   },
 });

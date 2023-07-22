@@ -1,7 +1,7 @@
 <template>
-  <v-card color="primary" class="pa-4">
+  <v-card color="primary" class="pa-4" height="100%">
     <v-row class="ma-n6">
-      <v-col cols="3" sm="6">
+      <v-col cols="3" :sm="maxCapacity !== 0 ? 3 : 6">
         <v-card-title>
           ステータス
         </v-card-title>
