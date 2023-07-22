@@ -23,6 +23,7 @@
           :selected-program="selectedProgram"
           :program-state="programState"
           @add-program="addProgram"
+          @remove-program="removeProgram"
         />
       </v-col>
     </v-row>
@@ -38,6 +39,7 @@
       <v-col cols="12" sm="6">
         <ui-table-navi-customizer-program
           :programs="masterNaviCustomizerPrograms"
+          :selected-program="selectedProgram"
           @update-selected-program="updateSelectedProgram"
         />
       </v-col>
@@ -133,6 +135,9 @@ const updateProgramState = (state: NaviCustomizerProgramState) => {
 };
 
 const addProgram = (position) => {
+  if (!selectedProgram.value) {
+    return;
+  }
   navi.value.addProgram({
     ...programState.value,
     id: navi.value.registeredNaviCustomizerPrograms.length + 1,
@@ -140,6 +145,14 @@ const addProgram = (position) => {
     y: position.y,
     x: position.x,
   });
+};
+
+const removeProgram = (registeredProgramId) => {
+  const registeredNaviCustomizerProgram = navi.value.registeredNaviCustomizerPrograms.find((program) => program.id === registeredProgramId);
+  const masterProgram = masterNaviCustomizerPrograms.value.find((program) => program.id === registeredNaviCustomizerProgram.programId);
+  navi.value.removeProgram(registeredProgramId);
+  selectedProgram.value = masterProgram;
+  // 外したプログラムを選択状態にする
 };
 
 </script>

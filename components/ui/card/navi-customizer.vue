@@ -134,9 +134,9 @@ const onMouseLeave = () => {
   mousePosition.value = { x: null, y: null };
 };
 
-const emit = defineEmits(['add-program']);
+const emit = defineEmits(['add-program', 'remove-program']);
 
-const onClick = (y, x) => {
+const addProgram = (y, x) => {
   // 他のプログラムと重なっているかチェック
   // 枠からはみ出ているかもチェック
   const programCells = props.programState.isCompressed ? props.selectedProgram?.compressedCells : props.selectedProgram?.cells;
@@ -209,6 +209,26 @@ const onClick = (y, x) => {
     x: x - 2,
     y: y - 2,
   }, props.programState.value);
+};
+
+const removeProgram = (y, x) => {
+  // クリックしたマスにプログラムがある場合は削除する
+  const { targetY, targetX } = {
+    targetY: y - 2,
+    targetX: x - 2,
+  };
+  const { registeredProgramId } = props.cells[targetY][targetX];
+  if (registeredProgramId) {
+    emit('remove-program', registeredProgramId, null);
+  }
+};
+
+const onClick = (y, x) => {
+  if (props.selectedProgram) {
+    addProgram(y, x);
+  } else {
+    removeProgram(y, x);
+  }
 };
 </script>
 

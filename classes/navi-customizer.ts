@@ -118,4 +118,17 @@ export class NaviCustomizer {
   public addProgram(program: RegisteredNaviCustomizerProgram): void {
     this._registeredNaviCustomizerPrograms.push(program);
   }
+
+  public removeProgram(registeredProgramId: number): void {
+    this._registeredNaviCustomizerPrograms = this._registeredNaviCustomizerPrograms.filter((program) => program.id !== registeredProgramId);
+    // id を振り直す
+    const results = [];
+    this._registeredNaviCustomizerPrograms.forEach((program, i) => {
+      results.push({
+        ...program,
+        id: i + 1,
+      });
+    });
+    this._registeredNaviCustomizerPrograms = results;
+  }
 }

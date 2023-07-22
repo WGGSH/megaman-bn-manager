@@ -35,10 +35,15 @@
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { ColorText } from '@/value/color-text';
 
-defineProps({
+const props = defineProps({
   programs: {
     type: Array,
     required: true,
+  },
+  selectedProgram: {
+    type: Object,
+    required: false,
+    default: null,
   },
 });
 
@@ -75,6 +80,12 @@ watch(selectedPrograms, (newValue) => {
     emit('update-selected-program', null);
   } else {
     emit('update-selected-program', newValue[0]);
+  }
+});
+
+watch(props, () => {
+  if (props.selectedProgram) {
+    selectedPrograms.value = [props.selectedProgram];
   }
 });
 </script>
