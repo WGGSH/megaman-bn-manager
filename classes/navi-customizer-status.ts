@@ -5,6 +5,10 @@ import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
 import { AbilityBase } from '@/classes/ability/base';
 import { AbilityStatusBugPlus } from '@/classes/ability/status-bug-plus';
 import { AbilityBugStopper } from '@/classes/ability/bug-stopper';
+import { AbilitySupportBug } from '@/classes/ability/support-bug';
+import { AbilityRushSupport } from '@/classes/ability/rush-support';
+import { AbilityTangoSupport } from '@/classes/ability/tango-support';
+import { AbilityBeatSupport } from '@/classes/ability/beat-support';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 export class NaviCustomizerStatus {
@@ -187,6 +191,13 @@ export class NaviCustomizerStatus {
     const hasBugStopper = addAbilities.find((ability: AbilityBase) => ability instanceof AbilityBugStopper);
     if (hasBugStopper) {
       bugAbilities = [];
+    }
+
+    // サポートバグがあれば 各種サポートを削除する
+    const hasSupportBug = bugAbilities.find((ability: AbilityBase) => ability instanceof AbilitySupportBug);
+    if (hasSupportBug) {
+      const targetAbilities: Array<AbilityBase> = [AbilityRushSupport, AbilityBeatSupport, AbilityTangoSupport];
+      addAbilities = addAbilities.filter((ability: AbilityBase) => !targetAbilities.find((targetAbility: AbilityBase) => ability instanceof targetAbility));
     }
 
     resultAbilities = resultAbilities.concat(addAbilities);

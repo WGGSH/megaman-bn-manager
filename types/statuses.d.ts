@@ -22,12 +22,18 @@ import { StatusStatusGuard } from '@/classes/status/status-guard';
 import { StatusRushSupport } from '@/classes/status/rush-support';
 import { StatusBeatSupport } from '@/classes/status/beat-support';
 import { StatusTangoSupport } from '@/classes/status/tango-support';
+import { StatusSearchShuffle } from '@/classes/status/search-shuffle';
+import { StatusNumberOpen } from '@/classes/status/number-open';
+import { StatusSneakRun } from '@/classes/status/sneak-run';
+import { StatusMillionaire } from '@/classes/status/millionaire';
+import { StatusSlipRunner } from '@/classes/status/slip-runner';
+import { StatusSelfRecovery } from '@/classes/status/self-recovery';
 import { StatusMoveBug } from '@/classes/status/move-bug';
 import { StatusEmotionWindowBug } from '@/classes/status/emotion-window-bug';
 import { StatusCustomHpBug } from '@/classes/status/custom-hp-bug';
 import { StatusDamageHpBug } from '@/classes/status/damage-hp-bug';
 import { StatusDamagePanicBug } from '@/classes/status/damage-panic-bug';
-import { StatusResultBug } from '@/classes/status/result-bug';
+import { StatusSupportBug } from '@/classes/status/support-bug';
 
 import { StatusFirstBarrierChange } from '@/classes/status/first-barrier-change';
 import { StatusBusterChange } from '@/classes/status/buster-change';
@@ -38,6 +44,9 @@ import { StatusLeftBChange } from '@/classes/status/left-b-change';
 import { StatusGaugeChange } from '@/classes/status/gauge-change';
 import { StatusMoveChange } from '@/classes/status/move-change';
 import { StatusBodyChange } from '@/classes/status/body-change';
+import { StatusEncountChange } from '@/classes/status/encount-change';
+import { StatusHumorChange } from '@/classes/status/humor-change';
+import { StatusCollectorChange } from '@/classes/status/collector-change';
 
 export type Statuses = {
   hp: StatusHp,
@@ -64,12 +73,18 @@ export type Statuses = {
   rushSupport: StatusRushSupport,
   beatSupport: StatusBeatSupport,
   tangoSupport: StatusTangoSupport,
+  searchShuffle: StatusSearchShuffle,
+  numberOpen: StatusNumberOpen,
+  sneakRun: StatusSneakRun,
+  millionaire: StatusMillionaire,
+  slipRunner: StatusSlipRunner,
+  selfRecovery: StatusSelfRecovery,
   moveBug: StatusMoveBug,
   emotionWindowBug: StatusEmotionWindowBug,
   customHpBug: StatusCustomHpBug,
   damageHpBug: StatusDamageHpBug,
   damagePanicBug: StatusDamagePanicBug,
-  resultBug: StatusResultBug,
+  supportBug: StatusSupportBug,
 
   firstBarrierChange: StatusFirstBarrierChange,
   busterChange: StatusBusterChange,
@@ -80,4 +95,7 @@ export type Statuses = {
   gaugeChange: StatusGaugeChange,
   moveChange: StatusMoveChange,
   bodyChange: StatusBodyChange,
+  encountChange: StatusEncountChange,
+  humorChange: StatusHumorChange,
+  collectorChange: StatusCollectorChange,
 };

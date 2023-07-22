@@ -481,8 +481,8 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "enemy-element-search",
-          "value": "fire"
+          "key": "encount-change",
+          "value": "oil-body"
         }
       ],
       "bug-abilities": [
@@ -509,8 +509,8 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "enemy-element-search",
-          "value": "aqua"
+          "key": "encount-change",
+          "value": "iam-fish"
         }
       ],
       "bug-abilities": [
@@ -537,8 +537,8 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "enemy-element-search",
-          "value": "elec"
+          "key": "encount-change",
+          "value": "battery-mode"
         }
       ],
       "bug-abilities": [
@@ -565,8 +565,8 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "enemy-element-search",
-          "value": "wood"
+          "key": "encount-change",
+          "value": "jungle-land"
         }
       ],
       "bug-abilities": [
@@ -593,14 +593,14 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "collectors-eye",
-          "value": 1
+          "key": "collector-change",
+          "value": "collector-eye"
         }
       ],
       "bug-abilities": [
         {
-          "key": "collector-bug",
-          "value": 1
+          "key": "collector-change",
+          "value": "collector-bug"
         }
       ],
       "cells": [
@@ -627,8 +627,8 @@
       ],
       "bug-abilities": [
         {
-          "key": "collector-bug",
-          "value": 1
+          "key": "collector-change",
+          "value": "collector-bug"
         }
       ],
       "cells": [
@@ -649,8 +649,8 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "humor-sense",
-          "value": 1
+          "key": "humor-change",
+          "value": "humor-sense"
         }
       ],
       "bug-abilities": [
@@ -677,8 +677,8 @@
       "is-program": 1,
       "add-abilities": [
         {
-          "key": "rhythmical-poem",
-          "value": 1
+          "key": "humor-change",
+          "value": "rhythmic-poem"
         }
       ],
       "bug-abilities": [

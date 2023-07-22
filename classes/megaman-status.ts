@@ -23,12 +23,18 @@ import { StatusStatusGuard } from '@/classes/status/status-guard';
 import { StatusRushSupport } from '@/classes/status/rush-support';
 import { StatusBeatSupport } from '@/classes/status/beat-support';
 import { StatusTangoSupport } from '@/classes/status/tango-support';
+import { StatusSearchShuffle } from '@/classes/status/search-shuffle';
+import { StatusNumberOpen } from '@/classes/status/number-open';
+import { StatusSneakRun } from '@/classes/status/sneak-run';
+import { StatusMillionaire } from '@/classes/status/millionaire';
+import { StatusSlipRunner } from '@/classes/status/slip-runner';
+import { StatusSelfRecovery } from '@/classes/status/self-recovery';
 import { StatusMoveBug } from '@/classes/status/move-bug';
 import { StatusEmotionWindowBug } from '@/classes/status/emotion-window-bug';
 import { StatusCustomHpBug } from '@/classes/status/custom-hp-bug';
 import { StatusDamageHpBug } from '@/classes/status/damage-hp-bug';
 import { StatusDamagePanicBug } from '@/classes/status/damage-panic-bug';
-import { StatusResultBug } from '@/classes/status/result-bug';
+import { StatusSupportBug } from '@/classes/status/support-bug';
 
 import { StatusFirstBarrierChange } from '@/classes/status/first-barrier-change';
 import { StatusBusterChange } from '@/classes/status/buster-change';
@@ -39,6 +45,9 @@ import { StatusLeftBChange } from '@/classes/status/left-b-change';
 import { StatusGaugeChange } from '@/classes/status/gauge-change';
 import { StatusMoveChange } from '@/classes/status/move-change';
 import { StatusBodyChange } from '@/classes/status/body-change';
+import { StatusCollectorChange } from '@/classes/status/collector-change';
+import { StatusEncountChange } from '@/classes/status/encount-change';
+import { StatusHumorChange } from '@/classes/status/humor-change';
 
 import { StatusBaseNumber } from '@/classes/status/base/number';
 import { Statuses } from '@/types/statuses';
@@ -61,6 +70,7 @@ export class MegamanStatus {
     'chip-recovery': 'chipRecovery',
     'custom-damage-bug': 'customDamageBug',
     'panel-bug': 'panelBug',
+    'panel-bug-plus': 'panelBug',
     'custom-open-bug': 'customOpenBug',
     'custom-open-bug-plus': 'customOpenBug',
     'battle-hp-bug': 'battleHpBug',
@@ -69,7 +79,7 @@ export class MegamanStatus {
     'status-bug-plus': 'statusBug',
     'buster-bug': 'busterBug',
     'buster-bug-plus': 'busterBug',
-    'encount-bug': 'encountBug',
+    'encount-bug-plus': 'encountBug',
 
     'air-shoes': 'airShoes',
     'float-shoes': 'floatShoes',
@@ -79,12 +89,19 @@ export class MegamanStatus {
     'rush-support': 'rushSupport',
     'beat-support': 'beatSupport',
     'tango-support': 'tangoSupport',
+    'search-shuffle': 'searchShuffle',
+    'number-open': 'numberOpen',
+    'sneak-run': 'sneakRun',
+    'collector-change': 'collectorChange',
+    millionaire: 'millionaire',
+    'slip-runner': 'slipRunner',
+    'self-recovery': 'selfRecovery',
     'move-bug': 'moveBug',
     'emotion-window-bug': 'emotionWindowBug',
     'custom-hp-bug': 'customHpBug',
     'damage-hp-bug': 'damageHpBug',
     'damage-panic-bug': 'damagePanicBug',
-    'result-bug': 'resultBug',
+    'support-bug': 'supportBug',
     'bug-stopper': 'bugStopper',
 
     'first-barrier': 'firstBarrierChange',
@@ -97,6 +114,8 @@ export class MegamanStatus {
     'gauge-change': 'gaugeChange',
     'move-change': 'moveChange',
     'body-change': 'bodyChange',
+    'encount-change': 'encountChange',
+    'humor-change': 'humorChange',
   };
 
   constructor() {
@@ -126,12 +145,18 @@ export class MegamanStatus {
       rushSupport: new StatusRushSupport(false),
       beatSupport: new StatusBeatSupport(false),
       tangoSupport: new StatusTangoSupport(false),
+      searchShuffle: new StatusSearchShuffle(false),
+      numberOpen: new StatusNumberOpen(false),
+      sneakRun: new StatusSneakRun(false),
+      millionaire: new StatusMillionaire(false),
+      slipRunner: new StatusSlipRunner(false),
+      selfRecovery: new StatusSelfRecovery(false),
       moveBug: new StatusMoveBug(false),
       emotionWindowBug: new StatusEmotionWindowBug(false),
       customHpBug: new StatusCustomHpBug(false),
       damageHpBug: new StatusDamageHpBug(false),
       damagePanicBug: new StatusDamagePanicBug(false),
-      resultBug: new StatusResultBug(false),
+      supportBug: new StatusSupportBug(false),
 
       firstBarrierChange: new StatusFirstBarrierChange('none'),
       busterChange: new StatusBusterChange('none'),
@@ -142,6 +167,9 @@ export class MegamanStatus {
       gaugeChange: new StatusGaugeChange('none'),
       moveChange: new StatusMoveChange('none'),
       bodyChange: new StatusBodyChange('none'),
+      encountChange: new StatusEncountChange('none'),
+      humorChange: new StatusHumorChange('none'),
+      collectorChange: new StatusCollectorChange('none'),
     };
     this._abilities = [];
     this.initialize();
@@ -221,12 +249,18 @@ export class MegamanStatus {
       rushSupport: new StatusRushSupport(false),
       beatSupport: new StatusBeatSupport(false),
       tangoSupport: new StatusTangoSupport(false),
+      searchShuffle: new StatusSearchShuffle(false),
+      numberOpen: new StatusNumberOpen(false),
+      sneakRun: new StatusSneakRun(false),
+      millionaire: new StatusMillionaire(false),
+      slipRunner: new StatusSlipRunner(false),
+      selfRecovery: new StatusSelfRecovery(false),
       moveBug: new StatusMoveBug(false),
       emotionWindowBug: new StatusEmotionWindowBug(false),
       customHpBug: new StatusCustomHpBug(false),
       damageHpBug: new StatusDamageHpBug(false),
       damagePanicBug: new StatusDamagePanicBug(false),
-      resultBug: new StatusResultBug(false),
+      supportBug: new StatusSupportBug(false),
 
       firstBarrierChange: new StatusFirstBarrierChange('none'),
       busterChange: new StatusBusterChange('none'),
@@ -237,10 +271,20 @@ export class MegamanStatus {
       gaugeChange: new StatusGaugeChange('none'),
       moveChange: new StatusMoveChange('none'),
       bodyChange: new StatusBodyChange('none'),
+      encountChange: new StatusEncountChange('none'),
+      humorChange: new StatusHumorChange('none'),
+      collectorChange: new StatusCollectorChange('none'),
     };
   }
 
   private applyAbilities() {
+    // サポートバグが存在するかチェック
+    const hasSupportBug = this._abilities.some((ability) => ability.key === 'support-bug');
+
+    if (hasSupportBug) {
+      this._abilities = this._abilities.filter((ability) => !(ability.key === 'rush-support' || ability.key === 'beat-support' || ability.key === 'tango-support'));
+    }
+
     this._abilities.forEach((ability) => {
       this.applyAbility(ability);
     });

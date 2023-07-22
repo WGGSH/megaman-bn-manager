@@ -25,14 +25,23 @@ import { AbilityUnderShirt } from '@/classes/ability/under-shirt';
 import { AbilityRushSupport } from '@/classes/ability/rush-support';
 import { AbilityBeatSupport } from '@/classes/ability/beat-support';
 import { AbilityTangoSupport } from '@/classes/ability/tango-support';
+import { AbilitySneakRun } from '@/classes/ability/sneak-run';
+import { AbilitySearchShuffle } from '@/classes/ability/search-shuffle';
+import { AbilityNumberOpen } from '@/classes/ability/number-open';
+import { AbilityMillionaire } from '@/classes/ability/millionaire';
+import { AbilitySlipRunner } from '@/classes/ability/slip-runner';
+import { AbilitySelfRecovery } from '@/classes/ability/self-recovery';
 import { AbilityMoveBug } from '@/classes/ability/move-bug';
 import { AbilityEmotionWindowBug } from '@/classes/ability/emotion-window-bug';
-import { AbilityResultBug } from '@/classes/ability/result-bug';
 import { AbilityDamageHpBug } from '@/classes/ability/damage-hp-bug';
+import { AbilitySupportBug } from '@/classes/ability/support-bug';
 import { AbilityBugStopper } from '@/classes/ability/bug-stopper';
 
 import { AbilityFirstBarrierChange } from '@/classes/ability/first-barrier-change';
 import { AbilityLeftBChange } from '@/classes/ability/left-b-change';
+import { AbilityEncountChange } from '@/classes/ability/encount-change';
+import { AbilityHumorChange } from '@/classes/ability/humor-change';
+import { AbilityCollectorChange } from '@/classes/ability/collector-change';
 
 import programData from '@/assets/master-data/navi-customizer-program.json';
 
@@ -115,11 +124,26 @@ AbilityBase | null => {
     case 'tango-support':
       return new AbilityTangoSupport(value as boolean);
 
+    case 'sneak-run':
+      return new AbilitySneakRun(value as boolean);
+
+    case 'search-shuffle':
+      return new AbilitySearchShuffle(value as boolean);
+
+    case 'number-open':
+      return new AbilityNumberOpen(value as boolean);
+
+    case 'millionaire':
+      return new AbilityMillionaire(value as boolean);
+
+    case 'slip-runner':
+      return new AbilitySlipRunner(value as boolean);
+
+    case 'self-recovery':
+      return new AbilitySelfRecovery(value as boolean);
+
     case 'emotion-window-bug':
       return new AbilityEmotionWindowBug(value as boolean);
-
-    case 'result-bug':
-      return new AbilityResultBug(value as boolean);
 
     case 'move-bug':
       return new AbilityMoveBug(value as boolean);
@@ -127,11 +151,23 @@ AbilityBase | null => {
     case 'damage-hp-bug':
       return new AbilityDamageHpBug(value as boolean);
 
+    case 'support-bug':
+      return new AbilitySupportBug(value as boolean);
+
     case 'first-barrier-change':
       return new AbilityFirstBarrierChange(value as string);
 
     case 'left-b-change':
       return new AbilityLeftBChange(value as string);
+
+    case 'encount-change':
+      return new AbilityEncountChange(value as string);
+
+    case 'humor-change':
+      return new AbilityHumorChange(value as string);
+
+    case 'collector-change':
+      return new AbilityCollectorChange(value as string);
 
     case 'bug-stopper':
       return new AbilityBugStopper(value as boolean);
