@@ -20,14 +20,21 @@
           @mouseenter="onMouseEnter(rowIndex, cellIndex)"
           @mouseleave="onMouseLeave()"
           @click="onClick(rowIndex, cellIndex)"
-        />
+        >
+          <v-icon
+            v-if="cell.programId && !cell.isProgram"
+            color="grey-darken-3"
+            class="plus-part"
+          >
+            mdi-plus
+          </v-icon>
+        </v-card>
       </div>
     </div>
   </v-card>
 </template>
 
 <script setup lang="ts">
-// import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 import { ProgramColors } from '@/value/program-colors';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 
@@ -116,6 +123,7 @@ const overlayCells = computed(() => {
               cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX] = {
                 programId: props.selectedProgram.id,
                 color: props.selectedProgram.color,
+                isProgram: props.selectedProgram.isProgram,
               };
             }
           }
@@ -245,6 +253,16 @@ const onClick = (y, x) => {
 
     &.transparent {
       border: 1px solid transparent;
+    }
+
+    .plus-part {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      font-size: 70px;
+      opacity: 20%;
     }
   }
 }

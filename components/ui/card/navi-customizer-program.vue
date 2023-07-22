@@ -52,7 +52,7 @@
                 <v-icon
                   v-if="cell && !naviCustomizerProgram.isProgram"
                   color="grey-darken-3"
-                  style="font-size: 70px;"
+                  style="font-size: 70px; opacity: 20%"
                 >
                   mdi-plus
                 </v-icon>

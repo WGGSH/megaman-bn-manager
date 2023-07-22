@@ -19,24 +19,28 @@ export class NaviCustomizer {
             programId: null,
             registeredProgramId: null,
             color: 'grey-darken-4',
+            isProgram: false,
           };
         } else if (i === 3) {
           result[i][j] = {
             programId: null,
             registeredProgramId: null,
             color: 'grey-lighten-1',
+            isProgram: false,
           };
         } else if (i === 0 || i === NaviCustomizer.rows - 1 || j === 0 || j === NaviCustomizer.cols - 1) {
           result[i][j] = {
             programId: null,
             registeredProgramId: null,
             color: 'grey-darken-1',
+            isProgram: false,
           };
         } else {
           result[i][j] = {
             programId: null,
             registeredProgramId: null,
             color: 'grey',
+            isProgram: false,
           };
         }
       }
@@ -87,6 +91,7 @@ export class NaviCustomizer {
               programId: program.programId,
               registeredProgramId: program.id,
               color: masterNaviCustomizerProgram.color,
+              isProgram: masterNaviCustomizerProgram.isProgram,
             };
           }
         });
