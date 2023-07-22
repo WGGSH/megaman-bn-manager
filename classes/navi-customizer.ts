@@ -58,9 +58,6 @@ export class NaviCustomizer {
       programCells.forEach((row, i) => {
         row.forEach((cell, j) => {
           if (cell) {
-            if (i + program.y < 0 || i + program.y >= NaviCustomizer.rows) {
-              return;
-            }
             // 回転を考慮する
             let targetY: number;
             let targetX: number;
