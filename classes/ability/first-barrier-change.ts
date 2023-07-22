@@ -10,8 +10,20 @@ export class AbilityFirstBarrierChange extends AbilityBaseString {
       case 'none':
         return 'バリア: なし';
 
+      case 'barrier-10':
+        return 'バリア';
+
       case 'bubble-wrap':
         return 'バブルラップ';
+
+      case 'barrier-100':
+        return 'バリア100';
+
+      case 'barrier-200':
+        return 'バリア200';
+
+      case 'dream-aura':
+        return 'ドリームオーラ';
 
       default:
         return 'バリア: 不明';

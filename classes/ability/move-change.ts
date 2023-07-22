@@ -13,6 +13,15 @@ export class AbilityMoveChange extends AbilityBaseString {
       case 'ice':
         return '氷パネル';
 
+      case 'grass':
+        return 'くさむら';
+
+      case 'crack':
+        return 'ヒビ';
+
+      case 'hole':
+        return 'あな';
+
       default:
         return '不明';
     }

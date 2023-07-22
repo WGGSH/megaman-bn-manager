@@ -13,6 +13,27 @@ export class StatusLeftBChange extends StatusBaseString {
       case 'shield':
         return 'シールド';
 
+      case 'reflect':
+        return 'リフレクト';
+
+      case 'anti-damage':
+        return 'カワリミ';
+
+      case 'stop':
+        return '足止め';
+
+      case 'vacuum':
+        return 'スイコミ';
+
+      case 'meteor-3':
+        return 'メテオx3';
+
+      case 'risky-hunny':
+        return 'リスキーハニー';
+
+      case 'machine-sword':
+        return 'マシーンソード';
+
       default:
         return '不明';
     }

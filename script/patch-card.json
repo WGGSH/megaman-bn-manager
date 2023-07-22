@@ -520,7 +520,7 @@
     },
     "ability-2": {
       "key": "buster-addition-change",
-      "value": "grass"
+      "value": "panel-grass"
     },
     "ability-3": {
       "key": "body-change",
@@ -969,7 +969,7 @@
       "value": "100"
     },
     "ability-2": {
-      "key": "cs-change",
+      "key": "cs-addition-change",
       "value": "hp-bug"
     },
     "ability-3": {
@@ -1749,7 +1749,7 @@
       "value": "elec"
     },
     "ability-2": {
-      "key": "buster-addition-change",
+      "key": "baster-addition-change",
       "value": "panel-crack"
     },
     "ability-3": {
@@ -2062,7 +2062,7 @@
     },
     "ability-5": {
       "key": "move-change",
-      "value": "glass"
+      "value": "grass"
     },
     "ability-6": {
       "key": "",
@@ -2350,7 +2350,7 @@
     },
     "ability-2": {
       "key": "buster-addition-change",
-      "value": "panel-glass"
+      "value": "panel-grass"
     },
     "ability-3": {
       "key": "custom-damage-bug-change",
@@ -2744,7 +2744,7 @@
     },
     "ability-3": {
       "key": "cs-addition-change",
-      "value": "panel-glass"
+      "value": "panel-grass"
     },
     "ability-4": {
       "key": "mega-plus",
@@ -3018,7 +3018,7 @@
     },
     "ability-4": {
       "key": "gauge-change",
-      "value": "heavy"
+      "value": "heavy-gauge"
     },
     "ability-5": {
       "key": "",
@@ -3168,7 +3168,7 @@
     },
     "ability-4": {
       "key": "buster-addition-change",
-      "value": "panel-glass"
+      "value": "panel-grass"
     },
     "ability-5": {
       "key": "cs-change",

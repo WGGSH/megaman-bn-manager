@@ -13,8 +13,20 @@ export class AbilityBusterChange extends AbilityBaseString {
       case 'meteor-1':
         return 'メテオx1';
 
-      case 'mini-bomb':
+      case 'minibomb':
         return 'ミニボム';
+
+      case 'sword':
+        return 'ソード';
+
+      case 'crack-shoot':
+        return 'クラックシュート';
+
+      case 'triple-buster':
+        return 'トリプルバスター';
+
+      case 'charge-shot':
+        return 'チャージショット';
 
       default:
         return '不明';

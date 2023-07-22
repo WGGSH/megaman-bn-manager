@@ -13,6 +13,21 @@ export class StatusBusterAdditionChange extends StatusBaseString {
       case 'pull':
         return '左に引き寄せ';
 
+      case 'push':
+        return '1マス右押し';
+
+      case 'grass':
+        return 'パネルくさむら';
+
+      case 'panel-crack':
+        return 'パネルヒビ';
+
+      case 'panel-ice':
+        return 'パネルこおり';
+
+      case 'panel-poison':
+        return 'パネルどくぬま';
+
       default:
         return '不明';
     }

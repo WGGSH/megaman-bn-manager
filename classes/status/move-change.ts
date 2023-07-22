@@ -8,10 +8,19 @@ export class StatusMoveChange extends StatusBaseString {
   public valueToString(): string {
     switch (this._value) {
       case 'none':
-        return '通常';
+        return 'なし';
 
       case 'ice':
         return '氷パネル';
+
+      case 'grass':
+        return 'くさむら';
+
+      case 'crack':
+        return 'ヒビ';
+
+      case 'hole':
+        return 'あな';
 
       default:
         return '不明';
@@ -23,6 +32,6 @@ export class StatusMoveChange extends StatusBaseString {
   }
 
   public toString(): string {
-    return `移動: ${this.valueToString()}`;
+    return `移動時のパネル変化: ${this.valueToString()}`;
   }
 }

@@ -10,8 +10,20 @@ export class StatusFirstBarrierChange extends StatusBaseString {
       case 'none':
         return 'バリア: OFF';
 
+      case 'barrier-10':
+        return 'バリア';
+
       case 'bubble-wrap':
         return 'バブルラップ';
+
+      case 'barrier-100':
+        return 'バリア100';
+
+      case 'barrier-200':
+        return 'バリア200';
+
+      case 'dream-aura':
+        return 'ドリームオーラ';
 
       default:
         return 'バリア: 不明';
