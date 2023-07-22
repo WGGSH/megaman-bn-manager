@@ -54,22 +54,18 @@
 <script setup lang="ts">
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
-import { NaviCustomizerStatus } from '@/classes/navi-customizer-status';
 import { useBuildManagerStore } from '@/store/build-manager';
-
+import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 const router = useRouter();
 const route = useRoute();
 
 const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
-
 const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramStore.programs);
 
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
-
-const naviCustomizerStatus = ref(new NaviCustomizerStatus());
 
 const selectedProgram = ref<object | null>(null);
 const programState = ref({
@@ -79,6 +75,9 @@ const programState = ref({
 
 const buildManagerStore = useBuildManagerStore();
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+
+const megamanStatusStore = useMegamanStatusStore();
+const naviCustomizerStatus = computed(() => megamanStatusStore.naviCustomizerStatus);
 
 const loadNaviCustomizerPrograms = () => {
   if (!selectedBuild.value) {
@@ -102,13 +101,11 @@ watch(navi, (value) => {
   if (!value) {
     return;
   }
-  naviCustomizerStatus.value.updateStatus(value.registeredNaviCustomizerPrograms, value.cells, selectedBuild.value.hpMemoryNum);
+  megamanStatusStore.update(selectedBuild.value.hpMemoryNum, value.registeredNaviCustomizerPrograms, value.cells);
 }, { deep: true });
 
 onMounted(() => {
-  if (!masterNaviCustomizerProgramStore.isFetched) {
-    masterNaviCustomizerProgramStore.fetchPrograms();
-  }
+  masterNaviCustomizerProgramStore.fetchPrograms();
   buildManagerStore.setSelectedBuildById(route.params.id);
   if (!selectedBuild) {
     router.push({ path: '/' });

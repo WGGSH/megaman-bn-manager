@@ -78,6 +78,8 @@ import draggable from 'vuedraggable';
 import lodash from 'lodash';
 import { PatchCard } from '@/classes/patch-card';
 import { MegamanStatus } from '@/classes/megaman-status';
+import { NaviCustomizer } from '@/classes/navi-customizer';
+import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useBuildManagerStore } from '@/store/build-manager';
 
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
@@ -96,6 +98,8 @@ const buildManagerStore = useBuildManagerStore();
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
 const items = ref([]);
+
+const megamanStatusStore = useMegamanStatusStore();
 
 const maxCapacity = 80;
 const currentCapacity = computed(() => {
@@ -126,12 +130,32 @@ const loadStatus = () => {
   }).filter((patchCard) => patchCard !== null);
 };
 
+const navi = ref(new NaviCustomizer());
+
+const loadNaviCustomizerPrograms = () => {
+  if (!selectedBuild.value) {
+    return;
+  }
+
+  navi.value = new NaviCustomizer();
+  selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program) => {
+    navi.value.addProgram(program);
+  });
+};
+
 watch(items, (value) => {
   megamanStatus.value = new MegamanStatus();
   if (!selectedBuild.value) {
     return;
   }
   megamanStatus.value.hpMemoryNum = selectedBuild.value.hpMemoryNum;
+
+  loadNaviCustomizerPrograms();
+  megamanStatusStore.update(selectedBuild.value.hpMemoryNum, navi.value.registeredNaviCustomizerPrograms, navi.value.cells);
+
+  megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability) => {
+    megamanStatus.value.pushAbility(ability);
+  });
 
   value.forEach((patchCard: PatchCard) => {
     if (!patchCard.isActive) {
@@ -196,5 +220,4 @@ const isAlreadyAdded = (patchCard: PatchCard) => {
   const found = items.value.find((item: PatchCard) => item.id === patchCard.id);
   return !!found;
 };
-
 </script>

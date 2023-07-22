@@ -154,6 +154,7 @@ MasterNaviCustomizerProgramActions>({
   },
   actions: {
     fetchPrograms() {
+      if (this.isFetched) return;
       this.programs = programData.programs.map((program) => {
         const addAbilities = program['add-abilities'].map(
           (ability) => createAbilityInstance(ability.key, ability.value),

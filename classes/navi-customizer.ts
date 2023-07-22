@@ -43,6 +43,7 @@ export class NaviCustomizer {
     }
 
     const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
+    masterNaviCustomizerProgramStore.fetchPrograms();
     const masterNaviCustomizerPrograms = masterNaviCustomizerProgramStore.programs;
 
     this._registeredNaviCustomizerPrograms.forEach((program) => {
@@ -100,6 +101,10 @@ export class NaviCustomizer {
   }
 
   constructor() {
+    this._registeredNaviCustomizerPrograms = [];
+  }
+
+  public initialize(): void {
     this._registeredNaviCustomizerPrograms = [];
   }
 
