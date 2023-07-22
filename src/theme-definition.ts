@@ -1,12 +1,6 @@
 export class ThemeDefinition {
   public static readonly defaultTheme = 'light-gregar';
 
-  // public static readonly variations: {
-  //   colors: ['primary'],
-  //   lighten: 3,
-  //   darken: 3,
-  // };
-
   public static readonly commonColors = {
     // secondary: '#424242',
     accent: '#82B1FF',
@@ -17,6 +11,7 @@ export class ThemeDefinition {
     positive: '#2196F3',
     negative: '#F44336',
     disabled: '#9E9E9E',
+    pink: '#ff99e2',
   };
 
   public static readonly versionColors = {
@@ -28,12 +23,20 @@ export class ThemeDefinition {
       primary: '#e0ab2d',
       secondary: '#28d4a9',
     },
+    'proto-man': {
+      primary: '#cc3429',
+      secondary: '#29aecc',
+    },
+    colonel: {
+      primary: '#29aecc',
+      secondary: '#cc3429',
+    },
   };
 
   public static get themes() {
     const themes = {};
     ['light', 'dark'].forEach((bright) => {
-      ['gregar', 'falzar'].forEach((version) => {
+      Object.keys(ThemeDefinition.versionColors).forEach((version) => {
         const name = `${bright}-${version}`;
         themes[name] = {
           dark: bright === 'dark',

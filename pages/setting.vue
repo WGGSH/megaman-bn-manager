@@ -64,6 +64,8 @@ onMounted(() => {
 const versions = [
   { label: 'グレイガ', value: 'gregar' },
   { label: 'ファルザー', value: 'falzar' },
+  { label: 'ブルース', value: 'proto-man' },
+  { label: 'カーネル', value: 'colonel' },
 ];
 
 const onChangeTheme = () => {
