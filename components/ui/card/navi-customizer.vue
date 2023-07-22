@@ -11,9 +11,10 @@
         v-for="(cell, cellIndex) in row"
         :key="cellIndex"
       >
+        <!-- :class="{ transparent: cell.color === 'transparent', 'elevation-0': cell.color === 'transparent' }" -->
         <v-card
           class="pa-5 elevation-1 rounded-0 cell"
-          :class="{ transparent: cell.color === 'transparent', 'elevation-0': cell.color === 'transparent' }"
+          :class="getCellClass(rowIndex, cellIndex)"
           width="100%"
           height="100%"
           :color="cell.color"
@@ -238,6 +239,45 @@ const onClick = (y, x) => {
     removeProgram(y, x);
   }
 };
+
+const getCellClass = (y, x) => {
+  // let [hasBorderTop, hasBorderBottom, hasBorderRight, hasBorderLeft] = [false, false, false, false];
+  let [hasBorderTop, hasBorderBottom, hasBorderRight, hasBorderLeft] = [true, true, true, true];
+
+  const cell = overlayCells.value[y][x];
+  // 上
+  if (y > 0) {
+    if (overlayCells.value[y - 1][x].programId === cell.programId) {
+      hasBorderTop = false;
+    }
+  }
+  // 下
+  if (y < overWidth - 1) {
+    if (overlayCells.value[y + 1][x].programId === cell.programId) {
+      hasBorderBottom = false;
+    }
+  }
+  // 右
+  if (x < overWidth - 1) {
+    if (overlayCells.value[y][x + 1].programId === cell.programId) {
+      hasBorderRight = false;
+    }
+  }
+  // 左
+  if (x > 0) {
+    if (overlayCells.value[y][x - 1].programId === cell.programId) {
+      hasBorderLeft = false;
+    }
+  }
+  return {
+    transparent: overlayCells.value[y][x].color === 'transparent',
+    'elevation-0': overlayCells.value[y][x].color === 'transparent',
+    'has-border-top': hasBorderTop,
+    'has-border-bottom': hasBorderBottom,
+    'has-border-right': hasBorderRight,
+    'has-border-left': hasBorderLeft,
+  };
+};
 </script>
 
 <style scoped lang="scss">
@@ -249,9 +289,30 @@ const onClick = (y, x) => {
   justify-content: center;
 
   .cell {
-    border: 1px solid #000;
+    // border: 1px solid #000;
+
+    &.has-border-top {
+      margin-top: -1px;
+      border-top: 1px solid #001;
+    }
+
+    &.has-border-bottom {
+      margin-bottom: -1px;
+      border-bottom: 1px solid #000;
+    }
+
+    &.has-border-left {
+      margin-left: -1px;
+      border-left: 1px solid #000;
+    }
+
+    &.has-border-right {
+      margin-right: -1px;
+      border-right: 1px solid #000;
+    }
 
     &.transparent {
+      margin: -1px;
       border: 1px solid transparent;
     }
 
