@@ -141,6 +141,8 @@ const onClick = (y, x) => {
   // 枠からはみ出ているかもチェック
   const programCells = props.programState.isCompressed ? props.selectedProgram?.compressedCells : props.selectedProgram?.cells;
   if (programCells) {
+    let isInclude: boolean = false;
+
     for (let i = 0; i < programCells.length; i += 1) {
       for (let j = 0; j < programCells[i].length; j += 1) {
         if (programCells[i][j]) {
@@ -186,13 +188,23 @@ const onClick = (y, x) => {
           ) {
             return;
           }
+          // すでにプログラムがある場合は，追加しない
           if (ProgramColors.includes(props.cells[y + targetY - 2][x + targetX - 2].color)) {
             return;
+          }
+          // 中央の5x5に入っている場合はフラグを建てる
+          if (y + targetY >= 3 && y + targetY <= 7 && x + targetX >= 3 && x + targetX <= 7) {
+            isInclude = true;
           }
         }
       }
     }
+
+    if (!isInclude) {
+      return;
+    }
   }
+
   emit('add-program', {
     x: x - 2,
     y: y - 2,
