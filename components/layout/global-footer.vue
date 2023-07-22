@@ -13,6 +13,7 @@
           :key="menu.icon"
           class="mx-auto"
           variant="plain"
+          :disabled="disabled"
           @click="changeRoute(menu.path)"
         >
           <v-icon size="36px">
@@ -52,17 +53,11 @@ const footerMenus = ref([
     icon: 'mdi-credit-card-multiple',
     path: 'patch-card',
   },
-  {
-    icon: 'mdi-cog',
-    path: '/setting',
-  },
 ]);
 
 const changeRoute = (path: string) => {
-  if (path === '/setting') {
-    router.push(path);
-    return;
-  }
   router.push(`/build/${selectedBuildId.value}/${path}`);
 };
+
+const disabled = computed(() => selectedBuildId.value === null);
 </script>

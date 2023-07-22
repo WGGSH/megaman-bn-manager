@@ -9,7 +9,11 @@
       @select-build="onSelectBuild"
     />
 
-    <layout-global-header @on-click-nav-icon="onUpdateDrawer" />
+    <layout-global-header
+      @on-click-nav-icon="onUpdateDrawer"
+      @on-click-title="goHome"
+      @on-click-setting-icon="goSetting"
+    />
 
     <v-main>
       <nuxt-page />
@@ -52,5 +56,13 @@ const onAddBuild = () => {
 
 const onSelectBuild = (id: Number) => {
   router.push({ path: `/build/${id}/abstract` });
+};
+
+const goHome = () => {
+  router.push({ path: '/' });
+};
+
+const goSetting = () => {
+  router.push({ path: '/setting' });
 };
 </script>

@@ -21,7 +21,7 @@ interface BuildManagerGetters {
 
 interface BuildManagerActions {
   fetch: () => void;
-  setSelectedBuildById: (id: number) => void;
+  setSelectedBuildById: (id: number | null) => void;
   addBuild: (name?: string) => Build;
   generateDefaultBuild: () => Build;
   getMaxBuildId: () => number;
@@ -74,7 +74,7 @@ export const useBuildManagerStore = defineStore<string, BuildManagerState, Build
       });
     },
 
-    setSelectedBuildById(id: number) {
+    setSelectedBuildById(id: number | null) {
       this.selectedBuildId = id;
     },
 

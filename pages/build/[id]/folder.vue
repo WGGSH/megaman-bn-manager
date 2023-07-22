@@ -89,10 +89,6 @@ watch(selectedBuild, (value) => {
   loadFolder();
 }, { deep: true });
 
-watch(chipFolder.value, () => {
-  console.log(chipFolder.value);
-});
-
 onMounted(() => {
   masterBattleChipStore.fetchBattleChips();
   buildManagerStore.setSelectedBuildById(route.params.id);

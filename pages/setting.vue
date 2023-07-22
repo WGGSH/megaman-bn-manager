@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { ThemeBright } from '@/types/theme/bright';
 import { ThemeVersion } from '@/types/theme/version';
-
+import { useBuildManagerStore } from '@/store/build-manager';
 import { useThemeStore } from '@/store/theme';
 
 const themeStore = useThemeStore();
@@ -43,6 +43,8 @@ const version = computed<ThemeVersion>(() => themeStore.version);
 const isDark = ref<boolean>(false);
 
 const localVersion = ref<ThemeVersion>('gregar');
+
+const buildManagerStore = useBuildManagerStore();
 
 watch(bright, () => {
   isDark.value = bright.value === 'dark';
@@ -57,6 +59,7 @@ watch(localVersion, () => {
 });
 
 onMounted(() => {
+  buildManagerStore.setSelectedBuildById(null);
   isDark.value = bright.value === 'dark';
   localVersion.value = version.value;
 });
