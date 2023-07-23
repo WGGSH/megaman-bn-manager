@@ -48,6 +48,8 @@ import { StatusEncountChange } from '@/classes/status/encount-change';
 import { StatusHumorChange } from '@/classes/status/humor-change';
 import { StatusCollectorChange } from '@/classes/status/collector-change';
 
+import { StatusBugStopper } from '@/classes/status/bug-stopper';
+
 export type Statuses = {
   hp: StatusHp,
   attack: StatusAttack,
@@ -98,4 +100,6 @@ export type Statuses = {
   encountChange: StatusEncountChange,
   humorChange: StatusHumorChange,
   collectorChange: StatusCollectorChange,
+
+  bugStopper: StatusBugStopper,
 };

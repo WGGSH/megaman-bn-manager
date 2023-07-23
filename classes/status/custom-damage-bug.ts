@@ -11,7 +11,7 @@ export class StatusCustomDamageBug extends StatusBaseNumber {
   }
 
   public toString(): string {
-    return `カスタムダメージバグ Lv:${this._value}`;
+    return `カスタムダメージバグ ${this._value}ダメージ`;
   }
 
   public isPositive(): boolean {
