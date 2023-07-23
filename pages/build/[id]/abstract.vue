@@ -94,6 +94,15 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col cols="12">
+        <ui-card-navi-customizer-text
+          :registered-navi-customizer-programs="registeredNaviCustomizerPrograms"
+          :master-navi-customizer-programs="masterNaviCustomizerPrograms"
+        />
+      </v-col>
+    </v-row>
+
     <v-row class="mt-8">
       <v-divider />
     </v-row>
@@ -151,6 +160,7 @@ import { ChipFolder } from '@/classes/chip-folder';
 import { MegamanStatus } from '@/classes/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 import { useMegamanStatusStore } from '@/store/megaman-status';
+import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
 const buildManagerStore = useBuildManagerStore();
 
@@ -164,8 +174,12 @@ const hpMemoryNum = ref<number>();
 
 const dialog = ref<boolean>(false);
 
+const masterNavicustomizerProgramStore = useMasterNaviCustomizerProgramStore();
+const masterNaviCustomizerPrograms = computed(() => masterNavicustomizerProgramStore.programs);
+
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
+const registeredNaviCustomizerPrograms = computed(() => navi.value.registeredNaviCustomizerPrograms);
 
 const chipFolder = ref(new ChipFolder());
 const regularChipId = ref(0);
