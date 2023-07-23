@@ -1,5 +1,9 @@
 <template>
-  <h1>index</h1>
+  <v-container>
+    <ui-text-title>
+      エグゼ6管理ツール
+    </ui-text-title>
+  </v-container>
 </template>
 
 <script setup lang="ts">
