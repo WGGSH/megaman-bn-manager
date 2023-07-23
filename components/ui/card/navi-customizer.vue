@@ -82,7 +82,7 @@ const overlayCells = computed(() => {
 
   // cells の上に，選択中のプログラムを重ねる
   // mousePosition が null でなければ，そこにプログラムを重ねる
-  if (mousePosition.value.x !== null && mousePosition.value.y !== null) {
+  if (mousePosition.value.x !== null && mousePosition.value.y !== null && props.selectedProgram) {
     const programCells = props.programState.isCompressed ? props.selectedProgram?.compressedCells : props.selectedProgram?.cells;
     if (programCells) {
       programCells.forEach((row: Array<boolean>, y: number) => {
@@ -226,6 +226,8 @@ const removeProgram = (y, x) => {
     targetY: y - 2,
     targetX: x - 2,
   };
+  if (targetY < 0 || targetY >= overWidth - 4) return;
+  if (targetX < 0 || targetX >= overWidth - 4) return;
   const { registeredProgramId } = props.cells[targetY][targetX];
   if (registeredProgramId) {
     emit('remove-program', registeredProgramId, null);
@@ -247,25 +249,25 @@ const getCellClass = (y, x) => {
   const cell = overlayCells.value[y][x];
   // 上
   if (y > 0) {
-    if (overlayCells.value[y - 1][x].programId === cell.programId) {
+    if (overlayCells.value[y - 1][x].registeredProgramId === cell.registeredProgramId) {
       hasBorderTop = false;
     }
   }
   // 下
   if (y < overWidth - 1) {
-    if (overlayCells.value[y + 1][x].programId === cell.programId) {
+    if (overlayCells.value[y + 1][x].registeredProgramId === cell.registeredProgramId) {
       hasBorderBottom = false;
     }
   }
   // 右
   if (x < overWidth - 1) {
-    if (overlayCells.value[y][x + 1].programId === cell.programId) {
+    if (overlayCells.value[y][x + 1].registeredProgramId === cell.registeredProgramId) {
       hasBorderRight = false;
     }
   }
   // 左
   if (x > 0) {
-    if (overlayCells.value[y][x - 1].programId === cell.programId) {
+    if (overlayCells.value[y][x - 1].registeredProgramId === cell.registeredProgramId) {
       hasBorderLeft = false;
     }
   }
