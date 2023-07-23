@@ -87,15 +87,12 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12">
+      <v-col cols="6" sm="6">
         <ui-card-navi-customizer
           :cells="cells"
         />
       </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="12">
+      <v-col cols="6" sm="6">
         <ui-card-navi-customizer-text
           :registered-navi-customizer-programs="registeredNaviCustomizerPrograms"
           :master-navi-customizer-programs="masterNaviCustomizerPrograms"
@@ -114,12 +111,15 @@
     </v-row>
 
     <v-row>
-      <ui-table-chip-folder
-        :chip-folder="chipFolder"
-        :regular-chip-id="regularChipId"
-        :tag-chips="tagChips"
-        read-only
-      />
+      <v-col cols="12">
+        <ui-table-chip-folder
+          :chip-folder="chipFolder"
+          :regular-chip-id="regularChipId"
+          :tag-chips="tagChips"
+          read-only
+          @click="onClickChipFolder"
+        />
+      </v-col>
     </v-row>
 
     <v-row>
@@ -129,11 +129,13 @@
     </v-row>
 
     <v-row>
-      <ui-card-status-card
-        :megaman-status="megamanStatus"
-        :max-capacity="maxCapacity"
-        :current-capacity="currentCapacity"
-      />
+      <v-col cols="12">
+        <ui-card-status-card
+          :megaman-status="megamanStatus"
+          :max-capacity="maxCapacity"
+          :current-capacity="currentCapacity"
+        />
+      </v-col>
     </v-row>
 
     <v-row>

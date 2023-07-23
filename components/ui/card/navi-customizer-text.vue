@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-8" width="100%">
+  <v-card class="pa-8" width="100%" height="100%">
     <v-list-item
       v-for="program in registeredNaviCustomizerPrograms"
       :key="program.id"

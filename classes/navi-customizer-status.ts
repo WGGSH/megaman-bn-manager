@@ -95,6 +95,19 @@ export class NaviCustomizerStatus {
       bugAbilities = bugAbilities.concat(masterProgram.bugAbilities);
     });
 
+    // コマンドラインに乗っていないプログラムパーツを列挙する
+    const notCommandLinePrograms: RegisteredNaviCustomizerProgram[] = [];
+    this._registeredNaviCustomizerPrograms.forEach((registeredProgram: RegisteredNaviCustomizerProgram) => {
+      const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === registeredProgram.programId);
+      if (masterProgram.isProgram && commandLinePrograms.find((commandLineProgram: RegisteredNaviCustomizerProgram) => commandLineProgram.id === registeredProgram.id) === undefined) {
+        notCommandLinePrograms.push(registeredProgram);
+      }
+    });
+    notCommandLinePrograms.forEach((notCommandLineProgram: RegisteredNaviCustomizerProgram) => {
+      const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === notCommandLineProgram.programId);
+      bugAbilities = bugAbilities.concat(masterProgram.bugAbilities);
+    });
+
     // プラスパーツすべてのプログラムのアビリティを追加する
     this._registeredNaviCustomizerPrograms.forEach((registeredProgram: RegisteredNaviCustomizerProgram) => {
       const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === registeredProgram.programId);

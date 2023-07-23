@@ -16,8 +16,11 @@ import { AbilityCustomDamageBugChange } from '@/classes/ability/custom-damage-bu
 import { AbilityPanelBugPlus } from '@/classes/ability/panel-bug-plus';
 import { AbilityCustomOpenBugPlus } from '@/classes/ability/custom-open-bug-plus';
 import { AbilityBattleHpBugPlus } from '@/classes/ability/battle-hp-bug-plus';
+import { AbilityBattleHpBugChange } from '@/classes/ability/battle-hp-bug-change';
 import { AbilityStatusBugPlus } from '@/classes/ability/status-bug-plus';
+import { AbilityStatusBugChange } from '@/classes/ability/status-bug-change';
 import { AbilityBusterBugPlus } from '@/classes/ability/buster-bug-plus';
+import { AbilityBusterBugChange } from '@/classes/ability/buster-bug-change';
 import { AbilityEncountBugPlus } from '@/classes/ability/encount-bug-plus';
 
 import { AbilityFloatShoes } from '@/classes/ability/float-shoes';
@@ -27,6 +30,7 @@ import { AbilityStatusGuard } from '@/classes/ability/status-guard';
 import { AbilityRushSupport } from '@/classes/ability/rush-support';
 import { AbilityBeatSupport } from '@/classes/ability/beat-support';
 import { AbilityTangoSupport } from '@/classes/ability/tango-support';
+import { AbilitySearchShuffle } from '@/classes/ability/search-shuffle';
 import { AbilityMoveBug } from '@/classes/ability/move-bug';
 import { AbilityEmotionWindowBug } from '@/classes/ability/emotion-window-bug';
 import { AbilityCustomHpBug } from '@/classes/ability/custom-hp-bug';
@@ -105,11 +109,20 @@ AbilityBase | null => {
     case 'battle-hp-bug-plus':
       return new AbilityBattleHpBugPlus(Number(value));
 
+    case 'battle-hp-bug-change':
+      return new AbilityBattleHpBugChange(Number(value));
+
     case 'status-bug-plus':
       return new AbilityStatusBugPlus(Number(value));
 
+    case 'status-bug-change':
+      return new AbilityStatusBugChange(Number(value));
+
     case 'buster-bug-plus':
       return new AbilityBusterBugPlus(Number(value));
+
+    case 'buster-bug-change':
+      return new AbilityBusterBugChange(Number(value));
 
     case 'encount-bug-plus':
       return new AbilityEncountBugPlus(Number(value));
@@ -137,6 +150,9 @@ AbilityBase | null => {
 
     case 'tango-support':
       return new AbilityTangoSupport(Boolean(value));
+
+    case 'search-shuffle':
+      return new AbilitySearchShuffle(Boolean(value));
 
     case 'move-bug':
       return new AbilityMoveBug(Boolean(value));

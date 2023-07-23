@@ -49,6 +49,8 @@ import { StatusCollectorChange } from '@/classes/status/collector-change';
 import { StatusEncountChange } from '@/classes/status/encount-change';
 import { StatusHumorChange } from '@/classes/status/humor-change';
 
+import { StatusBugStopper } from '@/classes/status/bug-stopper';
+
 import { StatusBaseNumber } from '@/classes/status/base/number';
 import { Statuses } from '@/types/statuses';
 
@@ -69,6 +71,7 @@ export class MegamanStatus {
     'giga-plus': 'giga',
     'chip-recovery': 'chipRecovery',
     'custom-damage-bug': 'customDamageBug',
+    'custom-damage-bug-change': 'customDamageBug',
     'panel-bug': 'panelBug',
     'panel-bug-plus': 'panelBug',
     'custom-open-bug': 'customOpenBug',
@@ -77,8 +80,10 @@ export class MegamanStatus {
     'battle-hp-bug-plus': 'battleHpBug',
     'status-bug': 'statusBug',
     'status-bug-plus': 'statusBug',
+    'status-bug-change': 'statusBug',
     'buster-bug': 'busterBug',
     'buster-bug-plus': 'busterBug',
+    'buster-bug-change': 'busterBug',
     'encount-bug-plus': 'encountBug',
 
     'air-shoes': 'airShoes',
@@ -170,6 +175,8 @@ export class MegamanStatus {
       encountChange: new StatusEncountChange('none'),
       humorChange: new StatusHumorChange('none'),
       collectorChange: new StatusCollectorChange('none'),
+
+      bugStopper: new StatusBugStopper(false),
     };
     this._abilities = [];
     this.initialize();
@@ -210,7 +217,21 @@ export class MegamanStatus {
         this._statuses.attack.applyMagnify(ability.value as number);
         break;
 
-      case 'bug-stopper':
+      case 'damage-bug-fix':
+        this._statuses.damageHpBug.apply(ability.value as boolean);
+        this._statuses.damagePanicBug.apply(ability.value as boolean);
+        break;
+
+      case 'status-bug-change':
+        this._statuses.statusBug.apply(ability.value as number);
+        break;
+
+      case 'battle-hp-bug-change':
+        this._statuses.battleHpBug.apply(ability.value as number);
+        break;
+
+      case 'buster-bug-change':
+        this._statuses.busterBug.apply(ability.value as number);
         break;
 
       default:
@@ -274,6 +295,8 @@ export class MegamanStatus {
       encountChange: new StatusEncountChange('none'),
       humorChange: new StatusHumorChange('none'),
       collectorChange: new StatusCollectorChange('none'),
+
+      bugStopper: new StatusBugStopper(false),
     };
   }
 

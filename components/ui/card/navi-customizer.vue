@@ -11,7 +11,6 @@
         v-for="(cell, cellIndex) in row"
         :key="cellIndex"
       >
-        <!-- :class="{ transparent: cell.color === 'transparent', 'elevation-0': cell.color === 'transparent' }" -->
         <v-card
           class="pa-5 elevation-1 rounded-0 cell"
           :class="getCellClass(rowIndex, cellIndex)"
@@ -291,31 +290,32 @@ const getCellClass = (y, x) => {
   justify-content: center;
 
   .cell {
-    // border: 1px solid #000;
+    margin: -2px;
+    border: 2px solid transparent;
 
     &.has-border-top {
-      margin-top: -1px;
-      border-top: 1px solid #001;
+      margin-top: -2px;
+      border-top: 2px solid #001;
     }
 
     &.has-border-bottom {
-      margin-bottom: -1px;
-      border-bottom: 1px solid #000;
+      margin-bottom: -2px;
+      border-bottom: 2px solid #000;
     }
 
     &.has-border-left {
-      margin-left: -1px;
-      border-left: 1px solid #000;
+      margin-left: -2px;
+      border-left: 2px solid #000;
     }
 
     &.has-border-right {
-      margin-right: -1px;
-      border-right: 1px solid #000;
+      margin-right: -2px;
+      border-right: 2px solid #000;
     }
 
     &.transparent {
-      margin: -1px;
-      border: 1px solid transparent;
+      margin: -2px;
+      border: 2px solid transparent;
     }
 
     .plus-part {
