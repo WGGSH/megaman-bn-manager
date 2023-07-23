@@ -1,1 +1,0 @@
-import{e as n,i as t,q as o,o as a,f as r}from"./entry.c56beb5c.js";const d=n({__name:"index",setup(s){const e=t();return o(()=>{e.setSelectedBuildById(null)}),(l,u)=>(a(),r("h1",null,"index"))}});export{d as default};
