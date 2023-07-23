@@ -6,11 +6,13 @@ import { ThemeDefinition } from './src/theme-definition';
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
+  target: 'static',
   router: {
     base: '/megaman-bn-manager/',
   },
   app: {
-    cdnURL: '/megaman-bn-manager',
+    baseURL: '/megaman-bn-manager/',
+    cdnURL: '/megaman-bn-manager/',
     link: [
       { rel: 'manifest', href: '/manifest.webmanifest' },
     ],
