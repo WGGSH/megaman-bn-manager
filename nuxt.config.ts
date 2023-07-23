@@ -48,67 +48,47 @@ export default defineNuxtConfig({
       installPrompt: true,
     },
     manifest: {
-      name: 'name',
-      description: 'description',
+      name: 'megaman-bn-manager',
+      description: 'ロックマンエグゼ6の構築管理ツール',
       theme_color: '#ffffff',
       lang: 'ja',
-      short_name: 'short_name',
+      short_name: 'エグゼ6管理',
       start_url: '/',
       display: 'standalone',
       background_color: '#ffffff',
       icons: [
         {
-          src: 'icons/36x36.png',
-          sizes: '36x36',
-          type: 'image/png',
-        },
-        {
-          src: 'icons/48x48.png',
-          sizes: '48x48',
-          type: 'image/png',
-        },
-        {
-          src: 'icons/72x72.png',
+          src: 'icons/72.png',
           sizes: '72x72',
           type: 'image/png',
         },
         {
-          src: 'icons/96x96.png',
-          sizes: '96x96',
-          type: 'image/png',
-        },
-        {
-          src: 'icons/128x128.png',
+          src: 'icons/128.png',
           sizes: '128x128',
           type: 'image/png',
         },
         {
-          src: 'icons/144x144.png',
+          src: 'icons/144.png',
           sizes: '144x144',
           type: 'image/png',
         },
         {
-          src: 'icons/152x152.png',
+          src: 'icons/152.png',
           sizes: '152x152',
           type: 'image/png',
         },
         {
-          src: 'icons/192x192.png',
+          src: 'icons/192.png',
           sizes: '192x192',
           type: 'image/png',
         },
         {
-          src: 'icons/256x256.png',
+          src: 'icons/256.png',
           sizes: '256x256',
           type: 'image/png',
         },
         {
-          src: 'icons/384x384.png',
-          sizes: '384x384',
-          type: 'image/png',
-        },
-        {
-          src: 'icons/512x512.png',
+          src: 'icons/512.png',
           sizes: '512x512',
           type: 'image/png',
         },
@@ -122,7 +102,7 @@ export default defineNuxtConfig({
       type: 'module',
     },
     icon: {
-      source: 'icon.png',
+      source: 'icons/512.png',
     },
   },
 });
