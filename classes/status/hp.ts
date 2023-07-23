@@ -6,7 +6,7 @@ export class StatusHp extends StatusBaseNumber {
   }
 
   public applyMagnify(value: number): void {
-    this._value *= 1 + value / 100;
+    this._value = Math.floor(this._value * (1 + value / 10));
     this.fixValue();
   }
 
