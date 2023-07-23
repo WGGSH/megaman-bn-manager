@@ -24,7 +24,11 @@
     <ui-table-data-folder-chip :color="backgroundColor" align="text-center">
       {{ folderChip.codes[folderChip.codeIndex] }}
     </ui-table-data-folder-chip>
-    <ui-table-data-folder-chip :color="backgroundColor" align="text-center">
+    <ui-table-data-folder-chip
+      v-if="!readOnly"
+      :color="backgroundColor"
+      align="text-center"
+    >
       <v-btn
         color="pink"
         height="100%"
@@ -42,7 +46,11 @@
         TAG
       </v-btn>
     </ui-table-data-folder-chip>
-    <ui-table-data-folder-chip :color="backgroundColor" align="text-center">
+    <ui-table-data-folder-chip
+      v-if="!readOnly"
+      :color="backgroundColor"
+      align="text-center"
+    >
       <v-btn
         color="error"
         height="100%"
@@ -70,6 +78,10 @@ const props = defineProps({
   tagChipsWithBattleChipData: {
     type: Array<Object>,
     required: true,
+  },
+  readOnly: {
+    type: Boolean,
+    default: false,
   },
 });
 
