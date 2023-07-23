@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     v-model:items-per-page="itemsPerPage"
-    :headers="headers"
+    :headers="readOnly ? readOnlyHeaders : headers"
     :items="chipFolderWithBattleChipData"
     item-value="name"
     class="elevation-1 table"
@@ -13,6 +13,7 @@
         :folder-chip="template.item.selectable"
         :regular-chip-id="regularChipId"
         :tag-chips-with-battle-chip-data="tagChipsWithBattleChipData"
+        :read-only="readOnly"
         @click-remove="chipFolder.removeById(template.item.selectable.id)"
         @click-register-regular="onClickRegisterRegular(template.item.selectable.id)"
         @click-register-tag="onClickRegisterTag(template.item.selectable.id)"
@@ -40,6 +41,10 @@ const props = defineProps({
   tagChips: {
     type: Array<Object>,
     required: true,
+  },
+  readOnly: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -115,6 +120,41 @@ const headers = [
   {
     title: '削除',
     key: 'delete',
+  },
+];
+
+const readOnlyHeaders = [
+  {
+    title: 'ID',
+    key: 'id',
+  },
+  {
+    title: 'No',
+    key: 'number',
+  },
+  {
+    title: 'クラス',
+    key: 'class',
+  },
+  {
+    title: 'チップ名',
+    key: 'name',
+  },
+  {
+    title: '威力',
+    key: 'damage',
+  },
+  {
+    title: '系統',
+    key: 'type',
+  },
+  {
+    title: '容量',
+    key: 'capacity',
+  },
+  {
+    title: 'コード',
+    key: 'code',
   },
 ];
 
