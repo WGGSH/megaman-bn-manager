@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <ui-text-title>
-      エグゼ6管理ツール
+      インフォメーション
     </ui-text-title>
   </v-container>
 </template>

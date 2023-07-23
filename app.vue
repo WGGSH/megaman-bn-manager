@@ -13,6 +13,7 @@
       @on-click-nav-icon="onUpdateDrawer"
       @on-click-title="goHome"
       @on-click-setting-icon="goSetting"
+      @on-click-information-icon="goInformation"
     />
 
     <v-main>
@@ -64,5 +65,9 @@ const goHome = () => {
 
 const goSetting = () => {
   router.push({ path: '/setting' });
+};
+
+const goInformation = () => {
+  router.push({ path: '/information' });
 };
 </script>
