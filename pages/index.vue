@@ -29,6 +29,9 @@
         このツールは非公式のものであり，自己責任で使用してください
       </p>
     </ui-text-subtitle>
+
+    <v-divider />
+    <ui-card-update-log />
   </v-container>
 </template>
 

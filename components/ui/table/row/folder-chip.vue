@@ -22,7 +22,7 @@
       {{ folderChip.capacity }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor" align="text-center">
-      {{ folderChip.codes[folderChip.codeIndex] }}
+      {{ folderChip.code }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip
       v-if="!readOnly"
