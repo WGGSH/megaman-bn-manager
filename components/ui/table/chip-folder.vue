@@ -59,6 +59,7 @@ const chipFolderWithBattleChipData = computed(() => props.chipFolder.chips.map((
     type: battleChip.type,
     capacity: battleChip.capacity,
     codes: battleChip.codes,
+    code: battleChip.codes[folderChip.codeIndex],
     codeIndex: folderChip.codeIndex,
   };
 }));
@@ -74,6 +75,7 @@ const tagChipsWithBattleChipData = computed(() => props.tagChips.map((folderChip
     type: battleChip.type,
     capacity: battleChip.capacity,
     codes: battleChip.codes,
+    code: battleChip.codes[folderChip.codeIndex],
     codeIndex: folderChip.codeIndex,
   };
 }));
