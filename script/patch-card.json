@@ -425,7 +425,7 @@
     "name": "マグテクト",
     "capacity": "15",
     "ability-1": {
-      "key": "cs-plus",
+      "key": "cs-addition-change",
       "value": "pull"
     },
     "ability-2": {
@@ -587,8 +587,8 @@
       "value": false
     },
     "ability-4": {
-      "key": "status-bug-add",
-      "value": "-2"
+      "key": "status-bug-change",
+      "value": "0"
     },
     "ability-5": {
       "key": "",
@@ -617,7 +617,7 @@
       "value": "130"
     },
     "ability-4": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-5": {
@@ -635,8 +635,8 @@
     "name": "センボン",
     "capacity": "11",
     "ability-1": {
-      "key": "buster-bug-plus",
-      "value": "-3"
+      "key": "buster-bug-change",
+      "value": "0"
     },
     "ability-2": {
       "key": "body-change",
@@ -737,8 +737,8 @@
       "value": "doll-thunder"
     },
     "ability-4": {
-      "key": "",
-      "value": ""
+      "key": "buster-bug-change",
+      "value": "1"
     },
     "ability-5": {
       "key": "",
@@ -815,7 +815,7 @@
     "name": "アルマン",
     "capacity": "12",
     "ability-1": {
-      "key": "ch-addition",
+      "key": "cs-addition-change",
       "value": "break"
     },
     "ability-2": {
@@ -849,8 +849,8 @@
       "value": "spread-gun"
     },
     "ability-2": {
-      "key": "battle-hp-bug-plus",
-      "value": "-7"
+      "key": "battle-hp-bug-change",
+      "value": "0"
     },
     "ability-3": {
       "key": "chip-recovery-change",
@@ -887,7 +887,7 @@
       "value": "none"
     },
     "ability-4": {
-      "key": "status-bug-plus",
+      "key": "status-bug-change",
       "value": "1"
     },
     "ability-5": {
@@ -973,11 +973,11 @@
       "value": "hp-bug"
     },
     "ability-3": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-4": {
-      "key": "status-bug-plus",
+      "key": "status-bug-change",
       "value": "1"
     },
     "ability-5": {
@@ -1071,7 +1071,7 @@
       "value": "2"
     },
     "ability-5": {
-      "key": "buster-bug-plus",
+      "key": "buster-bug-change",
       "value": "1"
     },
     "ability-6": {
@@ -1085,8 +1085,8 @@
     "name": "トードマン",
     "capacity": "34",
     "ability-1": {
-      "key": "buster-bug-plus",
-      "value": "-3"
+      "key": "buster-bug-change",
+      "value": "0"
     },
     "ability-2": {
       "key": "body-change",
@@ -1333,8 +1333,8 @@
       "value": "1"
     },
     "ability-3": {
-      "key": "battle-hp-bug-plus",
-      "value": "-7"
+      "key": "battle-hp-bug-change",
+      "value": "0"
     },
     "ability-4": {
       "key": "emotion-window-bug",
@@ -1423,7 +1423,7 @@
       "value": "wide-sword"
     },
     "ability-3": {
-      "key": "buster-bug-plus",
+      "key": "buster-bug-change",
       "value": "1"
     },
     "ability-4": {
@@ -1453,7 +1453,7 @@
       "value": "1"
     },
     "ability-3": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-4": {
@@ -1783,8 +1783,8 @@
       "value": false
     },
     "ability-3": {
-      "key": "status-bug",
-      "value": false
+      "key": "status-bug-change",
+      "value": "0"
     },
     "ability-4": {
       "key": "float-shoes",
@@ -1817,7 +1817,7 @@
       "value": "50"
     },
     "ability-4": {
-      "key": "buster-bug-plus",
+      "key": "buster-bug-change",
       "value": "1"
     },
     "ability-5": {
@@ -2173,8 +2173,8 @@
       "value": "5"
     },
     "ability-3": {
-      "key": "status-bug",
-      "value": true
+      "key": "status-bug-change",
+      "value": "1"
     },
     "ability-4": {
       "key": "",
@@ -2229,8 +2229,8 @@
       "value": "130"
     },
     "ability-2": {
-      "key": "battle-hp-bug-plus",
-      "value": "-7"
+      "key": "battle-hp-bug-change",
+      "value": "0"
     },
     "ability-3": {
       "key": "body-change",
@@ -2406,11 +2406,11 @@
     "capacity": "5",
     "ability-1": {
       "key": "hp-plus",
-      "value": "50"
+      "value": "20"
     },
     "ability-2": {
-      "key": "status-bug",
-      "value": true
+      "key": "status-bug-change",
+      "value": "1"
     },
     "ability-3": {
       "key": "emotion-window-bug",
@@ -2473,7 +2473,7 @@
       "value": "machine-sword"
     },
     "ability-3": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-4": {
@@ -2533,8 +2533,8 @@
       "value": "panic"
     },
     "ability-3": {
-      "key": "status-bug",
-      "value": true
+      "key": "status-bug-change",
+      "value": "1"
     },
     "ability-4": {
       "key": "left-b-change",
@@ -2615,8 +2615,8 @@
     "name": "エアーマン",
     "capacity": "34",
     "ability-1": {
-      "key": "buster-bug-plus",
-      "value": "-3"
+      "key": "buster-bug-change",
+      "value": "0"
     },
     "ability-2": {
       "key": "hp-plus",
@@ -2691,7 +2691,7 @@
       "value": "-1"
     },
     "ability-5": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-6": {
@@ -2893,7 +2893,7 @@
       "value": "20"
     },
     "ability-3": {
-      "key": "buster-bug-plus",
+      "key": "buster-bug-change",
       "value": "1"
     },
     "ability-4": {
@@ -3129,16 +3129,16 @@
       "value": "steal-punish"
     },
     "ability-2": {
+      "key": "custom-plus",
+      "value": "2"
+    },
+    "ability-3": {
       "key": "hp-magnify",
       "value": "-10"
     },
-    "ability-3": {
+    "ability-4": {
       "key": "gauge-change",
       "value": "none"
-    },
-    "ability-4": {
-      "key": "",
-      "value": ""
     },
     "ability-5": {
       "key": "",
@@ -3231,7 +3231,7 @@
       "value": true
     },
     "ability-5": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-6": {
@@ -3362,7 +3362,7 @@
   {
     "id": "113",
     "number": "137-C007",
-    "name": "伯爵",
+    "name": "ハクシャク",
     "capacity": "60",
     "ability-1": {
       "key": "cs-change",
@@ -3373,8 +3373,8 @@
       "value": "1"
     },
     "ability-3": {
-      "key": "status-bug",
-      "value": true
+      "key": "status-bug-change",
+      "value": "1"
     },
     "ability-4": {
       "key": "",
@@ -3467,7 +3467,7 @@
       "value": true
     },
     "ability-4": {
-      "key": "battle-hp-bug-plus",
+      "key": "battle-hp-bug-change",
       "value": "1"
     },
     "ability-5": {
