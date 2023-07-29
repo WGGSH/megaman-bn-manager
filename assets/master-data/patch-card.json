@@ -425,7 +425,7 @@
     "name": "マグテクト",
     "capacity": "15",
     "ability-1": {
-      "key": "cs-plus",
+      "key": "cs-addition-change",
       "value": "pull"
     },
     "ability-2": {
@@ -437,12 +437,12 @@
       "value": "elec"
     },
     "ability-4": {
-      "key": "cs-addition-change",
-      "value": "pull"
-    },
-    "ability-5": {
       "key": "hp-magnify",
       "value": "-5"
+    },
+    "ability-5": {
+      "key": "",
+      "value": ""
     },
     "ability-6": {
       "key": "",
@@ -1784,7 +1784,7 @@
     },
     "ability-3": {
       "key": "status-bug-change",
-      "value": "1"
+      "value": "0"
     },
     "ability-4": {
       "key": "float-shoes",
@@ -2174,7 +2174,7 @@
     },
     "ability-3": {
       "key": "status-bug-change",
-      "value": 0
+      "value": "1"
     },
     "ability-4": {
       "key": "",
@@ -2406,7 +2406,7 @@
     "capacity": "5",
     "ability-1": {
       "key": "hp-plus",
-      "value": "50"
+      "value": "20"
     },
     "ability-2": {
       "key": "status-bug-change",
@@ -3125,12 +3125,12 @@
     "name": "ジャッジマン",
     "capacity": "38",
     "ability-1": {
-      "key": "custom-plus",
-      "value": "2"
-    },
-    "ability-2": {
       "key": "cs-change",
       "value": "steal-punish"
+    },
+    "ability-2": {
+      "key": "custom-plus",
+      "value": "2"
     },
     "ability-3": {
       "key": "hp-magnify",
