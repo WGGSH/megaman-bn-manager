@@ -9,7 +9,7 @@ export abstract class AbilityBase {
 
   public abstract get value(): number | string | boolean | null;
 
-  protected abstract get isPositive(): boolean;
+  public abstract get isPositive(): boolean;
 
   protected abstract toString(): string;
 }

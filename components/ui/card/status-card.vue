@@ -49,12 +49,12 @@
 </template>
 
 <script setup lang="ts">
-import { MegamanStatus } from '@/classes/megaman-status';
+import { MegamanStatus } from '@/types/megaman-status';
 import { StatusBase } from '@/classes/status/base';
 
 const props = defineProps({
   megamanStatus: {
-    type: MegamanStatus,
+    type: Object as PropType<MegamanStatus>,
     required: true,
   },
   maxCapacity: {

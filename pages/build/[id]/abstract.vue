@@ -159,7 +159,10 @@ import { Version } from '@/types/version';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { ChipFolder } from '@/types/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
-import { MegamanStatus } from '@/classes/megaman-status';
+import { PatchCard } from '@/types/patch-card';
+// import { MegamanStatus } from '@/classes/megaman-status';
+import { MegamanStatus } from '@/types/megaman-status';
+import { UtilMegamanStatus } from '@/utils/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -199,7 +202,8 @@ const megamanStatusStore = useMegamanStatusStore();
 const masterPatchCardStore = useMasterPatchCardStore();
 
 const items = ref([]);
-const megamanStatus = ref<MegamanStatus>(new MegamanStatus());
+// const megamanStatus = ref<MegamanStatus>(new MegamanStatus());
+const megamanStatus = ref<MegamanStatus>(UtilMegamanStatus.create());
 const maxCapacity = 80;
 const currentCapacity = computed(() => {
   let capacity = 0;
@@ -221,9 +225,9 @@ const loadStatus = () => {
     if (!masterPatchCard) {
       return null;
     }
-    const clone = masterPatchCard.clone();
+    let clone = { ...masterPatchCard };
     if (!patchCard.isActive) {
-      clone.toggleActive();
+      clone = UtilPatchCard.toggleActive(clone);
     }
     return clone;
   }).filter((patchCard) => patchCard !== null);
@@ -292,7 +296,8 @@ watch(selectedBuild, (value) => {
 }, { deep: true });
 
 watch(items, (value) => {
-  megamanStatus.value = new MegamanStatus();
+  // megamanStatus.value = new MegamanStatus();
+  megamanStatus.value = UtilMegamanStatus.create();
   if (!selectedBuild.value) {
     return;
   }
@@ -302,7 +307,8 @@ watch(items, (value) => {
   megamanStatusStore.update(selectedBuild.value.hpMemoryNum, navi.value.registeredNaviCustomizerPrograms, navi.value.cells);
 
   megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability) => {
-    megamanStatus.value.pushAbility(ability);
+    megamanStatus.value.abilities.push(ability);
+    // megamanStatus.value.pushAbility(ability);
   });
 
   value.forEach((patchCard: PatchCard) => {
@@ -310,10 +316,12 @@ watch(items, (value) => {
       return;
     }
     patchCard.abilities.forEach((ability) => {
-      megamanStatus.value.pushAbility(ability);
+      megamanStatus.value.abilities.push(ability);
+      // megamanStatus.value.pushAbility(ability);
     });
   });
-  megamanStatus.value.apply();
+  megamanStatus.value = UtilMegamanStatus.apply(megamanStatus.value);
+  // megamanStatus.value.apply();
 }, { deep: true });
 
 onMounted(() => {

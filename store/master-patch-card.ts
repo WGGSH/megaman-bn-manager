@@ -1,6 +1,8 @@
 // @ts-nocheck
 import { defineStore, type _GettersTree } from 'pinia';
-import { PatchCard } from '@/classes/patch-card';
+// import { Ability } from '@/types/ability';
+import { PatchCard } from '@/types/patch-card';
+// import { PatchCard } from '@/classes/patch-card';
 import { AbilityHpPlus } from '@/classes/ability/hp-plus';
 import { AbilityHpMagnify } from '@/classes/ability/hp-magnify';
 import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
@@ -52,7 +54,7 @@ import { AbilityBodyChange } from '@/classes/ability/body-change';
 import masterPatchCards from '@/assets/master-data/patch-card.json';
 
 interface MasterPatchCardState {
-  cards: Array<PatchCard>;
+  cards: PatchCard[];
 }
 
 interface MasterPatchCardGetters extends _GettersTree<MasterPatchCardState> {
@@ -218,8 +220,10 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
   },
   actions: {
     fetchCards() {
+      if (this.isFetched) return;
+
       this.cards = masterPatchCards.map((card) => {
-        const abilities: Array<AbilityBase> = [];
+        const abilities: AbilityBase[] = [];
         for (let i = 0; i < 6; i += 1) {
           const { key, value } = card[`ability-${i + 1}`];
           if (key !== null && value !== null) {
@@ -229,11 +233,29 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
             }
           }
         }
-        return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
+        return {
+          id: card.id,
+          number: card.number,
+          name: card.name,
+          capacity: card.capacity,
+          abilities,
+          isActive: true,
+        };
+        // const abilities: Array<AbilityBase> = [];
+        // for (let i = 0; i < 6; i += 1) {
+        //   const { key, value } = card[`ability-${i + 1}`];
+        //   if (key !== null && value !== null) {
+        //     const ability = createAbilityInstance(key, value);
+        //     if (ability !== null) {
+        //       abilities.push(ability);
+        //     }
+        //   }
+        // }
+        // return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
       });
     },
-    getCardById(id: number) {
-      return this.cards.find((card) => card.id === id) ?? null;
+    getCardById(id: number) : PatchCard | null {
+      return this.cards.find((card: PatchCard) => card.id === id) ?? null;
     },
   },
 });
