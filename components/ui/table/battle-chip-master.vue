@@ -19,8 +19,8 @@
   >
     <template #[`item`]="template">
       <ui-table-row-battle-chip-master
-        :folder-chip="template.item.selectable"
-        :disabled-add="getDisabledAddByChip(template.item.selectable)"
+        :battle-chip="getSelectableItem(template.item.selectable)"
+        :disabled-add="getDisabledAddByChip(getSelectableItem(template.item.selectable))"
         @on-click-chip-code="onClickChipCode"
       />
     </template>
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
-import { BattleChip } from '@/classes/battle-chip';
+import { BattleChip } from '@/types/battle-chip';
 import { ChipFolder } from '@/types/chip-folder';
 
 const search = ref('');
@@ -86,7 +86,7 @@ watch(() => props.battleChips, () => {
 onMounted(() => {
 });
 
-// const getSelectableItem = (item: any) : FolderChip => item as FolderChip;
+const getSelectableItem = (item: any) : BattleChip => item as BattleChip;
 
 const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
   emit('add-battle-chip', battleChip, codeIndex);

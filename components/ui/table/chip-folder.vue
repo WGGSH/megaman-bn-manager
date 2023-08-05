@@ -10,7 +10,7 @@
   >
     <template #item="template">
       <ui-table-row-folder-chip
-        :folder-chip="getSelectableItem(template.item.selectable)"
+        :folder-chip-with-battle-chip-data="getSelectableItem(template.item.selectable)"
         :regular-chip-id="regularChipId"
         :tag-chips-with-battle-chip-data="tagChipsWithBattleChipData"
         :read-only="readOnly"
@@ -27,6 +27,7 @@ import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { ChipFolder } from '@/types/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
+import { FolderChipWithBattleChipData } from '@/types/folder-chip-with-battle-chip-data';
 
 const masterBattleChipStore = useMasterBattleChipStore();
 
@@ -49,7 +50,7 @@ const props = defineProps({
   },
 });
 
-const chipFolderWithBattleChipData = computed(() => props.chipFolder.chips.map((folderChip) => {
+const chipFolderWithBattleChipData = computed(() :FolderChipWithBattleChipData[] => props.chipFolder.chips.map((folderChip) :FolderChipWithBattleChipData => {
   const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
   return {
     id: folderChip.id,
@@ -65,7 +66,7 @@ const chipFolderWithBattleChipData = computed(() => props.chipFolder.chips.map((
   };
 }));
 
-const tagChipsWithBattleChipData = computed(() => props.tagChips.map((folderChip) => {
+const tagChipsWithBattleChipData = computed(() :FolderChipWithBattleChipData[] => props.tagChips.map((folderChip) :FolderChipWithBattleChipData => {
   const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
   return {
     id: folderChip.id,
@@ -167,7 +168,7 @@ onMounted(() => {
 
 const emit = defineEmits(['click-remove', 'click-register-regular', 'click-register-tag']);
 
-const getSelectableItem = (item: any) : FolderChip => item as FolderChip;
+const getSelectableItem = (item: any) : FolderChipWithBattleChipData => item as FolderChipWithBattleChipData;
 
 const onClickRemove = (folderChipId: number) => {
   emit('click-remove', folderChipId);

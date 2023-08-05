@@ -117,7 +117,6 @@
           :regular-chip-id="regularChipId"
           :tag-chips="tagChips"
           read-only
-          @click="onClickChipFolder"
         />
       </v-col>
     </v-row>
@@ -158,7 +157,8 @@ import { ref, watch } from 'vue';
 import { useBuildManagerStore } from '@/store/build-manager';
 import { Version } from '@/types/version';
 import { NaviCustomizer } from '@/classes/navi-customizer';
-import { ChipFolder } from '@/classes/chip-folder';
+import { ChipFolder } from '@/types/chip-folder';
+import { FolderChip } from '@/types/folder-chip';
 import { MegamanStatus } from '@/classes/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 import { useMegamanStatusStore } from '@/store/megaman-status';
@@ -183,12 +183,15 @@ const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 const registeredNaviCustomizerPrograms = computed(() => navi.value.registeredNaviCustomizerPrograms);
 
-const chipFolder = ref(new ChipFolder());
+const chipFolder = ref<ChipFolder>({
+  chips: [],
+});
+
 const regularChipId = ref(0);
 const tagChipIds = ref([]);
 
-const tagChips = computed(() => tagChipIds.value.map((tagChipId) => {
-  const folderChip = chipFolder.value.chips.find((chip) => chip.id === tagChipId);
+const tagChips = computed(() :FolderChip[] => tagChipIds.value.map((tagChipId) => {
+  const folderChip = chipFolder.value.chips.find((chip) => chip.id === tagChipId) as FolderChip;
   return folderChip;
 }));
 
