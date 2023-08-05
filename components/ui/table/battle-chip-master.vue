@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { BattleChip } from '@/classes/battle-chip';
-import { ChipFolder } from '@/classes/chip-folder';
+import { ChipFolder } from '@/types/chip-folder';
 
 const search = ref('');
 
@@ -48,10 +48,6 @@ const props = defineProps({
 const itemsPerPage = ref(30);
 
 const headers = [
-  // {
-  //   title: 'ID',
-  //   key: 'id',
-  // },
   {
     title: 'ナンバー',
     key: 'number',
@@ -89,6 +85,8 @@ watch(() => props.battleChips, () => {
 
 onMounted(() => {
 });
+
+// const getSelectableItem = (item: any) : FolderChip => item as FolderChip;
 
 const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
   emit('add-battle-chip', battleChip, codeIndex);
