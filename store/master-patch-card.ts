@@ -52,7 +52,7 @@ import { AbilityBodyChange } from '@/classes/ability/body-change';
 import masterPatchCards from '@/assets/master-data/patch-card.json';
 
 interface MasterPatchCardState {
-  cards: Array<PatchCard>;
+  cards: PatchCard[];
 }
 
 interface MasterPatchCardGetters extends _GettersTree<MasterPatchCardState> {
@@ -218,6 +218,8 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
   },
   actions: {
     fetchCards() {
+      if (this.isFetched) return;
+
       this.cards = masterPatchCards.map((card) => {
         const abilities: Array<AbilityBase> = [];
         for (let i = 0; i < 6; i += 1) {
@@ -232,8 +234,8 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
         return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
       });
     },
-    getCardById(id: number) {
-      return this.cards.find((card) => card.id === id) ?? null;
+    getCardById(id: number) : PatchCard | null {
+      return this.cards.find((card: PatchCard) => card.id === id) ?? null;
     },
   },
 });

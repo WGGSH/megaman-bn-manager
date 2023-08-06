@@ -5,7 +5,7 @@ export class AbilityStatusBugPlus extends AbilityBaseNumber {
     super('status-bug-plus', value);
   }
 
-  protected get isPositive(): boolean {
+  public get isPositive(): boolean {
     return this.value === 0;
   }
 

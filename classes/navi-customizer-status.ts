@@ -1,8 +1,8 @@
 import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
-import { MegamanStatus } from '@/classes/megaman-status';
+import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
-import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
-import { AbilityBase } from '@/classes/ability/base';
+import { NaviCustomizerProgram, NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
+import { AbilityBase, AbilityInterface } from '@/classes/ability/base';
 import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
 import { AbilityStatusBugPlus } from '@/classes/ability/status-bug-plus';
 import { AbilityBugStopper } from '@/classes/ability/bug-stopper';
@@ -12,7 +12,14 @@ import { AbilityTangoSupport } from '@/classes/ability/tango-support';
 import { AbilityBeatSupport } from '@/classes/ability/beat-support';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
-export class NaviCustomizerStatus {
+interface NaviCustomizerStatusInterface {
+  registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
+  megamanStatus: MegamanStatusInterface;
+
+  updateStatus(registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[], cells: NaviCustomizerCellData[][], hpMemoryNum: number): void;
+}
+
+class NaviCustomizerStatus implements NaviCustomizerStatusInterface {
   private _registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
 
   private _megamanStatus: MegamanStatus;
@@ -34,7 +41,7 @@ export class NaviCustomizerStatus {
     this._megamanStatus = new MegamanStatus();
   }
 
-  static addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap: Map<number, Map<number, number>>, registeredProgramId1: number, registeredProgramId2: number): Map<number, Array<number>> {
+  static addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap: Map<number, number[]>, registeredProgramId1: number, registeredProgramId2: number): Map<number, number[]> {
     if (!registeredProgramIdToSameColorRegisteredProgramIdsMap.has(registeredProgramId1)) {
       registeredProgramIdToSameColorRegisteredProgramIdsMap.set(registeredProgramId1, []);
     }
@@ -42,19 +49,19 @@ export class NaviCustomizerStatus {
       registeredProgramIdToSameColorRegisteredProgramIdsMap.set(registeredProgramId2, []);
     }
     // 同じものがなければ追加
-    if (registeredProgramIdToSameColorRegisteredProgramIdsMap.get(registeredProgramId1).find((id: number) => id === registeredProgramId2) === undefined) {
-      registeredProgramIdToSameColorRegisteredProgramIdsMap.get(registeredProgramId1).push(registeredProgramId2);
+    if ((registeredProgramIdToSameColorRegisteredProgramIdsMap.get(registeredProgramId1) as number[]).find((id: number) => id === registeredProgramId2) === undefined) {
+      (registeredProgramIdToSameColorRegisteredProgramIdsMap.get(registeredProgramId1) as number[]).push(registeredProgramId2);
     }
     return registeredProgramIdToSameColorRegisteredProgramIdsMap;
   }
 
-  private getNaviCustomizerProgramAbilities(cells: NaviCustomizerCellData[][]): AbilityBase[] {
+  private getNaviCustomizerProgramAbilities(cells: NaviCustomizerCellData[][]): AbilityInterface[] {
     const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
     const masterNaviCustomizerPrograms = masterNaviCustomizerProgramStore.programs;
 
-    let resultAbilities: AbilityBase[] = [];
-    let addAbilities: AbilityBase[] = [];
-    let bugAbilities: AbilityBase[] = [];
+    let resultAbilities: AbilityInterface[] = [];
+    let addAbilities: AbilityInterface[] = [];
+    let bugAbilities: AbilityInterface[] = [];
 
     // コマンドライン上を調べる
     // プログラムパーツは addAbilityを
@@ -75,12 +82,12 @@ export class NaviCustomizerStatus {
         if (commandLinePrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
           return;
         }
-        commandLinePrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId));
+        commandLinePrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId) as RegisteredNaviCustomizerProgram);
       } else {
         if (commandLineBugPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
           return;
         }
-        commandLineBugPrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId));
+        commandLineBugPrograms.push(this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId) as RegisteredNaviCustomizerProgram);
       }
     });
 
@@ -130,7 +137,7 @@ export class NaviCustomizerStatus {
       if (cell.programId === null || cell.registeredProgramId === null) {
         return;
       }
-      const registeredProgram = this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId);
+      const registeredProgram : RegisteredNaviCustomizerProgram = this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId) as RegisteredNaviCustomizerProgram;
       if (outOfFramePrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
         return;
       }
@@ -140,7 +147,7 @@ export class NaviCustomizerStatus {
       if (cell.programId === null || cell.registeredProgramId === null) {
         return;
       }
-      const registeredProgram = this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId);
+      const registeredProgram : RegisteredNaviCustomizerProgram = this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId) as RegisteredNaviCustomizerProgram;
       if (outOfFramePrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cell.registeredProgramId)) {
         return;
       }
@@ -152,7 +159,7 @@ export class NaviCustomizerStatus {
         if (cells[y][x].programId === null || cells[y][x].registeredProgramId === null) {
           continue;
         }
-        const registeredProgram = this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cells[y][x].registeredProgramId);
+        const registeredProgram : RegisteredNaviCustomizerProgram = this._registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cells[y][x].registeredProgramId) as RegisteredNaviCustomizerProgram;
         if (outOfFramePrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === cells[y][x].registeredProgramId)) {
           continue;
         }
@@ -173,53 +180,54 @@ export class NaviCustomizerStatus {
         if (cell.programId === null || cell.registeredProgramId === null) {
           return;
         }
+        const registeredProgramId: number = cell.registeredProgramId as number;
         // 上下左右を見る
         // 上
-        if (y > 0 && cells[y - 1][x].programId !== null && cells[y - 1][x].registeredProgramId !== null && cells[y - 1][x].color === cell.color && cells[y - 1][x].registeredProgramId !== cell.registeredProgramId) {
-          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, cell.registeredProgramId, cells[y - 1][x].registeredProgramId);
+        if (y > 0 && cells[y - 1][x].programId !== null && cells[y - 1][x].registeredProgramId !== null && cells[y - 1][x].color === cell.color && cells[y - 1][x].registeredProgramId !== registeredProgramId) {
+          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, registeredProgramId, cells[y - 1][x].registeredProgramId as number);
         }
         // 下
-        if (y < 6 && cells[y + 1][x].programId !== null && cells[y + 1][x].registeredProgramId !== null && cells[y + 1][x].color === cell.color && cells[y + 1][x].registeredProgramId !== cell.registeredProgramId) {
-          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, cell.registeredProgramId, cells[y + 1][x].registeredProgramId);
+        if (y < 6 && cells[y + 1][x].programId !== null && cells[y + 1][x].registeredProgramId !== null && cells[y + 1][x].color === cell.color && cells[y + 1][x].registeredProgramId !== registeredProgramId) {
+          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, registeredProgramId, cells[y + 1][x].registeredProgramId as number);
         }
         // 左
-        if (x > 0 && cells[y][x - 1].programId !== null && cells[y][x - 1].registeredProgramId !== null && cells[y][x - 1].color === cell.color && cells[y][x - 1].registeredProgramId !== cell.registeredProgramId) {
-          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, cell.registeredProgramId, cells[y][x - 1].registeredProgramId);
+        if (x > 0 && cells[y][x - 1].programId !== null && cells[y][x - 1].registeredProgramId !== null && cells[y][x - 1].color === cell.color && cells[y][x - 1].registeredProgramId !== registeredProgramId) {
+          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, registeredProgramId, cells[y][x - 1].registeredProgramId as number);
         }
         // 右
-        if (x < 6 && cells[y][x + 1].programId !== null && cells[y][x + 1].registeredProgramId !== null && cells[y][x + 1].color === cell.color && cells[y][x + 1].registeredProgramId !== cell.registeredProgramId) {
-          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, cell.registeredProgramId, cells[y][x + 1].registeredProgramId);
+        if (x < 6 && cells[y][x + 1].programId !== null && cells[y][x + 1].registeredProgramId !== null && cells[y][x + 1].color === cell.color && cells[y][x + 1].registeredProgramId !== registeredProgramId) {
+          registeredProgramIdToSameColorRegisteredProgramIdsMap = NaviCustomizerStatus.addSameColorProgram(registeredProgramIdToSameColorRegisteredProgramIdsMap, registeredProgramId, cells[y][x + 1].registeredProgramId as number);
         }
       });
     });
 
     // 各プログラムに隣接した同色のプログラムの数に応じたバグを付与する
     registeredProgramIdToSameColorRegisteredProgramIdsMap.forEach((sameColorRegisteredProgramIds: Array<number>, registeredProgramId: number) => {
-      const masterProgram = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === this._registeredNaviCustomizerPrograms.find((registeredProgram: RegisteredNaviCustomizerProgram) => registeredProgram.id === registeredProgramId).programId);
+      const masterProgram: NaviCustomizerProgramInterface = masterNaviCustomizerPrograms.find((program: NaviCustomizerProgram) => program.id === (this._registeredNaviCustomizerPrograms.find((registeredProgram: RegisteredNaviCustomizerProgram) => registeredProgram.id === registeredProgramId) as RegisteredNaviCustomizerProgram).programId);
       sameColorRegisteredProgramIds.forEach(() => {
         bugAbilities = bugAbilities.concat(masterProgram.bugAbilities);
       });
     });
 
     // バグストッパーがあればバグをすべて消す
-    const hasBugStopper = addAbilities.find((ability: AbilityBase) => ability instanceof AbilityBugStopper);
+    const hasBugStopper = addAbilities.find((ability: AbilityInterface) => ability instanceof AbilityBugStopper);
     if (hasBugStopper) {
       bugAbilities = [];
     }
 
     // サポートバグがあれば 各種サポートを削除する
-    const hasSupportBug = bugAbilities.find((ability: AbilityBase) => ability instanceof AbilitySupportBug);
+    const hasSupportBug = bugAbilities.find((ability: AbilityInterface) => ability instanceof AbilitySupportBug);
     if (hasSupportBug) {
-      const targetAbilities: Array<AbilityBase> = [AbilityRushSupport, AbilityBeatSupport, AbilityTangoSupport];
-      addAbilities = addAbilities.filter((ability: AbilityBase) => !targetAbilities.find((targetAbility: AbilityBase) => ability instanceof targetAbility));
+      const targetAbilities: Array<typeof AbilityRushSupport | typeof AbilityBeatSupport | typeof AbilityTangoSupport> = [AbilityRushSupport, AbilityBeatSupport, AbilityTangoSupport];
+      addAbilities = addAbilities.filter((ability: AbilityInterface) => !targetAbilities.find((targetAbility) => ability instanceof targetAbility));
     }
 
     // アタックの特殊処理
     // ナビカスと改造カードで上限値が異なるため，ナビカスの上限を超えていれば上限値に合わせる
-    const attackPluses = addAbilities.filter((ability: AbilityBase) => ability instanceof AbilityAttackPlus);
+    const attackPluses : AbilityAttackPlus[] = addAbilities.filter((ability: AbilityInterface) => ability instanceof AbilityAttackPlus) as AbilityAttackPlus[];
     const totalAttackPlus: number = attackPluses.reduce((total: number, attackPlus: AbilityAttackPlus) => total + attackPlus.value, 0);
     if (totalAttackPlus > 4) {
-      addAbilities = addAbilities.filter((ability: AbilityBase) => !(ability instanceof AbilityAttackPlus));
+      addAbilities = addAbilities.filter((ability: AbilityInterface) => !(ability instanceof AbilityAttackPlus));
       addAbilities.push(new AbilityAttackPlus(4));
     }
 
@@ -230,9 +238,11 @@ export class NaviCustomizerStatus {
 
   public updateStatus(registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[], cells: NaviCustomizerCellData[][], hpMemoryNum: number): void {
     this._registeredNaviCustomizerPrograms = registeredNaviCustomizerPrograms;
-    const abilities: AbilityBase[] = this.getNaviCustomizerProgramAbilities(cells);
+    const abilities: AbilityBase[] = this.getNaviCustomizerProgramAbilities(cells) as AbilityBase[];
     this._megamanStatus.hpMemoryNum = hpMemoryNum;
     this._megamanStatus.abilities = abilities;
     this._megamanStatus.apply();
   }
 }
+
+export { NaviCustomizerStatus, NaviCustomizerStatusInterface };

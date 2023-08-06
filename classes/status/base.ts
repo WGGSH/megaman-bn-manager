@@ -1,4 +1,13 @@
-export abstract class StatusBase {
+interface StatusInterface {
+  key: string;
+  value: number | string | boolean | null;
+  apply(value: number | string | boolean | null): void;
+  toString(): string;
+  isPositive(): boolean;
+  isVisible(): boolean;
+}
+
+abstract class StatusBase implements StatusInterface {
   protected abstract _key: string;
 
   protected abstract _value: number | string | boolean | null;
@@ -19,3 +28,5 @@ export abstract class StatusBase {
 
   public abstract isVisible(): boolean;
 }
+
+export { StatusBase, StatusInterface };

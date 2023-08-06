@@ -10,20 +10,22 @@
 
 <script setup lang="ts">
 import { ColorText } from '@/value/color-text';
+import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
 
 const props = defineProps({
   registeredNaviCustomizerPrograms: {
-    type: Array,
+    type: Array as PropType<RegisteredNaviCustomizerProgram[]>,
     required: true,
   },
   masterNaviCustomizerPrograms: {
-    type: Array,
+    type: Array as PropType<NaviCustomizerProgramInterface[]>,
     required: true,
   },
 });
 
-const getProgramName = (program: any) => {
-  const masterProgram = props.masterNaviCustomizerPrograms.find((p: any) => p.id === program.programId);
+const getProgramName = (program: RegisteredNaviCustomizerProgram) => {
+  const masterProgram = props.masterNaviCustomizerPrograms.find((p) => p.id === program.programId) as NaviCustomizerProgramInterface;
   return `${masterProgram.name}: ${ColorText.colorToTextMap[masterProgram.color]}`;
 };
 </script>

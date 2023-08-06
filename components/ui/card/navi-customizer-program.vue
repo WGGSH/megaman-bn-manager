@@ -71,12 +71,12 @@
 </template>
 
 <script setup lang="ts">
-import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 
 const props = defineProps({
   naviCustomizerProgram: {
-    type: Object as PropType<NaviCustomizerProgram>,
+    type: Object as PropType<NaviCustomizerProgramInterface | null>,
     required: false,
     default: null,
   },
@@ -88,13 +88,13 @@ const programState = ref<NaviCustomizerProgramState>({
   rotate: 0,
 });
 
-onMounted(() => {
-});
-
 const displayCellsWidth = ref(5);
 
 const isCompressed = ref(true);
-const cellWidth = computed(() => Math.max(props.naviCustomizerProgram.cells.length, props.naviCustomizerProgram.cells[0].length));
+const cellWidth = computed(() : number => {
+  if (props.naviCustomizerProgram === null) return 0;
+  return Math.max(props.naviCustomizerProgram.cells.length, props.naviCustomizerProgram.cells[0].length);
+});
 
 const displayCells = computed(() => {
   let offset = 0;
@@ -123,6 +123,8 @@ const displayCells = computed(() => {
     }
     cells.push(row);
   }
+
+  if (props.naviCustomizerProgram === null) return cells;
 
   for (let i = 0; i < props.naviCustomizerProgram.cells.length; i++) {
     for (let j = 0; j < props.naviCustomizerProgram.cells[i].length; j++) {

@@ -1,7 +1,15 @@
 import { ThemeBright } from '@/types/theme/bright';
 import { ThemeVersion } from '@/types/theme/version';
 
-export class Theme {
+interface ThemeInterface {
+  bright: ThemeBright;
+  version: ThemeVersion;
+
+  toggleBright(): void;
+  setVersion(version: ThemeVersion): void;
+}
+
+class Theme implements ThemeInterface {
   private _bright: ThemeBright;
 
   private _version: ThemeVersion;
@@ -39,3 +47,5 @@ export class Theme {
     this._version = version;
   }
 }
+
+export { Theme, ThemeInterface };

@@ -1,4 +1,13 @@
-export abstract class AbilityBase {
+interface AbilityInterface {
+  key: string;
+  value: number | string | boolean | null;
+
+  isPositive: boolean;
+
+  toString(): string;
+}
+
+abstract class AbilityBase implements AbilityInterface {
   protected abstract _key: string;
 
   protected abstract _value: number | string | boolean | null;
@@ -9,7 +18,9 @@ export abstract class AbilityBase {
 
   public abstract get value(): number | string | boolean | null;
 
-  protected abstract get isPositive(): boolean;
+  public abstract get isPositive(): boolean;
 
-  protected abstract toString(): string;
+  public abstract toString(): string;
 }
+
+export { AbilityBase, AbilityInterface };

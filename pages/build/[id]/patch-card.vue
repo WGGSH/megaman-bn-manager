@@ -17,18 +17,18 @@
     <ui-text-subtitle>
       装備中のカード
     </ui-text-subtitle>
-    <v-card class="px-0" color="primary" :class="{ 'py-8': items.length === 0 }">
+    <v-card class="px-0" color="primary" :class="{ 'py-8': patchCards.length === 0 }">
       <draggable
-        :list="items"
+        :list="patchCards"
         :group="{ name: 'card' }"
         item-key="id"
-        @change="uniqItems"
+        @change="uniqPatchCards"
       >
         <template #item="{ element }">
           <v-card class="ma-4">
             <ui-card-patch-card
               :patch-card="element"
-              @click="element.toggleActive()"
+              @click="toggleActivePatchCard(element)"
             >
               <template #action-area>
                 <ui-button-patch-card-action-area @click="onClickRemove(element)">
@@ -50,7 +50,7 @@
         :group="{ name: 'card', pull: 'clone', put: false }"
         :clone="clonePatchCard"
         item-key="id"
-        @change="uniqItems"
+        @change="uniqPatchCards"
       >
         <template #item="{ element }">
           <ui-card-patch-card
@@ -73,15 +73,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import lodash from 'lodash';
-import { PatchCard } from '@/classes/patch-card';
-import { MegamanStatus } from '@/classes/megaman-status';
+import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { NaviCustomizer } from '@/classes/navi-customizer';
+import { NaviCustomizerStatusInterface } from '@/classes/navi-customizer-status';
+import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
+import { Build } from '@/types/build';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useBuildManagerStore } from '@/store/build-manager';
-
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 
 const router = useRouter();
@@ -91,20 +91,22 @@ const masterPatchCardStore = useMasterPatchCardStore();
 
 const masterPatchCards = computed(() => masterPatchCardStore.cards);
 
-const megamanStatus = ref<MegamanStatus>(new MegamanStatus());
+const megamanStatus = ref<MegamanStatusInterface>(new MegamanStatus());
 
 const buildManagerStore = useBuildManagerStore();
 
-const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
 
-const items = ref([]);
+const patchCards = ref<PatchCardInterface[]>([]);
 
 const megamanStatusStore = useMegamanStatusStore();
 
+const naviCustomizerStatus = computed(() : NaviCustomizerStatusInterface => megamanStatusStore.naviCustomizerStatus);
+
 const maxCapacity = 80;
-const currentCapacity = computed(() => {
+const currentCapacity = computed(() : number => {
   let capacity = 0;
-  items.value.forEach((patchCard: PatchCard) => {
+  patchCards.value.forEach((patchCard) => {
     if (!patchCard.isActive) {
       return;
     }
@@ -113,11 +115,11 @@ const currentCapacity = computed(() => {
   return capacity;
 });
 
-const loadStatus = () => {
+const loadStatus = () : void => {
   if (!selectedBuild.value) {
     return;
   }
-  items.value = selectedBuild.value.patchCards.map((patchCard) => {
+  patchCards.value = selectedBuild.value.patchCards.map((patchCard) => {
     const masterPatchCard = masterPatchCardStore.getCardById(patchCard.id);
     if (!masterPatchCard) {
       return null;
@@ -132,7 +134,7 @@ const loadStatus = () => {
 
 const navi = ref(new NaviCustomizer());
 
-const loadNaviCustomizerPrograms = () => {
+const loadNaviCustomizerPrograms = () : void => {
   if (!selectedBuild.value) {
     return;
   }
@@ -143,7 +145,7 @@ const loadNaviCustomizerPrograms = () => {
   });
 };
 
-watch(items, (value) => {
+watch(patchCards, (value) => {
   megamanStatus.value = new MegamanStatus();
   if (!selectedBuild.value) {
     return;
@@ -153,18 +155,19 @@ watch(items, (value) => {
   loadNaviCustomizerPrograms();
   megamanStatusStore.update(selectedBuild.value.hpMemoryNum, navi.value.registeredNaviCustomizerPrograms, navi.value.cells);
 
-  megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability) => {
-    megamanStatus.value.pushAbility(ability);
+  naviCustomizerStatus.value.megamanStatus.abilities.forEach((ability) => {
+    megamanStatus.value.abilities.push(ability);
   });
 
-  value.forEach((patchCard: PatchCard) => {
+  value.forEach((patchCard) => {
     if (!patchCard.isActive) {
       return;
     }
     patchCard.abilities.forEach((ability) => {
-      megamanStatus.value.pushAbility(ability);
+      megamanStatus.value.abilities.push(ability);
     });
   });
+
   megamanStatus.value.apply();
 }, { deep: true });
 
@@ -175,11 +178,11 @@ watch(selectedBuild, (value) => {
   loadStatus();
 }, { deep: true });
 
-const uniqItems = () => {
-  items.value = lodash.uniqBy(items.value, (value: PatchCard) => value.id);
+const uniqPatchCards = () : void => {
+  patchCards.value = lodash.uniqBy(patchCards.value, (value: PatchCard) => value.id);
 };
 
-onMounted(() => {
+onMounted(() : void => {
   masterPatchCardStore.fetchCards();
   buildManagerStore.setSelectedBuildById(route.params.id);
   if (!selectedBuild) {
@@ -188,15 +191,23 @@ onMounted(() => {
   loadStatus();
 });
 
-const clonePatchCard = (patchCard: PatchCard) => patchCard.clone();
+const toggleActivePatchCard = (patchCard: PatchCard) : void => {
+  const index = patchCards.value.findIndex((item) => item.id === patchCard.id);
+  if (index === -1) {
+    return;
+  }
+  patchCards.value[index].toggleActive();
+};
 
-const onClickSave = () => {
+const clonePatchCard = (patchCard: PatchCard) : PatchCard => patchCard.clone();
+
+const onClickSave = () : void => {
   if (!selectedBuild.value) {
     return;
   }
   buildManagerStore.updateBuildById({
     id: selectedBuild.value.id,
-    patchCards: items.value.map((patchCard: PatchCard) => (
+    patchCards: patchCards.value.map((patchCard) => (
       {
         id: patchCard.id,
         isActive: patchCard.isActive,
@@ -205,19 +216,19 @@ const onClickSave = () => {
   });
 };
 
-const onClickRemove = (patchCard: PatchCard) => {
-  items.value = items.value.filter((item: PatchCard) => item.id !== patchCard.id);
-  uniqItems();
+const onClickRemove = (patchCard: PatchCard) : void => {
+  patchCards.value = patchCards.value.filter((item) => item.id !== patchCard.id);
+  uniqPatchCards();
 };
 
-const onClickAdd = (patchCard: PatchCard) => {
+const onClickAdd = (patchCard: PatchCard) : void => {
   const clone = patchCard.clone();
-  items.value.push(clone);
-  uniqItems();
+  patchCards.value.push(clone);
+  uniqPatchCards();
 };
 
-const isAlreadyAdded = (patchCard: PatchCard) => {
-  const found = items.value.find((item: PatchCard) => item.id === patchCard.id);
+const isAlreadyAdded = (patchCard: PatchCard) : boolean => {
+  const found = patchCards.value.find((item) => item.id === patchCard.id);
   return !!found;
 };
 </script>

@@ -1,4 +1,16 @@
-export class BattleChip {
+interface BattleChipInterface {
+  id: number;
+  number: number;
+  name: string;
+  class: string;
+  type: string;
+  damage: number | '-' | '???';
+  capacity: number;
+  rare: number;
+  codes: Array<string>;
+}
+
+class BattleChip implements BattleChipInterface {
   private _id: number;
 
   private _number: number;
@@ -75,3 +87,5 @@ export class BattleChip {
     this._codes = codes;
   }
 }
+
+export { BattleChip, BattleChipInterface };

@@ -1,5 +1,5 @@
 import { defineStore, type _GettersTree } from 'pinia';
-import { BattleChip } from '@/classes/battle-chip';
+import { BattleChip } from '@/types/battle-chip';
 
 import masterBattleChips from '@/assets/master-data/battle-chip.json';
 
@@ -31,18 +31,17 @@ MasterBattleChipActions>({
   actions: {
     fetchBattleChips() {
       if (this.isFetched) return;
-      this.battleChips = masterBattleChips.map((battleChip) => new BattleChip(
-        battleChip.id,
-        battleChip['chip-number'],
-        battleChip.name,
-        battleChip.class,
-        battleChip.type,
-        battleChip.damage,
-        battleChip.capacity,
-        battleChip.rare,
-        [battleChip.code1, battleChip.code2, battleChip.code3, battleChip.code4],
-        // battleChip.codes,
-      ));
+      this.battleChips = masterBattleChips.map((battleChip) => ({
+        id: battleChip.id,
+        number: battleChip['chip-number'],
+        name: battleChip.name,
+        class: battleChip.class,
+        type: battleChip.type,
+        damage: battleChip.damage,
+        capacity: battleChip.capacity,
+        rare: battleChip.rare,
+        codes: [battleChip.code1, battleChip.code2, battleChip.code3, battleChip.code4],
+      }));
     },
     findBattleChipById(id: number) {
       return this.battleChips.find((battleChip) => battleChip.id === id);

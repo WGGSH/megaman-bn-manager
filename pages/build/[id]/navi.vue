@@ -54,8 +54,12 @@
 </template>
 
 <script setup lang="ts">
-import { NaviCustomizer } from '@/classes/navi-customizer';
+import { NaviCustomizer, NaviCustomizerInterface } from '@/classes/navi-customizer';
+import { NaviCustomizerProgram, NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
+import { Build } from '@/types/build';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
+import { Position } from '@/types/position';
+import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { useBuildManagerStore } from '@/store/build-manager';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -66,17 +70,17 @@ const route = useRoute();
 const masterNaviCustomizerProgramStore = useMasterNaviCustomizerProgramStore();
 const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramStore.programs);
 
-const navi = ref(new NaviCustomizer());
+const navi = ref<NaviCustomizerInterface>(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 
-const selectedProgram = ref<object | null>(null);
-const programState = ref({
+const selectedProgram = ref<NaviCustomizerProgramInterface | null>(null);
+const programState = ref<NaviCustomizerProgramState>({
   isCompressed: true,
   rotate: 0,
 });
 
 const buildManagerStore = useBuildManagerStore();
-const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
 
 const megamanStatusStore = useMegamanStatusStore();
 const naviCustomizerStatus = computed(() => megamanStatusStore.naviCustomizerStatus);
@@ -87,7 +91,7 @@ const loadNaviCustomizerPrograms = () => {
   }
 
   navi.value = new NaviCustomizer();
-  selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program) => {
+  selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program: RegisteredNaviCustomizerProgram) => {
     navi.value.addProgram(program);
   });
 };
@@ -126,7 +130,7 @@ const onClickSave = () => {
   });
 };
 
-const updateSelectedProgram = (program: object | null) => {
+const updateSelectedProgram = (program: NaviCustomizerProgramInterface | null) => {
   selectedProgram.value = program;
 };
 
@@ -134,29 +138,25 @@ const updateProgramState = (state: NaviCustomizerProgramState) => {
   programState.value = state;
 };
 
-const addProgram = (position) => {
+const addProgram = (position: Position) : void => {
   if (!selectedProgram.value) {
     return;
   }
   navi.value.addProgram({
     ...programState.value,
+    ...position,
     id: navi.value.registeredNaviCustomizerPrograms.length + 1,
     programId: selectedProgram.value.id,
-    y: position.y,
-    x: position.x,
   });
 };
 
-const removeProgram = (registeredProgramId) => {
-  const registeredNaviCustomizerProgram = navi.value.registeredNaviCustomizerPrograms.find((program) => program.id === registeredProgramId);
-  const masterProgram = masterNaviCustomizerPrograms.value.find((program) => program.id === registeredNaviCustomizerProgram.programId);
+const removeProgram = (registeredProgramId: number) : void => {
+  const registeredNaviCustomizerProgram: RegisteredNaviCustomizerProgram = navi.value.registeredNaviCustomizerPrograms.find((program: RegisteredNaviCustomizerProgram) => program.id === registeredProgramId) as RegisteredNaviCustomizerProgram;
+  if (!registeredNaviCustomizerProgram) return;
+
+  const masterProgram = masterNaviCustomizerPrograms.value.find((program: NaviCustomizerProgram) => program.id === registeredNaviCustomizerProgram.programId);
   navi.value.removeProgram(registeredProgramId);
   selectedProgram.value = masterProgram;
-  // 外したプログラムを選択状態にする
 };
 
 </script>
-
-<style scoped lang="scss">
-
-</style>
