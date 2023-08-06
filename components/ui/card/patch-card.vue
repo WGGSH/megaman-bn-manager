@@ -49,20 +49,19 @@
 </template>
 
 <script setup lang="ts">
-// import { PatchCard } from '@/classes/patch-card';
-import { PatchCard } from '@/types/patch-card';
-import { AbilityBase } from '@/classes/ability/base';
+import { PatchCardInterface } from '@/classes/patch-card';
+import { AbilityInterface } from '@/classes/ability/base';
 
 const props = defineProps({
   patchCard: {
-    type: Object as PropType<PatchCard>,
+    type: Object as PropType<PatchCardInterface>,
     required: true,
   },
 });
 
 const emit = defineEmits(['click']);
 
-const abilityColor = (ability: AbilityBase) => {
+const abilityColor = (ability: AbilityInterface) => {
   if (!props.patchCard.isActive) {
     return 'disabled';
   }

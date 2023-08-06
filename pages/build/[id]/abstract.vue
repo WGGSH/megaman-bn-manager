@@ -159,9 +159,8 @@ import { Version } from '@/types/version';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
-import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
-import { MegamanStatus } from '@/types/megaman-status';
-import { UtilMegamanStatus } from '@/utils/megaman-status';
+import { PatchCardInterface } from '@/classes/patch-card';
+import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -199,11 +198,11 @@ const megamanStatusStore = useMegamanStatusStore();
 const masterPatchCardStore = useMasterPatchCardStore();
 
 const patchCards = ref<PatchCardInterface[]>([]);
-const megamanStatus = ref<MegamanStatus>(UtilMegamanStatus.create());
+const megamanStatus = ref<MegamanStatusInterface>(new MegamanStatus());
 const maxCapacity = 80;
 const currentCapacity = computed(() => {
   let capacity = 0;
-  patchCards.value.forEach((patchCard: PatchCard) => {
+  patchCards.value.forEach((patchCard: PatchCardInterface) => {
     if (!patchCard.isActive) {
       return;
     }
@@ -216,7 +215,7 @@ const loadStatus = () => {
   if (!selectedBuild.value) {
     return;
   }
-  patchCards.value = selectedBuild.value.patchCards.map((patchCard) => {
+  patchCards.value = selectedBuild.value.patchCards.map((patchCard: PatchCardInterface) => {
     const masterPatchCard = masterPatchCardStore.getCardById(patchCard.id);
     if (!masterPatchCard) {
       return null;
@@ -226,7 +225,7 @@ const loadStatus = () => {
       clone.toggleActive();
     }
     return clone;
-  }).filter((patchCard) => patchCard !== null);
+  }).filter((patchCard: PatchCardInterface) => patchCard !== null);
 };
 
 const versionList = [
@@ -292,7 +291,7 @@ watch(selectedBuild, (value) => {
 }, { deep: true });
 
 watch(patchCards, (value) => {
-  megamanStatus.value = UtilMegamanStatus.create();
+  megamanStatus.value = new MegamanStatus();
   if (!selectedBuild.value) {
     return;
   }
@@ -305,7 +304,7 @@ watch(patchCards, (value) => {
     megamanStatus.value.abilities.push(ability);
   });
 
-  value.forEach((patchCard: PatchCard) => {
+  value.forEach((patchCard: PatchCardInterface) => {
     if (!patchCard.isActive) {
       return;
     }
@@ -313,7 +312,7 @@ watch(patchCards, (value) => {
       megamanStatus.value.abilities.push(ability);
     });
   });
-  megamanStatus.value = UtilMegamanStatus.apply(megamanStatus.value);
+  megamanStatus.value.apply();
 }, { deep: true });
 
 onMounted(() => {

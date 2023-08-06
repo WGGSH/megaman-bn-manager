@@ -1,4 +1,4 @@
-import { AbilityBase } from '@/classes/ability/base';
+import { AbilityBase, AbilityInterface } from '@/classes/ability/base';
 import { StatusHp } from '@/classes/status/hp';
 import { StatusAttack } from '@/classes/status/attack';
 import { StatusRapid } from '@/classes/status/rapid';
@@ -54,7 +54,16 @@ import { StatusBugStopper } from '@/classes/status/bug-stopper';
 import { StatusBaseNumber } from '@/classes/status/base/number';
 import { Statuses } from '@/types/statuses';
 
-export class MegamanStatus {
+interface MegamanStatusInterface {
+  hpMemoryNum: number;
+  statuses: Statuses;
+  abilities: Array<AbilityInterface>;
+
+  apply(): void;
+  pushAbility(ability: AbilityBase): void;
+}
+
+class MegamanStatus implements MegamanStatusInterface {
   private _hpMemoryNum: number;
 
   private _statuses: Statuses;
@@ -326,10 +335,6 @@ export class MegamanStatus {
   public pushAbility(ability: AbilityBase) {
     this._abilities.push(ability);
   }
-
-  public toString() {
-    Object.keys(this._statuses).forEach((key) => {
-      console.log(this._statuses[key].toString());
-    });
-  }
 }
+
+export { MegamanStatus, MegamanStatusInterface };

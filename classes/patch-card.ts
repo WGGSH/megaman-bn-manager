@@ -1,15 +1,15 @@
-import { AbilityBase } from '@/classes/ability/base';
+import { AbilityBase, AbilityInterface } from '@/classes/ability/base';
 
 interface PatchCardInterface {
   id: number;
   number: string;
   name: string;
   capacity: number;
-  abilities: Array<AbilityBase>;
+  abilities: Array<AbilityInterface>;
   isActive: boolean;
   toggleActive(): void;
   setActive(isActive: boolean): void;
-  clone(): PatchCard;
+  clone(): PatchCardInterface;
 }
 
 class PatchCard implements PatchCardInterface {

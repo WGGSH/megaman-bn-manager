@@ -76,9 +76,8 @@
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import lodash from 'lodash';
-import { UtilMegamanStatus } from '@/utils/megaman-status';
 import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
-import { MegamanStatus } from '@/types/megaman-status';
+import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useBuildManagerStore } from '@/store/build-manager';
@@ -92,7 +91,7 @@ const masterPatchCardStore = useMasterPatchCardStore();
 
 const masterPatchCards = computed(() => masterPatchCardStore.cards);
 
-const megamanStatus = ref<MegamanStatus>(UtilMegamanStatus.create());
+const megamanStatus = ref<MegamanStatusInterface>(new MegamanStatus());
 
 const buildManagerStore = useBuildManagerStore();
 
@@ -145,7 +144,7 @@ const loadNaviCustomizerPrograms = () : void => {
 };
 
 watch(patchCards, (value) => {
-  megamanStatus.value = UtilMegamanStatus.create();
+  megamanStatus.value = new MegamanStatus();
   if (!selectedBuild.value) {
     return;
   }
@@ -167,7 +166,7 @@ watch(patchCards, (value) => {
     });
   });
 
-  megamanStatus.value = UtilMegamanStatus.apply(megamanStatus.value);
+  megamanStatus.value.apply();
 }, { deep: true });
 
 watch(selectedBuild, (value) => {
