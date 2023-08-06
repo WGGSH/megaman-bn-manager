@@ -124,6 +124,7 @@ import { PatchCardInterface } from '@/classes/patch-card';
 import { Build } from '@/types/build';
 import { FolderChip } from '@/types/folder-chip';
 import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
+import { ShareableBuild } from '@/types/shareable-build';
 import { Version } from '@/types/version';
 import { useBuildManagerStore } from '@/store/build-manager';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
@@ -279,9 +280,85 @@ watch(patchCards, (value) => {
   megamanStatus.value.apply();
 }, { deep: true });
 
+const decodeBuild = () => {
+  const data: ShareableBuild = JSON.parse(Base64.decode(route.query.key as string)) as ShareableBuild;
+  let index = 0;
+
+  const decodeName = data[index++] as string;
+
+  const decodeVersions = data[index++] as Array<Version>;
+
+  const decodeHpMemoryNum = data[index++] as number;
+
+  const patchCardNum = data[index++] as number;
+
+  const decodePatchCards: PatchCardInterface[] = [];
+  for (let i = 0; i < patchCardNum; i++) {
+    const id = String(data[index++] as number);
+    const isActive = Boolean(data[index++] as number);
+    const patchCard: PatchCardInterface = {
+      id,
+      isActive,
+    };
+    decodePatchCards.push(patchCard);
+  }
+
+  const folderChipNum = data[index++] as number;
+  const decodeFolderChips: FolderChip[] = [];
+  for (let i = 0; i < folderChipNum; i++) {
+    const id = data[index++] as number;
+    const chipId = String(data[index++] as number);
+    const codeIndex = data[index++] as number;
+    const folderChip: FolderChip = {
+      id,
+      chipId,
+      codeIndex,
+    };
+    decodeFolderChips.push(folderChip);
+  }
+
+  const decodeRegularChipId = (data[index++] as number | null) ?? null;
+
+  const decodeTagChipIds = data[index++] as Array<number>;
+
+  const decodeRegisteredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[] = [];
+  const naviCustomizerProgramNum = data[index++] as number;
+  for (let i = 0; i < naviCustomizerProgramNum; i++) {
+    const id = data[index++] as number;
+    const programId = data[index++] as number;
+    const isCompressed = Boolean(data[index++] as number);
+    const rotate = data[index++] as number;
+    const y = data[index++] as number;
+    const x = data[index++] as number;
+    const program: RegisteredNaviCustomizerProgram = {
+      id,
+      programId,
+      isCompressed,
+      rotate,
+      y,
+      x,
+    };
+    decodeRegisteredNaviCustomizerPrograms.push(program);
+  }
+
+  const build: Build = {
+    name: decodeName,
+    versions: decodeVersions,
+    hpMemoryNum: decodeHpMemoryNum,
+    patchCards: decodePatchCards,
+    folderChips: decodeFolderChips,
+    regularChipId: decodeRegularChipId,
+    tagChipIds: decodeTagChipIds,
+    registeredNaviCustomizerPrograms: decodeRegisteredNaviCustomizerPrograms,
+  };
+
+  console.log(build);
+
+  selectedBuild.value = build;
+};
+
 onMounted(() => {
-  const build = Base64.decode(route.query.key as string);
-  selectedBuild.value = JSON.parse(build);
+  decodeBuild();
 
   masterPatchCardStore.fetchCards();
   buildManagerStore.setSelectedBuildById(null);

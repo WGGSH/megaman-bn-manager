@@ -57,7 +57,7 @@ onMounted(() => {
 });
 
 const chipFolderWithBattleChipData = computed(() :FolderChipWithBattleChipData[] => props.chipFolder.chips.map((folderChip) :FolderChipWithBattleChipData => {
-  const battleChip = masterBattleChipStore.findBattleChipById(folderChip.chipId);
+  const battleChip = masterBattleChipStore.findBattleChipById(String(folderChip.chipId));
   return {
     id: folderChip.id,
     number: battleChip.number,
