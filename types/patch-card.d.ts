@@ -1,4 +1,3 @@
-// import { Ability } from '@/types/ability';
 import { AbilityBase } from '@/classes/ability/base';
 
 export interface PatchCard {
