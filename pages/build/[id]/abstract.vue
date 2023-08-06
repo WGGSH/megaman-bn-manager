@@ -391,7 +391,9 @@ const shareUrl = computed(() : string => {
     ...selectedBuild.value,
     id: undefined,
   };
-  return `${location.origin}/share?key=${Base64.encode(JSON.stringify(removeIdBuild))}`;
+  const runtimeConfig = useRuntimeConfig();
+  const origin = `${location.origin}${runtimeConfig.public.baseURL}`;
+  return `${origin}share?key=${Base64.encode(JSON.stringify(removeIdBuild))}`;
 });
 
 const onClickCopy = () => {
