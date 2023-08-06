@@ -4,7 +4,7 @@ import { FolderChip } from './folder-chip';
 import { RegisteredNaviCustomizerProgram } from './registered-navi-customizer-program';
 
 export interface Build {
-  id: number;
+  id?: number;
   name: string;
   versions: Array<Version>;
   hpMemoryNum: number;
