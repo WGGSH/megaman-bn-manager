@@ -37,6 +37,7 @@ import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
 import { BattleChip } from '@/classes/battle-chip';
+import { Build } from '@/types/build';
 import { useBuildManagerStore } from '@/store/build-manager';
 
 const router = useRouter();
@@ -58,7 +59,7 @@ const tagChips = computed(() => tagChipIds.value.map((tagChipId) => {
   return folderChips;
 }));
 
-const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
 
 const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
   chipFolder.value.addBattleChip(battleChip, codeIndex);

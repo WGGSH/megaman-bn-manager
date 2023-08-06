@@ -77,8 +77,10 @@ import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import lodash from 'lodash';
 import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
+import { Build } from '@/types/build';
 import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { NaviCustomizer } from '@/classes/navi-customizer';
+import { NaviCustomizerStatusInterface } from '@/classes/navi-customizer-status';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useBuildManagerStore } from '@/store/build-manager';
 
@@ -95,11 +97,13 @@ const megamanStatus = ref<MegamanStatusInterface>(new MegamanStatus());
 
 const buildManagerStore = useBuildManagerStore();
 
-const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
 
 const patchCards = ref<PatchCardInterface[]>([]);
 
 const megamanStatusStore = useMegamanStatusStore();
+
+const naviCustomizerStatus = computed(() : NaviCustomizerStatusInterface => megamanStatusStore.naviCustomizerStatus);
 
 const maxCapacity = 80;
 const currentCapacity = computed(() : number => {
@@ -153,7 +157,7 @@ watch(patchCards, (value) => {
   loadNaviCustomizerPrograms();
   megamanStatusStore.update(selectedBuild.value.hpMemoryNum, navi.value.registeredNaviCustomizerPrograms, navi.value.cells);
 
-  megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability) => {
+  naviCustomizerStatus.value.megamanStatus.abilities.forEach((ability) => {
     megamanStatus.value.abilities.push(ability);
   });
 
@@ -220,7 +224,7 @@ const onClickRemove = (patchCard: PatchCard) : void => {
 };
 
 const onClickAdd = (patchCard: PatchCard) : void => {
-  const clone = { ...patchCard };
+  const clone = patchCard.clone();
   patchCards.value.push(clone);
   uniqPatchCards();
 };

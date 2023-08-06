@@ -158,8 +158,11 @@ import { useBuildManagerStore } from '@/store/build-manager';
 import { Version } from '@/types/version';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
+import { AbilityInterface } from '@/classes/ability/base';
 import { FolderChip } from '@/types/folder-chip';
+import { Build } from '@/types/build';
 import { PatchCardInterface } from '@/classes/patch-card';
+import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 import { useMegamanStatusStore } from '@/store/megaman-status';
@@ -169,7 +172,7 @@ const buildManagerStore = useBuildManagerStore();
 
 const router = useRouter();
 const route = useRoute();
-const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
 
 const name = ref<string>();
 const versions = ref<Array<Version>>([]);
@@ -245,7 +248,7 @@ const loadNaviCustomizerPrograms = () => {
   }
 
   navi.value = new NaviCustomizer();
-  selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program) => {
+  selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program: RegisteredNaviCustomizerProgram) => {
     navi.value.addProgram(program);
   });
 };
@@ -255,13 +258,13 @@ const loadFolder = () => {
     return;
   }
 
-  chipFolder.value.chips = selectedBuild.value.folderChips.map((chip, index) => (
+  chipFolder.value.chips = selectedBuild.value.folderChips.map((chip: FolderChip, index: number) => (
     {
       id: index + 1,
       chipId: chip.chipId,
       codeIndex: chip.codeIndex,
     }
-  )).filter((folderChip) => folderChip !== null);
+  )).filter((folderChip: FolderChip) => folderChip !== null);
 
   if (selectedBuild.value.regularChipId) {
     regularChipId.value = selectedBuild.value.regularChipId;
@@ -300,7 +303,7 @@ watch(patchCards, (value) => {
   loadNaviCustomizerPrograms();
   megamanStatusStore.update(selectedBuild.value.hpMemoryNum, navi.value.registeredNaviCustomizerPrograms, navi.value.cells);
 
-  megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability) => {
+  megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability: AbilityInterface) => {
     megamanStatus.value.abilities.push(ability);
   });
 

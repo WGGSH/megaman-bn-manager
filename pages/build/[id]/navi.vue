@@ -57,6 +57,7 @@
 import { NaviCustomizer, NaviCustomizerInterface } from '@/classes/navi-customizer';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 import { NaviCustomizerProgram, NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
+import { Build } from '@/types/build';
 import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { useBuildManagerStore } from '@/store/build-manager';
 import { useMegamanStatusStore } from '@/store/megaman-status';
@@ -79,7 +80,7 @@ const programState = ref({
 });
 
 const buildManagerStore = useBuildManagerStore();
-const selectedBuild = computed(() => buildManagerStore.selectedBuild);
+const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
 
 const megamanStatusStore = useMegamanStatusStore();
 const naviCustomizerStatus = computed(() => megamanStatusStore.naviCustomizerStatus);
