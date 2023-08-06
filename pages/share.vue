@@ -1,86 +1,8 @@
 <template>
   <v-container>
-    <v-dialog
-      v-model="dialogDelete"
-    >
-      <v-card>
-        <v-card-title>
-          本当に削除しますか？
-        </v-card-title>
-
-        <v-card-actions>
-          <ui-button-accept
-            @click="dialogDelete = false"
-          >
-            キャンセル
-          </ui-button-accept>
-
-          <ui-button-danger
-            color="red"
-            @click="deleteBuild"
-          >
-            削除する
-          </ui-button-danger>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <v-dialog
-      v-model="dialogShare"
-    >
-      <v-card>
-        <v-card-title>
-          共有用URL
-        </v-card-title>
-
-        <v-card-text>
-          <a
-            :href="shareUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {{ shareUrl }}
-          </a>
-        </v-card-text>
-
-        <v-card-actions>
-          <ui-button-accept
-            @click="onClickCopy"
-          >
-            クリップボードにコピー
-          </ui-button-accept>
-
-          <ui-button-accept
-            @click="dialogShare = false"
-          >
-            閉じる
-          </ui-button-accept>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
     <ui-text-title>
       ビルド概要
     </ui-text-title>
-    <v-row class="ma-0">
-      <ui-button-accept
-        @click="onClickSave"
-      >
-        保存する
-      </ui-button-accept>
-
-      <ui-button-accept
-        class="mr-auto ml-4"
-        @click="onClickShare"
-      >
-        共有する
-      </ui-button-accept>
-
-      <ui-button-danger
-        @click="onClickDelete"
-      >
-        削除する
-      </ui-button-danger>
-    </v-row>
   </v-container>
 
   <v-container class="pa-8">
@@ -91,7 +13,7 @@
     </v-row>
 
     <v-row>
-      <v-text-field v-model="name" />
+      <v-text-field v-model="name" readonly />
     </v-row>
 
     <v-row class="mt-8">
@@ -102,7 +24,7 @@
 
     <v-row>
       <v-col v-for="version in versionList" :key="version.key">
-        <v-checkbox v-model="versions" :label="version.name" :value="version.key" />
+        <v-checkbox v-model="versions" :label="version.name" :value="version.key" readonly />
       </v-col>
     </v-row>
 
@@ -113,7 +35,7 @@
     </v-row>
 
     <v-row>
-      <v-text-field v-model="hpMemoryNum" type="number" max="45" min="0" />
+      <v-text-field v-model="hpMemoryNum" type="number" max="45" min="0" readonly />
     </v-row>
 
     <v-row class="mt-8">
@@ -212,14 +134,12 @@ const buildManagerStore = useBuildManagerStore();
 
 const router = useRouter();
 const route = useRoute();
-const selectedBuild = computed(() : Build => buildManagerStore.selectedBuild);
+
+const selectedBuild = ref<Build | null>(null);
 
 const name = ref<string>();
 const versions = ref<Array<Version>>([]);
 const hpMemoryNum = ref<number>();
-
-const dialogDelete = ref<boolean>(false);
-const dialogShare = ref<boolean>(false);
 
 const masterNavicustomizerProgramStore = useMasterNaviCustomizerProgramStore();
 const masterNaviCustomizerPrograms = computed(() => masterNavicustomizerProgramStore.programs);
@@ -316,7 +236,7 @@ const loadFolder = () => {
 };
 
 const setValues = () => {
-  if (!selectedBuild.value || !selectedBuild.value.id) {
+  if (!selectedBuild.value) {
     return;
   }
   name.value = selectedBuild.value.name;
@@ -360,6 +280,9 @@ watch(patchCards, (value) => {
 }, { deep: true });
 
 onMounted(() => {
+  const build = Base64.decode(route.query.key as string);
+  selectedBuild.value = JSON.parse(build);
+
   masterPatchCardStore.fetchCards();
   buildManagerStore.setSelectedBuildById(route.params.id);
   if (!selectedBuild) {
@@ -368,55 +291,4 @@ onMounted(() => {
     setValues();
   }
 });
-
-const onClickSave = () => {
-  buildManagerStore.updateBuildById({
-    id: selectedBuild.value.id,
-    name: name.value,
-    versions: versions.value,
-    hpMemoryNum: hpMemoryNum.value,
-  });
-};
-
-const onClickDelete = () => {
-  dialogDelete.value = true;
-};
-
-const shareUrl = computed(() : string => {
-  if (!selectedBuild.value) {
-    return '';
-  }
-  const { location } = window;
-  const removeIdBuild = {
-    ...selectedBuild.value,
-    id: undefined,
-  };
-  return `${location.origin}/share?key=${Base64.encode(JSON.stringify(removeIdBuild))}`;
-});
-
-const onClickCopy = () => {
-  navigator.clipboard.writeText(shareUrl.value);
-};
-
-const onClickShare = () => {
-  dialogShare.value = true;
-};
-
-const deleteBuild = () => {
-  buildManagerStore.deleteBuildById(selectedBuild.value.id);
-  router.push({ path: '/' });
-};
 </script>
-
-<style scoped>
-.button {
-  display: inline-block;
-  word-break: break-all;
-  padding: 2px 8px;
-  border-radius: 5px;
-  text-transform: none !important;
-  white-space: normal;
-  max-width: calc(100% - 30px);
-  height: inherit !important;
-}
-</style>
