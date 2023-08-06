@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-dialog
-      v-model="dialog"
+      v-model="dialogDelete"
     >
       <v-card>
         <v-card-title>
@@ -10,7 +10,7 @@
 
         <v-card-actions>
           <ui-button-accept
-            @click="dialog = false"
+            @click="dialogDelete = false"
           >
             キャンセル
           </ui-button-accept>
@@ -24,15 +24,55 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog
+      v-model="dialogShare"
+    >
+      <v-card>
+        <v-card-title>
+          共有用URL
+        </v-card-title>
+
+        <v-card-text>
+          <a
+            :href="shareUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ shareUrl }}
+          </a>
+        </v-card-text>
+
+        <v-card-actions>
+          <ui-button-accept
+            @click="onClickCopy"
+          >
+            クリップボードにコピー
+          </ui-button-accept>
+
+          <ui-button-accept
+            @click="dialogShare = false"
+          >
+            閉じる
+          </ui-button-accept>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <ui-text-title>
       ビルド概要
     </ui-text-title>
     <v-row class="ma-0">
       <ui-button-accept
-        class="mr-auto"
         @click="onClickSave"
       >
         保存する
+      </ui-button-accept>
+
+      <ui-button-accept
+        class="mr-auto ml-4"
+        @click="onClickShare"
+      >
+        共有する
       </ui-button-accept>
 
       <ui-button-danger
@@ -153,6 +193,7 @@
 </template>
 
 <script setup lang="ts">
+import { Base64 } from 'js-base64';
 import { AbilityInterface } from '@/classes/ability/base';
 import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
@@ -177,7 +218,8 @@ const name = ref<string>();
 const versions = ref<Array<Version>>([]);
 const hpMemoryNum = ref<number>();
 
-const dialog = ref<boolean>(false);
+const dialogDelete = ref<boolean>(false);
+const dialogShare = ref<boolean>(false);
 
 const masterNavicustomizerProgramStore = useMasterNaviCustomizerProgramStore();
 const masterNaviCustomizerPrograms = computed(() => masterNavicustomizerProgramStore.programs);
@@ -337,7 +379,23 @@ const onClickSave = () => {
 };
 
 const onClickDelete = () => {
-  dialog.value = true;
+  dialogDelete.value = true;
+};
+
+const shareUrl = computed(() : string => {
+  if (!selectedBuild.value) {
+    return '';
+  }
+  const { location } = window;
+  return `${location.origin}/share?key=${Base64.encode(JSON.stringify(selectedBuild.value))}`;
+});
+
+const onClickCopy = () => {
+  navigator.clipboard.writeText(shareUrl.value);
+};
+
+const onClickShare = () => {
+  dialogShare.value = true;
 };
 
 const deleteBuild = () => {
@@ -345,3 +403,16 @@ const deleteBuild = () => {
   router.push({ path: '/' });
 };
 </script>
+
+<style scoped>
+.button {
+  display: inline-block;
+  word-break: break-all;
+  padding: 2px 8px;
+  border-radius: 5px;
+  text-transform: none !important;
+  white-space: normal;
+  max-width: calc(100% - 30px);
+  height: inherit !important;
+}
+</style>

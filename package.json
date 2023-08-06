@@ -41,6 +41,7 @@
     "vuedraggable": "^4.1.0"
   },
   "dependencies": {
+    "js-base64": "^3.7.5",
     "vue": "^3.3.4",
     "vue-gtag-next": "^1.14.0"
   }
