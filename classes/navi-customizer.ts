@@ -1,8 +1,18 @@
 import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
 
-export class NaviCustomizer {
+interface NaviCustomizerInterface {
+  cells: NaviCustomizerCellData[][];
+  registeredNaviCustomizerPrograms: RegisteredNaviCustomizerProgram[];
+
+  initialize(): void;
+  addProgram(program: RegisteredNaviCustomizerProgram): void;
+  removeProgram(registeredProgramId: number): void;
+}
+
+class NaviCustomizer implements NaviCustomizerInterface {
   public static readonly rows = 7;
 
   public static readonly cols = 7;
@@ -52,11 +62,11 @@ export class NaviCustomizer {
 
     this._registeredNaviCustomizerPrograms.forEach((program) => {
       const masterNaviCustomizerProgram = masterNaviCustomizerPrograms.find(
-        (masterProgram) => masterProgram.id === program.programId,
+        (masterProgram: NaviCustomizerProgramInterface) => masterProgram.id === program.programId,
       );
       const programCells = program.isCompressed ? masterNaviCustomizerProgram.compressedCells : masterNaviCustomizerProgram.cells;
-      programCells.forEach((row, i) => {
-        row.forEach((cell, j) => {
+      programCells.forEach((row: NaviCustomizerCellData[], i: number) => {
+        row.forEach((cell: NaviCustomizerCellData, j: number) => {
           if (cell) {
             // 回転を考慮する
             let targetY: number;
@@ -124,7 +134,7 @@ export class NaviCustomizer {
   public removeProgram(registeredProgramId: number): void {
     this._registeredNaviCustomizerPrograms = this._registeredNaviCustomizerPrograms.filter((program) => program.id !== registeredProgramId);
     // id を振り直す
-    const results = [];
+    const results: RegisteredNaviCustomizerProgram[] = [];
     this._registeredNaviCustomizerPrograms.forEach((program, i) => {
       results.push({
         ...program,
@@ -134,3 +144,5 @@ export class NaviCustomizer {
     this._registeredNaviCustomizerPrograms = results;
   }
 }
+
+export { NaviCustomizer, NaviCustomizerInterface };

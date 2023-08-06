@@ -18,8 +18,9 @@
 
 <script setup lang="ts">
 import UpdateData from '@/assets/master-data/update.json';
+import { UpdateLog } from '@/types/update-log';
 
-const updateLogs = ref(UpdateData['update-logs'].reverse());
+const updateLogs = ref<UpdateLog[]>(UpdateData['update-logs'].reverse());
 
-const updateTitle = (updateInfo: object) => `v${updateInfo.version} ${updateInfo.date}`;
+const updateTitle = (updateLog: UpdateLog) => `v${updateLog.version} ${updateLog.date}`;
 </script>

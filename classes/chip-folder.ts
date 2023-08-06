@@ -1,7 +1,13 @@
 import { BattleChip } from '@/classes/battle-chip';
 import { FolderChip } from '@/types/folder-chip';
 
-export class ChipFolder {
+interface ChipFolderInterface {
+  chips: Array<FolderChip>;
+  addBattleChip(battleChip: BattleChip, codeIndex: number): void;
+  removeById(id: number): void;
+}
+
+class ChipFolder implements ChipFolderInterface {
   private _chips: Array<FolderChip>;
 
   public static chipCapacity = 30;
@@ -39,3 +45,5 @@ export class ChipFolder {
     return 1;
   }
 }
+
+export { ChipFolder, ChipFolderInterface };

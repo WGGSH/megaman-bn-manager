@@ -21,18 +21,19 @@
     select-strategy="single"
   >
     <template #[`item.isProgram`]="template">
-      <v-icon v-if="template.item.selectable.isProgram">
+      <v-icon v-if="getSelectableItem(template.item.selectable).isProgram">
         mdi-check
       </v-icon>
     </template>
     <template #[`item.color`]="template">
-      {{ ColorText.colorToTextMap[template.item.selectable.color] }}
+      {{ ColorText.colorToTextMap[getSelectableItem(template.item.selectable).color] }}
     </template>
   </v-data-table>
 </template>
 
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
 import { ColorText } from '@/value/color-text';
 
 const props = defineProps({
@@ -41,16 +42,33 @@ const props = defineProps({
     required: true,
   },
   selectedProgram: {
-    type: Object,
+    type: Object as PropType<NaviCustomizerProgramInterface | null>,
     required: false,
     default: null,
   },
 });
 
+const emit = defineEmits(['update-selected-program']);
+
+const selectedPrograms = ref<NaviCustomizerProgramInterface[]>([]);
+
+watch(selectedPrograms, (newValue) => {
+  if (newValue.length === 0) {
+    emit('update-selected-program', null);
+  } else {
+    emit('update-selected-program', newValue[0]);
+  }
+});
+
+watch(props, () => {
+  if (props.selectedProgram) {
+    selectedPrograms.value = [props.selectedProgram];
+  }
+});
+
 const search = ref('');
 
 const itemsPerPage = ref(10);
-const selectedPrograms = ref([]);
 
 const headers = [
   {
@@ -73,19 +91,5 @@ const headers = [
   },
 ];
 
-const emit = defineEmits(['update-selected-program']);
-
-watch(selectedPrograms, (newValue) => {
-  if (newValue.length === 0) {
-    emit('update-selected-program', null);
-  } else {
-    emit('update-selected-program', newValue[0]);
-  }
-});
-
-watch(props, () => {
-  if (props.selectedProgram) {
-    selectedPrograms.value = [props.selectedProgram];
-  }
-});
+const getSelectableItem = (item: any) : NaviCustomizerProgramInterface => item as NaviCustomizerProgramInterface;
 </script>

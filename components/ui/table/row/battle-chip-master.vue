@@ -1,34 +1,33 @@
 <template>
   <tr>
     <ui-table-data-folder-chip :color="backgroundColor">
-      {{ folderChip.number }}
+      {{ battleChip.number }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor">
-      {{ ChipText.chipClassToTextMap[folderChip.class] }}
+      {{ ChipText.chipClassToTextMap[battleChip.class] }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor">
-      {{ folderChip.name }}
+      {{ battleChip.name }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor" align="text-right">
-      {{ folderChip.damage }}
+      {{ battleChip.damage }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor" align="text-right">
-      {{ ChipText.chipTypeToTextMap[folderChip.type] }}
+      {{ ChipText.chipTypeToTextMap[battleChip.type] }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor" align="text-right">
-      {{ folderChip.capacity }}
+      {{ battleChip.capacity }}
     </ui-table-data-folder-chip>
     <ui-table-data-folder-chip :color="backgroundColor" align="text-center">
       <span
-        v-for="(code, index) in folderChip.codes"
+        v-for="(code, index) in battleChip.codes"
         :key="index"
       >
         <v-btn
-          text
           small
           height="100%"
           :disabled="disabledAdd || code === ''"
-          @click="onClickChipCode(folderChip, index)"
+          @click="onClickChipCode(battleChip, index)"
         >
           <span v-if="code === ''">-</span>
           <span v-else>{{ code }}</span>
@@ -39,13 +38,13 @@
 </template>
 
 <script setup lang="ts">
-import { BattleChip } from '@/classes/battle-chip';
+import { BattleChip } from '@/types/battle-chip';
 import { ChipColor } from '@/value/chip-color';
 import { ChipText } from '@/value/chip-text';
 
 const props = defineProps({
-  folderChip: {
-    type: Object,
+  battleChip: {
+    type: Object as PropType<BattleChip>,
     required: true,
   },
   disabledAdd: {
@@ -54,11 +53,11 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['on-click-chip-code']);
+
 const getChipColor = (battleChip: BattleChip) => ChipColor.chipClassToTextMap[battleChip.class];
 
-const backgroundColor = computed(() => getChipColor(props.folderChip));
-
-const emit = defineEmits(['on-click-chip-code']);
+const backgroundColor = computed(() => getChipColor(props.battleChip));
 
 const onClickChipCode = (battleChip: BattleChip, index: number) => {
   emit('on-click-chip-code', battleChip, index);

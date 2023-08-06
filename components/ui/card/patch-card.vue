@@ -23,8 +23,8 @@
 
           <v-row class="mb-n2">
             <v-col
-              v-for="ability in patchCard.abilities"
-              :key="ability.key"
+              v-for="(ability, index) in patchCard.abilities"
+              :key="index"
               cols="6"
               xs="6"
               sm="4"
@@ -49,18 +49,19 @@
 </template>
 
 <script setup lang="ts">
-import { PatchCard } from '@/classes/patch-card';
+import { AbilityInterface } from '@/classes/ability/base';
+import { PatchCardInterface } from '@/classes/patch-card';
 
 const props = defineProps({
   patchCard: {
-    type: PatchCard,
+    type: Object as PropType<PatchCardInterface>,
     required: true,
   },
 });
 
 const emit = defineEmits(['click']);
 
-const abilityColor = (ability) => {
+const abilityColor = (ability: AbilityInterface) => {
   if (!props.patchCard.isActive) {
     return 'disabled';
   }
