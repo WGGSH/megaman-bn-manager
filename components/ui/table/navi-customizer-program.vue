@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { ColorText } from '@/value/color-text';
-import { NaviCustomizerProgram } from '@/types/navi-customizer-program';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
 
 const props = defineProps({
   programs: {
@@ -42,7 +42,7 @@ const props = defineProps({
     required: true,
   },
   selectedProgram: {
-    type: Object as PropType<NaviCustomizerProgram | null>,
+    type: Object as PropType<NaviCustomizerProgramInterface | null>,
     required: false,
     default: null,
   },
@@ -51,7 +51,7 @@ const props = defineProps({
 const search = ref('');
 
 const itemsPerPage = ref(10);
-const selectedPrograms = ref<NaviCustomizerProgram[]>([]);
+const selectedPrograms = ref<NaviCustomizerProgramInterface[]>([]);
 
 const headers = [
   {
@@ -90,5 +90,5 @@ watch(props, () => {
   }
 });
 
-const getSelectableItem = (item: any) : NaviCustomizerProgram => item as NaviCustomizerProgram;
+const getSelectableItem = (item: any) : NaviCustomizerProgramInterface => item as NaviCustomizerProgramInterface;
 </script>

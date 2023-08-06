@@ -1,8 +1,21 @@
-import { AbilityBase } from '@/classes/ability/base';
+import { AbilityBase, AbilityInterface } from '@/classes/ability/base';
 
 import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
 
-export class NaviCustomizerProgram {
+interface NaviCustomizerProgramInterface {
+  cells: boolean[][];
+  compressedCells: boolean[][];
+  id: number;
+  name: string;
+  color: NaviCustomizerProgramColor;
+  x: number;
+  y: number;
+  isProgram: boolean;
+  addAbilities: AbilityInterface[];
+  bugAbilities: AbilityInterface[];
+}
+
+class NaviCustomizerProgram implements NaviCustomizerProgramInterface {
   private _cells: boolean[][];
 
   private _compressedCells: boolean[][];
@@ -91,3 +104,5 @@ export class NaviCustomizerProgram {
     this._bugAbilities = bugAbilities;
   }
 }
+
+export { NaviCustomizerProgram, NaviCustomizerProgramInterface };

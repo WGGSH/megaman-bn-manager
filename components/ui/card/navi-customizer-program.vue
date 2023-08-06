@@ -71,12 +71,12 @@
 </template>
 
 <script setup lang="ts">
-import { NaviCustomizerProgram } from '@/types/navi-customizer-program';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 
 const props = defineProps({
   naviCustomizerProgram: {
-    type: Object as PropType<NaviCustomizerProgram>,
+    type: Object as PropType<NaviCustomizerProgramInterface | null>,
     required: false,
     default: null,
   },

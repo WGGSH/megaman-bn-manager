@@ -37,6 +37,9 @@
 <script setup lang="ts">
 import { ProgramColors } from '@/value/program-colors';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
+import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
+import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
+import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
 import { Position } from '@/types/position';
 
 const props = defineProps({
@@ -45,12 +48,12 @@ const props = defineProps({
     required: true,
   },
   selectedProgram: {
-    type: Object,
+    type: Object as PropType<NaviCustomizerProgramInterface | null>,
     required: false,
     default: null,
   },
   programState: {
-    type: Object,
+    type: Object as PropType<NaviCustomizerProgramState>,
     required: false,
     default: null,
   },
@@ -125,9 +128,9 @@ const overlayCells = computed(() : NaviCustomizerCellData[][] => {
 
             if (cells[mousePositionY + targetY][mousePositionX + targetX]) {
               cells[mousePositionY + targetY][mousePositionX + targetX] = {
-                programId: props.selectedProgram.id,
-                color: props.selectedProgram.color,
-                isProgram: props.selectedProgram.isProgram,
+                programId: props.selectedProgram?.id as number,
+                color: props.selectedProgram?.color as NaviCustomizerProgramColor,
+                isProgram: props.selectedProgram?.isProgram as boolean,
               };
             }
           }
@@ -221,7 +224,7 @@ const addProgram = (position: Position) : void => {
   emit('add-program', {
     x: x - 2,
     y: y - 2,
-  }, props.programState.value);
+  }, props.programState);
 };
 
 const removeProgram = (position: Position) : void => {

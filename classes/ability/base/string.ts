@@ -15,7 +15,7 @@ export abstract class AbilityBaseString extends AbilityBase {
     return this._value;
   }
 
-  protected get isPositive(): boolean {
+  public get isPositive(): boolean {
     return this._value !== 'none';
   }
 
