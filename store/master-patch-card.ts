@@ -1,8 +1,6 @@
 // @ts-nocheck
 import { defineStore, type _GettersTree } from 'pinia';
-// import { Ability } from '@/types/ability';
-import { PatchCard } from '@/types/patch-card';
-// import { PatchCard } from '@/classes/patch-card';
+import { PatchCard } from '@/classes/patch-card';
 import { AbilityHpPlus } from '@/classes/ability/hp-plus';
 import { AbilityHpMagnify } from '@/classes/ability/hp-magnify';
 import { AbilityAttackPlus } from '@/classes/ability/attack-plus';
@@ -223,7 +221,7 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
       if (this.isFetched) return;
 
       this.cards = masterPatchCards.map((card) => {
-        const abilities: AbilityBase[] = [];
+        const abilities: Array<AbilityBase> = [];
         for (let i = 0; i < 6; i += 1) {
           const { key, value } = card[`ability-${i + 1}`];
           if (key !== null && value !== null) {
@@ -233,25 +231,7 @@ export const useMasterPatchCardStore = defineStore<string, MasterPatchCardState,
             }
           }
         }
-        return {
-          id: card.id,
-          number: card.number,
-          name: card.name,
-          capacity: card.capacity,
-          abilities,
-          isActive: true,
-        };
-        // const abilities: Array<AbilityBase> = [];
-        // for (let i = 0; i < 6; i += 1) {
-        //   const { key, value } = card[`ability-${i + 1}`];
-        //   if (key !== null && value !== null) {
-        //     const ability = createAbilityInstance(key, value);
-        //     if (ability !== null) {
-        //       abilities.push(ability);
-        //     }
-        //   }
-        // }
-        // return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
+        return new PatchCard(card.id, card.number, card.name, card.capacity, abilities);
       });
     },
     getCardById(id: number) : PatchCard | null {

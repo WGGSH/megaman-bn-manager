@@ -159,7 +159,7 @@ import { Version } from '@/types/version';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
-import { PatchCard } from '@/types/patch-card';
+import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
 import { MegamanStatus } from '@/types/megaman-status';
 import { UtilMegamanStatus } from '@/utils/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
@@ -198,7 +198,7 @@ const tagChips = computed(() :FolderChip[] => tagChipIds.value.map((tagChipId) =
 const megamanStatusStore = useMegamanStatusStore();
 const masterPatchCardStore = useMasterPatchCardStore();
 
-const patchCards = ref([]);
+const patchCards = ref<PatchCardInterface[]>([]);
 const megamanStatus = ref<MegamanStatus>(UtilMegamanStatus.create());
 const maxCapacity = 80;
 const currentCapacity = computed(() => {
@@ -221,9 +221,9 @@ const loadStatus = () => {
     if (!masterPatchCard) {
       return null;
     }
-    let clone = { ...masterPatchCard };
+    const clone = masterPatchCard.clone();
     if (!patchCard.isActive) {
-      clone = UtilPatchCard.toggleActive(clone);
+      clone.toggleActive();
     }
     return clone;
   }).filter((patchCard) => patchCard !== null);

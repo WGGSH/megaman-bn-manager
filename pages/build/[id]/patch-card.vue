@@ -76,9 +76,8 @@
 import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import lodash from 'lodash';
-import { UtilPatchCard } from '@/utils/patch-card';
 import { UtilMegamanStatus } from '@/utils/megaman-status';
-import { PatchCard } from '@/types/patch-card';
+import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
 import { MegamanStatus } from '@/types/megaman-status';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { useMegamanStatusStore } from '@/store/megaman-status';
@@ -99,7 +98,7 @@ const buildManagerStore = useBuildManagerStore();
 
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
-const patchCards = ref<PatchCard[]>([]);
+const patchCards = ref<PatchCardInterface[]>([]);
 
 const megamanStatusStore = useMegamanStatusStore();
 
@@ -124,9 +123,9 @@ const loadStatus = () : void => {
     if (!masterPatchCard) {
       return null;
     }
-    let clone = { ...masterPatchCard };
+    const clone = masterPatchCard.clone();
     if (!patchCard.isActive) {
-      clone = UtilPatchCard.toggleActive(clone);
+      clone.toggleActive();
     }
     return clone;
   }).filter((patchCard) => patchCard !== null);
@@ -196,10 +195,10 @@ const toggleActivePatchCard = (patchCard: PatchCard) : void => {
   if (index === -1) {
     return;
   }
-  patchCards.value[index] = UtilPatchCard.toggleActive(patchCard);
+  patchCards.value[index].toggleActive();
 };
 
-const clonePatchCard = (patchCard: PatchCard) : PatchCard => ({ ...patchCard });
+const clonePatchCard = (patchCard: PatchCard) : PatchCard => patchCard.clone();
 
 const onClickSave = () : void => {
   if (!selectedBuild.value) {

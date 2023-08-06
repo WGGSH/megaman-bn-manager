@@ -1,6 +1,18 @@
 import { AbilityBase } from '@/classes/ability/base';
 
-export class PatchCard {
+interface PatchCardInterface {
+  id: number;
+  number: string;
+  name: string;
+  capacity: number;
+  abilities: Array<AbilityBase>;
+  isActive: boolean;
+  toggleActive(): void;
+  setActive(isActive: boolean): void;
+  clone(): PatchCard;
+}
+
+class PatchCard implements PatchCardInterface {
   private _id: number;
 
   private _number: string;
@@ -70,3 +82,5 @@ export class PatchCard {
     );
   }
 }
+
+export { PatchCard, PatchCardInterface };
