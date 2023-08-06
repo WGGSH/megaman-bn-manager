@@ -284,7 +284,7 @@ onMounted(() => {
   selectedBuild.value = JSON.parse(build);
 
   masterPatchCardStore.fetchCards();
-  buildManagerStore.setSelectedBuildById(route.params.id);
+  buildManagerStore.setSelectedBuildById(null);
   if (!selectedBuild) {
     router.push({ path: '/' });
   } else {
