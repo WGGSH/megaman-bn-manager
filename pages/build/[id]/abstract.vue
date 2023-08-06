@@ -390,7 +390,6 @@ const shareUrl = computed(() : string => {
   const { location } = window;
   const runtimeConfig = useRuntimeConfig();
   const origin = `${location.origin}${runtimeConfig.public.baseURL}`;
-  console.log(selectedBuild.value);
 
   const shareableBuild: ShareableBuild = [];
   shareableBuild.push(selectedBuild.value.name);

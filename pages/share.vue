@@ -352,8 +352,6 @@ const decodeBuild = () => {
     registeredNaviCustomizerPrograms: decodeRegisteredNaviCustomizerPrograms,
   };
 
-  console.log(build);
-
   selectedBuild.value = build;
 };
 
