@@ -21,12 +21,12 @@
     select-strategy="single"
   >
     <template #[`item.isProgram`]="template">
-      <v-icon v-if="template.item.selectable.isProgram">
+      <v-icon v-if="getSelectableItem(template.item.selectable).isProgram">
         mdi-check
       </v-icon>
     </template>
     <template #[`item.color`]="template">
-      {{ ColorText.colorToTextMap[template.item.selectable.color] }}
+      {{ ColorText.colorToTextMap[getSelectableItem(template.item.selectable).color] }}
     </template>
   </v-data-table>
 </template>
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { ColorText } from '@/value/color-text';
+import { NaviCustomizerProgram } from '@/types/navi-customizer-program';
 
 const props = defineProps({
   programs: {
@@ -41,7 +42,7 @@ const props = defineProps({
     required: true,
   },
   selectedProgram: {
-    type: Object,
+    type: Object as PropType<NaviCustomizerProgram | null>,
     required: false,
     default: null,
   },
@@ -50,7 +51,7 @@ const props = defineProps({
 const search = ref('');
 
 const itemsPerPage = ref(10);
-const selectedPrograms = ref([]);
+const selectedPrograms = ref<NaviCustomizerProgram[]>([]);
 
 const headers = [
   {
@@ -88,4 +89,6 @@ watch(props, () => {
     selectedPrograms.value = [props.selectedProgram];
   }
 });
+
+const getSelectableItem = (item: any) : NaviCustomizerProgram => item as NaviCustomizerProgram;
 </script>

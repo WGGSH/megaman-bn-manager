@@ -18,6 +18,7 @@
         />
       </v-col>
       <v-col cols="12" sm="6">
+        {{ selectedProgram }}
         <ui-card-navi-customizer
           :cells="cells"
           :selected-program="selectedProgram"
@@ -56,6 +57,7 @@
 <script setup lang="ts">
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
+import { NaviCustomizerProgram } from '@/types/navi-customizer-program';
 import { useBuildManagerStore } from '@/store/build-manager';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -69,7 +71,7 @@ const masterNaviCustomizerPrograms = computed(() => masterNaviCustomizerProgramS
 const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 
-const selectedProgram = ref<object | null>(null);
+const selectedProgram = ref<NaviCustomizerProgram | null>(null);
 const programState = ref({
   isCompressed: true,
   rotate: 0,
@@ -126,7 +128,7 @@ const onClickSave = () => {
   });
 };
 
-const updateSelectedProgram = (program: object | null) => {
+const updateSelectedProgram = (program: NaviCustomizerProgram | null) => {
   selectedProgram.value = program;
 };
 
@@ -134,7 +136,7 @@ const updateProgramState = (state: NaviCustomizerProgramState) => {
   programState.value = state;
 };
 
-const addProgram = (position) => {
+const addProgram = (position) : void => {
   if (!selectedProgram.value) {
     return;
   }
@@ -147,9 +149,11 @@ const addProgram = (position) => {
   });
 };
 
-const removeProgram = (registeredProgramId) => {
+const removeProgram = (registeredProgramId: number) : void => {
   const registeredNaviCustomizerProgram = navi.value.registeredNaviCustomizerPrograms.find((program) => program.id === registeredProgramId);
-  const masterProgram = masterNaviCustomizerPrograms.value.find((program) => program.id === registeredNaviCustomizerProgram.programId);
+  if (!registeredNaviCustomizerProgram) return;
+
+  const masterProgram = masterNaviCustomizerPrograms.value.find((program: NaviCustomizerProgram) => program.id === registeredNaviCustomizerProgram.programId);
   navi.value.removeProgram(registeredProgramId);
   selectedProgram.value = masterProgram;
   // 外したプログラムを選択状態にする

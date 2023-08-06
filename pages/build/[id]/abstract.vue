@@ -139,10 +139,10 @@
 
     <v-row>
       <v-col class="pa-0">
-        <v-card class="px-0 mt-4 mx-0" color="primary" :class="{ 'py-8': items.length === 0 }">
+        <v-card class="px-0 mt-4 mx-0" color="primary" :class="{ 'py-8': patchCards.length === 0 }">
           <ui-card-patch-card
-            v-for="element in items"
-            :key="element.id"
+            v-for="(element, index) in patchCards"
+            :key="index"
             :patch-card="element"
             class="ma-4"
           />
@@ -160,7 +160,6 @@ import { NaviCustomizer } from '@/classes/navi-customizer';
 import { ChipFolder } from '@/types/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
 import { PatchCard } from '@/types/patch-card';
-// import { MegamanStatus } from '@/classes/megaman-status';
 import { MegamanStatus } from '@/types/megaman-status';
 import { UtilMegamanStatus } from '@/utils/megaman-status';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
@@ -201,13 +200,12 @@ const tagChips = computed(() :FolderChip[] => tagChipIds.value.map((tagChipId) =
 const megamanStatusStore = useMegamanStatusStore();
 const masterPatchCardStore = useMasterPatchCardStore();
 
-const items = ref([]);
-// const megamanStatus = ref<MegamanStatus>(new MegamanStatus());
+const patchCards = ref([]);
 const megamanStatus = ref<MegamanStatus>(UtilMegamanStatus.create());
 const maxCapacity = 80;
 const currentCapacity = computed(() => {
   let capacity = 0;
-  items.value.forEach((patchCard: PatchCard) => {
+  patchCards.value.forEach((patchCard: PatchCard) => {
     if (!patchCard.isActive) {
       return;
     }
@@ -220,7 +218,7 @@ const loadStatus = () => {
   if (!selectedBuild.value) {
     return;
   }
-  items.value = selectedBuild.value.patchCards.map((patchCard) => {
+  patchCards.value = selectedBuild.value.patchCards.map((patchCard) => {
     const masterPatchCard = masterPatchCardStore.getCardById(patchCard.id);
     if (!masterPatchCard) {
       return null;
@@ -295,8 +293,7 @@ watch(selectedBuild, (value) => {
   setValues();
 }, { deep: true });
 
-watch(items, (value) => {
-  // megamanStatus.value = new MegamanStatus();
+watch(patchCards, (value) => {
   megamanStatus.value = UtilMegamanStatus.create();
   if (!selectedBuild.value) {
     return;
@@ -308,7 +305,6 @@ watch(items, (value) => {
 
   megamanStatusStore.naviCustomizerStatus.megamanStatus.abilities.forEach((ability) => {
     megamanStatus.value.abilities.push(ability);
-    // megamanStatus.value.pushAbility(ability);
   });
 
   value.forEach((patchCard: PatchCard) => {
@@ -317,11 +313,9 @@ watch(items, (value) => {
     }
     patchCard.abilities.forEach((ability) => {
       megamanStatus.value.abilities.push(ability);
-      // megamanStatus.value.pushAbility(ability);
     });
   });
   megamanStatus.value = UtilMegamanStatus.apply(megamanStatus.value);
-  // megamanStatus.value.apply();
 }, { deep: true });
 
 onMounted(() => {

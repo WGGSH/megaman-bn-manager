@@ -13,13 +13,13 @@
       >
         <v-card
           class="pa-5 elevation-1 rounded-0 cell"
-          :class="getCellClass(rowIndex, cellIndex)"
+          :class="getCellClass({ y: rowIndex, x: cellIndex })"
           width="100%"
           height="100%"
           :color="cell.color"
-          @mouseenter="onMouseEnter(rowIndex, cellIndex)"
+          @mouseenter="onMouseEnter({ y: rowIndex, x: cellIndex })"
           @mouseleave="onMouseLeave()"
-          @click="onClick(rowIndex, cellIndex)"
+          @click="onClick({ y: rowIndex, x: cellIndex })"
         >
           <v-icon
             v-if="cell.programId && !cell.isProgram"
@@ -37,6 +37,7 @@
 <script setup lang="ts">
 import { ProgramColors } from '@/value/program-colors';
 import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
+import { Position } from '@/types/position';
 
 const props = defineProps({
   cells: {
@@ -55,13 +56,13 @@ const props = defineProps({
   },
 });
 
-const mousePosition = ref({ x: 0, y: 0 });
+const mousePosition = ref<Position | null>(null);
 const overWidth = 11;
 
-const overlayCells = computed(() => {
+const overlayCells = computed(() : NaviCustomizerCellData[][] => {
   // cells をコピーする
   // 11x11 の配列の真ん中 7x7 にプログラムを重ねる
-  const cells: Array<Array<NaviCustomizerCellData>> = [];
+  const cells: NaviCustomizerCellData[][] = [];
   for (let y = 0; y < overWidth; y += 1) {
     cells.push([]);
     for (let x = 0; x < overWidth; x += 1) {
@@ -69,6 +70,7 @@ const overlayCells = computed(() => {
         programId: null,
         registeredProgramId: null,
         color: 'transparent',
+        isProgram: false,
       });
     }
   }
@@ -81,13 +83,15 @@ const overlayCells = computed(() => {
 
   // cells の上に，選択中のプログラムを重ねる
   // mousePosition が null でなければ，そこにプログラムを重ねる
-  if (mousePosition.value.x !== null && mousePosition.value.y !== null && props.selectedProgram) {
+  if (mousePosition.value !== null && props.selectedProgram) {
     const programCells = props.programState.isCompressed ? props.selectedProgram?.compressedCells : props.selectedProgram?.cells;
     if (programCells) {
+      const mousePositionY = mousePosition.value.y;
+      const mousePositionX = mousePosition.value.x;
       programCells.forEach((row: Array<boolean>, y: number) => {
         row.forEach((cell: boolean, x: number) => {
-          if (mousePosition.value.y + y < 0 || mousePosition.value.y + y >= overWidth) return;
-          if (mousePosition.value.x + x < 0 || mousePosition.value.x + x >= overWidth) return;
+          if (mousePositionY + y < 0 || mousePositionY + y >= overWidth) return;
+          if (mousePositionX + x < 0 || mousePositionX + x >= overWidth) return;
           if (cell) {
             // 回転を考慮する
             let targetY: number;
@@ -116,11 +120,11 @@ const overlayCells = computed(() => {
                 break;
             }
 
-            if (mousePosition.value.y + targetY < 0 || mousePosition.value.y + targetY >= overWidth) return;
-            if (mousePosition.value.x + targetX < 0 || mousePosition.value.x + targetX >= overWidth) return;
+            if (mousePositionY + targetY < 0 || mousePositionY + targetY >= overWidth) return;
+            if (mousePositionX + targetX < 0 || mousePositionX + targetX >= overWidth) return;
 
-            if (cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX]) {
-              cells[mousePosition.value.y + targetY][mousePosition.value.x + targetX] = {
+            if (cells[mousePositionY + targetY][mousePositionX + targetX]) {
+              cells[mousePositionY + targetY][mousePositionX + targetX] = {
                 programId: props.selectedProgram.id,
                 color: props.selectedProgram.color,
                 isProgram: props.selectedProgram.isProgram,
@@ -134,17 +138,18 @@ const overlayCells = computed(() => {
   return cells;
 });
 
-const onMouseEnter = (y, x) => {
-  mousePosition.value = { x, y };
+const onMouseEnter = (position: Position) : void => {
+  mousePosition.value = position;
 };
 
-const onMouseLeave = () => {
-  mousePosition.value = { x: null, y: null };
+const onMouseLeave = () : void => {
+  mousePosition.value = null;
 };
 
 const emit = defineEmits(['add-program', 'remove-program']);
 
-const addProgram = (y, x) => {
+const addProgram = (position: Position) : void => {
+  const { y, x } = position;
   // 他のプログラムと重なっているかチェック
   // 枠からはみ出ているかもチェック
   const programCells = props.programState.isCompressed ? props.selectedProgram?.compressedCells : props.selectedProgram?.cells;
@@ -219,7 +224,8 @@ const addProgram = (y, x) => {
   }, props.programState.value);
 };
 
-const removeProgram = (y, x) => {
+const removeProgram = (position: Position) : void => {
+  const { y, x } = position;
   // クリックしたマスにプログラムがある場合は削除する
   const { targetY, targetX } = {
     targetY: y - 2,
@@ -233,15 +239,16 @@ const removeProgram = (y, x) => {
   }
 };
 
-const onClick = (y, x) => {
+const onClick = (position: Position) : void => {
   if (props.selectedProgram) {
-    addProgram(y, x);
+    addProgram(position);
   } else {
-    removeProgram(y, x);
+    removeProgram(position);
   }
 };
 
-const getCellClass = (y, x) => {
+const getCellClass = (position: Position) : Object => {
+  const { y, x } = position;
   // let [hasBorderTop, hasBorderBottom, hasBorderRight, hasBorderLeft] = [false, false, false, false];
   let [hasBorderTop, hasBorderBottom, hasBorderRight, hasBorderLeft] = [true, true, true, true];
 

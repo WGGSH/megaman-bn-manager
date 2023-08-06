@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { NaviCustomizerProgram } from '@/classes/navi-customizer-program';
+import { NaviCustomizerProgram } from '@/types/navi-customizer-program';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 
 const props = defineProps({
@@ -86,9 +86,6 @@ const rotate = ref(0);
 const programState = ref<NaviCustomizerProgramState>({
   isCompressed: true,
   rotate: 0,
-});
-
-onMounted(() => {
 });
 
 const displayCellsWidth = ref(5);
