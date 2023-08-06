@@ -157,7 +157,7 @@ import { ref, watch } from 'vue';
 import { useBuildManagerStore } from '@/store/build-manager';
 import { Version } from '@/types/version';
 import { NaviCustomizer } from '@/classes/navi-customizer';
-import { ChipFolder } from '@/types/chip-folder';
+import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
 import { PatchCard } from '@/types/patch-card';
 import { MegamanStatus } from '@/types/megaman-status';
@@ -185,9 +185,7 @@ const navi = ref(new NaviCustomizer());
 const cells = computed(() => navi.value.cells);
 const registeredNaviCustomizerPrograms = computed(() => navi.value.registeredNaviCustomizerPrograms);
 
-const chipFolder = ref<ChipFolder>({
-  chips: [],
-});
+const chipFolder = ref<ChipFolderInterface>(new ChipFolder());
 
 const regularChipId = ref(0);
 const tagChipIds = ref([]);

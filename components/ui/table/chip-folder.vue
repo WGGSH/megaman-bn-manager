@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 import { VDataTable } from 'vuetify/labs/VDataTable';
-import { ChipFolder } from '@/types/chip-folder';
+import { ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
 import { FolderChipWithBattleChipData } from '@/types/folder-chip-with-battle-chip-data';
 
@@ -33,7 +33,7 @@ const masterBattleChipStore = useMasterBattleChipStore();
 
 const props = defineProps({
   chipFolder: {
-    type: Object as PropType<ChipFolder>,
+    type: Object as PropType<ChipFolderInterface>,
     required: true,
   },
   regularChipId: {

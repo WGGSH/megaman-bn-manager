@@ -34,8 +34,7 @@
 <script setup lang="ts">
 
 import { useMasterBattleChipStore } from '@/store/master-battle-chip';
-import { UtilChipFolder } from '@/utils/chip-folder';
-import { ChipFolder } from '@/types/chip-folder';
+import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
 import { BattleChip } from '@/classes/battle-chip';
 import { useBuildManagerStore } from '@/store/build-manager';
@@ -49,9 +48,8 @@ const masterBattleChipStore = useMasterBattleChipStore();
 
 const masterBattleChips = computed(() => masterBattleChipStore.battleChips);
 
-const chipFolder = ref<ChipFolder>({
-  chips: [],
-});
+const chipFolder = ref<ChipFolderInterface>(new ChipFolder());
+
 const regularChipId = ref(0);
 const tagChipIds = ref<number[]>([]);
 
@@ -63,7 +61,7 @@ const tagChips = computed(() => tagChipIds.value.map((tagChipId) => {
 const selectedBuild = computed(() => buildManagerStore.selectedBuild);
 
 const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
-  chipFolder.value = UtilChipFolder.addBattleChip(chipFolder.value, battleChip, codeIndex);
+  chipFolder.value.addBattleChip(battleChip, codeIndex);
 };
 
 const loadFolder = () => {
@@ -117,7 +115,7 @@ const onClickSave = () => {
 };
 
 const onClickRemove = (id: number) => {
-  chipFolder.value = UtilChipFolder.removeById(chipFolder.value, id);
+  chipFolder.value.removeById(id);
 };
 
 const onClickRegisterRegular = (id: number) => {
