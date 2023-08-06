@@ -40,6 +40,11 @@
       "version": "1.3.0",
       "date": "2023-08-05",
       "change-message": "共有機能の実装"
+    },
+    {
+      "version": "1.3.1",
+      "date": "2023-08-05",
+      "change-message": "共有機能のURLが間違っていたのを修正"
     }
   ]
 }

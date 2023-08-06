@@ -10,6 +10,11 @@ export default defineNuxtConfig({
   router: {
     base: '/megaman-bn-manager/',
   },
+  runtimeConfig: {
+    public: {
+      baseURL: '/megaman-bn-manager/',
+    },
+  },
   app: {
     baseURL: '/megaman-bn-manager/',
     cdnURL: '/megaman-bn-manager/',
