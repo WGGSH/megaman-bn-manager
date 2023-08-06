@@ -10,7 +10,7 @@ export interface Build {
   hpMemoryNum: number;
   patchCards: Array<PatchCardInterface>;
   folderChips: Array<FolderChip>;
-  regularChipId: number;
+  regularChipId: number | null;
   tagChipIds: Array<number>;
   registeredNaviCustomizerPrograms: Array<RegisteredNaviCustomizerProgram>;
 }
