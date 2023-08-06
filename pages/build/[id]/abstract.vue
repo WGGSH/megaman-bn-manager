@@ -201,6 +201,7 @@ import { NaviCustomizer } from '@/classes/navi-customizer';
 import { PatchCardInterface } from '@/classes/patch-card';
 import { Build } from '@/types/build';
 import { FolderChip } from '@/types/folder-chip';
+import { ShareableBuild } from '@/types/shareable-build';
 import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
 import { Version } from '@/types/version';
 import { useBuildManagerStore } from '@/store/build-manager';
@@ -387,13 +388,37 @@ const shareUrl = computed(() : string => {
     return '';
   }
   const { location } = window;
-  const removeIdBuild = {
-    ...selectedBuild.value,
-    id: undefined,
-  };
   const runtimeConfig = useRuntimeConfig();
   const origin = `${location.origin}${runtimeConfig.public.baseURL}`;
-  return `${origin}share?key=${Base64.encode(JSON.stringify(removeIdBuild))}`;
+
+  const shareableBuild: ShareableBuild = [];
+  shareableBuild.push(selectedBuild.value.name);
+  shareableBuild.push(selectedBuild.value.versions);
+  shareableBuild.push(selectedBuild.value.hpMemoryNum);
+  shareableBuild.push(selectedBuild.value.patchCards.length);
+  selectedBuild.value.patchCards.forEach((patchCard: PatchCardInterface) => {
+    shareableBuild.push(Number(patchCard.id));
+    shareableBuild.push(Number(patchCard.isActive));
+  });
+  shareableBuild.push(selectedBuild.value.folderChips.length);
+  selectedBuild.value.folderChips.forEach((folderChip: FolderChip) => {
+    shareableBuild.push(folderChip.id);
+    shareableBuild.push(Number(folderChip.chipId));
+    shareableBuild.push(folderChip.codeIndex);
+  });
+  shareableBuild.push(selectedBuild.value.regularChipId);
+  shareableBuild.push(selectedBuild.value.tagChipIds);
+  shareableBuild.push(selectedBuild.value.registeredNaviCustomizerPrograms.length);
+  selectedBuild.value.registeredNaviCustomizerPrograms.forEach((program: RegisteredNaviCustomizerProgram) => {
+    shareableBuild.push(program.id);
+    shareableBuild.push(program.programId);
+    shareableBuild.push(Number(program.isCompressed));
+    shareableBuild.push(program.rotate);
+    shareableBuild.push(program.y);
+    shareableBuild.push(program.x);
+  });
+
+  return `${origin}share?key=${Base64.encode(JSON.stringify(shareableBuild))}`;
 });
 
 const onClickCopy = () => {
