@@ -49,8 +49,8 @@
 </template>
 
 <script setup lang="ts">
-import { PatchCardInterface } from '@/classes/patch-card';
 import { AbilityInterface } from '@/classes/ability/base';
+import { PatchCardInterface } from '@/classes/patch-card';
 
 const props = defineProps({
   patchCard: {

@@ -53,11 +53,11 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['on-click-chip-code']);
+
 const getChipColor = (battleChip: BattleChip) => ChipColor.chipClassToTextMap[battleChip.class];
 
 const backgroundColor = computed(() => getChipColor(props.battleChip));
-
-const emit = defineEmits(['on-click-chip-code']);
 
 const onClickChipCode = (battleChip: BattleChip, index: number) => {
   emit('on-click-chip-code', battleChip, index);

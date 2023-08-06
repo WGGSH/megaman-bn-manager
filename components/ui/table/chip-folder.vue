@@ -23,11 +23,11 @@
 </template>
 
 <script setup lang="ts">
-import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 import { VDataTable } from 'vuetify/labs/VDataTable';
 import { ChipFolderInterface } from '@/classes/chip-folder';
 import { FolderChip } from '@/types/folder-chip';
 import { FolderChipWithBattleChipData } from '@/types/folder-chip-with-battle-chip-data';
+import { useMasterBattleChipStore } from '@/store/master-battle-chip';
 
 const masterBattleChipStore = useMasterBattleChipStore();
 
@@ -48,6 +48,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+});
+
+const emit = defineEmits(['click-remove', 'click-register-regular', 'click-register-tag']);
+
+onMounted(() => {
+  masterBattleChipStore.fetchBattleChips();
 });
 
 const chipFolderWithBattleChipData = computed(() :FolderChipWithBattleChipData[] => props.chipFolder.chips.map((folderChip) :FolderChipWithBattleChipData => {
@@ -161,12 +167,6 @@ const readOnlyHeaders = [
     key: 'code',
   },
 ];
-
-onMounted(() => {
-  masterBattleChipStore.fetchBattleChips();
-});
-
-const emit = defineEmits(['click-remove', 'click-register-regular', 'click-register-tag']);
 
 const getSelectableItem = (item: any) : FolderChipWithBattleChipData => item as FolderChipWithBattleChipData;
 

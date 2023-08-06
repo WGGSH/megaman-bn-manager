@@ -63,9 +63,9 @@
 </template>
 
 <script setup lang="ts">
+import { FolderChipWithBattleChipData } from '@/types/folder-chip-with-battle-chip-data';
 import { ChipColor } from '@/value/chip-color';
 import { ChipText } from '@/value/chip-text';
-import { FolderChipWithBattleChipData } from '@/types/folder-chip-with-battle-chip-data';
 
 const props = defineProps({
   folderChipWithBattleChipData: {
@@ -86,6 +86,8 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['click-remove', 'click-register-regular', 'click-register-tag']);
+
 const getChipColor = (folderChipWithBattleChipData: FolderChipWithBattleChipData) => ChipColor.chipClassToTextMap[folderChipWithBattleChipData.class];
 
 const backgroundColor = computed(() => getChipColor(props.folderChipWithBattleChipData));
@@ -101,20 +103,6 @@ const backgroundIdColor = computed(() => {
   }
   return backgroundColor.value;
 });
-
-const emit = defineEmits(['click-remove', 'click-register-regular', 'click-register-tag']);
-
-const onClickRemove = () => {
-  emit('click-remove');
-};
-
-const onClickRegisterRegular = () => {
-  emit('click-register-regular');
-};
-
-const onClickRegisterTag = () => {
-  emit('click-register-tag');
-};
 
 const disabledRegularChip = computed(() => {
   // すでにタッグチップに指定されている場合は選択不可能
@@ -142,4 +130,16 @@ const disabledTagChip = computed(() => {
   // タッグチップが1つ以下の場合は，合計容量が60を超えている場合は選択不可能
   return Number(props.folderChipWithBattleChipData.capacity) + Number(props.tagChipsWithBattleChipData.reduce((a, b) => Number(a) + Number(b.capacity), 0)) > 60;
 });
+
+const onClickRemove = () => {
+  emit('click-remove');
+};
+
+const onClickRegisterRegular = () => {
+  emit('click-register-regular');
+};
+
+const onClickRegisterTag = () => {
+  emit('click-register-tag');
+};
 </script>

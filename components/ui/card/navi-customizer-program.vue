@@ -91,7 +91,10 @@ const programState = ref<NaviCustomizerProgramState>({
 const displayCellsWidth = ref(5);
 
 const isCompressed = ref(true);
-const cellWidth = computed(() => Math.max(props.naviCustomizerProgram.cells.length, props.naviCustomizerProgram.cells[0].length));
+const cellWidth = computed(() : number => {
+  if (props.naviCustomizerProgram === null) return 0;
+  return Math.max(props.naviCustomizerProgram.cells.length, props.naviCustomizerProgram.cells[0].length);
+});
 
 const displayCells = computed(() => {
   let offset = 0;
@@ -120,6 +123,8 @@ const displayCells = computed(() => {
     }
     cells.push(row);
   }
+
+  if (props.naviCustomizerProgram === null) return cells;
 
   for (let i = 0; i < props.naviCustomizerProgram.cells.length; i++) {
     for (let j = 0; j < props.naviCustomizerProgram.cells[i].length; j++) {

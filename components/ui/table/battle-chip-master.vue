@@ -29,14 +29,14 @@
 
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
+import { ChipFolderInterface } from '@/classes/chip-folder';
 import { BattleChip } from '@/types/battle-chip';
-import { ChipFolder } from '@/types/chip-folder';
 
 const search = ref('');
 
 const props = defineProps({
   chipFolder: {
-    type: Object as PropType<ChipFolder>,
+    type: Object as PropType<ChipFolderInterface>,
     required: true,
   },
   battleChips: {
@@ -44,6 +44,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const emit = defineEmits(['add-battle-chip']);
 
 const itemsPerPage = ref(30);
 
@@ -78,22 +80,10 @@ const headers = [
   },
 ];
 
-const emit = defineEmits(['add-battle-chip']);
-
-watch(() => props.battleChips, () => {
-});
-
-onMounted(() => {
-});
-
 const getSelectableItem = (item: any) : BattleChip => item as BattleChip;
 
 const addBattleChip = (battleChip: BattleChip, codeIndex: number) => {
   emit('add-battle-chip', battleChip, codeIndex);
-};
-
-const onClickChipCode = (battleChip: BattleChip, codeIndex: number) => {
-  addBattleChip(battleChip, codeIndex);
 };
 
 const getDisabledAddByChip = (battleChip: BattleChip) => {
@@ -106,6 +96,10 @@ const getDisabledAddByChip = (battleChip: BattleChip) => {
   if (capacity <= 40) return targetChipCount >= 3;
   if (capacity <= 50) return targetChipCount >= 2;
   return targetChipCount >= 1;
+};
+
+const onClickChipCode = (battleChip: BattleChip, codeIndex: number) => {
+  addBattleChip(battleChip, codeIndex);
 };
 </script>
 

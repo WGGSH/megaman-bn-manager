@@ -33,8 +33,8 @@
 
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
-import { ColorText } from '@/value/color-text';
 import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
+import { ColorText } from '@/value/color-text';
 
 const props = defineProps({
   programs: {
@@ -48,10 +48,27 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['update-selected-program']);
+
+const selectedPrograms = ref<NaviCustomizerProgramInterface[]>([]);
+
+watch(selectedPrograms, (newValue) => {
+  if (newValue.length === 0) {
+    emit('update-selected-program', null);
+  } else {
+    emit('update-selected-program', newValue[0]);
+  }
+});
+
+watch(props, () => {
+  if (props.selectedProgram) {
+    selectedPrograms.value = [props.selectedProgram];
+  }
+});
+
 const search = ref('');
 
 const itemsPerPage = ref(10);
-const selectedPrograms = ref<NaviCustomizerProgramInterface[]>([]);
 
 const headers = [
   {
@@ -73,22 +90,6 @@ const headers = [
     sortable: true,
   },
 ];
-
-const emit = defineEmits(['update-selected-program']);
-
-watch(selectedPrograms, (newValue) => {
-  if (newValue.length === 0) {
-    emit('update-selected-program', null);
-  } else {
-    emit('update-selected-program', newValue[0]);
-  }
-});
-
-watch(props, () => {
-  if (props.selectedProgram) {
-    selectedPrograms.value = [props.selectedProgram];
-  }
-});
 
 const getSelectableItem = (item: any) : NaviCustomizerProgramInterface => item as NaviCustomizerProgramInterface;
 </script>

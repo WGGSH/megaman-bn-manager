@@ -11,9 +11,7 @@
 </template>
 
 <script setup lang="ts">
-// import { NaviCustomizerStatus } from '@/classes/navi-customizer-status';
 
-// const props = defineProps({
 defineProps({
   naviCustomizerStatus: {
     type: Object,

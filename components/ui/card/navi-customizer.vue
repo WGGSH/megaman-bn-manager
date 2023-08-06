@@ -35,12 +35,12 @@
 </template>
 
 <script setup lang="ts">
-import { ProgramColors } from '@/value/program-colors';
-import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 import { NaviCustomizerProgramInterface } from '@/classes/navi-customizer-program';
+import { NaviCustomizerCellData } from '@/types/navi-customizer-cell-data';
 import { NaviCustomizerProgramState } from '@/types/navi-customizer-program-state';
 import { NaviCustomizerProgramColor } from '@/types/navi-customizer-program-color';
 import { Position } from '@/types/position';
+import { ProgramColors } from '@/value/program-colors';
 
 const props = defineProps({
   cells: {
@@ -59,7 +59,10 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['add-program', 'remove-program']);
+
 const mousePosition = ref<Position | null>(null);
+
 const overWidth = 11;
 
 const overlayCells = computed(() : NaviCustomizerCellData[][] => {
@@ -140,16 +143,6 @@ const overlayCells = computed(() : NaviCustomizerCellData[][] => {
   }
   return cells;
 });
-
-const onMouseEnter = (position: Position) : void => {
-  mousePosition.value = position;
-};
-
-const onMouseLeave = () : void => {
-  mousePosition.value = null;
-};
-
-const emit = defineEmits(['add-program', 'remove-program']);
 
 const addProgram = (position: Position) : void => {
   const { y, x } = position;
@@ -242,14 +235,6 @@ const removeProgram = (position: Position) : void => {
   }
 };
 
-const onClick = (position: Position) : void => {
-  if (props.selectedProgram) {
-    addProgram(position);
-  } else {
-    removeProgram(position);
-  }
-};
-
 const getCellClass = (position: Position) : Object => {
   const { y, x } = position;
   // let [hasBorderTop, hasBorderBottom, hasBorderRight, hasBorderLeft] = [false, false, false, false];
@@ -289,6 +274,23 @@ const getCellClass = (position: Position) : Object => {
     'has-border-left': hasBorderLeft,
   };
 };
+
+const onMouseEnter = (position: Position) : void => {
+  mousePosition.value = position;
+};
+
+const onMouseLeave = () : void => {
+  mousePosition.value = null;
+};
+
+const onClick = (position: Position) : void => {
+  if (props.selectedProgram) {
+    addProgram(position);
+  } else {
+    removeProgram(position);
+  }
+};
+
 </script>
 
 <style scoped lang="scss">

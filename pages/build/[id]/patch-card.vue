@@ -73,17 +73,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import draggable from 'vuedraggable';
 import lodash from 'lodash';
-import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
-import { Build } from '@/types/build';
 import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
 import { NaviCustomizer } from '@/classes/navi-customizer';
 import { NaviCustomizerStatusInterface } from '@/classes/navi-customizer-status';
+import { PatchCard, PatchCardInterface } from '@/classes/patch-card';
+import { Build } from '@/types/build';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useBuildManagerStore } from '@/store/build-manager';
-
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 
 const router = useRouter();

@@ -153,17 +153,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useBuildManagerStore } from '@/store/build-manager';
-import { Version } from '@/types/version';
-import { NaviCustomizer } from '@/classes/navi-customizer';
-import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { AbilityInterface } from '@/classes/ability/base';
-import { FolderChip } from '@/types/folder-chip';
-import { Build } from '@/types/build';
-import { PatchCardInterface } from '@/classes/patch-card';
-import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
+import { ChipFolder, ChipFolderInterface } from '@/classes/chip-folder';
 import { MegamanStatus, MegamanStatusInterface } from '@/classes/megaman-status';
+import { NaviCustomizer } from '@/classes/navi-customizer';
+import { PatchCardInterface } from '@/classes/patch-card';
+import { Build } from '@/types/build';
+import { FolderChip } from '@/types/folder-chip';
+import { RegisteredNaviCustomizerProgram } from '@/types/registered-navi-customizer-program';
+import { Version } from '@/types/version';
+import { useBuildManagerStore } from '@/store/build-manager';
 import { useMasterPatchCardStore } from '@/store/master-patch-card';
 import { useMegamanStatusStore } from '@/store/megaman-status';
 import { useMasterNaviCustomizerProgramStore } from '@/store/master-navi-customizer-program';
@@ -190,7 +189,7 @@ const registeredNaviCustomizerPrograms = computed(() => navi.value.registeredNav
 const chipFolder = ref<ChipFolderInterface>(new ChipFolder());
 
 const regularChipId = ref(0);
-const tagChipIds = ref([]);
+const tagChipIds = ref<number[]>([]);
 
 const tagChips = computed(() :FolderChip[] => tagChipIds.value.map((tagChipId) => {
   const folderChip = chipFolder.value.chips.find((chip) => chip.id === tagChipId) as FolderChip;
