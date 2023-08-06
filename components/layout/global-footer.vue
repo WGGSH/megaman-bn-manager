@@ -59,5 +59,5 @@ const changeRoute = (path: string) => {
   router.push(`/build/${selectedBuildId.value}/${path}`);
 };
 
-const disabled = computed(() => selectedBuildId.value === null || selectedBuildId.value?.id === undefined);
+const disabled = computed(() => selectedBuildId.value === null);
 </script>
